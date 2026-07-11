@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World's Best Word Counter - Free Online Word &amp; Character Count Tool</title>
+<meta name="description" content="Count words, characters, sentences, and paragraphs as you type. Free word counter with reading time, keyword density, and social media limits — 100% private.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://wbwordcounter.com/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='20'%20fill='%232563eb'/%3E%3Ctext%20x='50'%20y='72'%20font-size='60'%20font-family='Georgia,serif'%20font-weight='bold'%20fill='white'%20text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Word Counter">
+<meta property="og:title" content="World's Best Word Counter - Free Online Word &amp; Character Count Tool">
+<meta property="og:description" content="Count words, characters, sentences, and paragraphs as you type. Free word counter with reading time, keyword density, and social media limits — 100% private.">
+<meta property="og:url" content="https://wbwordcounter.com/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="World's Best Word Counter - Free Online Word &amp; Character Count Tool">
+<meta name="twitter:description" content="Count words, characters, sentences, and paragraphs as you type. Free, instant, and 100% private — your text never leaves your browser.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Word Counter",
+  "url": "https://wbwordcounter.com/",
+  "description": "Free online word counter and character counter. Counts words, characters, sentences, and paragraphs as you type, with reading time, speaking time, keyword density, and social media character limits. Runs entirely in your browser — no sign-up, and your text never leaves your device.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Live word count and character count",
+    "Sentence and paragraph count",
+    "Reading time and speaking time estimates",
+    "Keyword density analysis",
+    "Social media character limit checker",
+    "Case converter (UPPERCASE, lowercase, Title Case, Sentence case)",
+    "Private on-device processing with local autosave"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does this word counter count words?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A word is any run of characters separated by spaces or line breaks, so hyphenated compounds like “well-known” count as one word and numbers count as words. For languages written without spaces, such as Chinese and Japanese, each character is counted as a word. This closely matches how word processors like Microsoft Word and Google Docs count, though different tools can differ by a word or two on edge cases."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many pages is 1,000 words?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "About 2 pages single-spaced or 4 pages double-spaced, using the standard convention of 12-point Times New Roman with 1-inch margins. Font, font size, margins, and paragraph spacing all shift the result, so treat page estimates as approximations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many words is a 5-minute speech?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Roughly 625–750 words. Most people speak at 125–150 words per minute in a presentation, so multiply your speaking time in minutes by your pace. Slow down for emphasis and pauses and you'll land near the lower end."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my text saved or sent anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything is calculated by JavaScript running in your browser — your text is never uploaded, logged, or shared. As a convenience, a draft is autosaved to your own browser's local storage on your device, and pressing Clear removes it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do some emoji count as 2 characters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Computers store text as UTF-16 code units, and many emoji and rare symbols take two units. This counter counts characters the same way, which matches how most platforms enforce their limits — X (Twitter), for example, counts most emoji as 2 characters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the character limit on X (Twitter)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "280 characters for standard accounts (paid subscribers can post longer). Note that X counts every link as 23 characters regardless of its real length, and most emoji count as 2."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate are the reading time and speaking time estimates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They use widely cited averages: 225 words per minute for silent reading and 150 words per minute for speaking. Real speeds vary with the reader, the audience, and how technical the text is, so treat them as good planning estimates rather than guarantees."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the word counter work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The entire tool is a single page with no server calls, so once it has loaded it keeps working without a connection. You can even save the page to your device and use it anywhere."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:0 0 6px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-block;margin-top:10px;padding:3px 10px;border:1px solid var(--border);
+  border-radius:999px;font-size:.78rem;color:var(--muted);background:var(--card)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 10px}
+.toolbar button{
+  font:inherit;font-size:.85rem;padding:6px 12px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.toolbar button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.toolbar button:disabled{opacity:.45;cursor:not-allowed}
+button:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+textarea{
+  width:100%;min-height:280px;resize:vertical;padding:16px;font:inherit;
+  color:var(--text);background:var(--card);border:1px solid var(--border);
+  border-radius:12px;box-shadow:var(--shadow)
+}
+textarea::placeholder{color:var(--muted)}
+.stats{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px;padding:0;margin:12px 0 0}
+.stats li{padding:10px 12px;text-align:center}
+.stats .v{display:block;font-size:1.4rem;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.stats .l{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+@media (max-width:760px){.panels{grid-template-columns:1fr}}
+.panel{padding:14px 16px}
+.panel h2{font-size:.95rem;margin:0 0 8px}
+.panel .hint{font-size:.8rem;color:var(--muted);margin:8px 0 0}
+.kw-row,.lim-row{display:flex;align-items:baseline;gap:8px;padding:5px 0;border-bottom:1px dashed var(--border);font-size:.9rem}
+.kw-row:last-of-type,.lim-row:last-of-type{border-bottom:0}
+.kw-word{font-weight:600;overflow-wrap:anywhere}
+.kw-meta,.lim-cap{color:var(--muted);font-size:.82rem;white-space:nowrap}
+.spacer{flex:1}
+.lim-status{font-variant-numeric:tabular-nums;font-size:.85rem;color:var(--muted);white-space:nowrap}
+.lim-status.over{color:var(--over);font-weight:700}
+.muted{color:var(--muted)}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:420px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td{font-variant-numeric:tabular-nums}
+.faq p{color:var(--text)}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>World's Best Word Counter</h1>
+  <p class="tagline">Free online word and character counter. Instantly count words, characters, sentences, and paragraphs — with reading time, keyword density, and social media character limits.</p>
+  <span class="badge">🔒 100% private — your text never leaves your browser</span>
+  <nav class="toc" aria-label="On this page">
+    <a href="#tool">Counter</a>
+    <a href="#words-per-page">Words per page</a>
+    <a href="#speech-length">Speech length</a>
+    <a href="#word-count-guidelines">Word count guidelines</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Word counter tool">
+    <div class="toolbar">
+      <button type="button" id="btn-copy">Copy</button>
+      <button type="button" id="btn-clear">Clear</button>
+      <button type="button" id="btn-upper">UPPERCASE</button>
+      <button type="button" id="btn-lower">lowercase</button>
+      <button type="button" id="btn-title">Title Case</button>
+      <button type="button" id="btn-sentence">Sentence case</button>
+      <button type="button" id="btn-undo" disabled>Undo</button>
+    </div>
+    <label class="sr-only" for="text">Type or paste your text to count words and characters</label>
+    <textarea id="text" placeholder="Type or paste your text here… your words are counted instantly and never leave this device." autofocus spellcheck="true"></textarea>
+    <p class="sr-only" id="live" role="status" aria-live="polite"></p>
+
+    <ul class="stats">
+      <li class="card"><span class="v" id="stat-words">0</span><span class="l">Words</span></li>
+      <li class="card"><span class="v" id="stat-chars">0</span><span class="l">Characters</span></li>
+      <li class="card"><span class="v" id="stat-chars-ns">0</span><span class="l">Chars, no spaces</span></li>
+      <li class="card"><span class="v" id="stat-sentences">0</span><span class="l">Sentences</span></li>
+      <li class="card"><span class="v" id="stat-paras">0</span><span class="l">Paragraphs</span></li>
+      <li class="card"><span class="v" id="stat-unique">0</span><span class="l">Unique words</span></li>
+      <li class="card"><span class="v" id="stat-read" title="At an average silent-reading speed of 225 words per minute">0 sec</span><span class="l">Reading time</span></li>
+      <li class="card"><span class="v" id="stat-speak" title="At an average speaking pace of 150 words per minute">0 sec</span><span class="l">Speaking time</span></li>
+    </ul>
+
+    <div class="panels">
+      <div class="panel card">
+        <h2>Keyword density</h2>
+        <div id="density"><p class="hint">Start typing to see your most-used words — handy for spotting repetition and checking SEO focus keywords.</p></div>
+      </div>
+      <div class="panel card">
+        <h2>Character limits</h2>
+        <div id="limits"></div>
+        <p class="hint">X counts links as 23 characters and most emoji as 2, so its real remaining count can differ slightly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="props" aria-label="Why use this word counter">
+    <div class="card"><strong>Instant &amp; accurate</strong><p>Counts update live on every keystroke and match how word processors count — hyphenated words count once, numbers count as words.</p></div>
+    <div class="card"><strong>Private by design</strong><p>Everything runs in your browser. Nothing is uploaded, tracked, or stored on a server — drafts autosave only to your own device.</p></div>
+    <div class="card"><strong>Free, forever</strong><p>No sign-up, no limits, no ads chasing you around. It even keeps working offline once the page has loaded.</p></div>
+  </section>
+
+  <section id="words-per-page" class="prose">
+    <h2>How many pages is my word count?</h2>
+    <p>Page count depends on font, size, margins, and spacing, so publishers and teachers use a standard convention: <strong>12-point Times New Roman with 1-inch margins</strong>. On that basis a single-spaced page holds about 500 words and a double-spaced page about 250. Quick reference:</p>
+    <div class="table-wrap">
+      <table>
+        <caption>Estimates based on 12-pt Times New Roman, 1-inch margins. Your exact layout may vary.</caption>
+        <thead><tr><th scope="col">Word count</th><th scope="col">Pages (single-spaced)</th><th scope="col">Pages (double-spaced)</th></tr></thead>
+        <tbody>
+          <tr><td>250 words</td><td>½ page</td><td>1 page</td></tr>
+          <tr><td>500 words</td><td>1 page</td><td>2 pages</td></tr>
+          <tr><td>750 words</td><td>1½ pages</td><td>3 pages</td></tr>
+          <tr><td>1,000 words</td><td>2 pages</td><td>4 pages</td></tr>
+          <tr><td>1,500 words</td><td>3 pages</td><td>6 pages</td></tr>
+          <tr><td>2,000 words</td><td>4 pages</td><td>8 pages</td></tr>
+          <tr><td>2,500 words</td><td>5 pages</td><td>10 pages</td></tr>
+          <tr><td>5,000 words</td><td>10 pages</td><td>20 pages</td></tr>
+          <tr><td>10,000 words</td><td>20 pages</td><td>40 pages</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="speech-length" class="prose">
+    <h2>How many words is a speech or presentation?</h2>
+    <p>Most people present at <strong>125–150 words per minute</strong> — slower than conversation, because pauses and emphasis eat time. So a 5-minute speech is roughly 625–750 words, and a 20-minute talk runs about 2,500–3,000. Write to the low end if you use slides or expect questions.</p>
+    <div class="table-wrap">
+      <table>
+        <caption>Word budgets by speaking time. The tool's speaking-time estimate uses the 150 wpm average.</caption>
+        <thead><tr><th scope="col">Speaking time</th><th scope="col">Slow pace (125 wpm)</th><th scope="col">Average pace (150 wpm)</th></tr></thead>
+        <tbody>
+          <tr><td>1 minute</td><td>125 words</td><td>150 words</td></tr>
+          <tr><td>2 minutes</td><td>250 words</td><td>300 words</td></tr>
+          <tr><td>3 minutes</td><td>375 words</td><td>450 words</td></tr>
+          <tr><td>5 minutes</td><td>625 words</td><td>750 words</td></tr>
+          <tr><td>10 minutes</td><td>1,250 words</td><td>1,500 words</td></tr>
+          <tr><td>15 minutes</td><td>1,875 words</td><td>2,250 words</td></tr>
+          <tr><td>20 minutes</td><td>2,500 words</td><td>3,000 words</td></tr>
+          <tr><td>30 minutes</td><td>3,750 words</td><td>4,500 words</td></tr>
+          <tr><td>60 minutes</td><td>7,500 words</td><td>9,000 words</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="word-count-guidelines" class="prose">
+    <h2>Word count guidelines for essays, blogs, and books</h2>
+    <p>Common targets and hard limits writers are asked to hit, in one place:</p>
+    <div class="table-wrap">
+      <table>
+        <caption>Hard limits are enforced by the platform; ranges are widely used conventions.</caption>
+        <thead><tr><th scope="col">Format</th><th scope="col">Typical length or limit</th></tr></thead>
+        <tbody>
+          <tr><td>X (Twitter) post</td><td>280 characters (standard accounts)</td></tr>
+          <tr><td>SMS text message</td><td>160 characters per segment (70 with emoji)</td></tr>
+          <tr><td>Meta description</td><td>~160 characters recommended</td></tr>
+          <tr><td>Instagram caption</td><td>2,200 characters max</td></tr>
+          <tr><td>Common App personal essay</td><td>250–650 words</td></tr>
+          <tr><td>High school essay</td><td>300–1,000 words</td></tr>
+          <tr><td>Blog post</td><td>1,000–2,500 words</td></tr>
+          <tr><td>College term paper</td><td>1,500–5,000 words</td></tr>
+          <tr><td>Short story</td><td>1,000–7,500 words</td></tr>
+          <tr><td>Novella</td><td>17,500–40,000 words</td></tr>
+          <tr><td>NaNoWriMo novel goal</td><td>50,000 words</td></tr>
+          <tr><td>Adult novel</td><td>70,000–100,000 words</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Frequently asked questions</h2>
+
+    <h3>How does this word counter count words?</h3>
+    <p>A word is any run of characters separated by spaces or line breaks, so hyphenated compounds like “well-known” count as one word and numbers count as words. For languages written without spaces, such as Chinese and Japanese, each character is counted as a word. This closely matches how word processors like Microsoft Word and Google Docs count, though different tools can differ by a word or two on edge cases.</p>
+
+    <h3>How many pages is 1,000 words?</h3>
+    <p>About 2 pages single-spaced or 4 pages double-spaced, using the standard convention of 12-point Times New Roman with 1-inch margins. Font, font size, margins, and paragraph spacing all shift the result, so treat page estimates as approximations.</p>
+
+    <h3>How many words is a 5-minute speech?</h3>
+    <p>Roughly 625–750 words. Most people speak at 125–150 words per minute in a presentation, so multiply your speaking time in minutes by your pace. Slow down for emphasis and pauses and you'll land near the lower end.</p>
+
+    <h3>Is my text saved or sent anywhere?</h3>
+    <p>No. Everything is calculated by JavaScript running in your browser — your text is never uploaded, logged, or shared. As a convenience, a draft is autosaved to your own browser's local storage on your device, and pressing Clear removes it.</p>
+
+    <h3>Why do some emoji count as 2 characters?</h3>
+    <p>Computers store text as UTF-16 code units, and many emoji and rare symbols take two units. This counter counts characters the same way, which matches how most platforms enforce their limits — X (Twitter), for example, counts most emoji as 2 characters.</p>
+
+    <h3>What is the character limit on X (Twitter)?</h3>
+    <p>280 characters for standard accounts (paid subscribers can post longer). Note that X counts every link as 23 characters regardless of its real length, and most emoji count as 2.</p>
+
+    <h3>How accurate are the reading time and speaking time estimates?</h3>
+    <p>They use widely cited averages: 225 words per minute for silent reading and 150 words per minute for speaking. Real speeds vary with the reader, the audience, and how technical the text is, so treat them as good planning estimates rather than guarantees.</p>
+
+    <h3>Does the word counter work offline?</h3>
+    <p>Yes. The entire tool is a single page with no server calls, so once it has loaded it keeps working without a connection. You can even save the page to your device and use it anywhere.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Made for writers, students, editors, and marketers. Your text stays on your device — always.
+    <br>© 2026 Word Counter · Free to use, no sign-up required.
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var ta = $('text'), live = $('live'), undoBtn = $('btn-undo');
+  var READ_WPM = 225, SPEAK_WPM = 150, STORE_KEY = 'word-counter-draft';
+  var CJK = /[぀-ヿ㐀-䶿一-鿿豈-﫿ｦ-ﾟ]/g;
+  var STOP = new Set(('the,a,an,and,or,but,if,then,else,when,while,at,by,for,in,of,on,to,up,with,as,is,are,was,were,be,been,' +
+    'being,it,its,this,that,these,those,i,you,he,she,we,they,them,his,her,their,my,your,our,me,him,us,from,not,no,nor,so,' +
+    'too,very,can,will,just,do,does,did,have,has,had,what,which,who,whom,how,why,where,there,here,all,any,both,each,few,' +
+    'more,most,other,some,such,only,own,same,than,about,into,over,after,under,again,once,out,off,also,because,between,' +
+    'through,during,before,above,below,down,would,could,should,may,might,must,shall,am,' +
+    "it's,don't,can't,won't,i'm,i've,i'll,you're,that's,didn't,doesn't,isn't,wasn't,aren't").split(','));
+  var LIMITS = [
+    { name: 'X (Twitter) post', limit: 280 },
+    { name: 'Instagram caption', limit: 2200 },
+    { name: 'LinkedIn post', limit: 3000 },
+    { name: 'YouTube title', limit: 100 },
+    { name: 'SMS segment', limit: 160 },
+    { name: 'Meta description', limit: 160 },
+    { name: 'Google title tag', limit: 60 },
+    { name: 'Facebook post', limit: 63206 }
+  ];
+  var limitEls = [], snapshot = null, heavyTimer = null, saveTimer = null;
+
+  (function buildLimits() {
+    var box = $('limits'), frag = document.createDocumentFragment();
+    LIMITS.forEach(function (l) {
+      var row = document.createElement('div'); row.className = 'lim-row';
+      var name = document.createElement('span'); name.textContent = l.name;
+      var cap = document.createElement('span'); cap.className = 'lim-cap';
+      cap.textContent = l.limit.toLocaleString('en-US');
+      var sp = document.createElement('span'); sp.className = 'spacer';
+      var status = document.createElement('span'); status.className = 'lim-status';
+      row.append(name, cap, sp, status);
+      frag.appendChild(row);
+      limitEls.push({ el: status, limit: l.limit });
+    });
+    box.appendChild(frag);
+  })();
+
+  function fmtInt(n) { return n.toLocaleString('en-US'); }
+
+  function fmtTime(words, wpm) {
+    if (!words) return '0 sec';
+    var min = words / wpm;
+    if (min < 1) return Math.max(1, Math.round(min * 60)) + ' sec';
+    if (min < 59.5) return Math.round(min) + ' min';
+    var h = Math.floor(min / 60), m = Math.round(min % 60);
+    if (m === 60) { h++; m = 0; }
+    return h + ' hr' + (m ? ' ' + m + ' min' : '');
+  }
+
+  function countWords(text) {
+    var cjk = text.match(CJK), rest = text.replace(CJK, ' ').trim();
+    var n = rest ? rest.split(/\s+/).length : 0;
+    return n + (cjk ? cjk.length : 0);
+  }
+
+  function countSentences(text) {
+    if (!text.trim()) return 0;
+    return text.split(/[.!?…]+(?:\s+|$)/).filter(function (s) { return s.trim(); }).length;
+  }
+
+  function countParagraphs(text) {
+    return text.split(/\n+/).filter(function (p) { return p.trim(); }).length;
+  }
+
+  function normalize(w) {
+    return w.toLowerCase().replace(/’/g, "'").replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, '');
+  }
+
+  function update() {
+    var text = ta.value;
+    var words = countWords(text);
+    var chars = text.length;
+    $('stat-words').textContent = fmtInt(words);
+    $('stat-chars').textContent = fmtInt(chars);
+    $('stat-chars-ns').textContent = fmtInt(text.replace(/\s/g, '').length);
+    $('stat-sentences').textContent = fmtInt(countSentences(text));
+    $('stat-paras').textContent = fmtInt(countParagraphs(text));
+    $('stat-read').textContent = fmtTime(words, READ_WPM);
+    $('stat-speak').textContent = fmtTime(words, SPEAK_WPM);
+    limitEls.forEach(function (l) {
+      var left = l.limit - chars;
+      l.el.textContent = left >= 0 ? fmtInt(left) + ' left' : fmtInt(-left) + ' over';
+      l.el.classList.toggle('over', left < 0);
+    });
+    clearTimeout(heavyTimer);
+    heavyTimer = setTimeout(function () { heavy(text, words); }, 200);
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(save, 500);
+  }
+
+  function heavy(text, totalWords) {
+    var freq = new Map();
+    if (text.trim()) {
+      text.replace(CJK, ' ').split(/\s+/).forEach(function (raw) {
+        var w = normalize(raw);
+        if (w && w.length > 2 && !STOP.has(w)) freq.set(w, (freq.get(w) || 0) + 1);
+      });
+    }
+    $('stat-unique').textContent = fmtInt(freq.size);
+    var box = $('density');
+    box.textContent = '';
+    if (!freq.size) {
+      var hint = document.createElement('p');
+      hint.className = 'hint';
+      hint.textContent = 'Start typing to see your most-used words — handy for spotting repetition and checking SEO focus keywords.';
+      box.appendChild(hint);
+      return;
+    }
+    Array.from(freq.entries())
+      .sort(function (a, b) { return b[1] - a[1] || a[0].localeCompare(b[0]); })
+      .slice(0, 6)
+      .forEach(function (entry) {
+        var row = document.createElement('div'); row.className = 'kw-row';
+        var w = document.createElement('span'); w.className = 'kw-word'; w.textContent = entry[0];
+        var sp = document.createElement('span'); sp.className = 'spacer';
+        var meta = document.createElement('span'); meta.className = 'kw-meta';
+        meta.textContent = fmtInt(entry[1]) + '× · ' + (totalWords ? (entry[1] / totalWords * 100).toFixed(1) : '0.0') + '%';
+        row.append(w, sp, meta);
+        box.appendChild(row);
+      });
+  }
+
+  function save() {
+    try {
+      if (ta.value) localStorage.setItem(STORE_KEY, ta.value);
+      else localStorage.removeItem(STORE_KEY);
+    } catch (e) { /* storage unavailable (private mode) — counting still works */ }
+  }
+
+  function announce(msg) { live.textContent = msg; }
+
+  function takeSnapshot() {
+    snapshot = ta.value;
+    undoBtn.disabled = false;
+  }
+
+  function transform(fn) {
+    takeSnapshot();
+    ta.value = fn(ta.value);
+    update();
+    ta.focus();
+  }
+
+  $('btn-upper').addEventListener('click', function () {
+    transform(function (t) { return t.toUpperCase(); });
+  });
+  $('btn-lower').addEventListener('click', function () {
+    transform(function (t) { return t.toLowerCase(); });
+  });
+  $('btn-title').addEventListener('click', function () {
+    transform(function (t) {
+      return t.replace(/\S+/g, function (w) { return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); });
+    });
+  });
+  $('btn-sentence').addEventListener('click', function () {
+    transform(function (t) {
+      return t.toLowerCase()
+        .replace(/(^|[.!?…]\s+|\n\s*)(\p{Ll})/gu, function (m, pre, ch) { return pre + ch.toUpperCase(); })
+        .replace(/(^|\s)i(?=[\s'’]|$)/g, '$1I');
+    });
+  });
+  $('btn-undo').addEventListener('click', function () {
+    if (snapshot === null) return;
+    ta.value = snapshot;
+    snapshot = null;
+    undoBtn.disabled = true;
+    update();
+    ta.focus();
+    announce('Undone.');
+  });
+  $('btn-clear').addEventListener('click', function () {
+    if (!ta.value) return;
+    takeSnapshot();
+    ta.value = '';
+    update();
+    ta.focus();
+    announce('Text cleared. Press Undo to restore.');
+  });
+  $('btn-copy').addEventListener('click', function () {
+    var btn = this, done = function () {
+      btn.textContent = 'Copied!';
+      announce('Text copied to clipboard.');
+      setTimeout(function () { btn.textContent = 'Copy'; }, 1200);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(ta.value).then(done, function () { fallbackCopy(); done(); });
+    } else { fallbackCopy(); done(); }
+    function fallbackCopy() {
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      ta.setSelectionRange(ta.value.length, ta.value.length);
+    }
+  });
+
+  ta.addEventListener('input', update);
+  window.addEventListener('pagehide', save);
+
+  try {
+    var draft = localStorage.getItem(STORE_KEY);
+    if (draft && !ta.value) ta.value = draft;
+  } catch (e) {}
+  update();
+})();
+</script>
+</body>
+</html>
