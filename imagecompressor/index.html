@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World's Best Image Compressor - Compress &amp; Resize Images Online Free</title>
+<meta name="description" content="Compress, resize, and convert JPEG, PNG, and WebP images right in your browser. Free, no sign-up, no upload - your photos never leave your device.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://wbimagecompressor.com/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='20'%20fill='%232563eb'/%3E%3Ctext%20x='50'%20y='74'%20font-size='58'%20text-anchor='middle'%3E%F0%9F%96%BC%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Image Compressor">
+<meta property="og:title" content="World's Best Image Compressor - Compress &amp; Resize Images Online Free">
+<meta property="og:description" content="Compress, resize, and convert JPEG, PNG, and WebP images right in your browser. Free, no sign-up, no upload - your photos never leave your device.">
+<meta property="og:url" content="https://wbimagecompressor.com/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="World's Best Image Compressor - Compress &amp; Resize Images Online Free">
+<meta name="twitter:description" content="Compress, resize, and convert images with no upload - everything happens on your device. Free, instant, and private.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Image Compressor",
+  "url": "https://wbimagecompressor.com/",
+  "description": "Free image compressor and resizer that runs entirely in your browser. Compress JPEG, PNG, and WebP photos, resize by pixels or percent, hit an exact target file size, convert between formats, and batch-download results as a ZIP. No upload - your photos never leave your device.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Compress JPEG, PNG, and WebP images",
+    "Quality slider with live before/after preview",
+    "Resize by max dimensions or percentage",
+    "Compress to an exact target file size",
+    "Convert between JPEG, PNG, and WebP",
+    "Batch processing with ZIP download",
+    "EXIF metadata (including GPS location) stripped automatically",
+    "100% private on-device processing - photos are never uploaded",
+    "Works offline"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to compress an image without losing quality",
+  "description": "Shrink a photo's file size dramatically while keeping it visually identical - free and without uploading it anywhere.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Add your images",
+      "text": "Drag and drop photos onto the tool, click to browse, or paste from the clipboard. Nothing is uploaded - files are processed on your device."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Pick quality 75-85",
+      "text": "For photos, JPEG or WebP at quality 75-85 is the sweet spot: a fraction of the original size with no visible difference at normal viewing sizes."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Resize if the image is larger than needed",
+      "text": "Resolution costs more bytes than quality does. If the photo will be viewed on screens, limiting the longest side to 1920 pixels usually halves the size again."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Compare and download",
+      "text": "Check the before/after preview side by side, then download files individually or all at once as a ZIP."
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are my photos uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Unlike most image compressors, this tool does all processing in your browser using the canvas built into it - your photos never leave your device. There is no upload, no queue, and no server that could keep copies. You can load the page, go offline, and it keeps working."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does compressing an image reduce its quality?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lossy compression (JPEG, WebP) discards detail your eye barely notices - at quality 75-85 the difference is invisible at normal viewing sizes, while the file often shrinks by 70-90%. PNG compression is lossless: pixels stay identical, but files shrink much less. Use the side-by-side preview to judge with your own eyes before downloading."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use JPEG, PNG, or WebP?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JPEG for photos with universal compatibility; WebP for photos and graphics on the web (25-35% smaller than JPEG at the same quality); PNG only when you need lossless quality or transparency - logos, screenshots with text, diagrams. Never save photos as PNG: the file will be many times larger for no visible benefit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I compress an image to exactly 200 KB or 100 KB?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Choose the \"Target file size\" resize mode, type the size limit, and the tool automatically searches for the highest JPEG or WebP quality that fits under it. This is the fast way to meet upload limits for job applications, visa forms, and government portals."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this remove EXIF data and GPS location from photos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, automatically. Re-encoding through the canvas strips all EXIF metadata - camera model, settings, timestamps, and crucially the GPS location your phone embeds in every photo. The image is rotated correctly first, so orientation is preserved. Smaller files and better privacy in one step."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I compress HEIC photos from an iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only in browsers that can decode HEIC (Safari can; Chrome and Firefox currently cannot). If a file fails to load, convert it first: on iPhone, share the photo and it typically converts to JPEG automatically, or set Settings > Camera > Formats to \"Most Compatible\"."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best quality setting for JPEG compression?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "75-85 for almost everything. Above 90, file size grows steeply for differences you cannot see; below 60, artifacts start appearing around edges and in smooth gradients. The default here is 80, which is why compressed photos look identical at a fraction of the size."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a limit on file count or size?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No artificial limits - no daily quota, no premium tier, no watermark. The practical limit is your device's memory, since everything is processed locally. Hundreds of normal photos are fine; extremely large images (100+ megapixels) may fail on phones with little memory."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626; --good:#16a34a;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171; --good:#4ade80;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+ol.steps{margin:0 0 12px;padding-left:22px}
+ol.steps li{margin:0 0 8px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.drop{
+  display:block;width:100%;padding:42px 20px;text-align:center;cursor:pointer;
+  border:2px dashed var(--border);border-radius:12px;background:var(--card);
+  color:var(--text);font:inherit;transition:border-color .15s,background-color .15s
+}
+.drop:hover,.drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.drop strong{display:block;font-size:1.1rem;margin-bottom:4px}
+.drop span{color:var(--muted);font-size:.9rem}
+.gen{display:grid;grid-template-columns:1fr 320px;gap:12px;align-items:start;margin-top:12px}
+@media (max-width:860px){.gen{grid-template-columns:1fr}}
+.panel{padding:14px 16px}
+.panel h2{font-size:.95rem;margin:0 0 8px}
+.panel .hint{font-size:.8rem;color:var(--muted);margin:8px 0 0}
+.opt-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px dashed var(--border);font-size:.9rem}
+.opt-row:last-of-type{border-bottom:0}
+.opt-row label{flex:1}
+.opt-row input[type="range"]{flex:1.4;accent-color:var(--accent);min-width:90px}
+.opt-row select,.opt-row input[type="number"]{
+  font:inherit;font-size:.88rem;padding:4px 8px;border-radius:8px;max-width:110px;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.opt-row input[type="number"]{width:82px}
+.range-val{font-weight:700;font-variant-numeric:tabular-nums;min-width:2.6ch;text-align:right}
+.summary{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 16px;margin:0 0 12px}
+.summary .tot{font-weight:700}
+.summary .save{color:var(--good);font-weight:700}
+.spacer{flex:1}
+.summary button,.file button,.compare-head button{
+  font:inherit;font-size:.85rem;padding:6px 12px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.summary button:hover:not(:disabled),.file button:hover{border-color:var(--accent);color:var(--accent)}
+.summary button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.summary button.primary:hover:not(:disabled){filter:brightness(1.08);color:#fff}
+.summary button:disabled{opacity:.45;cursor:not-allowed}
+.files{list-style:none;margin:0;padding:0}
+.file{
+  display:flex;align-items:center;gap:12px;padding:10px 14px;cursor:pointer;
+  border-bottom:1px solid var(--border)
+}
+.file:last-child{border-bottom:0}
+.file.sel{background:var(--accent-soft)}
+.file img{width:44px;height:44px;object-fit:cover;border-radius:8px;background:var(--border);flex:0 0 auto}
+.f-info{flex:1;min-width:0}
+.f-name{font-weight:600;font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.f-meta{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.f-meta .save{color:var(--good);font-weight:600}
+.f-meta .grow{color:var(--over);font-weight:600}
+.f-meta .err{color:var(--over)}
+.compare{margin-top:12px;padding:14px 16px}
+.compare-head{display:flex;align-items:baseline;gap:10px;margin-bottom:10px}
+.compare-head h2{margin:0}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:700px){.compare-grid{grid-template-columns:1fr}}
+.compare-grid figure{margin:0;text-align:center}
+.compare-grid img{max-width:100%;max-height:300px;border-radius:8px;border:1px solid var(--border);background:#fff}
+.compare-grid figcaption{font-size:.82rem;color:var(--muted);margin-top:6px;font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:420px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td{font-variant-numeric:tabular-nums}
+.faq p{color:var(--text)}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WB Image Compressor &amp; Resizer</h1>
+  <p class="tagline">Compress, resize, and convert JPEG, PNG, and WebP images - free and with no upload. Everything happens in your browser, so your photos are never sent anywhere.</p>
+  <span class="badge">🔒 100% private - your photos never leave your device</span>
+  <nav class="toc" aria-label="On this page">
+    <a href="#tool">Compressor</a>
+    <a href="#why-compress">Why compress</a>
+    <a href="#formats">JPEG vs PNG vs WebP</a>
+    <a href="#how-to">How to</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Image compressor tool">
+    <button type="button" class="drop" id="drop">
+      <strong>Drop images here, click to browse, or paste</strong>
+      <span>JPEG, PNG, WebP, GIF · multiple files welcome · processed on your device, never uploaded</span>
+    </button>
+    <input type="file" id="file-input" accept="image/*" multiple class="sr-only" aria-label="Choose images to compress">
+    <p class="sr-only" id="live" role="status" aria-live="polite"></p>
+
+    <div class="gen">
+      <div id="results" hidden>
+        <div class="summary card">
+          <span class="tot" id="sum-line">0 files</span>
+          <span class="spacer"></span>
+          <button type="button" id="btn-clear">Clear all</button>
+          <button type="button" class="primary" id="btn-zip" disabled>Download all (ZIP)</button>
+        </div>
+        <ul class="files card" id="file-list"></ul>
+
+        <div class="compare card" id="compare" hidden>
+          <div class="compare-head">
+            <h2>Before / after</h2>
+            <span class="muted" style="font-size:.8rem">click any file above to inspect it</span>
+          </div>
+          <div class="compare-grid">
+            <figure>
+              <img id="cmp-before" alt="Original image preview">
+              <figcaption id="cmp-before-cap"></figcaption>
+            </figure>
+            <figure>
+              <img id="cmp-after" alt="Compressed image preview">
+              <figcaption id="cmp-after-cap"></figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <p class="muted" id="placeholder" style="margin:4px 2px">Your files and results will appear here. Typical result: photos shrink by <strong>60-90%</strong> with no visible quality loss.</p>
+
+      <div class="panel card">
+        <h2>Options</h2>
+        <div class="opt-row">
+          <label for="opt-format">Convert to</label>
+          <select id="opt-format">
+            <option value="keep" selected>Keep format</option>
+            <option value="image/jpeg">JPEG</option>
+            <option value="image/webp">WebP</option>
+            <option value="image/png">PNG (lossless)</option>
+          </select>
+        </div>
+        <div class="opt-row">
+          <label for="opt-quality" style="flex:0 0 auto">Quality</label>
+          <input type="range" id="opt-quality" min="1" max="100" value="80" step="1">
+          <span class="range-val" id="opt-quality-val" aria-hidden="true">80</span>
+        </div>
+        <div class="opt-row">
+          <label for="opt-resize">Resize</label>
+          <select id="opt-resize">
+            <option value="none">No resize</option>
+            <option value="dims" selected>Max dimensions</option>
+            <option value="percent">Percentage</option>
+            <option value="target">Target file size</option>
+          </select>
+        </div>
+        <div class="opt-row" id="row-dims">
+          <label for="opt-max-w" style="flex:0 0 auto">Max W×H</label>
+          <input type="number" id="opt-max-w" min="1" max="20000" value="1920" inputmode="numeric" aria-label="Maximum width in pixels">
+          <span aria-hidden="true">×</span>
+          <input type="number" id="opt-max-h" min="1" max="20000" value="1920" inputmode="numeric" aria-label="Maximum height in pixels">
+        </div>
+        <div class="opt-row" id="row-percent" hidden>
+          <label for="opt-percent" style="flex:0 0 auto">Scale</label>
+          <input type="range" id="opt-percent" min="1" max="100" value="50" step="1">
+          <span class="range-val" id="opt-percent-val" aria-hidden="true">50%</span>
+        </div>
+        <div class="opt-row" id="row-target" hidden>
+          <label for="opt-target" style="flex:0 0 auto">Fit under</label>
+          <input type="number" id="opt-target" min="5" max="51200" value="200" inputmode="numeric" aria-label="Target file size in kilobytes">
+          <span aria-hidden="true">KB</span>
+        </div>
+        <p class="hint" id="opt-hint">Aspect ratio is always preserved and images are never upscaled. Quality applies to JPEG and WebP; PNG is lossless. EXIF metadata (including GPS location) is stripped automatically.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="props" aria-label="Why use this image compressor">
+    <div class="card"><strong>No upload, no wait</strong><p>Other tools upload your photos to their servers and make you wait in a queue. Here the work happens on your own device at native speed - even with no internet.</p></div>
+    <div class="card"><strong>Private by design</strong><p>Your photos are never transmitted, stored, or seen by anyone. EXIF metadata - including the GPS location your phone embeds - is stripped automatically.</p></div>
+    <div class="card"><strong>Free, forever</strong><p>No sign-up, no daily limit, no watermark, no premium tier. Batch-compress hundreds of images and download them all as a ZIP.</p></div>
+  </section>
+
+  <section id="why-compress" class="prose">
+    <h2>Why compress images?</h2>
+    <p>Because almost everything you do with an image has a size limit - and oversized images are the number one cause of slow web pages. A phone photo is typically 3-8 MB, yet the place it is going rarely allows or needs more than a fraction of that:</p>
+    <div class="table-wrap">
+      <table>
+        <caption>Common limits as of 2026 - check the specific service for current values.</caption>
+        <thead><tr><th scope="col">Destination</th><th scope="col">Typical limit or ideal size</th></tr></thead>
+        <tbody>
+          <tr><td>Email attachments (Gmail, Outlook)</td><td>20-25 MB per message</td></tr>
+          <tr><td>Job portals, visa &amp; government forms</td><td>often 100-500 KB per file</td></tr>
+          <tr><td>Website hero image</td><td>≤ 200-300 KB recommended</td></tr>
+          <tr><td>Website content images</td><td>≤ 100 KB recommended</td></tr>
+          <tr><td>WordPress and most CMS uploads</td><td>2-8 MB default cap</td></tr>
+          <tr><td>Discord (free)</td><td>10 MB per file</td></tr>
+          <tr><td>App stores, marketplaces, listings</td><td>commonly 1-5 MB</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>On the web it is also a ranking matter: image weight dominates <em>Largest Contentful Paint</em>, one of Google's Core Web Vitals. Compressing images is the single cheapest page-speed win there is.</p>
+  </section>
+
+  <section id="formats" class="prose">
+    <h2>JPEG vs PNG vs WebP: which should you use?</h2>
+    <div class="table-wrap">
+      <table>
+        <caption>Rule of thumb: photos → JPEG or WebP; graphics, screenshots, and anything needing transparency → PNG or WebP.</caption>
+        <thead><tr><th scope="col">Format</th><th scope="col">Compression</th><th scope="col">Best for</th><th scope="col">Watch out for</th></tr></thead>
+        <tbody>
+          <tr><td>JPEG</td><td>Lossy</td><td>Photos; maximum compatibility everywhere</td><td>No transparency; artifacts at low quality</td></tr>
+          <tr><td>WebP</td><td>Lossy or lossless</td><td>Web images - 25-35% smaller than JPEG at equal quality; supports transparency</td><td>Rarely, very old software can't open it</td></tr>
+          <tr><td>PNG</td><td>Lossless</td><td>Screenshots with text, logos, diagrams, transparency</td><td>Huge files if used for photos</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The classic mistake is saving photos as PNG "for quality": at normal viewing sizes a quality-80 JPEG is visually identical and often <strong>10× smaller</strong>. The reverse mistake - JPEG for a screenshot full of text - produces smudged edges that PNG would render perfectly.</p>
+  </section>
+
+  <section id="how-to" class="prose">
+    <h2>How to compress an image without losing (visible) quality</h2>
+    <ol class="steps">
+      <li><strong>Add your images.</strong> Drag them in, browse, or paste. They are processed on your device - nothing is uploaded.</li>
+      <li><strong>Keep quality at 75-85.</strong> That is the sweet spot where files shrink 70-90% and the difference is invisible at normal viewing sizes.</li>
+      <li><strong>Resize if it's bigger than needed.</strong> Resolution costs more bytes than quality does: a 4000-pixel photo shown on a 1920-pixel screen is pure waste. The default 1920 px cap is right for most screen uses.</li>
+      <li><strong>Compare, then download.</strong> Click any file to see original and compressed side by side. Download individually or as one ZIP.</li>
+    </ol>
+    <p>Need to hit a hard limit like "under 200 KB"? Switch resize mode to <strong>Target file size</strong> - the tool searches for the best quality that fits automatically.</p>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Frequently asked questions</h2>
+
+    <h3>Are my photos uploaded to a server?</h3>
+    <p>No. Unlike most image compressors, this tool does all processing in your browser using the canvas built into it - your photos never leave your device. There is no upload, no queue, and no server that could keep copies. You can load the page, go offline, and it keeps working.</p>
+
+    <h3>Does compressing an image reduce its quality?</h3>
+    <p>Lossy compression (JPEG, WebP) discards detail your eye barely notices - at quality 75-85 the difference is invisible at normal viewing sizes, while the file often shrinks by 70-90%. PNG compression is lossless: pixels stay identical, but files shrink much less. Use the side-by-side preview to judge with your own eyes before downloading.</p>
+
+    <h3>Should I use JPEG, PNG, or WebP?</h3>
+    <p>JPEG for photos with universal compatibility; WebP for photos and graphics on the web (25-35% smaller than JPEG at the same quality); PNG only when you need lossless quality or transparency - logos, screenshots with text, diagrams. Never save photos as PNG: the file will be many times larger for no visible benefit.</p>
+
+    <h3>How do I compress an image to exactly 200 KB or 100 KB?</h3>
+    <p>Choose the "Target file size" resize mode, type the size limit, and the tool automatically searches for the highest JPEG or WebP quality that fits under it. This is the fast way to meet upload limits for job applications, visa forms, and government portals.</p>
+
+    <h3>Does this remove EXIF data and GPS location from photos?</h3>
+    <p>Yes, automatically. Re-encoding through the canvas strips all EXIF metadata - camera model, settings, timestamps, and crucially the GPS location your phone embeds in every photo. The image is rotated correctly first, so orientation is preserved. Smaller files and better privacy in one step.</p>
+
+    <h3>Can I compress HEIC photos from an iPhone?</h3>
+    <p>Only in browsers that can decode HEIC (Safari can; Chrome and Firefox currently cannot). If a file fails to load, convert it first: on iPhone, share the photo and it typically converts to JPEG automatically, or set Settings &gt; Camera &gt; Formats to "Most Compatible".</p>
+
+    <h3>What is the best quality setting for JPEG compression?</h3>
+    <p>75-85 for almost everything. Above 90, file size grows steeply for differences you cannot see; below 60, artifacts start appearing around edges and in smooth gradients. The default here is 80, which is why compressed photos look identical at a fraction of the size.</p>
+
+    <h3>Is there a limit on file count or size?</h3>
+    <p>No artificial limits - no daily quota, no premium tier, no watermark. The practical limit is your device's memory, since everything is processed locally. Hundreds of normal photos are fine; extremely large images (100+ megapixels) may fail on phones with little memory.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Made for web builders, sellers, applicants, and everyone with a full inbox. Your photos stay on your device - always.
+    <br>© 2026 Image Compressor · Free to use, no sign-up required. · More free tools: <a href="https://wbwordcounter.com/">WB Word Counter</a> · <a href="https://wbpasswordgenerator.com/">WB Password Generator</a>
+  </div>
+</footer>
+
+<script>
+/* Minimal ZIP writer (store mode, no compression - images are already compressed).
+   entries: [{ name: string, data: Uint8Array }] -> Uint8Array of the .zip file. */
+function wbZip(entries) {
+  'use strict';
+  var CRC_TABLE = (function () {
+    var t = new Uint32Array(256), c, n, k;
+    for (n = 0; n < 256; n++) {
+      c = n;
+      for (k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ c >>> 1 : c >>> 1;
+      t[n] = c >>> 0;
+    }
+    return t;
+  })();
+  function crc32(data) {
+    var c = 0xFFFFFFFF, i;
+    for (i = 0; i < data.length; i++) c = CRC_TABLE[(c ^ data[i]) & 255] ^ c >>> 8;
+    return (c ^ 0xFFFFFFFF) >>> 0;
+  }
+  function utf8(str) {
+    var out = [], i, c;
+    for (i = 0; i < str.length; i++) {
+      c = str.codePointAt(i);
+      if (c > 0xFFFF) i++;
+      if (c < 128) out.push(c);
+      else if (c < 2048) out.push(192 | c >> 6, 128 | c & 63);
+      else if (c < 65536) out.push(224 | c >> 12, 128 | c >> 6 & 63, 128 | c & 63);
+      else out.push(240 | c >> 18, 128 | c >> 12 & 63, 128 | c >> 6 & 63, 128 | c & 63);
+    }
+    return new Uint8Array(out);
+  }
+  var now = new Date();
+  var dosTime = now.getHours() << 11 | now.getMinutes() << 5 | now.getSeconds() >> 1;
+  var dosDate = now.getFullYear() - 1980 << 9 | now.getMonth() + 1 << 5 | now.getDate();
+
+  var parts = [], central = [], offset = 0, i;
+  function bytes(arr) { return new Uint8Array(arr); }
+  function u16(v) { return [v & 255, v >> 8 & 255]; }
+  function u32(v) { return [v & 255, v >>> 8 & 255, v >>> 16 & 255, v >>> 24 & 255]; }
+
+  for (i = 0; i < entries.length; i++) {
+    var name = utf8(entries[i].name), data = entries[i].data;
+    var crc = crc32(data);
+    var common = u16(20).concat(u16(0x0800), u16(0), u16(dosTime), u16(dosDate),
+      u32(crc), u32(data.length), u32(data.length), u16(name.length), u16(0));
+    var local = bytes(u32(0x04034b50).concat(common));
+    parts.push(local, name, data);
+    central.push({ header: common, name: name, offset: offset });
+    offset += local.length + name.length + data.length;
+  }
+  var centralSize = 0;
+  for (i = 0; i < central.length; i++) {
+    var c = central[i];
+    var rec = bytes(u32(0x02014b50).concat(u16(20), c.header,
+      u16(0), u16(0), u16(0), u32(0), u32(c.offset)));
+    parts.push(rec, c.name);
+    centralSize += rec.length + c.name.length;
+  }
+  parts.push(bytes(u32(0x06054b50).concat(u16(0), u16(0),
+    u16(entries.length), u16(entries.length), u32(centralSize), u32(offset), u16(0))));
+
+  var total = 0;
+  for (i = 0; i < parts.length; i++) total += parts[i].length;
+  var out = new Uint8Array(total), pos = 0;
+  for (i = 0; i < parts.length; i++) { out.set(parts[i], pos); pos += parts[i].length; }
+  return out;
+}
+if (typeof module !== 'undefined') module.exports = { wbZip: wbZip };
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+  var live = $('live'), fileList = $('file-list');
+  var files = [], nextId = 1, selectedId = null, procTimer = null, running = false, runAgain = false;
+  var WEBP_OK = (function () {
+    try {
+      var cv = document.createElement('canvas');
+      cv.width = cv.height = 1;
+      return cv.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+    } catch (e) { return false; }
+  })();
+
+  function fmtBytes(n) {
+    if (n < 1024) return n + ' B';
+    if (n < 1048576) return (n / 1024).toFixed(n < 10240 ? 1 : 0) + ' KB';
+    return (n / 1048576).toFixed(1) + ' MB';
+  }
+  function announce(msg) { live.textContent = msg; }
+
+  // --- options ---
+  function options() {
+    return {
+      format: $('opt-format').value,
+      quality: +$('opt-quality').value / 100,
+      resize: $('opt-resize').value,
+      maxW: +$('opt-max-w').value || Infinity,
+      maxH: +$('opt-max-h').value || Infinity,
+      percent: +$('opt-percent').value / 100,
+      targetKB: Math.max(5, +$('opt-target').value || 200)
+    };
+  }
+
+  function outType(inType, opts) {
+    var t = opts.format === 'keep' ? inType : opts.format;
+    if (t !== 'image/jpeg' && t !== 'image/png' && t !== 'image/webp') t = 'image/png';
+    if (opts.resize === 'target' && t === 'image/png') t = WEBP_OK ? 'image/webp' : 'image/jpeg';
+    if (t === 'image/webp' && !WEBP_OK) t = 'image/jpeg';
+    return t;
+  }
+  function extFor(type) {
+    return type === 'image/jpeg' ? '.jpg' : type === 'image/webp' ? '.webp' : '.png';
+  }
+
+  // --- decoding & scaling ---
+  function decode(blob) {
+    if (window.createImageBitmap) {
+      return createImageBitmap(blob).catch(function () { return decodeViaImg(blob); });
+    }
+    return decodeViaImg(blob);
+  }
+  function decodeViaImg(blob) {
+    return new Promise(function (resolve, reject) {
+      var url = URL.createObjectURL(blob);
+      var img = new Image();
+      img.onload = function () { resolve(img); };
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error('decode failed')); };
+      img.src = url;
+    });
+  }
+
+  function targetDims(w, h, opts) {
+    if (opts.resize === 'dims') {
+      var s = Math.min(1, opts.maxW / w, opts.maxH / h);
+      return { w: Math.max(1, Math.round(w * s)), h: Math.max(1, Math.round(h * s)) };
+    }
+    if (opts.resize === 'percent') {
+      return { w: Math.max(1, Math.round(w * opts.percent)), h: Math.max(1, Math.round(h * opts.percent)) };
+    }
+    return { w: w, h: h };
+  }
+
+  // Progressive halving before the final draw keeps downscales sharp
+  function scaleTo(src, w, h) {
+    var sw = src.width, sh = src.height, cur = src;
+    while (sw / 2 >= w && sh / 2 >= h) {
+      sw = Math.round(sw / 2);
+      sh = Math.round(sh / 2);
+      var step = document.createElement('canvas');
+      step.width = sw; step.height = sh;
+      var sctx = step.getContext('2d');
+      sctx.imageSmoothingEnabled = true;
+      sctx.imageSmoothingQuality = 'high';
+      sctx.drawImage(cur, 0, 0, sw, sh);
+      cur = step;
+    }
+    var cv = document.createElement('canvas');
+    cv.width = w; cv.height = h;
+    var ctx = cv.getContext('2d');
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(cur, 0, 0, w, h);
+    return cv;
+  }
+
+  function toBlob(cv, type, quality) {
+    return new Promise(function (resolve, reject) {
+      cv.toBlob(function (b) { b ? resolve(b) : reject(new Error('encode failed')); }, type, quality);
+    });
+  }
+
+  function processOne(f, opts) {
+    return decode(f.origBlob).then(function (src) {
+      f.origW = src.width;
+      f.origH = src.height;
+      var type = outType(f.origBlob.type, opts);
+      var dims = targetDims(src.width, src.height, opts);
+      var cv = scaleTo(src, dims.w, dims.h);
+      if (src.close) src.close();
+      if (type === 'image/jpeg') {
+        // flatten transparency onto white for JPEG
+        var flat = document.createElement('canvas');
+        flat.width = cv.width; flat.height = cv.height;
+        var fctx = flat.getContext('2d');
+        fctx.fillStyle = '#fff';
+        fctx.fillRect(0, 0, flat.width, flat.height);
+        fctx.drawImage(cv, 0, 0);
+        cv = flat;
+      }
+      if (opts.resize === 'target') {
+        var limit = opts.targetKB * 1024;
+        var lo = 0.05, hi = 0.95, bestBlob = null;
+        var tryQ = function (q) {
+          return toBlob(cv, type, q).then(function (b) { return { q: q, blob: b }; });
+        };
+        var step = function (n) {
+          if (n === 0) {
+            return bestBlob ? Promise.resolve(bestBlob) : toBlob(cv, type, lo);
+          }
+          var mid = (lo + hi) / 2;
+          return tryQ(mid).then(function (r) {
+            if (r.blob.size <= limit) { bestBlob = r.blob; lo = mid; }
+            else hi = mid;
+            return step(n - 1);
+          });
+        };
+        return step(8).then(function (blob) {
+          f.outBlob = blob;
+          f.outW = cv.width; f.outH = cv.height; f.outType = type;
+          f.status = blob.size <= limit ? 'done' : 'overtarget';
+        });
+      }
+      return toBlob(cv, type, type === 'image/png' ? undefined : opts.quality).then(function (blob) {
+        f.outBlob = blob;
+        f.outW = cv.width; f.outH = cv.height; f.outType = type;
+        f.status = 'done';
+      });
+    }).catch(function () {
+      f.status = 'error';
+      f.outBlob = null;
+    });
+  }
+
+  // --- queue ---
+  function reprocessAll() {
+    files.forEach(function (f) { f.status = 'pending'; });
+    renderList();
+    runQueue();
+  }
+  function runQueue() {
+    if (running) { runAgain = true; return; }
+    running = true;
+    var opts = options();
+    var chain = Promise.resolve();
+    files.forEach(function (f) {
+      chain = chain.then(function () {
+        if (f.status !== 'pending') return;
+        f.status = 'working';
+        renderRow(f);
+        return processOne(f, opts).then(function () { renderRow(f); });
+      });
+    });
+    chain.then(function () {
+      running = false;
+      renderSummary();
+      renderCompare();
+      if (runAgain) { runAgain = false; reprocessAll(); }
+      else announce('Done. ' + doneFiles().length + ' images compressed.');
+    });
+  }
+  function scheduleReprocess() {
+    clearTimeout(procTimer);
+    procTimer = setTimeout(reprocessAll, 350);
+  }
+  function doneFiles() {
+    return files.filter(function (f) { return f.status === 'done' || f.status === 'overtarget'; });
+  }
+
+  // --- rendering ---
+  function renderRow(f) {
+    var li = document.getElementById('f-' + f.id);
+    if (!li) return;
+    var meta = li.querySelector('.f-meta');
+    if (f.status === 'working' || f.status === 'pending') {
+      meta.textContent = 'Compressing…';
+    } else if (f.status === 'error') {
+      meta.innerHTML = '';
+      var e = document.createElement('span');
+      e.className = 'err';
+      e.textContent = 'Could not decode this file (unsupported format).';
+      meta.appendChild(e);
+    } else {
+      meta.innerHTML = '';
+      var delta = f.outBlob.size - f.origBlob.size;
+      var pct = f.origBlob.size ? Math.round(Math.abs(delta) / f.origBlob.size * 100) : 0;
+      meta.appendChild(document.createTextNode(
+        f.origW + '×' + f.origH + (f.outW !== f.origW || f.outH !== f.origH ? ' → ' + f.outW + '×' + f.outH : '') +
+        ' · ' + fmtBytes(f.origBlob.size) + ' → ' + fmtBytes(f.outBlob.size) + ' '));
+      var s = document.createElement('span');
+      s.className = delta <= 0 ? 'save' : 'grow';
+      s.textContent = delta <= 0 ? '−' + pct + '%' : '+' + pct + '% (already optimized)';
+      meta.appendChild(s);
+      if (f.status === 'overtarget') {
+        meta.appendChild(document.createTextNode(' · could not fit target - try a smaller size too'));
+      }
+      var dl = li.querySelector('button.dl');
+      dl.disabled = false;
+    }
+    renderSummary();
+  }
+
+  function renderList() {
+    fileList.textContent = '';
+    files.forEach(function (f) {
+      var li = document.createElement('li');
+      li.className = 'file' + (f.id === selectedId ? ' sel' : '');
+      li.id = 'f-' + f.id;
+      var img = document.createElement('img');
+      img.alt = '';
+      img.src = f.thumbUrl;
+      var info = document.createElement('div');
+      info.className = 'f-info';
+      var name = document.createElement('div');
+      name.className = 'f-name';
+      name.textContent = f.name;
+      var meta = document.createElement('div');
+      meta.className = 'f-meta';
+      meta.textContent = 'Compressing…';
+      info.append(name, meta);
+      var dl = document.createElement('button');
+      dl.type = 'button';
+      dl.className = 'dl';
+      dl.textContent = 'Download';
+      dl.disabled = true;
+      dl.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        if (f.outBlob) saveBlob(f.outBlob, outName(f));
+      });
+      var rm = document.createElement('button');
+      rm.type = 'button';
+      rm.textContent = '×';
+      rm.setAttribute('aria-label', 'Remove ' + f.name);
+      rm.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        removeFile(f.id);
+      });
+      li.append(img, info, dl, rm);
+      li.addEventListener('click', function () {
+        selectedId = f.id;
+        renderList();
+        renderCompare();
+      });
+      fileList.appendChild(li);
+      renderRow(f);
+    });
+    $('results').hidden = files.length === 0;
+    $('placeholder').hidden = files.length !== 0;
+    renderSummary();
+  }
+
+  function renderSummary() {
+    var done = doneFiles();
+    var origTot = 0, outTot = 0;
+    done.forEach(function (f) { origTot += f.origBlob.size; outTot += f.outBlob.size; });
+    var line = files.length + ' file' + (files.length === 1 ? '' : 's');
+    if (done.length) {
+      line += ': ' + fmtBytes(origTot) + ' → ' + fmtBytes(outTot);
+    }
+    $('sum-line').textContent = '';
+    $('sum-line').appendChild(document.createTextNode(line + ' '));
+    if (done.length && origTot > outTot) {
+      var s = document.createElement('span');
+      s.className = 'save';
+      s.textContent = '−' + Math.round((origTot - outTot) / origTot * 100) + '%';
+      $('sum-line').appendChild(s);
+    }
+    $('btn-zip').disabled = done.length === 0;
+  }
+
+  function renderCompare() {
+    var f = files.find(function (x) { return x.id === selectedId; }) || doneFiles()[0];
+    var box = $('compare');
+    if (!f || !f.outBlob) { box.hidden = true; return; }
+    selectedId = f.id;
+    box.hidden = false;
+    var before = $('cmp-before'), after = $('cmp-after');
+    if (before.dataset.id !== String(f.id)) {
+      if (before.src) URL.revokeObjectURL(before.src);
+      before.src = URL.createObjectURL(f.origBlob);
+      before.dataset.id = String(f.id);
+    }
+    if (after.src) URL.revokeObjectURL(after.src);
+    after.src = URL.createObjectURL(f.outBlob);
+    $('cmp-before-cap').textContent = 'Original · ' + f.origW + '×' + f.origH + ' · ' + fmtBytes(f.origBlob.size);
+    $('cmp-after-cap').textContent = 'Compressed · ' + f.outW + '×' + f.outH + ' · ' + fmtBytes(f.outBlob.size) +
+      ' · ' + f.outType.replace('image/', '').toUpperCase();
+  }
+
+  // --- file management ---
+  function addFiles(list) {
+    var added = 0;
+    Array.prototype.forEach.call(list, function (blob) {
+      if (!blob || (blob.type && blob.type.indexOf('image/') !== 0 && blob.type !== '')) return;
+      var f = {
+        id: nextId++,
+        name: blob.name || 'pasted-image.png',
+        origBlob: blob,
+        thumbUrl: URL.createObjectURL(blob),
+        origW: 0, origH: 0,
+        outBlob: null, status: 'pending'
+      };
+      files.push(f);
+      added++;
+    });
+    if (!added) return;
+    if (selectedId === null && files.length) selectedId = files[0].id;
+    announce(added + ' image' + (added === 1 ? '' : 's') + ' added.');
+    renderList();
+    runQueue();
+  }
+
+  function removeFile(id) {
+    var idx = files.findIndex(function (f) { return f.id === id; });
+    if (idx === -1) return;
+    URL.revokeObjectURL(files[idx].thumbUrl);
+    files.splice(idx, 1);
+    if (selectedId === id) selectedId = files.length ? files[0].id : null;
+    renderList();
+    renderCompare();
+  }
+
+  function outName(f) {
+    var base = f.name.replace(/\.[^.]+$/, '');
+    return base + '-compressed' + extFor(f.outType);
+  }
+
+  function saveBlob(blob, name) {
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 5000);
+  }
+
+  // --- events ---
+  var drop = $('drop'), input = $('file-input');
+  drop.addEventListener('click', function () { input.click(); });
+  input.addEventListener('change', function () {
+    addFiles(this.files);
+    this.value = '';
+  });
+  ['dragover', 'dragenter'].forEach(function (ev) {
+    drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('over'); });
+  });
+  ['dragleave', 'drop'].forEach(function (ev) {
+    drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('over'); });
+  });
+  drop.addEventListener('drop', function (e) {
+    if (e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files);
+  });
+  document.addEventListener('paste', function (e) {
+    if (e.clipboardData && e.clipboardData.files && e.clipboardData.files.length) {
+      addFiles(e.clipboardData.files);
+    }
+  });
+
+  $('btn-clear').addEventListener('click', function () {
+    files.forEach(function (f) { URL.revokeObjectURL(f.thumbUrl); });
+    files = [];
+    selectedId = null;
+    renderList();
+    $('compare').hidden = true;
+    announce('All files cleared.');
+  });
+
+  $('btn-zip').addEventListener('click', function () {
+    var done = doneFiles();
+    if (!done.length) return;
+    var used = {}, entries = [];
+    var chain = Promise.resolve();
+    done.forEach(function (f) {
+      chain = chain.then(function () {
+        return f.outBlob.arrayBuffer().then(function (buf) {
+          var name = outName(f), n = 2;
+          while (used[name]) {
+            name = outName(f).replace(/(\.[^.]+)$/, ' (' + n + ')$1');
+            n++;
+          }
+          used[name] = true;
+          entries.push({ name: name, data: new Uint8Array(buf) });
+        });
+      });
+    });
+    chain.then(function () {
+      saveBlob(new Blob([wbZip(entries)], { type: 'application/zip' }), 'compressed-images.zip');
+      announce('ZIP with ' + entries.length + ' images downloaded.');
+    });
+  });
+
+  // options wiring
+  $('opt-quality').addEventListener('input', function () {
+    $('opt-quality-val').textContent = this.value;
+    scheduleReprocess();
+  });
+  $('opt-percent').addEventListener('input', function () {
+    $('opt-percent-val').textContent = this.value + '%';
+    scheduleReprocess();
+  });
+  ['opt-max-w', 'opt-max-h', 'opt-target'].forEach(function (id) {
+    $(id).addEventListener('input', scheduleReprocess);
+  });
+  $('opt-format').addEventListener('change', function () {
+    if (this.value === 'image/webp' && !WEBP_OK) {
+      $('opt-hint').textContent = 'This browser cannot encode WebP - JPEG will be used instead.';
+    }
+    scheduleReprocess();
+  });
+  $('opt-resize').addEventListener('change', function () {
+    $('row-dims').hidden = this.value !== 'dims';
+    $('row-percent').hidden = this.value !== 'percent';
+    $('row-target').hidden = this.value !== 'target';
+    scheduleReprocess();
+  });
+})();
+</script>
+</body>
+</html>
