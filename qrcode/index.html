@@ -7,7 +7,7 @@
 <meta name="description" content="Create QR codes for links, Wi-Fi, vCards, email, SMS, and phone numbers. Free, no sign-up, no watermark - static codes that never expire, generated 100% in your browser.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
-<link rel="canonical" href="https://wbqrcode.com/">
+<link rel="canonical" href="https://qrcode.wbest.app/">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="QR Code Generator">
 <meta property="og:title" content="World's Best QR Code Generator - Free QR Codes That Never Expire">
 <meta property="og:description" content="Create QR codes for links, Wi-Fi, vCards, email, SMS, and phone numbers. Free, no sign-up, no watermark - static codes that never expire, generated 100% in your browser.">
-<meta property="og:url" content="https://wbqrcode.com/">
+<meta property="og:url" content="https://qrcode.wbest.app/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="World's Best QR Code Generator - Free QR Codes That Never Expire">
 <meta name="twitter:description" content="Free QR codes with no sign-up, no watermark, and no expiry. Download PNG or SVG - generated on your device, never uploaded.">
@@ -25,7 +25,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "QR Code Generator",
-  "url": "https://wbqrcode.com/",
+  "url": "https://qrcode.wbest.app/",
   "description": "Free QR code generator for URLs, plain text, Wi-Fi logins, vCard contacts, email, SMS, and phone numbers. Creates static QR codes that never expire, with adjustable size, colors, and error correction. Download as PNG or SVG. Runs entirely in your browser - no sign-up, no watermark, and your data never leaves your device.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Any",
@@ -296,7 +296,7 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
           <div id="form-url">
             <div class="field">
               <label for="url-value">Web address (URL)</label>
-              <input type="url" id="url-value" value="https://wbqrcode.com" placeholder="https://example.com" spellcheck="false" autocapitalize="off">
+              <input type="url" id="url-value" value="https://qrcode.wbest.app" placeholder="https://example.com" spellcheck="false" autocapitalize="off">
             </div>
             <p class="hint">Short links scan more reliably than long tracking URLs. https:// is added automatically if you leave it off.</p>
           </div>
@@ -550,7 +550,7 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
 <footer>
   <div class="wrap">
     Made for menus, posters, packaging, business cards, and Wi-Fi sharing. Your data stays on your device - always.
-    <br>© 2026 QR Code Generator · Free to use, no sign-up required. · More free tools: <a href="https://wbwordcounter.com/">WB Word Counter</a> · <a href="https://wbpasswordgenerator.com/">WB Password Generator</a>
+    <br>© 2026 QR Code Generator · Free to use, no sign-up required. · <a href="https://wbest.app/">View more free tools</a>
   </div>
 </footer>
 
@@ -989,7 +989,7 @@ var QR = (function () {
     var margin = +$('opt-margin').value;
     var fg = $('opt-fg').value, bg = $('opt-bg').value;
     var empty = !payload;
-    if (empty) payload = 'https://wbqrcode.com';
+    if (empty) payload = 'https://qrcode.wbest.app';
     var res = QR.encode(payload, { ecl: ecl });
     var buttons = [$('btn-png'), $('btn-svg'), $('btn-copy')];
     if (!res) {
