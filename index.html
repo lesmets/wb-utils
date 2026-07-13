@@ -287,6 +287,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 /* wb:base:end */
+#tools-heading{max-width:52rem;margin:16px auto 0;}
 .tools{display:flex;flex-direction:column;gap:10px;margin:16px auto 0;max-width:52rem}
 .tool{position:relative;display:flex;align-items:center;gap:14px;padding:14px 16px}
 .tool:hover{border-color:var(--accent)}
@@ -299,7 +300,8 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
 .tool .desc{margin:2px 0 0;font-size:.9rem;color:var(--muted)}
 .tool .go{color:var(--muted);font-size:1.15rem;flex:none}
 .tool:hover .go{color:var(--accent)}
-.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+#props-heading{max-width:52rem;margin:16px auto 0;}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:52rem;margin:16px auto 0;}
 @media (max-width:760px){.props{grid-template-columns:1fr}}
 .props div{padding:16px}
 .props strong{display:block;margin-bottom:4px}
@@ -420,8 +422,8 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
     </div>
   </section>
 
-  <section id="why" aria-labelledby="why-heading">
-    <h2 id="why-heading">Why use these tools?</h2>
+  <section id="why" aria-labelledby="props-heading">
+    <h2 id="props-heading">Why use these tools?</h2>
     <div class="props">
       <div class="card"><strong>Private by design</strong><p>Every tool runs entirely in your browser. Nothing is uploaded, logged, or tracked - your text, passwords, and photos never leave your device.</p></div>
       <div class="card"><strong>Free, forever</strong><p>No accounts, no paywalls, no usage limits, no watermarks. Open a tool and use it - that's the whole deal.</p></div>
