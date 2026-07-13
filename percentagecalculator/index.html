@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest Percentage Calculator - Percent of, Change, Discount &amp; Tip</title>
+<meta name="description" content="Percent of a number, percentage change, discounts, and tips - with the worked formula under every answer. Free and 100% private.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://percentagecalculator.wbest.app/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Percentage Calculator">
+<meta property="og:title" content="WBest Percentage Calculator - Percent of, Change, Discount &amp; Tip">
+<meta property="og:description" content="Percent of a number, percentage change, discounts, and tips - with the worked formula under every answer. Free and 100% private.">
+<meta property="og:url" content="https://percentagecalculator.wbest.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest Percentage Calculator - Percent of, Change, Discount &amp; Tip">
+<meta name="twitter:description" content="Percent of a number, percentage change, discounts, and tips - with the worked formula under every answer. Free and 100% private.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Percentage Calculator",
+  "url": "https://percentagecalculator.wbest.app/",
+  "description": "Free percentage calculator covering every common form: what is X% of Y, X is what percent of Y, X is Y% of what, percentage increase and decrease between two numbers, discount prices, and tips with bill splitting. Shows the worked formula under every answer. Runs entirely in your browser - no sign-up, no tracking, works offline.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "What is X% of Y",
+    "X is what percent of Y",
+    "X is Y% of what (reverse percentage)",
+    "Percentage increase / decrease between two numbers",
+    "Discount calculator with amount saved",
+    "Tip calculator with bill splitting",
+    "Worked formula displayed under every answer",
+    "100% private on-device calculation, works offline"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I calculate a percentage of a number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide the percentage by 100 and multiply by the number: X% of Y = (X ÷ 100) × Y. For example, 20% of 150 = 0.20 × 150 = 30. Mental shortcut: find 10% by moving the decimal point one place left, then scale - 20% is double that, 5% is half of it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I find what percent one number is of another?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide the part by the whole and multiply by 100: (part ÷ whole) × 100. So 30 out of 150 is 30 ÷ 150 × 100 = 20%. This is the formula for test scores, market share, progress toward a goal - any \"out of\" question."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the formula for percentage increase or decrease?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Percentage change = (new − old) ÷ old × 100. From 80 to 100: (100 − 80) ÷ 80 × 100 = +25%. From 100 to 80: (80 − 100) ÷ 100 × 100 = −20%. Note the asymmetry - the change is always measured relative to the starting value, which is why +25% and −20% undo each other."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a percentage change and percentage points?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If an interest rate rises from 4% to 5%, it rose by 1 percentage point but by 25 percent (1 is a quarter of 4). Percentage points compare two percentages by subtraction; percent change compares them by division. News reports mix these up constantly - when a change of rates is described, check which one is meant."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I calculate a discount price quickly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multiply the price by (100 − discount) ÷ 100. A $80 item at 25% off: 80 × 0.75 = $60. Mental shortcut: 25% off means you pay 3/4; 20% off means you pay 4/5. For odd percentages, find 10% and build from there."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I find the original price before a discount?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide the sale price by (100 − discount) ÷ 100. If something costs $60 after 25% off, the original was 60 ÷ 0.75 = $80. A common mistake is adding 25% back to $60, which gives $75 - wrong, because the 25% was taken from the larger original price."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much should I tip?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the United States, 15-20% of the pre-tax bill is standard for table service, with 20% signaling good service; counter service is commonly 0-10%. In much of Europe, service is included and rounding up or 5-10% is generous. The tip calculator above splits the total per person too."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is anything I type sent to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Every calculation runs in JavaScript in your browser - numbers never leave your device, and the page keeps working offline once loaded. No sign-up, no tracking, no limits."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+:root{
+  --good:#16a34a;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --good:#4ade80;
+  }
+}
+.calcs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+@media (max-width:820px){.calcs{grid-template-columns:1fr}}
+.calc{padding:16px 18px}
+.calc h2{font-size:1.02rem;margin:0 0 12px}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:.95rem}
+.row input{
+  font:600 1rem/1.4 inherit;font-variant-numeric:tabular-nums;width:96px;
+  padding:7px 10px;border:1px solid var(--border);border-radius:8px;
+  background:var(--card);color:var(--text)
+}
+.row input.small{width:74px}
+.row select{
+  font:inherit;font-size:.9rem;padding:7px 8px;border-radius:8px;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.answer{margin:12px 0 0;font-size:1.28rem;font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.answer .up{color:var(--good)}
+.answer .down{color:var(--over)}
+.working{margin:4px 0 0;font-size:.83rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:300px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td{font-variant-numeric:tabular-nums}
+.faq p{color:var(--text)}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WB Percentage Calculator</h1>
+  <p class="tagline">Percent of a number, percentage change, discounts, and tips - with the worked formula under every answer. Free and 100% private.</p>
+  <span class="badge">🔒 100% private - calculations never leave your browser</span>
+  <nav class="toc" aria-label="On this page">
+    <a href="#tool">Calculators</a>
+    <a href="#how-to">Formulas</a>
+    <a href="#fractions">Fractions ⇄ percent</a>
+    <a href="#points">Percentage points</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Percentage calculators">
+    <div class="calcs">
+
+      <div class="calc card" id="calc-of">
+        <h2>What is X% of Y?</h2>
+        <div class="row">
+          <label class="sr-only" for="of-x">Percentage</label>
+          <input type="text" id="of-x" inputmode="decimal" value="20" autocomplete="off">
+          <span>% of</span>
+          <label class="sr-only" for="of-y">Number</label>
+          <input type="text" id="of-y" inputmode="decimal" value="150" autocomplete="off">
+        </div>
+        <p class="answer" aria-live="polite" id="of-answer"></p>
+        <p class="working" id="of-working"></p>
+      </div>
+
+      <div class="calc card" id="calc-what">
+        <h2>X is what percent of Y?</h2>
+        <div class="row">
+          <label class="sr-only" for="what-x">Part</label>
+          <input type="text" id="what-x" inputmode="decimal" value="30" autocomplete="off">
+          <span>is what % of</span>
+          <label class="sr-only" for="what-y">Whole</label>
+          <input type="text" id="what-y" inputmode="decimal" value="150" autocomplete="off">
+        </div>
+        <p class="answer" aria-live="polite" id="what-answer"></p>
+        <p class="working" id="what-working"></p>
+      </div>
+
+      <div class="calc card" id="calc-whole">
+        <h2>X is Y% of what?</h2>
+        <div class="row">
+          <label class="sr-only" for="whole-x">Known part</label>
+          <input type="text" id="whole-x" inputmode="decimal" value="30" autocomplete="off">
+          <span>is</span>
+          <label class="sr-only" for="whole-y">Percentage</label>
+          <input type="text" id="whole-y" inputmode="decimal" value="25" class="small" autocomplete="off">
+          <span>% of</span>
+        </div>
+        <p class="answer" aria-live="polite" id="whole-answer"></p>
+        <p class="working" id="whole-working"></p>
+      </div>
+
+      <div class="calc card" id="calc-change">
+        <h2>Percentage increase / decrease</h2>
+        <div class="row">
+          <span>From</span>
+          <label class="sr-only" for="chg-a">Starting value</label>
+          <input type="text" id="chg-a" inputmode="decimal" value="80" autocomplete="off">
+          <span>to</span>
+          <label class="sr-only" for="chg-b">Ending value</label>
+          <input type="text" id="chg-b" inputmode="decimal" value="100" autocomplete="off">
+        </div>
+        <p class="answer" aria-live="polite" id="chg-answer"></p>
+        <p class="working" id="chg-working"></p>
+      </div>
+
+      <div class="calc card" id="calc-discount">
+        <h2>Discount calculator</h2>
+        <div class="row">
+          <span>Price</span>
+          <label class="sr-only" for="disc-p">Original price</label>
+          <input type="text" id="disc-p" inputmode="decimal" value="80" autocomplete="off">
+          <span>at</span>
+          <label class="sr-only" for="disc-d">Discount percent</label>
+          <input type="text" id="disc-d" inputmode="decimal" value="25" class="small" autocomplete="off">
+          <span>% off</span>
+        </div>
+        <p class="answer" aria-live="polite" id="disc-answer"></p>
+        <p class="working" id="disc-working"></p>
+      </div>
+
+      <div class="calc card" id="calc-tip">
+        <h2>Tip calculator</h2>
+        <div class="row">
+          <span>Bill</span>
+          <label class="sr-only" for="tip-b">Bill amount</label>
+          <input type="text" id="tip-b" inputmode="decimal" value="64" autocomplete="off">
+          <span>+</span>
+          <label class="sr-only" for="tip-p">Tip percent</label>
+          <input type="text" id="tip-p" inputmode="decimal" value="18" class="small" autocomplete="off">
+          <span>% tip, split</span>
+          <label class="sr-only" for="tip-n">Number of people</label>
+          <select id="tip-n">
+            <option value="1" selected>1 way</option>
+            <option value="2">2 ways</option>
+            <option value="3">3 ways</option>
+            <option value="4">4 ways</option>
+            <option value="5">5 ways</option>
+            <option value="6">6 ways</option>
+            <option value="8">8 ways</option>
+          </select>
+        </div>
+        <p class="answer" aria-live="polite" id="tip-answer"></p>
+        <p class="working" id="tip-working"></p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="props" aria-label="Why use this percentage calculator">
+    <div class="card"><strong>Shows its work</strong><p>Every answer comes with the substituted formula underneath - perfect for checking homework, invoices, and your own mental math.</p></div>
+    <div class="card"><strong>Private by design</strong><p>Prices, grades, salaries - whatever you calculate stays in your browser. No server, no tracking, and it works offline.</p></div>
+    <div class="card"><strong>Free, forever</strong><p>No sign-up, no ads chasing you around, no limits. All six calculators on one fast page.</p></div>
+  </section>
+
+  <section id="how-to" class="prose">
+    <h2>The three percentage formulas</h2>
+    <p>Every percentage question is one of three rearrangements of the same relationship - <em>part = percent × whole</em>:</p>
+    <div class="table-wrap">
+      <table>
+        <caption>All three are the same equation solved for a different unknown.</caption>
+        <thead><tr><th scope="col">Question</th><th scope="col">Formula</th><th scope="col">Example</th></tr></thead>
+        <tbody>
+          <tr><td>What is 20% of 150?</td><td>(20 ÷ 100) × 150</td><td>= 30</td></tr>
+          <tr><td>30 is what % of 150?</td><td>(30 ÷ 150) × 100</td><td>= 20%</td></tr>
+          <tr><td>30 is 20% of what?</td><td>30 ÷ (20 ÷ 100)</td><td>= 150</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Mental math shortcuts</h3>
+    <p><strong>Start from 10%:</strong> move the decimal one place left (10% of 64 = 6.4). Then build: 20% is double, 5% is half, 15% is one-and-a-half times. And use the symmetry trick when it helps: <strong>X% of Y always equals Y% of X</strong> - 8% of 50 feels hard, but 50% of 8 is obviously 4.</p>
+  </section>
+
+  <section id="fractions" class="prose">
+    <h2>Fractions, decimals, and percentages</h2>
+    <div class="table-wrap">
+      <table>
+        <caption>To convert any fraction: divide, then multiply by 100.</caption>
+        <thead><tr><th scope="col">Fraction</th><th scope="col">Decimal</th><th scope="col">Percent</th></tr></thead>
+        <tbody>
+          <tr><td>1/10</td><td>0.1</td><td>10%</td></tr>
+          <tr><td>1/8</td><td>0.125</td><td>12.5%</td></tr>
+          <tr><td>1/5</td><td>0.2</td><td>20%</td></tr>
+          <tr><td>1/4</td><td>0.25</td><td>25%</td></tr>
+          <tr><td>1/3</td><td>0.333…</td><td>33.33%</td></tr>
+          <tr><td>1/2</td><td>0.5</td><td>50%</td></tr>
+          <tr><td>2/3</td><td>0.667…</td><td>66.67%</td></tr>
+          <tr><td>3/4</td><td>0.75</td><td>75%</td></tr>
+          <tr><td>1/1</td><td>1.0</td><td>100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="points" class="prose">
+    <h2>Percentage change vs. percentage points</h2>
+    <p>When a rate moves from 4% to 5%, two true statements sound contradictory: it rose <strong>1 percentage point</strong>, and it rose <strong>25 percent</strong>. Points compare by subtraction (5 − 4 = 1); percent change compares by division ((5 − 4) ÷ 4 = 0.25). Interest rates, poll numbers, and unemployment figures are almost always quoted in points; growth and prices in percent. When a headline says "rates jumped 25%", check which one the writer actually meant - it is one of the most common numerical errors in news.</p>
+    <p>One more asymmetry worth knowing: gains and losses don't cancel. A 50% loss needs a <strong>100% gain</strong> to get back to even, because the second change is measured from a smaller base. That is also why "up 25%, then down 20%" lands exactly where it started.</p>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Frequently asked questions</h2>
+
+    <h3>How do I calculate a percentage of a number?</h3>
+    <p>Divide the percentage by 100 and multiply by the number: X% of Y = (X ÷ 100) × Y. For example, 20% of 150 = 0.20 × 150 = 30. Mental shortcut: find 10% by moving the decimal point one place left, then scale - 20% is double that, 5% is half of it.</p>
+
+    <h3>How do I find what percent one number is of another?</h3>
+    <p>Divide the part by the whole and multiply by 100: (part ÷ whole) × 100. So 30 out of 150 is 30 ÷ 150 × 100 = 20%. This is the formula for test scores, market share, progress toward a goal - any "out of" question.</p>
+
+    <h3>What is the formula for percentage increase or decrease?</h3>
+    <p>Percentage change = (new − old) ÷ old × 100. From 80 to 100: (100 − 80) ÷ 80 × 100 = +25%. From 100 to 80: (80 − 100) ÷ 100 × 100 = −20%. Note the asymmetry - the change is always measured relative to the starting value, which is why +25% and −20% undo each other.</p>
+
+    <h3>What is the difference between a percentage change and percentage points?</h3>
+    <p>If an interest rate rises from 4% to 5%, it rose by 1 percentage point but by 25 percent (1 is a quarter of 4). Percentage points compare two percentages by subtraction; percent change compares them by division. News reports mix these up constantly - when a change of rates is described, check which one is meant.</p>
+
+    <h3>How do I calculate a discount price quickly?</h3>
+    <p>Multiply the price by (100 − discount) ÷ 100. A $80 item at 25% off: 80 × 0.75 = $60. Mental shortcut: 25% off means you pay 3/4; 20% off means you pay 4/5. For odd percentages, find 10% and build from there.</p>
+
+    <h3>How do I find the original price before a discount?</h3>
+    <p>Divide the sale price by (100 − discount) ÷ 100. If something costs $60 after 25% off, the original was 60 ÷ 0.75 = $80. A common mistake is adding 25% back to $60, which gives $75 - wrong, because the 25% was taken from the larger original price.</p>
+
+    <h3>How much should I tip?</h3>
+    <p>In the United States, 15-20% of the pre-tax bill is standard for table service, with 20% signaling good service; counter service is commonly 0-10%. In much of Europe, service is included and rounding up or 5-10% is generous. The tip calculator above splits the total per person too.</p>
+
+    <h3>Is anything I type sent to a server?</h3>
+    <p>No. Every calculation runs in JavaScript in your browser - numbers never leave your device, and the page keeps working offline once loaded. No sign-up, no tracking, no limits.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Made for anyone who needs a quick tool that just works.
+  <br>© 2026 WBest Apps · Free to use, no sign-up required · <a href="https://wbest.app/">WBest Free Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+/* Percentage math + formatting. Pure functions, returned for testability. */
+var PC = (function () {
+  'use strict';
+
+  function parseNum(s) {
+    s = String(s).trim();
+    if (!s) return NaN;
+    var commas = (s.match(/,/g) || []).length;
+    if (commas) {
+      if (s.indexOf('.') !== -1 || commas > 1) s = s.replace(/,/g, '');
+      else s = s.replace(',', '.');
+    }
+    return Number(s);
+  }
+
+  // up to 6 significant digits, trailing zeros trimmed
+  function fmt(n) {
+    if (!isFinite(n)) return '';
+    if (n === 0) return '0';
+    var a = Math.abs(n);
+    if (a >= 1e12 || a < 1e-6) return n.toExponential(4).replace(/\.?0+e/, 'e');
+    var s;
+    if (a >= 1e6) s = n.toFixed(0);
+    else {
+      s = n.toPrecision(6);
+      if (s.indexOf('.') !== -1) s = s.replace(/0+$/, '').replace(/\.$/, '');
+    }
+    return Number(s).toLocaleString('en-US', { maximumFractionDigits: 10 });
+  }
+  function money(n) {
+    return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  return {
+    parseNum: parseNum, fmt: fmt, money: money,
+    percentOf: function (x, y) { return x / 100 * y; },
+    whatPercent: function (x, y) { return x / y * 100; },
+    wholeFrom: function (x, y) { return x / (y / 100); },
+    change: function (a, b) { return (b - a) / Math.abs(a) * 100; },
+    discount: function (p, d) { return { final: p * (1 - d / 100), saved: p * d / 100 }; },
+    tip: function (b, p, n) {
+      var t = b * p / 100;
+      return { tip: t, total: b + t, perPerson: (b + t) / n };
+    }
+  };
+})();
+if (typeof module !== 'undefined') module.exports = PC;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+
+  function val(id) { return PC.parseNum($(id).value); }
+  function setOut(id, answer, working) {
+    $(id + '-answer').innerHTML = '';
+    if (typeof answer === 'string') $(id + '-answer').textContent = answer;
+    else $(id + '-answer').appendChild(answer);
+    $(id + '-working').textContent = working || '';
+  }
+
+  function upDownSpan(n, text) {
+    var s = document.createElement('span');
+    s.appendChild(document.createTextNode(text + ' '));
+    var mark = document.createElement('span');
+    mark.className = n >= 0 ? 'up' : 'down';
+    mark.textContent = (n >= 0 ? '▲ increase' : '▼ decrease');
+    s.appendChild(mark);
+    return s;
+  }
+
+  function update() {
+    var x, y, a, b, r;
+
+    x = val('of-x'); y = val('of-y');
+    if (isNaN(x) || isNaN(y)) setOut('of', '…', 'Fill in both numbers.');
+    else {
+      r = PC.percentOf(x, y);
+      setOut('of', '= ' + PC.fmt(r),
+        '(' + PC.fmt(x) + ' ÷ 100) × ' + PC.fmt(y) + ' = ' + PC.fmt(r));
+    }
+
+    x = val('what-x'); y = val('what-y');
+    if (isNaN(x) || isNaN(y)) setOut('what', '…', 'Fill in both numbers.');
+    else if (y === 0) setOut('what', 'undefined', 'Nothing can be a percentage of zero.');
+    else {
+      r = PC.whatPercent(x, y);
+      setOut('what', '= ' + PC.fmt(r) + '%',
+        PC.fmt(x) + ' ÷ ' + PC.fmt(y) + ' × 100 = ' + PC.fmt(r) + '%');
+    }
+
+    x = val('whole-x'); y = val('whole-y');
+    if (isNaN(x) || isNaN(y)) setOut('whole', '…', 'Fill in both numbers.');
+    else if (y === 0) setOut('whole', 'undefined', '0% of anything is 0, so no whole can be recovered.');
+    else {
+      r = PC.wholeFrom(x, y);
+      setOut('whole', '= ' + PC.fmt(r),
+        PC.fmt(x) + ' ÷ (' + PC.fmt(y) + ' ÷ 100) = ' + PC.fmt(r));
+    }
+
+    a = val('chg-a'); b = val('chg-b');
+    if (isNaN(a) || isNaN(b)) setOut('chg', '…', 'Fill in both numbers.');
+    else if (a === 0) setOut('chg', 'undefined', 'Change from zero cannot be expressed as a percentage.');
+    else {
+      r = PC.change(a, b);
+      setOut('chg', upDownSpan(r, (r >= 0 ? '+' : '−') + PC.fmt(Math.abs(r)) + '%'),
+        '(' + PC.fmt(b) + ' − ' + PC.fmt(a) + ') ÷ ' + PC.fmt(Math.abs(a)) + ' × 100 = ' + PC.fmt(r) + '%');
+    }
+
+    a = val('disc-p'); b = val('disc-d');
+    if (isNaN(a) || isNaN(b)) setOut('disc', '…', 'Fill in price and discount.');
+    else {
+      r = PC.discount(a, b);
+      setOut('disc', 'Pay ' + PC.money(r.final) + ' · save ' + PC.money(r.saved),
+        PC.fmt(a) + ' × (100 − ' + PC.fmt(b) + ') ÷ 100 = ' + PC.money(r.final));
+    }
+
+    a = val('tip-b'); b = val('tip-p');
+    var n = +$('tip-n').value;
+    if (isNaN(a) || isNaN(b)) setOut('tip', '…', 'Fill in bill and tip percent.');
+    else {
+      r = PC.tip(a, b, n);
+      setOut('tip', 'Tip ' + PC.money(r.tip) + ' · total ' + PC.money(r.total) +
+        (n > 1 ? ' · ' + PC.money(r.perPerson) + ' each' : ''),
+        PC.fmt(a) + ' × ' + PC.fmt(b) + '% = ' + PC.money(r.tip) + ' tip' +
+        (n > 1 ? '; total ÷ ' + n + ' = ' + PC.money(r.perPerson) : ''));
+    }
+  }
+
+  ['of-x', 'of-y', 'what-x', 'what-y', 'whole-x', 'whole-y', 'chg-a', 'chg-b',
+   'disc-p', 'disc-d', 'tip-b', 'tip-p'].forEach(function (id) {
+    $(id).addEventListener('input', update);
+  });
+  $('tip-n').addEventListener('change', update);
+
+  update();
+})();
+</script>
+</body>
+</html>

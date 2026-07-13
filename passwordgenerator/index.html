@@ -3,23 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>World's Best Password Generator - Free Strong Random Password Tool</title>
-<meta name="description" content="Generate strong random passwords, passphrases, and PINs instantly, with honest time-to-crack estimates. 100% private - nothing ever leaves your browser.">
+<title>WBest Password Generator - Free Strong Random Passwords</title>
+<meta name="description" content="Generate strong random passwords, passphrases, and PINs with honest time-to-crack estimates. 100% private - nothing leaves your browser.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://passwordgenerator.wbest.app/">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='20'%20fill='%232563eb'/%3E%3Ctext%20x='50'%20y='74'%20font-size='58'%20text-anchor='middle'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Password Generator">
-<meta property="og:title" content="World's Best Password Generator - Free Strong Random Password Tool">
-<meta property="og:description" content="Generate strong random passwords, passphrases, and PINs instantly, with honest time-to-crack estimates. 100% private - nothing ever leaves your browser.">
+<meta property="og:title" content="WBest Password Generator - Free Strong Random Passwords">
+<meta property="og:description" content="Generate strong random passwords, passphrases, and PINs with honest time-to-crack estimates. 100% private - nothing leaves your browser.">
 <meta property="og:url" content="https://passwordgenerator.wbest.app/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="World's Best Password Generator - Free Strong Random Password Tool">
-<meta name="twitter:description" content="Strong random passwords, passphrases, and PINs with honest time-to-crack estimates. Free, instant, and 100% private - generated on your device, never sent anywhere.">
+<meta name="twitter:title" content="WBest Password Generator - Free Strong Random Passwords">
+<meta name="twitter:description" content="Generate strong random passwords, passphrases, and PINs with honest time-to-crack estimates. 100% private - nothing leaves your browser.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -120,17 +122,16 @@
 }
 </script>
 <style>
+/* wb:base:start */
 :root{
   --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
   --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
-  --fair:#d97706; --strong:#65a30d; --vstrong:#16a34a; --sym:#b45309;
   --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
 }
 @media (prefers-color-scheme: dark){
   :root{
     --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
     --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
-    --fair:#fbbf24; --strong:#a3e635; --vstrong:#4ade80; --sym:#fbbf24;
     --shadow:0 1px 2px rgba(0,0,0,.4);
   }
 }
@@ -159,9 +160,28 @@ section{margin:34px auto}
 h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
 h3{font-size:1.05rem;margin:22px 0 6px}
 p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+:root{
+  --fair:#d97706;
+  --strong:#65a30d;
+  --vstrong:#16a34a;
+  --sym:#b45309;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --fair:#fbbf24;
+    --strong:#a3e635;
+    --vstrong:#4ade80;
+    --sym:#fbbf24;
+  }
+}
 ul.tips{margin:0 0 12px;padding-left:22px}
 ul.tips li{margin:0 0 8px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 10px}
 .tabs button{
   font:inherit;font-size:.85rem;padding:6px 14px;border-radius:8px;cursor:pointer;
@@ -169,7 +189,6 @@ ul.tips li{margin:0 0 8px}
 }
 .tabs button:hover[aria-pressed="false"]{border-color:var(--accent);color:var(--accent)}
 .tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
-button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .out{padding:18px 20px}
 .pw{
   font:600 1.35rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
@@ -212,7 +231,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 }
 .hist-list li:last-child button{border-bottom:0}
 .hist-list button:hover{color:var(--accent)}
-.muted{color:var(--muted)}
 .props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 @media (max-width:760px){.props{grid-template-columns:1fr}}
 .props div{padding:16px}
@@ -226,15 +244,13 @@ tbody tr:last-child td{border-bottom:0}
 th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
 td{font-variant-numeric:tabular-nums}
 .faq p{color:var(--text)}
-footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
 
 <header class="wrap">
   <h1>WB Password Generator</h1>
-  <p class="tagline">Free strong password generator with cryptographically secure randomness. Create random passwords, memorable passphrases, and PINs - with honest entropy math and time-to-crack estimates.</p>
+  <p class="tagline">Generate strong random passwords, passphrases, and PINs with honest time-to-crack estimates. 100% private - nothing leaves your browser.</p>
   <span class="badge">🔒 100% private - passwords are generated on your device and never sent, logged, or stored</span>
   <nav class="toc" aria-label="On this page">
     <a href="#tool">Generator</a>
@@ -431,10 +447,12 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
 </main>
 
 <footer>
-  <div class="wrap">
-    Made for everyone with an account anywhere. Your passwords stay on your device - always.
-    <br>© 2026 Password Generator · Free to use, no sign-up required. · <a href="https://wbest.app/">View more free tools</a>
-  </div>
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Made for anyone who needs a quick tool that just works.
+  <br>© 2026 WBest Apps · Free to use, no sign-up required · <a href="https://wbest.app/">WBest Free Tools</a>
+</div>
+<!-- wb:footer:end -->
 </footer>
 
 <script>

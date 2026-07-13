@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest Unit Converter - Length, Weight, Temperature &amp; More</title>
+<meta name="description" content="Convert length, weight, temperature, and more as you type - with the formula shown for every result. Free and 100% private.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://unitconverter.wbest.app/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Unit Converter">
+<meta property="og:title" content="WBest Unit Converter - Length, Weight, Temperature &amp; More">
+<meta property="og:description" content="Convert length, weight, temperature, and more as you type - with the formula shown for every result. Free and 100% private.">
+<meta property="og:url" content="https://unitconverter.wbest.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest Unit Converter - Length, Weight, Temperature &amp; More">
+<meta name="twitter:description" content="Convert length, weight, temperature, and more as you type - with the formula shown for every result. Free and 100% private.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Unit Converter",
+  "url": "https://unitconverter.wbest.app/",
+  "description": "Free unit converter for length, weight and mass, temperature, area, volume, speed, time, digital data, pressure, and energy. Converts both directions as you type, shows the conversion formula with every result, and runs entirely in your browser - no server, no tracking, works offline.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "10 categories: length, weight, temperature, area, volume, speed, time, data, pressure, energy",
+    "Instant conversion in both directions as you type",
+    "Conversion formula displayed with every result",
+    "One-click popular pairs (cm to inches, kg to lb, miles to km, °C to °F)",
+    "Exact international standard definitions",
+    "100% private on-device calculation",
+    "Works offline"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I convert centimeters to inches?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide the length in centimeters by 2.54. One inch is defined as exactly 2.54 centimeters, so 10 cm ÷ 2.54 = 3.937 inches. To go the other way, multiply inches by 2.54."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many kilograms are in a pound?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One pound is defined as exactly 0.45359237 kilograms, so a kilogram is about 2.2046 pounds. Quick mental math: double the kilograms and add 10% to get pounds (70 kg → 140 + 14 = 154 lb, exact answer 154.32)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the formula to convert Celsius to Fahrenheit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "°F = °C × 9/5 + 32. For example, 20 °C × 9/5 = 36, plus 32 gives 68 °F. Going the other way: °C = (°F − 32) × 5/9. The two scales meet at −40°, which is the same temperature in both."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is there no currency converter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Deliberately. Exchange rates change by the minute and would require fetching live data from a server - and this tool's promise is that it makes no network requests at all and works fully offline. Physical units never change, so every conversion here is exact and permanent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between US and imperial gallons?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A US gallon is 3.785 liters; an imperial (UK) gallon is 4.546 liters - about 20% bigger. The same split affects pints, quarts, and fluid ounces. This converter labels US and imperial units separately so recipes and fuel economy figures don't get silently mistranslated."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a kilobyte (kB) and a kibibyte (KiB)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A kilobyte is 1,000 bytes (decimal, used by drive manufacturers and networking); a kibibyte is 1,024 bytes (binary, used by operating systems for memory). The gap compounds: a terabyte is 10^12 bytes but a tebibyte is about 10% more. It is why a \"1 TB\" drive shows up as roughly 931 \"GB\" in Windows - Windows is actually displaying gibibytes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate are the conversions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Exact, up to floating-point precision (about 15 significant digits). Every factor uses the exact international definition - the inch is exactly 25.4 mm, the pound exactly 0.45359237 kg, the standard atmosphere exactly 101,325 Pa. The only approximations are inherently average units, like the month and year, which are marked as such."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the unit converter work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. All conversion tables are built into the page and the math runs in your browser, so once loaded it works with no connection - nothing you type is ever sent anywhere. Save the page to your device and it works forever."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 10px}
+.tabs button{
+  font:inherit;font-size:.85rem;padding:6px 14px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.tabs button:hover[aria-pressed="false"]{border-color:var(--accent);color:var(--accent)}
+.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.conv{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;padding:18px 20px;align-items:start}
+@media (max-width:700px){.conv{grid-template-columns:1fr}}
+.side{display:flex;flex-direction:column;gap:8px}
+.side label{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.side input{
+  width:100%;font:600 1.35rem/1.4 inherit;font-variant-numeric:tabular-nums;
+  padding:10px 12px;border:1px solid var(--border);border-radius:10px;
+  background:var(--card);color:var(--text)
+}
+.side select{
+  width:100%;font:inherit;font-size:.95rem;padding:8px 10px;border-radius:10px;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.swap{align-self:center;margin-top:18px}
+@media (max-width:700px){.swap{margin:0 auto}}
+.swap button{
+  font-size:1.2rem;width:44px;height:44px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--accent)
+}
+.swap button:hover{border-color:var(--accent);background:var(--accent-soft)}
+.formula{padding:12px 20px;margin-top:10px;font-size:.92rem;color:var(--muted)}
+.formula strong{color:var(--text);font-variant-numeric:tabular-nums}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chips button{
+  font:inherit;font-size:.82rem;padding:5px 12px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--muted)
+}
+.chips button:hover{border-color:var(--accent);color:var(--accent)}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:300px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td{font-variant-numeric:tabular-nums}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:46rem}
+@media (max-width:700px){.cols2{grid-template-columns:1fr}}
+.faq p{color:var(--text)}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WB Unit Converter</h1>
+  <p class="tagline">Convert length, weight, temperature, and more as you type - with the formula shown for every result. Free and 100% private.</p>
+  <span class="badge">🔒 100% private - runs entirely in your browser, even offline</span>
+  <nav class="toc" aria-label="On this page">
+    <a href="#tool">Converter</a>
+    <a href="#cm-to-inches">cm → in</a>
+    <a href="#kg-to-pounds">kg → lb</a>
+    <a href="#miles-to-km">mi → km</a>
+    <a href="#celsius-to-fahrenheit">°C → °F</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Unit converter tool">
+    <div class="tabs" role="group" aria-label="Unit category" id="cat-tabs"></div>
+
+    <div class="conv card">
+      <div class="side">
+        <label for="val-a" id="label-a">From</label>
+        <input type="text" id="val-a" value="1" inputmode="decimal" autocomplete="off" spellcheck="false">
+        <select id="unit-a" aria-label="Convert from unit"></select>
+      </div>
+      <div class="swap">
+        <button type="button" id="btn-swap" aria-label="Swap units" title="Swap units">⇄</button>
+      </div>
+      <div class="side">
+        <label for="val-b" id="label-b">To</label>
+        <input type="text" id="val-b" inputmode="decimal" autocomplete="off" spellcheck="false">
+        <select id="unit-b" aria-label="Convert to unit"></select>
+      </div>
+    </div>
+
+    <div class="formula card" id="formula" aria-live="polite"></div>
+
+    <div class="chips" id="chips" role="group" aria-label="Popular conversions"></div>
+  </section>
+
+  <section class="props" aria-label="Why use this unit converter">
+    <div class="card"><strong>Exact &amp; instant</strong><p>Every factor uses the exact international definition - the inch is exactly 25.4 mm, the pound exactly 0.45359237 kg. Results update in both directions as you type.</p></div>
+    <div class="card"><strong>Private by design</strong><p>All conversion tables live inside the page. No server, no tracking, no network requests - it works completely offline.</p></div>
+    <div class="card"><strong>Free, forever</strong><p>No sign-up, no ads chasing you around, no premium units. Save the page to your device and it works anywhere, forever.</p></div>
+  </section>
+
+  <section id="how-it-works" class="prose">
+    <h2>How unit conversion works</h2>
+    <p>Every conversion between two units of the same kind is a single multiplication: <strong>value × conversion factor</strong>. To convert 5 miles to kilometers, multiply by 1.609344 (the exact definition of a mile in kilometers): 5 × 1.609344 = 8.04672 km. Going the other way uses the reciprocal - divide by the same factor.</p>
+    <p>The one exception is <strong>temperature</strong>, because the scales don't share a zero point - converting needs an offset as well as a factor:</p>
+    <div class="table-wrap">
+      <table>
+        <caption>The Celsius and Fahrenheit scales cross at −40°, the only temperature where both read the same.</caption>
+        <thead><tr><th scope="col">Conversion</th><th scope="col">Formula</th></tr></thead>
+        <tbody>
+          <tr><td>Celsius → Fahrenheit</td><td>°F = °C × 9/5 + 32</td></tr>
+          <tr><td>Fahrenheit → Celsius</td><td>°C = (°F − 32) × 5/9</td></tr>
+          <tr><td>Celsius → Kelvin</td><td>K = °C + 273.15</td></tr>
+          <tr><td>Kelvin → Celsius</td><td>°C = K − 273.15</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="prose">
+    <h2>Common conversion tables</h2>
+    <p>The pairs people look up most, precomputed. For anything else, use the converter above.</p>
+
+    <div class="cols2">
+      <div id="cm-to-inches">
+        <h3>Centimeters to inches</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>1 inch = 2.54 cm exactly. Divide cm by 2.54.</caption>
+            <thead><tr><th scope="col">cm</th><th scope="col">inches</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>0.3937</td></tr>
+              <tr><td>2</td><td>0.7874</td></tr>
+              <tr><td>5</td><td>1.9685</td></tr>
+              <tr><td>10</td><td>3.9370</td></tr>
+              <tr><td>15</td><td>5.9055</td></tr>
+              <tr><td>20</td><td>7.8740</td></tr>
+              <tr><td>30</td><td>11.8110</td></tr>
+              <tr><td>50</td><td>19.6850</td></tr>
+              <tr><td>100</td><td>39.3701</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="kg-to-pounds">
+        <h3>Kilograms to pounds</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>1 kg ≈ 2.20462 lb. Multiply kg by 2.20462.</caption>
+            <thead><tr><th scope="col">kg</th><th scope="col">pounds</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>2.2046</td></tr>
+              <tr><td>2</td><td>4.4092</td></tr>
+              <tr><td>5</td><td>11.0231</td></tr>
+              <tr><td>10</td><td>22.0462</td></tr>
+              <tr><td>20</td><td>44.0925</td></tr>
+              <tr><td>50</td><td>110.2311</td></tr>
+              <tr><td>75</td><td>165.3467</td></tr>
+              <tr><td>100</td><td>220.4623</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="miles-to-km">
+        <h3>Miles to kilometers</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>1 mile = 1.609344 km exactly. Multiply miles by 1.609.</caption>
+            <thead><tr><th scope="col">miles</th><th scope="col">km</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>1.609</td></tr>
+              <tr><td>3</td><td>4.828</td></tr>
+              <tr><td>5</td><td>8.047</td></tr>
+              <tr><td>10</td><td>16.093</td></tr>
+              <tr><td>13.1 (half marathon)</td><td>21.082</td></tr>
+              <tr><td>26.2 (marathon)</td><td>42.165</td></tr>
+              <tr><td>50</td><td>80.467</td></tr>
+              <tr><td>100</td><td>160.934</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="celsius-to-fahrenheit">
+        <h3>Celsius to Fahrenheit</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>°F = °C × 9/5 + 32. Body temperature 37 °C = 98.6 °F.</caption>
+            <thead><tr><th scope="col">°C</th><th scope="col">°F</th></tr></thead>
+            <tbody>
+              <tr><td>−40</td><td>−40</td></tr>
+              <tr><td>−10</td><td>14</td></tr>
+              <tr><td>0</td><td>32</td></tr>
+              <tr><td>10</td><td>50</td></tr>
+              <tr><td>20</td><td>68</td></tr>
+              <tr><td>25</td><td>77</td></tr>
+              <tr><td>30</td><td>86</td></tr>
+              <tr><td>37</td><td>98.6</td></tr>
+              <tr><td>100</td><td>212</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Frequently asked questions</h2>
+
+    <h3>How do I convert centimeters to inches?</h3>
+    <p>Divide the length in centimeters by 2.54. One inch is defined as exactly 2.54 centimeters, so 10 cm ÷ 2.54 = 3.937 inches. To go the other way, multiply inches by 2.54.</p>
+
+    <h3>How many kilograms are in a pound?</h3>
+    <p>One pound is defined as exactly 0.45359237 kilograms, so a kilogram is about 2.2046 pounds. Quick mental math: double the kilograms and add 10% to get pounds (70 kg → 140 + 14 = 154 lb, exact answer 154.32).</p>
+
+    <h3>What is the formula to convert Celsius to Fahrenheit?</h3>
+    <p>°F = °C × 9/5 + 32. For example, 20 °C × 9/5 = 36, plus 32 gives 68 °F. Going the other way: °C = (°F − 32) × 5/9. The two scales meet at −40°, which is the same temperature in both.</p>
+
+    <h3>Why is there no currency converter?</h3>
+    <p>Deliberately. Exchange rates change by the minute and would require fetching live data from a server - and this tool's promise is that it makes no network requests at all and works fully offline. Physical units never change, so every conversion here is exact and permanent.</p>
+
+    <h3>What is the difference between US and imperial gallons?</h3>
+    <p>A US gallon is 3.785 liters; an imperial (UK) gallon is 4.546 liters - about 20% bigger. The same split affects pints, quarts, and fluid ounces. This converter labels US and imperial units separately so recipes and fuel economy figures don't get silently mistranslated.</p>
+
+    <h3>What is the difference between a kilobyte (kB) and a kibibyte (KiB)?</h3>
+    <p>A kilobyte is 1,000 bytes (decimal, used by drive manufacturers and networking); a kibibyte is 1,024 bytes (binary, used by operating systems for memory). The gap compounds: a terabyte is 10¹² bytes but a tebibyte is about 10% more. It is why a "1 TB" drive shows up as roughly 931 "GB" in Windows - Windows is actually displaying gibibytes.</p>
+
+    <h3>How accurate are the conversions?</h3>
+    <p>Exact, up to floating-point precision (about 15 significant digits). Every factor uses the exact international definition - the inch is exactly 25.4 mm, the pound exactly 0.45359237 kg, the standard atmosphere exactly 101,325 Pa. The only approximations are inherently average units, like the month and year, which are marked as such.</p>
+
+    <h3>Does the unit converter work offline?</h3>
+    <p>Yes. All conversion tables are built into the page and the math runs in your browser, so once loaded it works with no connection - nothing you type is ever sent anywhere. Save the page to your device and it works forever.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Made for anyone who needs a quick tool that just works.
+  <br>© 2026 WBest Apps · Free to use, no sign-up required · <a href="https://wbest.app/">WBest Free Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+/* Conversion engine. Factors are the exact international definitions,
+   expressed relative to each category's base unit. Temperature uses functions. */
+var UC = (function () {
+  'use strict';
+
+  var CATS = {
+    length: { label: 'Length', units: [
+      ['mm', 'Millimeters (mm)', 0.001],
+      ['cm', 'Centimeters (cm)', 0.01],
+      ['m', 'Meters (m)', 1],
+      ['km', 'Kilometers (km)', 1000],
+      ['in', 'Inches (in)', 0.0254],
+      ['ft', 'Feet (ft)', 0.3048],
+      ['yd', 'Yards (yd)', 0.9144],
+      ['mi', 'Miles (mi)', 1609.344],
+      ['nmi', 'Nautical miles (nmi)', 1852]
+    ]},
+    weight: { label: 'Weight', units: [
+      ['mg', 'Milligrams (mg)', 0.000001],
+      ['g', 'Grams (g)', 0.001],
+      ['kg', 'Kilograms (kg)', 1],
+      ['t', 'Metric tons (t)', 1000],
+      ['oz', 'Ounces (oz)', 0.028349523125],
+      ['lb', 'Pounds (lb)', 0.45359237],
+      ['st', 'Stones (st)', 6.35029318],
+      ['ton', 'US tons (ton)', 907.18474]
+    ]},
+    temperature: { label: 'Temperature', temp: true, units: [
+      ['C', 'Celsius (°C)'],
+      ['F', 'Fahrenheit (°F)'],
+      ['K', 'Kelvin (K)']
+    ]},
+    area: { label: 'Area', units: [
+      ['cm2', 'Square centimeters (cm²)', 0.0001],
+      ['m2', 'Square meters (m²)', 1],
+      ['ha', 'Hectares (ha)', 10000],
+      ['km2', 'Square kilometers (km²)', 1000000],
+      ['in2', 'Square inches (in²)', 0.00064516],
+      ['ft2', 'Square feet (ft²)', 0.09290304],
+      ['yd2', 'Square yards (yd²)', 0.83612736],
+      ['ac', 'Acres (ac)', 4046.8564224],
+      ['mi2', 'Square miles (mi²)', 2589988.110336]
+    ]},
+    volume: { label: 'Volume', units: [
+      ['ml', 'Milliliters (ml)', 0.001],
+      ['l', 'Liters (l)', 1],
+      ['m3', 'Cubic meters (m³)', 1000],
+      ['tsp', 'Teaspoons, US (tsp)', 0.00492892159375],
+      ['tbsp', 'Tablespoons, US (tbsp)', 0.01478676478125],
+      ['floz', 'Fluid ounces, US (fl oz)', 0.0295735295625],
+      ['cup', 'Cups, US (cup)', 0.2365882365],
+      ['pt', 'Pints, US (pt)', 0.473176473],
+      ['qt', 'Quarts, US (qt)', 0.946352946],
+      ['gal', 'Gallons, US (gal)', 3.785411784],
+      ['galuk', 'Gallons, imperial (gal UK)', 4.54609],
+      ['ft3', 'Cubic feet (ft³)', 28.316846592]
+    ]},
+    speed: { label: 'Speed', units: [
+      ['ms', 'Meters per second (m/s)', 1],
+      ['kmh', 'Kilometers per hour (km/h)', 0.2777777777777778],
+      ['mph', 'Miles per hour (mph)', 0.44704],
+      ['fts', 'Feet per second (ft/s)', 0.3048],
+      ['kn', 'Knots (kn)', 0.5144444444444445]
+    ]},
+    time: { label: 'Time', units: [
+      ['msec', 'Milliseconds (ms)', 0.001],
+      ['s', 'Seconds (s)', 1],
+      ['min', 'Minutes (min)', 60],
+      ['h', 'Hours (h)', 3600],
+      ['d', 'Days (d)', 86400],
+      ['wk', 'Weeks (wk)', 604800],
+      ['mo', 'Months, average (mo)', 2629746],
+      ['yr', 'Years, average (yr)', 31556952]
+    ]},
+    data: { label: 'Data', units: [
+      ['bit', 'Bits (bit)', 0.125],
+      ['B', 'Bytes (B)', 1],
+      ['kB', 'Kilobytes (kB, 1000)', 1000],
+      ['MB', 'Megabytes (MB)', 1000000],
+      ['GB', 'Gigabytes (GB)', 1000000000],
+      ['TB', 'Terabytes (TB)', 1000000000000],
+      ['KiB', 'Kibibytes (KiB, 1024)', 1024],
+      ['MiB', 'Mebibytes (MiB)', 1048576],
+      ['GiB', 'Gibibytes (GiB)', 1073741824],
+      ['TiB', 'Tebibytes (TiB)', 1099511627776]
+    ]},
+    pressure: { label: 'Pressure', units: [
+      ['Pa', 'Pascals (Pa)', 1],
+      ['kPa', 'Kilopascals (kPa)', 1000],
+      ['MPa', 'Megapascals (MPa)', 1000000],
+      ['bar', 'Bars (bar)', 100000],
+      ['psi', 'Pounds per sq. inch (psi)', 6894.757293168361],
+      ['atm', 'Atmospheres (atm)', 101325],
+      ['mmHg', 'Millimeters of mercury (mmHg)', 133.322387415]
+    ]},
+    energy: { label: 'Energy', units: [
+      ['J', 'Joules (J)', 1],
+      ['kJ', 'Kilojoules (kJ)', 1000],
+      ['cal', 'Calories (cal)', 4.184],
+      ['kcal', 'Kilocalories (kcal)', 4184],
+      ['Wh', 'Watt-hours (Wh)', 3600],
+      ['kWh', 'Kilowatt-hours (kWh)', 3600000],
+      ['BTU', 'British thermal units (BTU)', 1055.05585262],
+      ['ftlb', 'Foot-pounds (ft⋅lb)', 1.3558179483314004]
+    ]}
+  };
+
+  var TEMP_TO_C = {
+    C: function (v) { return v; },
+    F: function (v) { return (v - 32) * 5 / 9; },
+    K: function (v) { return v - 273.15; }
+  };
+  var TEMP_FROM_C = {
+    C: function (v) { return v; },
+    F: function (v) { return v * 9 / 5 + 32; },
+    K: function (v) { return v + 273.15; }
+  };
+  var TEMP_FORMULA = {
+    'C-F': '°F = °C × 9/5 + 32',
+    'F-C': '°C = (°F − 32) × 5/9',
+    'C-K': 'K = °C + 273.15',
+    'K-C': '°C = K − 273.15',
+    'F-K': 'K = (°F − 32) × 5/9 + 273.15',
+    'K-F': '°F = (K − 273.15) × 9/5 + 32'
+  };
+
+  function unitOf(cat, id) {
+    var us = CATS[cat].units;
+    for (var i = 0; i < us.length; i++) if (us[i][0] === id) return us[i];
+    return null;
+  }
+
+  function convert(cat, from, to, v) {
+    if (CATS[cat].temp) return TEMP_FROM_C[to](TEMP_TO_C[from](v));
+    return v * unitOf(cat, from)[2] / unitOf(cat, to)[2];
+  }
+
+  function parseNum(s) {
+    s = String(s).trim();
+    if (!s) return NaN;
+    var commas = (s.match(/,/g) || []).length;
+    if (commas) {
+      if (s.indexOf('.') !== -1 || commas > 1) s = s.replace(/,/g, '');
+      else s = s.replace(',', '.');
+    }
+    return Number(s);
+  }
+
+  function fmt(n) {
+    if (!isFinite(n)) return '';
+    if (n === 0) return '0';
+    var a = Math.abs(n);
+    if (a >= 1e15 || a < 1e-9) {
+      return n.toExponential(6).replace(/\.?0+e/, 'e');
+    }
+    var s = n.toPrecision(10);
+    if (s.indexOf('e') !== -1) return fmtExp(n);
+    if (s.indexOf('.') !== -1) s = s.replace(/0+$/, '').replace(/\.$/, '');
+    return s;
+  }
+  function fmtExp(n) {
+    return n.toExponential(6).replace(/\.?0+e/, 'e');
+  }
+
+  // factor formatted for the formula line (6 significant digits, trimmed)
+  function fmtFactor(n) {
+    var s = n.toPrecision(6);
+    if (s.indexOf('e') !== -1) return n.toExponential(4).replace(/\.?0+e/, 'e');
+    if (s.indexOf('.') !== -1) s = s.replace(/0+$/, '').replace(/\.$/, '');
+    return s;
+  }
+
+  return { CATS: CATS, TEMP_FORMULA: TEMP_FORMULA, convert: convert, parseNum: parseNum, fmt: fmt, fmtFactor: fmtFactor };
+})();
+if (typeof module !== 'undefined') module.exports = UC;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+  var valA = $('val-a'), valB = $('val-b'), unitA = $('unit-a'), unitB = $('unit-b');
+  var cat = 'length', lastEdited = 'a';
+
+  var DEFAULTS = {
+    length: ['cm', 'in'], weight: ['kg', 'lb'], temperature: ['C', 'F'],
+    area: ['m2', 'ft2'], volume: ['l', 'gal'], speed: ['kmh', 'mph'],
+    time: ['h', 'min'], data: ['MB', 'GB'], pressure: ['bar', 'psi'], energy: ['kcal', 'kJ']
+  };
+  var CHIPS = [
+    ['length', 'cm', 'in', 'cm → inches'],
+    ['length', 'm', 'ft', 'm → feet'],
+    ['weight', 'kg', 'lb', 'kg → pounds'],
+    ['length', 'mi', 'km', 'miles → km'],
+    ['temperature', 'C', 'F', '°C → °F'],
+    ['volume', 'l', 'gal', 'liters → gallons'],
+    ['speed', 'kmh', 'mph', 'km/h → mph'],
+    ['data', 'MB', 'GB', 'MB → GB']
+  ];
+
+  // build category tabs
+  var tabBox = $('cat-tabs');
+  Object.keys(UC.CATS).forEach(function (key) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = UC.CATS[key].label;
+    b.setAttribute('aria-pressed', String(key === cat));
+    b.addEventListener('click', function () { setCat(key, null, null); });
+    b.dataset.cat = key;
+    tabBox.appendChild(b);
+  });
+
+  // build chips
+  CHIPS.forEach(function (c) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = c[3];
+    b.addEventListener('click', function () {
+      setCat(c[0], c[1], c[2]);
+      valA.focus();
+      valA.select();
+    });
+    $('chips').appendChild(b);
+  });
+
+  function fillSelect(sel, catKey) {
+    sel.textContent = '';
+    UC.CATS[catKey].units.forEach(function (u) {
+      var o = document.createElement('option');
+      o.value = u[0];
+      o.textContent = u[1];
+      sel.appendChild(o);
+    });
+  }
+
+  function setCat(key, ua, ub) {
+    cat = key;
+    Array.prototype.forEach.call(tabBox.children, function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.cat === key));
+    });
+    fillSelect(unitA, key);
+    fillSelect(unitB, key);
+    unitA.value = ua || DEFAULTS[key][0];
+    unitB.value = ub || DEFAULTS[key][1];
+    if (!UC.parseNum(valA.value) && valA.value !== '0') valA.value = '1';
+    lastEdited = 'a';
+    update();
+  }
+
+  function symbol(id) {
+    var u = UC.CATS[cat].units;
+    for (var i = 0; i < u.length; i++) {
+      if (u[i][0] === id) {
+        var m = u[i][1].match(/\(([^)]+)\)$/);
+        return m ? m[1].replace(/,.*$/, '') : id;
+      }
+    }
+    return id;
+  }
+
+  function renderFormula() {
+    var box = $('formula');
+    box.textContent = '';
+    var from = unitA.value, to = unitB.value;
+    if (UC.CATS[cat].temp) {
+      var f = from === to ? 'Same scale - no conversion needed.' : 'Formula: ' + UC.TEMP_FORMULA[from + '-' + to];
+      var s = document.createElement('strong');
+      s.textContent = f;
+      box.appendChild(s);
+      return;
+    }
+    var factor = UC.convert(cat, from, to, 1);
+    var inverse = UC.convert(cat, to, from, 1);
+    var strong = document.createElement('strong');
+    strong.textContent = '1 ' + symbol(from) + ' = ' + UC.fmtFactor(factor) + ' ' + symbol(to) +
+      ' · 1 ' + symbol(to) + ' = ' + UC.fmtFactor(inverse) + ' ' + symbol(from);
+    box.appendChild(strong);
+    box.appendChild(document.createTextNode(' — to convert ' + symbol(from) + ' to ' + symbol(to) +
+      ', multiply the value by ' + UC.fmtFactor(factor) + '.'));
+  }
+
+  function update() {
+    var src = lastEdited === 'a' ? valA : valB;
+    var dst = lastEdited === 'a' ? valB : valA;
+    var from = lastEdited === 'a' ? unitA.value : unitB.value;
+    var to = lastEdited === 'a' ? unitB.value : unitA.value;
+    var n = UC.parseNum(src.value);
+    dst.value = isNaN(n) ? '' : UC.fmt(UC.convert(cat, from, to, n));
+    renderFormula();
+  }
+
+  valA.addEventListener('input', function () { lastEdited = 'a'; update(); });
+  valB.addEventListener('input', function () { lastEdited = 'b'; update(); });
+  unitA.addEventListener('change', update);
+  unitB.addEventListener('change', update);
+
+  $('btn-swap').addEventListener('click', function () {
+    var u = unitA.value;
+    unitA.value = unitB.value;
+    unitB.value = u;
+    // keep the source value, recompute the other side
+    update();
+  });
+
+  setCat('length', 'cm', 'in');
+})();
+</script>
+</body>
+</html>

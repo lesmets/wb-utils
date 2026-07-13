@@ -3,23 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>World's Best Image Compressor - Compress &amp; Resize Images Online Free</title>
-<meta name="description" content="Compress, resize, and convert JPEG, PNG, and WebP images right in your browser. Free, no sign-up, no upload - your photos never leave your device.">
+<title>WBest Image Compressor - Compress &amp; Resize Images Free</title>
+<meta name="description" content="Compress, resize, and convert JPEG, PNG, and WebP images right in your browser. No uploads - your photos never leave your device.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://imagecompressor.wbest.app/">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='20'%20fill='%232563eb'/%3E%3Ctext%20x='50'%20y='74'%20font-size='58'%20text-anchor='middle'%3E%F0%9F%96%BC%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Image Compressor">
-<meta property="og:title" content="World's Best Image Compressor - Compress &amp; Resize Images Online Free">
-<meta property="og:description" content="Compress, resize, and convert JPEG, PNG, and WebP images right in your browser. Free, no sign-up, no upload - your photos never leave your device.">
+<meta property="og:title" content="WBest Image Compressor - Compress &amp; Resize Images Free">
+<meta property="og:description" content="Compress, resize, and convert JPEG, PNG, and WebP images right in your browser. No uploads - your photos never leave your device.">
 <meta property="og:url" content="https://imagecompressor.wbest.app/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="World's Best Image Compressor - Compress &amp; Resize Images Online Free">
-<meta name="twitter:description" content="Compress, resize, and convert images with no upload - everything happens on your device. Free, instant, and private.">
+<meta name="twitter:title" content="WBest Image Compressor - Compress &amp; Resize Images Free">
+<meta name="twitter:description" content="Compress, resize, and convert JPEG, PNG, and WebP images right in your browser. No uploads - your photos never leave your device.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -151,15 +153,16 @@
 }
 </script>
 <style>
+/* wb:base:start */
 :root{
   --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
-  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626; --good:#16a34a;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
   --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
 }
 @media (prefers-color-scheme: dark){
   :root{
     --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
-    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171; --good:#4ade80;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
     --shadow:0 1px 2px rgba(0,0,0,.4);
   }
 }
@@ -188,10 +191,22 @@ section{margin:34px auto}
 h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
 h3{font-size:1.05rem;margin:22px 0 6px}
 p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+:root{
+  --good:#16a34a;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --good:#4ade80;
+  }
+}
 ol.steps{margin:0 0 12px;padding-left:22px}
 ol.steps li{margin:0 0 8px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
-button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .drop{
   display:block;width:100%;padding:42px 20px;text-align:center;cursor:pointer;
   border:2px dashed var(--border);border-radius:12px;background:var(--card);
@@ -249,7 +264,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .compare-grid figure{margin:0;text-align:center}
 .compare-grid img{max-width:100%;max-height:300px;border-radius:8px;border:1px solid var(--border);background:#fff}
 .compare-grid figcaption{font-size:.82rem;color:var(--muted);margin-top:6px;font-variant-numeric:tabular-nums}
-.muted{color:var(--muted)}
 .props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 @media (max-width:760px){.props{grid-template-columns:1fr}}
 .props div{padding:16px}
@@ -263,15 +277,13 @@ tbody tr:last-child td{border-bottom:0}
 th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
 td{font-variant-numeric:tabular-nums}
 .faq p{color:var(--text)}
-footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
 
 <header class="wrap">
   <h1>WB Image Compressor &amp; Resizer</h1>
-  <p class="tagline">Compress, resize, and convert JPEG, PNG, and WebP images - free and with no upload. Everything happens in your browser, so your photos are never sent anywhere.</p>
+  <p class="tagline">Compress, resize, and convert JPEG, PNG, and WebP images right in your browser. No uploads - your photos never leave your device.</p>
   <span class="badge">🔒 100% private - your photos never leave your device</span>
   <nav class="toc" aria-label="On this page">
     <a href="#tool">Compressor</a>
@@ -452,10 +464,12 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
 </main>
 
 <footer>
-  <div class="wrap">
-    Made for web builders, sellers, applicants, and everyone with a full inbox. Your photos stay on your device - always.
-    <br>© 2026 Image Compressor · Free to use, no sign-up required. · <a href="https://wbest.app/">View more free tools</a>
-  </div>
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Made for anyone who needs a quick tool that just works.
+  <br>© 2026 WBest Apps · Free to use, no sign-up required · <a href="https://wbest.app/">WBest Free Tools</a>
+</div>
+<!-- wb:footer:end -->
 </footer>
 
 <script>

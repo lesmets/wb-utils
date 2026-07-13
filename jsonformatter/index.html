@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest JSON Formatter - Format, Validate &amp; View JSON</title>
+<meta name="description" content="Format, validate, and explore JSON with exact error locations, tree view, and minify. Handles multi-MB files 100% in your browser.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://jsonformatter.wbest.app/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="JSON Formatter">
+<meta property="og:title" content="WBest JSON Formatter - Format, Validate &amp; View JSON">
+<meta property="og:description" content="Format, validate, and explore JSON with exact error locations, tree view, and minify. Handles multi-MB files 100% in your browser.">
+<meta property="og:url" content="https://jsonformatter.wbest.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest JSON Formatter - Format, Validate &amp; View JSON">
+<meta name="twitter:description" content="Format, validate, and explore JSON with exact error locations, tree view, and minify. Handles multi-MB files 100% in your browser.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON Formatter",
+  "url": "https://jsonformatter.wbest.app/",
+  "description": "Free JSON formatter, validator, and viewer. Pretty-print with your chosen indentation, minify, validate with exact line and column error messages and a caret pointing at the problem, browse a collapsible tree view, sort keys alphabetically, and convert JSON to and from escaped strings. Handles multi-megabyte files. Runs entirely in your browser - API payloads and secrets never leave your device.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Pretty-print with 2-space, 4-space, or tab indentation",
+    "Minify to a single line",
+    "Validation with exact line and column error messages",
+    "Plain-language explanations for common mistakes (trailing commas, single quotes, comments)",
+    "Collapsible tree view with type coloring",
+    "Sort object keys alphabetically",
+    "JSON to escaped string and back",
+    "Copy or download the output; open local files",
+    "Handles multi-MB files; works offline; nothing is ever uploaded"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is it safe to paste API responses or data with secrets here?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes - and that is the point of this tool. Everything runs in JavaScript in your browser: nothing you paste is uploaded, logged, or stored, and the page makes no network requests after loading. Most online JSON tools send your payload to their server; with tokens, keys, and customer data in developer clipboards all day, local-only processing is the only responsible design."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I fix \"Unexpected token\" JSON errors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Paste the JSON here and validate - instead of a cryptic token message you get the exact line and column plus a plain-language cause. The usual suspects: a trailing comma after the last item, single quotes instead of double quotes, an unquoted key, comments (JSON does not allow them), or a missing comma between items."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does JSON allow comments or trailing commas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Standard JSON (RFC 8259) allows neither comments nor trailing commas - both are the most common reasons hand-edited JSON fails to parse. Some tools accept relaxed supersets like JSONC (VS Code configs) or JSON5, but anything you send to an API or parse with a standard library must be strict JSON."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How large a JSON file can this handle?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multi-megabyte files are fine - parsing and formatting use the browser's native engine, which handles tens of MB in well under a second on a modern machine. For very large files the tree view renders containers in chunks of 500 children so the page stays responsive. The practical ceiling is your device's memory."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between formatting and minifying?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Formatting (pretty-printing) adds line breaks and indentation so humans can read the structure; minifying removes every unnecessary character so machines can transmit it - typically 20-40% smaller than formatted JSON. The data is identical either way. Format while developing and debugging; minify for payloads, configs in tight places, and storage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert JSON to an escaped string and back?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the Escape button to turn the input into a double-quoted string literal with every quote, backslash, and newline escaped - ready to embed inside another JSON document or a source file. Unescape does the reverse: paste a quoted string literal and get the original text back."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did my keys change order?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only if \"Sort keys\" is enabled - it rewrites every object with keys in alphabetical order, which makes large payloads diff-able and easy to scan. With it off, key order is preserved exactly as pasted. Note that JSON itself guarantees no key order, so no correct consumer should depend on it either way."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the JSON formatter work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The entire tool is one self-contained page - once loaded, formatting, validation, and the tree view all work with no connection. Save the page locally and it works forever, which also makes it safe for air-gapped environments."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+:root{
+  --good:#16a34a;
+  --j-str:#16803c;
+  --j-num:#1d4ed8;
+  --j-kw:#9333ea;
+  --j-key:#1a2233;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --good:#4ade80;
+    --j-str:#6ee7a0;
+    --j-num:#93c5fd;
+    --j-kw:#d8b4fe;
+    --j-key:#e8ecf3;
+  }
+}
+.wrap{max-width:1160px;margin:0 auto;padding:0 16px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 10px;align-items:center}
+.toolbar button{
+  font:inherit;font-size:.85rem;padding:6px 14px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.toolbar button:hover{border-color:var(--accent);color:var(--accent)}
+.toolbar button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.toolbar button.primary:hover{filter:brightness(1.08);color:#fff}
+.toolbar .sep{width:1px;align-self:stretch;background:var(--border);margin:2px 4px}
+.toolbar select{
+  font:inherit;font-size:.85rem;padding:5px 8px;border-radius:8px;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.toolbar label.chk{display:flex;align-items:center;gap:7px;font-size:.85rem;cursor:pointer}
+.toolbar label.chk input{width:16px;height:16px;accent-color:var(--accent);margin:0}
+.status{
+  display:none;padding:10px 14px;border-radius:10px;font-size:.9rem;margin:0 0 10px;
+  border:1px solid var(--border);background:var(--card)
+}
+.status.ok{display:block;border-color:var(--good);color:var(--good);font-weight:600}
+.status.bad{display:block;border-color:var(--over)}
+.status.bad strong{color:var(--over)}
+.err-snip{
+  margin:8px 0 0;padding:8px 10px;border-radius:8px;background:var(--bg);overflow-x:auto;
+  font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre
+}
+.panes{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+@media (max-width:900px){.panes{grid-template-columns:1fr}}
+.pane-head{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--muted)}
+.pane-head .name{font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.pane-head .spacer{flex:1}
+.pane-head button{
+  font:inherit;font-size:.78rem;padding:3px 10px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--muted)
+}
+.pane-head button:hover{border-color:var(--accent);color:var(--accent)}
+.pane-head button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+textarea{
+  display:block;width:100%;min-height:380px;resize:vertical;padding:12px 14px;border:0;
+  font:.86rem/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color:var(--text);background:transparent;border-radius:0 0 12px 12px
+}
+textarea::placeholder{color:var(--muted)}
+.tree{
+  display:none;min-height:380px;max-height:640px;overflow:auto;padding:10px 14px;
+  font:.86rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace
+}
+.tree.show{display:block}
+.tree details{margin-left:0;padding-left:18px}
+.tree details details{padding-left:22px}
+.tree summary{cursor:pointer;list-style-position:outside;margin-left:-18px;user-select:none}
+.tree summary:hover{color:var(--accent)}
+.tree .row{display:block}
+.k{color:var(--j-key);font-weight:600}
+.s{color:var(--j-str)}
+.n{color:var(--j-num)}
+.kw{color:var(--j-kw)}
+.meta-dim{color:var(--muted)}
+.more-btn{
+  font:inherit;font-size:.8rem;margin:4px 0;padding:3px 10px;border-radius:7px;cursor:pointer;
+  border:1px dashed var(--border);background:transparent;color:var(--accent)
+}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:520px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td code{font:.82rem ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--bg);padding:1px 5px;border-radius:5px}
+pre.example{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);
+  padding:14px 16px;overflow-x:auto;font:.84rem/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace
+}
+.faq p{color:var(--text)}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WB JSON Formatter</h1>
+  <p class="tagline">Format, validate, and explore JSON with exact error locations, tree view, and minify. Handles multi-MB files 100% in your browser.</p>
+  <span class="badge">🔒 100% private - API payloads and secrets are processed on your device only</span>
+  <nav class="toc" aria-label="On this page">
+    <a href="#tool">Formatter</a>
+    <a href="#errors">Common errors</a>
+    <a href="#syntax">JSON syntax</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="JSON formatter tool">
+    <div class="toolbar">
+      <button type="button" class="primary" id="btn-format" title="Ctrl/Cmd+Enter">Format</button>
+      <button type="button" id="btn-minify">Minify</button>
+      <button type="button" id="btn-validate">Validate</button>
+      <span class="sep" aria-hidden="true"></span>
+      <label for="opt-indent" class="sr-only">Indentation</label>
+      <select id="opt-indent">
+        <option value="2" selected>2 spaces</option>
+        <option value="4">4 spaces</option>
+        <option value="tab">Tabs</option>
+      </select>
+      <label class="chk"><input type="checkbox" id="opt-sort">Sort keys</label>
+      <span class="sep" aria-hidden="true"></span>
+      <button type="button" id="btn-escape" title="Turn the input into a quoted, escaped JSON string">Escape</button>
+      <button type="button" id="btn-unescape" title="Parse a quoted JSON string back to raw text">Unescape</button>
+    </div>
+
+    <div class="status" id="status" role="status"></div>
+
+    <div class="panes">
+      <div class="card">
+        <div class="pane-head">
+          <span class="name">Input</span>
+          <span class="spacer"></span>
+          <button type="button" id="btn-load">Open file…</button>
+          <input type="file" id="file-input" accept=".json,application/json,.txt,text/plain" class="sr-only" aria-label="Open a JSON file">
+          <button type="button" id="btn-sample">Sample</button>
+          <button type="button" id="btn-clear">Clear</button>
+        </div>
+        <label class="sr-only" for="input">JSON input</label>
+        <textarea id="input" spellcheck="false" autocapitalize="off" autocomplete="off"
+          placeholder='Paste JSON here, drop a file, or press Sample - then Format (Ctrl/Cmd+Enter).&#10;&#10;Nothing you paste leaves this page.'></textarea>
+      </div>
+
+      <div class="card">
+        <div class="pane-head">
+          <span class="name">Output</span>
+          <button type="button" id="view-text" aria-pressed="true">Text</button>
+          <button type="button" id="view-tree" aria-pressed="false">Tree</button>
+          <span class="spacer"></span>
+          <button type="button" id="btn-copy">Copy</button>
+          <button type="button" id="btn-download">Download</button>
+        </div>
+        <label class="sr-only" for="output">Formatted output</label>
+        <textarea id="output" readonly spellcheck="false" placeholder="Output appears here."></textarea>
+        <div class="tree" id="tree" hidden></div>
+      </div>
+    </div>
+    <p class="sr-only" id="live" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="props" aria-label="Why use this JSON formatter">
+    <div class="card"><strong>Errors you can find</strong><p>Not "Unexpected token at position 4193" - you get the line, the column, a caret pointing at the exact spot, and a plain-language cause like "trailing comma before }".</p></div>
+    <div class="card"><strong>Private by design</strong><p>Developers paste API responses, tokens, and customer data into JSON tools every day. Here nothing is uploaded - ever. No requests, no analytics, no storage.</p></div>
+    <div class="card"><strong>Free, forever</strong><p>No pro tier, no size limit games, no ads between you and your data. Multi-MB files are fine, and it works offline.</p></div>
+  </section>
+
+  <section id="errors" class="prose">
+    <h2>How to fix the most common JSON errors</h2>
+    <p>Nearly every "invalid JSON" failure is one of these seven mistakes. The validator above names them for you and points at the exact spot:</p>
+    <div class="table-wrap">
+      <table>
+        <caption>JSON is defined by RFC 8259. All of these are legal in JavaScript - and illegal in JSON, which is why hand-edited files break.</caption>
+        <thead><tr><th scope="col">Mistake</th><th scope="col">Example</th><th scope="col">Fix</th></tr></thead>
+        <tbody>
+          <tr><td>Trailing comma</td><td><code>[1, 2, 3,]</code></td><td>Remove the comma after the last item</td></tr>
+          <tr><td>Single quotes</td><td><code>{'name': 'Ada'}</code></td><td>Use double quotes: <code>{"name": "Ada"}</code></td></tr>
+          <tr><td>Unquoted key</td><td><code>{name: "Ada"}</code></td><td>Quote every key: <code>{"name": …}</code></td></tr>
+          <tr><td>Comments</td><td><code>// config</code></td><td>Delete them - JSON has no comments</td></tr>
+          <tr><td>NaN / Infinity / undefined</td><td><code>{"x": NaN}</code></td><td>Use <code>null</code> or a number</td></tr>
+          <tr><td>Real line break in a string</td><td><code>"line one⏎two"</code></td><td>Escape it as <code>\n</code></td></tr>
+          <tr><td>Missing comma or colon</td><td><code>{"a": 1 "b": 2}</code></td><td>Separate pairs with commas, keys with colons</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="syntax" class="prose">
+    <h2>JSON syntax in 60 seconds</h2>
+    <p>JSON has exactly six value types: <strong>object</strong> <code>{ }</code>, <strong>array</strong> <code>[ ]</code>, <strong>string</strong> (double-quoted only), <strong>number</strong> (no leading zeros, no <code>NaN</code>), and the keywords <strong>true</strong>, <strong>false</strong>, <strong>null</strong>. Object keys are always double-quoted strings. Whitespace between tokens is free; comments and trailing commas are not allowed. That's the whole language:</p>
+    <pre class="example">{
+  "name": "Ada Lovelace",
+  "born": 1815,
+  "fields": ["mathematics", "computing"],
+  "active": false,
+  "notes": null,
+  "address": { "city": "London" }
+}</pre>
+    <h3>JSON vs JSONC vs JSON5</h3>
+    <p>Editors and config systems often accept relaxed supersets: <strong>JSONC</strong> (JSON with comments - VS Code settings) and <strong>JSON5</strong> (comments, trailing commas, unquoted keys, single quotes). They are fine as input to tools that explicitly support them - but anything sent to an API, stored as <code>.json</code>, or parsed by a standard library must be strict JSON. When in doubt, validate here first.</p>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Frequently asked questions</h2>
+
+    <h3>Is it safe to paste API responses or data with secrets here?</h3>
+    <p>Yes - and that is the point of this tool. Everything runs in JavaScript in your browser: nothing you paste is uploaded, logged, or stored, and the page makes no network requests after loading. Most online JSON tools send your payload to their server; with tokens, keys, and customer data in developer clipboards all day, local-only processing is the only responsible design.</p>
+
+    <h3>How do I fix "Unexpected token" JSON errors?</h3>
+    <p>Paste the JSON here and validate - instead of a cryptic token message you get the exact line and column plus a plain-language cause. The usual suspects: a trailing comma after the last item, single quotes instead of double quotes, an unquoted key, comments (JSON does not allow them), or a missing comma between items.</p>
+
+    <h3>Does JSON allow comments or trailing commas?</h3>
+    <p>No. Standard JSON (RFC 8259) allows neither comments nor trailing commas - both are the most common reasons hand-edited JSON fails to parse. Some tools accept relaxed supersets like JSONC (VS Code configs) or JSON5, but anything you send to an API or parse with a standard library must be strict JSON.</p>
+
+    <h3>How large a JSON file can this handle?</h3>
+    <p>Multi-megabyte files are fine - parsing and formatting use the browser's native engine, which handles tens of MB in well under a second on a modern machine. For very large files the tree view renders containers in chunks of 500 children so the page stays responsive. The practical ceiling is your device's memory.</p>
+
+    <h3>What is the difference between formatting and minifying?</h3>
+    <p>Formatting (pretty-printing) adds line breaks and indentation so humans can read the structure; minifying removes every unnecessary character so machines can transmit it - typically 20-40% smaller than formatted JSON. The data is identical either way. Format while developing and debugging; minify for payloads, configs in tight places, and storage.</p>
+
+    <h3>How do I convert JSON to an escaped string and back?</h3>
+    <p>Use the Escape button to turn the input into a double-quoted string literal with every quote, backslash, and newline escaped - ready to embed inside another JSON document or a source file. Unescape does the reverse: paste a quoted string literal and get the original text back.</p>
+
+    <h3>Why did my keys change order?</h3>
+    <p>Only if "Sort keys" is enabled - it rewrites every object with keys in alphabetical order, which makes large payloads diff-able and easy to scan. With it off, key order is preserved exactly as pasted. Note that JSON itself guarantees no key order, so no correct consumer should depend on it either way.</p>
+
+    <h3>Does the JSON formatter work offline?</h3>
+    <p>Yes. The entire tool is one self-contained page - once loaded, formatting, validation, and the tree view all work with no connection. Save the page locally and it works forever, which also makes it safe for air-gapped environments.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Made for anyone who needs a quick tool that just works.
+  <br>© 2026 WBest Apps · Free to use, no sign-up required · <a href="https://wbest.app/">WBest Free Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+/* JSON engine: native-speed parse/stringify plus a precise scanner that turns
+   parse failures into line/column positions and plain-language messages. */
+var JV = (function () {
+  'use strict';
+
+  // Recursive-descent scanner used only when native JSON.parse fails.
+  // Returns { line, col, pos, message } for the first error.
+  function locate(text) {
+    var i = 0, line = 1, col = 1, n = text.length;
+
+    function fail(message) {
+      return { line: line, col: col, pos: i, message: message };
+    }
+    function step() {
+      if (text.charCodeAt(i) === 10) { line++; col = 1; } else { col++; }
+      i++;
+    }
+    function ws() {
+      for (;;) {
+        var c = text[i];
+        if (c === ' ' || c === '\t' || c === '\n' || c === '\r') { step(); continue; }
+        if (c === '/' && (text[i + 1] === '/' || text[i + 1] === '*')) {
+          throw fail('JSON does not allow comments - remove "//" and "/* */"');
+        }
+        return;
+      }
+    }
+    function string() {
+      step(); // opening quote
+      for (;;) {
+        if (i >= n) throw fail('unterminated string - missing closing double quote');
+        var c = text[i], code = text.charCodeAt(i);
+        if (code < 0x20) {
+          throw fail(code === 10
+            ? 'real line break inside a string - escape it as \\n'
+            : 'unescaped control character inside a string');
+        }
+        if (c === '"') { step(); return; }
+        if (c === '\\') {
+          step();
+          var e = text[i];
+          if (e === 'u') {
+            step();
+            for (var h = 0; h < 4; h++) {
+              if (!/[0-9a-fA-F]/.test(text[i] || '')) throw fail('invalid \\u escape - needs exactly 4 hex digits');
+              step();
+            }
+          } else if ('"\\/bfnrt'.indexOf(e) !== -1) {
+            step();
+          } else {
+            throw fail('invalid escape sequence "\\' + (e || '') + '"');
+          }
+        } else {
+          step();
+        }
+      }
+    }
+    function number() {
+      var start = i;
+      if (text[i] === '-') step();
+      if (!/[0-9]/.test(text[i] || '')) throw fail('a minus sign must be followed by digits');
+      if (text[i] === '0' && /[0-9]/.test(text[i + 1] || '')) {
+        throw fail('numbers cannot have leading zeros - write 0.5, not 05');
+      }
+      while (/[0-9]/.test(text[i] || '')) step();
+      if (text[i] === '.') {
+        step();
+        if (!/[0-9]/.test(text[i] || '')) throw fail('a decimal point must be followed by digits');
+        while (/[0-9]/.test(text[i] || '')) step();
+      }
+      if (text[i] === 'e' || text[i] === 'E') {
+        step();
+        if (text[i] === '+' || text[i] === '-') step();
+        if (!/[0-9]/.test(text[i] || '')) throw fail('an exponent must have digits');
+        while (/[0-9]/.test(text[i] || '')) step();
+      }
+      void start;
+    }
+    function word(w, message) {
+      for (var k = 0; k < w.length; k++) {
+        if (text[i] !== w[k]) throw fail(message);
+        step();
+      }
+    }
+    function value() {
+      ws();
+      var c = text[i];
+      if (c === undefined) throw fail('unexpected end of input - expected a value');
+      if (c === '{') { object(); return; }
+      if (c === '[') { array(); return; }
+      if (c === '"') { string(); return; }
+      if (c === '-' || /[0-9]/.test(c)) { number(); return; }
+      if (c === 't') { word('true', 'invalid keyword - did you mean true?'); return; }
+      if (c === 'f') { word('false', 'invalid keyword - did you mean false?'); return; }
+      if (c === 'n') { word('null', 'invalid keyword - did you mean null?'); return; }
+      if (c === "'") throw fail('strings must use double quotes, not single quotes');
+      if (c === 'N') throw fail('NaN is not valid JSON - use null or a number');
+      if (c === 'I') throw fail('Infinity is not valid JSON - use null or a number');
+      if (c === 'u') throw fail('undefined is not valid JSON - use null');
+      if (c === '+') throw fail('numbers cannot start with a plus sign');
+      if (c === '}' || c === ']') throw fail('unexpected "' + c + '" - expected a value');
+      throw fail('unexpected character "' + c + '" - expected a value');
+    }
+    function object() {
+      step(); ws();
+      if (text[i] === '}') { step(); return; }
+      for (;;) {
+        ws();
+        if (text[i] === '}') throw fail('trailing comma before "}" - remove the last comma');
+        if (text[i] === undefined) throw fail('unexpected end of input inside an object');
+        if (text[i] !== '"') {
+          if (text[i] === "'") throw fail('object keys must use double quotes, not single quotes');
+          throw fail('object keys must be double-quoted strings');
+        }
+        string();
+        ws();
+        if (text[i] !== ':') throw fail('expected ":" after the object key');
+        step();
+        value();
+        ws();
+        if (text[i] === ',') { step(); continue; }
+        if (text[i] === '}') { step(); return; }
+        if (text[i] === undefined) throw fail('unexpected end of input inside an object');
+        throw fail('expected "," or "}" in object - is a comma missing?');
+      }
+    }
+    function array() {
+      step(); ws();
+      if (text[i] === ']') { step(); return; }
+      for (;;) {
+        ws();
+        if (text[i] === ']') throw fail('trailing comma before "]" - remove the last comma');
+        value();
+        ws();
+        if (text[i] === ',') { step(); continue; }
+        if (text[i] === ']') { step(); return; }
+        if (text[i] === undefined) throw fail('unexpected end of input inside an array');
+        throw fail('expected "," or "]" in array - is a comma missing?');
+      }
+    }
+
+    try {
+      value();
+      ws();
+      if (i < n) throw fail('unexpected content after the JSON value - only one top-level value is allowed');
+      return null; // scanner found no error (shouldn't happen when native parse failed)
+    } catch (e) {
+      if (e && typeof e.line === 'number') return e;
+      throw e;
+    }
+  }
+
+  function stripBom(text) {
+    return text.charCodeAt(0) === 0xFEFF ? text.slice(1) : text;
+  }
+
+  // -> { ok: true, value } | { ok: false, line, col, message }
+  function parse(text) {
+    text = stripBom(text);
+    try {
+      return { ok: true, value: JSON.parse(text) };
+    } catch (e) {
+      var loc = locate(text);
+      if (loc) return { ok: false, line: loc.line, col: loc.col, pos: loc.pos, message: loc.message };
+      return { ok: false, line: 1, col: 1, pos: 0, message: String(e.message || e) };
+    }
+  }
+
+  function sortKeysDeep(v) {
+    if (Array.isArray(v)) return v.map(sortKeysDeep);
+    if (v && typeof v === 'object') {
+      var out = {};
+      Object.keys(v).sort().forEach(function (k) { out[k] = sortKeysDeep(v[k]); });
+      return out;
+    }
+    return v;
+  }
+
+  function stringify(value, indent, sort) {
+    var v = sort ? sortKeysDeep(value) : value;
+    return JSON.stringify(v, null, indent === 'tab' ? '\t' : +indent);
+  }
+
+  // one-line context snippet with a caret under the error column
+  function snippet(text, pos, col) {
+    var lineStart = text.lastIndexOf('\n', pos - 1) + 1;
+    var lineEnd = text.indexOf('\n', pos);
+    if (lineEnd === -1) lineEnd = text.length;
+    var lineText = text.slice(lineStart, lineEnd).replace(/\t/g, ' ');
+    var caret = col - 1;
+    var from = Math.max(0, caret - 60);
+    var clipped = lineText.slice(from, from + 120);
+    return clipped + '\n' + new Array(caret - from + 1).join(' ') + '^';
+  }
+
+  return { parse: parse, stringify: stringify, sortKeysDeep: sortKeysDeep,
+           snippet: snippet, stripBom: stripBom };
+})();
+if (typeof module !== 'undefined') module.exports = JV;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+  var input = $('input'), output = $('output'), tree = $('tree'), status = $('status'), live = $('live');
+  var lastValue = null, hasValue = false;
+  var CHUNK = 500, SAMPLE = {
+    name: 'WB JSON Formatter',
+    version: 2,
+    private: true,
+    uploadsData: null,
+    features: ['format', 'minify', 'validate', 'tree view', 'sort keys'],
+    limits: { maxFileMB: 'memory-bound', cost: 0 },
+    nested: { a: [1, 2, { b: [true, false] }], unicode: 'õäöü — 你好 🎉' }
+  };
+
+  function announce(msg) { live.textContent = msg; }
+  function fmtInt(n) { return n.toLocaleString('en-US'); }
+  function fmtBytes(n) {
+    if (n < 1024) return n + ' B';
+    if (n < 1048576) return (n / 1024).toFixed(1) + ' KB';
+    return (n / 1048576).toFixed(2) + ' MB';
+  }
+
+  function setOk(msg) {
+    status.className = 'status ok';
+    status.textContent = '✓ ' + msg;
+  }
+  function setBad(res, raw) {
+    status.className = 'status bad';
+    status.textContent = '';
+    var head = document.createElement('div');
+    var b = document.createElement('strong');
+    b.textContent = '✗ Line ' + fmtInt(res.line) + ', column ' + fmtInt(res.col) + ': ';
+    head.appendChild(b);
+    head.appendChild(document.createTextNode(res.message));
+    status.appendChild(head);
+    var pre = document.createElement('pre');
+    pre.className = 'err-snip';
+    pre.textContent = JV.snippet(raw, res.pos, res.col);
+    status.appendChild(pre);
+    announce('Invalid JSON: line ' + res.line + ', column ' + res.col + ', ' + res.message);
+  }
+  function clearStatus() {
+    status.className = 'status';
+    status.textContent = '';
+  }
+
+  function getParsed() {
+    var raw = input.value;
+    if (!raw.trim()) {
+      clearStatus();
+      setBadPlain('Nothing to process - paste some JSON first.');
+      return null;
+    }
+    var t0 = performance.now();
+    var res = JV.parse(raw);
+    res.ms = performance.now() - t0;
+    if (!res.ok) { setBad(res, JV.stripBom(raw)); return null; }
+    return res;
+  }
+  function setBadPlain(msg) {
+    status.className = 'status bad';
+    status.textContent = '';
+    var b = document.createElement('strong');
+    b.textContent = '✗ ' + msg;
+    status.appendChild(b);
+  }
+
+  function run(mode) {
+    var res = getParsed();
+    if (!res) return;
+    var t0 = performance.now();
+    var text = mode === 'minify'
+      ? JSON.stringify($('opt-sort').checked ? JV.sortKeysDeep(res.value) : res.value)
+      : JV.stringify(res.value, $('opt-indent').value, $('opt-sort').checked);
+    var ms = Math.round(res.ms + performance.now() - t0);
+    output.value = text;
+    lastValue = res.value;
+    hasValue = true;
+    renderTreeIfVisible();
+    setOk('Valid JSON · ' + (mode === 'minify' ? 'minified' : 'formatted') + ' to ' +
+      fmtBytes(text.length) + ' · ' + fmtInt(ms) + ' ms');
+    announce('Done. Output is ' + fmtBytes(text.length) + '.');
+  }
+
+  function validateOnly() {
+    var res = getParsed();
+    if (!res) return;
+    lastValue = res.value;
+    hasValue = true;
+    renderTreeIfVisible();
+    setOk('Valid JSON · ' + fmtBytes(input.value.length) + ' · parsed in ' + fmtInt(Math.round(res.ms)) + ' ms');
+    announce('Valid JSON.');
+  }
+
+  // ---------- tree view ----------
+  function typeOf(v) {
+    if (v === null) return 'null';
+    if (Array.isArray(v)) return 'array';
+    return typeof v;
+  }
+  function leafSpan(v) {
+    var s = document.createElement('span');
+    var t = typeOf(v);
+    if (t === 'string') { s.className = 's'; s.textContent = JSON.stringify(v.length > 120 ? v.slice(0, 120) + '…' : v); }
+    else if (t === 'number') { s.className = 'n'; s.textContent = String(v); }
+    else { s.className = 'kw'; s.textContent = String(v); }
+    return s;
+  }
+  function keySpan(k) {
+    var s = document.createElement('span');
+    s.className = 'k';
+    s.textContent = JSON.stringify(k) + ': ';
+    return s;
+  }
+  function containerSummary(k, v) {
+    var sum = document.createElement('summary');
+    if (k !== null) sum.appendChild(keySpan(k));
+    var t = Array.isArray(v);
+    var count = t ? v.length : Object.keys(v).length;
+    var dim = document.createElement('span');
+    dim.className = 'meta-dim';
+    dim.textContent = (t ? '[…] ' : '{…} ') + fmtInt(count) + (t ? ' items' : ' keys');
+    sum.appendChild(dim);
+    return sum;
+  }
+  function buildNode(k, v, depth) {
+    var t = typeOf(v);
+    if (t !== 'object' && t !== 'array') {
+      var row = document.createElement('span');
+      row.className = 'row';
+      if (k !== null) row.appendChild(keySpan(k));
+      row.appendChild(leafSpan(v));
+      return row;
+    }
+    var det = document.createElement('details');
+    if (depth < 1) det.open = true;
+    det.appendChild(containerSummary(k, v));
+    var built = false;
+    var build = function () {
+      if (built) return;
+      built = true;
+      appendChildren(det, v, 0, depth);
+    };
+    if (det.open) build();
+    det.addEventListener('toggle', build, { once: false });
+    return det;
+  }
+  function appendChildren(det, v, from, depth) {
+    var keys = Array.isArray(v) ? null : Object.keys(v);
+    var len = keys ? keys.length : v.length;
+    var to = Math.min(len, from + CHUNK);
+    var frag = document.createDocumentFragment();
+    for (var i = from; i < to; i++) {
+      var k = keys ? keys[i] : i;
+      frag.appendChild(buildNode(keys ? k : null, keys ? v[k] : v[i], depth + 1));
+    }
+    if (to < len) {
+      var more = document.createElement('button');
+      more.type = 'button';
+      more.className = 'more-btn';
+      more.textContent = 'Show ' + fmtInt(Math.min(CHUNK, len - to)) + ' more of ' + fmtInt(len - to) + ' remaining…';
+      more.addEventListener('click', function () {
+        det.removeChild(more);
+        appendChildren(det, v, to, depth);
+      });
+      frag.appendChild(more);
+    }
+    det.appendChild(frag);
+  }
+  function renderTree() {
+    tree.textContent = '';
+    if (!hasValue) {
+      var p = document.createElement('p');
+      p.className = 'muted';
+      p.textContent = 'Format or validate some JSON first - the tree appears here.';
+      tree.appendChild(p);
+      return;
+    }
+    tree.appendChild(buildNode(null, lastValue, 0));
+  }
+  var treeVisible = false;
+  function renderTreeIfVisible() { if (treeVisible) renderTree(); }
+  function setView(showTree) {
+    treeVisible = showTree;
+    $('view-text').setAttribute('aria-pressed', String(!showTree));
+    $('view-tree').setAttribute('aria-pressed', String(showTree));
+    output.style.display = showTree ? 'none' : '';
+    tree.hidden = !showTree;
+    tree.classList.toggle('show', showTree);
+    if (showTree) renderTree();
+  }
+
+  // ---------- string tools ----------
+  function doEscape() {
+    var raw = input.value;
+    if (!raw) { setBadPlain('Nothing to escape - paste text or JSON first.'); return; }
+    output.value = JSON.stringify(raw);
+    hasValue = false;
+    clearStatus();
+    setOk('Escaped to a JSON string literal (' + fmtBytes(output.value.length) + ')');
+    if (treeVisible) setView(false);
+  }
+  function doUnescape() {
+    var raw = input.value.trim();
+    if (!raw) { setBadPlain('Nothing to unescape - paste a quoted JSON string first.'); return; }
+    var res = JV.parse(raw);
+    if (!res.ok) { setBad(res, JV.stripBom(input.value)); return; }
+    if (typeof res.value !== 'string') {
+      setBadPlain('Unescape expects a double-quoted JSON string literal, like "line one\\nline two".');
+      return;
+    }
+    output.value = res.value;
+    hasValue = false;
+    setOk('Unescaped string (' + fmtBytes(output.value.length) + ')');
+    if (treeVisible) setView(false);
+  }
+
+  // ---------- wiring ----------
+  $('btn-format').addEventListener('click', function () { run('format'); });
+  $('btn-minify').addEventListener('click', function () { run('minify'); });
+  $('btn-validate').addEventListener('click', validateOnly);
+  $('btn-escape').addEventListener('click', doEscape);
+  $('btn-unescape').addEventListener('click', doUnescape);
+  $('view-text').addEventListener('click', function () { setView(false); });
+  $('view-tree').addEventListener('click', function () { setView(true); });
+  $('opt-indent').addEventListener('change', function () { if (output.value && hasValue) run('format'); });
+  $('opt-sort').addEventListener('change', function () { if (output.value && hasValue) run('format'); });
+
+  $('btn-copy').addEventListener('click', function () {
+    var btn = this;
+    if (!output.value) return;
+    var done = function () {
+      btn.textContent = 'Copied!';
+      announce('Output copied to clipboard.');
+      setTimeout(function () { btn.textContent = 'Copy'; }, 1200);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(output.value).then(done, done);
+    } else {
+      output.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      done();
+    }
+  });
+
+  $('btn-download').addEventListener('click', function () {
+    if (!output.value) return;
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([output.value], { type: 'application/json' }));
+    a.download = 'formatted.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 5000);
+    announce('Output downloaded as formatted.json.');
+  });
+
+  $('btn-load').addEventListener('click', function () { $('file-input').click(); });
+  $('file-input').addEventListener('change', function () {
+    var f = this.files && this.files[0];
+    if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      input.value = String(r.result);
+      run('format');
+    };
+    r.readAsText(f);
+    this.value = '';
+  });
+
+  input.addEventListener('dragover', function (e) { e.preventDefault(); });
+  input.addEventListener('drop', function (e) {
+    var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if (!f) return;
+    e.preventDefault();
+    var r = new FileReader();
+    r.onload = function () {
+      input.value = String(r.result);
+      run('format');
+    };
+    r.readAsText(f);
+  });
+
+  $('btn-sample').addEventListener('click', function () {
+    input.value = JSON.stringify(SAMPLE);
+    run('format');
+  });
+  $('btn-clear').addEventListener('click', function () {
+    input.value = '';
+    output.value = '';
+    lastValue = null;
+    hasValue = false;
+    clearStatus();
+    if (treeVisible) renderTree();
+    input.focus();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+      e.preventDefault();
+      run('format');
+    }
+  });
+})();
+</script>
+</body>
+</html>
