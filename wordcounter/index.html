@@ -7,6 +7,11 @@
 <meta name="description" content="Count words, characters, sentences, and paragraphs as you type - with reading time, keyword density, and social media limits. 100% private.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://wbwordcounter.com/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://wbwordcounter.com/">
+<link rel="alternate" hreflang="de" href="https://wbwordcounter.com/de/">
+<link rel="alternate" hreflang="x-default" href="https://wbwordcounter.com/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -141,7 +146,7 @@ body{
 }
 .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
 a{color:var(--accent)}
-header{padding:36px 0 8px;text-align:center}
+header{position:relative;padding:36px 0 8px;text-align:center}
 h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
 .tagline{color:var(--muted);margin:0 auto;max-width:46rem}
 .badge{
@@ -162,6 +167,14 @@ p{margin:0 0 12px}
 .muted{color:var(--muted)}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:absolute;top:10px;right:16px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;right:0;margin:6px 0 0;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 /* wb:base:end */
 .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 10px}
@@ -216,6 +229,15 @@ td{font-variant-numeric:tabular-nums}
 <body>
 
 <header class="wrap">
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://wbwordcounter.com/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <h1>WBest Word Counter</h1>
   <p class="tagline">Count words, characters, sentences, and paragraphs as you type - with reading time, keyword density, and social media limits. 100% private.</p>
   <span class="badge">🔒 100% private - your text never leaves your browser</span>
@@ -389,22 +411,37 @@ td{font-variant-numeric:tabular-nums}
   var ta = $('text'), live = $('live'), undoBtn = $('btn-undo');
   var READ_WPM = 225, SPEAK_WPM = 150, STORE_KEY = 'word-counter-draft';
   var CJK = /[぀-ヿ㐀-䶿一-鿿豈-﫿ｦ-ﾟ]/g;
-  var STOP = new Set(('the,a,an,and,or,but,if,then,else,when,while,at,by,for,in,of,on,to,up,with,as,is,are,was,were,be,been,' +
-    'being,it,its,this,that,these,those,i,you,he,she,we,they,them,his,her,their,my,your,our,me,him,us,from,not,no,nor,so,' +
-    'too,very,can,will,just,do,does,did,have,has,had,what,which,who,whom,how,why,where,there,here,all,any,both,each,few,' +
-    'more,most,other,some,such,only,own,same,than,about,into,over,after,under,again,once,out,off,also,because,between,' +
-    'through,during,before,above,below,down,would,could,should,may,might,must,shall,am,' +
-    "it's,don't,can't,won't,i'm,i've,i'll,you're,that's,didn't,doesn't,isn't,wasn't,aren't").split(','));
-  var LIMITS = [
-    { name: 'X (Twitter) post', limit: 280 },
-    { name: 'Instagram caption', limit: 2200 },
-    { name: 'LinkedIn post', limit: 3000 },
-    { name: 'YouTube title', limit: 100 },
-    { name: 'SMS segment', limit: 160 },
-    { name: 'Meta description', limit: 160 },
-    { name: 'Google title tag', limit: 60 },
-    { name: 'Facebook post', limit: 63206 }
-  ];
+  /* i18n:js:start */
+  var I18N = {
+    "copy": "Copy",
+    "copied": "Copied!",
+    "copiedLive": "Text copied to clipboard.",
+    "undone": "Undone.",
+    "cleared": "Text cleared. Press Undo to restore.",
+    "left": "{n} left",
+    "over": "{n} over",
+    "timeZero": "0 sec",
+    "timeSec": "{n} sec",
+    "timeMin": "{n} min",
+    "timeHr": "{h} hr",
+    "timeHrMin": "{h} hr {m} min",
+    "densityHint": "Start typing to see your most-used words - handy for spotting repetition and checking SEO focus keywords.",
+    "stopwords": "the,a,an,and,or,but,if,then,else,when,while,at,by,for,in,of,on,to,up,with,as,is,are,was,were,be,been,being,it,its,this,that,these,those,i,you,he,she,we,they,them,his,her,their,my,your,our,me,him,us,from,not,no,nor,so,too,very,can,will,just,do,does,did,have,has,had,what,which,who,whom,how,why,where,there,here,all,any,both,each,few,more,most,other,some,such,only,own,same,than,about,into,over,after,under,again,once,out,off,also,because,between,through,during,before,above,below,down,would,could,should,may,might,must,shall,am,it's,don't,can't,won't,i'm,i've,i'll,you're,that's,didn't,doesn't,isn't,wasn't,aren't",
+    "limits": [
+      { "name": "X (Twitter) post", "limit": 280 },
+      { "name": "Instagram caption", "limit": 2200 },
+      { "name": "LinkedIn post", "limit": 3000 },
+      { "name": "YouTube title", "limit": 100 },
+      { "name": "SMS segment", "limit": 160 },
+      { "name": "Meta description", "limit": 160 },
+      { "name": "Google title tag", "limit": 60 },
+      { "name": "Facebook post", "limit": 63206 }
+    ]
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
+  var STOP = new Set(I18N.stopwords.split(','));
+  var LIMITS = I18N.limits;
   var limitEls = [], snapshot = null, heavyTimer = null, saveTimer = null;
 
   (function buildLimits() {
@@ -413,7 +450,7 @@ td{font-variant-numeric:tabular-nums}
       var row = document.createElement('div'); row.className = 'lim-row';
       var name = document.createElement('span'); name.textContent = l.name;
       var cap = document.createElement('span'); cap.className = 'lim-cap';
-      cap.textContent = l.limit.toLocaleString('en-US');
+      cap.textContent = l.limit.toLocaleString(LANG);
       var sp = document.createElement('span'); sp.className = 'spacer';
       var status = document.createElement('span'); status.className = 'lim-status';
       row.append(name, cap, sp, status);
@@ -423,16 +460,16 @@ td{font-variant-numeric:tabular-nums}
     box.appendChild(frag);
   })();
 
-  function fmtInt(n) { return n.toLocaleString('en-US'); }
+  function fmtInt(n) { return n.toLocaleString(LANG); }
 
   function fmtTime(words, wpm) {
-    if (!words) return '0 sec';
+    if (!words) return I18N.timeZero;
     var min = words / wpm;
-    if (min < 1) return Math.max(1, Math.round(min * 60)) + ' sec';
-    if (min < 59.5) return Math.round(min) + ' min';
+    if (min < 1) return I18N.timeSec.replace('{n}', Math.max(1, Math.round(min * 60)));
+    if (min < 59.5) return I18N.timeMin.replace('{n}', Math.round(min));
     var h = Math.floor(min / 60), m = Math.round(min % 60);
     if (m === 60) { h++; m = 0; }
-    return h + ' hr' + (m ? ' ' + m + ' min' : '');
+    return (m ? I18N.timeHrMin : I18N.timeHr).replace('{h}', h).replace('{m}', m);
   }
 
   function countWords(text) {
@@ -467,7 +504,7 @@ td{font-variant-numeric:tabular-nums}
     $('stat-speak').textContent = fmtTime(words, SPEAK_WPM);
     limitEls.forEach(function (l) {
       var left = l.limit - chars;
-      l.el.textContent = left >= 0 ? fmtInt(left) + ' left' : fmtInt(-left) + ' over';
+      l.el.textContent = (left >= 0 ? I18N.left : I18N.over).replace('{n}', fmtInt(Math.abs(left)));
       l.el.classList.toggle('over', left < 0);
     });
     clearTimeout(heavyTimer);
@@ -490,7 +527,7 @@ td{font-variant-numeric:tabular-nums}
     if (!freq.size) {
       var hint = document.createElement('p');
       hint.className = 'hint';
-      hint.textContent = 'Start typing to see your most-used words - handy for spotting repetition and checking SEO focus keywords.';
+      hint.textContent = I18N.densityHint;
       box.appendChild(hint);
       return;
     }
@@ -554,7 +591,7 @@ td{font-variant-numeric:tabular-nums}
     undoBtn.disabled = true;
     update();
     ta.focus();
-    announce('Undone.');
+    announce(I18N.undone);
   });
   $('btn-clear').addEventListener('click', function () {
     if (!ta.value) return;
@@ -562,13 +599,13 @@ td{font-variant-numeric:tabular-nums}
     ta.value = '';
     update();
     ta.focus();
-    announce('Text cleared. Press Undo to restore.');
+    announce(I18N.cleared);
   });
   $('btn-copy').addEventListener('click', function () {
     var btn = this, done = function () {
-      btn.textContent = 'Copied!';
-      announce('Text copied to clipboard.');
-      setTimeout(function () { btn.textContent = 'Copy'; }, 1200);
+      btn.textContent = I18N.copied;
+      announce(I18N.copiedLive);
+      setTimeout(function () { btn.textContent = I18N.copy; }, 1200);
     };
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(ta.value).then(done, function () { fallbackCopy(); done(); });

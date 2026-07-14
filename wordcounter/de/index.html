@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest Wortzähler - Wörter &amp; Zeichen zählen, kostenlos</title>
+<meta name="description" content="Zähle Wörter, Zeichen, Sätze und Absätze beim Tippen - mit Lesezeit, Keyword-Dichte und Social-Media-Limits. 100 % privat.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://wbwordcounter.com/de/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://wbwordcounter.com/">
+<link rel="alternate" hreflang="de" href="https://wbwordcounter.com/de/">
+<link rel="alternate" hreflang="x-default" href="https://wbwordcounter.com/">
+<!-- i18n:hreflang:end -->
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wortzähler">
+<meta property="og:title" content="WBest Wortzähler - Wörter &amp; Zeichen zählen, kostenlos">
+<meta property="og:description" content="Zähle Wörter, Zeichen, Sätze und Absätze beim Tippen - mit Lesezeit, Keyword-Dichte und Social-Media-Limits. 100 % privat.">
+<meta property="og:url" content="https://wbwordcounter.com/de/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest Wortzähler - Wörter &amp; Zeichen zählen, kostenlos">
+<meta name="twitter:description" content="Zähle Wörter, Zeichen, Sätze und Absätze beim Tippen - mit Lesezeit, Keyword-Dichte und Social-Media-Limits. 100 % privat.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Wortzähler",
+  "url": "https://wbwordcounter.com/de/",
+  "description": "Kostenloser Online-Wortzähler und Zeichenzähler. Zählt Wörter, Zeichen, Sätze und Absätze beim Tippen, mit Lesezeit, Sprechzeit, Keyword-Dichte und Social-Media-Zeichenlimits. Läuft vollständig in deinem Browser - keine Anmeldung, und dein Text verlässt nie dein Gerät.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Benötigt JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Wörter und Zeichen live zählen",
+    "Satz- und Absatzzählung",
+    "Geschätzte Lesezeit und Sprechzeit",
+    "Keyword-Dichte-Analyse",
+    "Zeichenlimit-Check für Social Media",
+    "Umwandlung der Groß-/Kleinschreibung (GROSSBUCHSTABEN, kleinbuchstaben, Wortanfänge Groß, Satzanfänge groß)",
+    "Private Verarbeitung auf deinem Gerät mit lokaler automatischer Speicherung"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie zählt dieser Wortzähler Wörter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ein Wort ist jede zusammenhängende Zeichenfolge zwischen Leerzeichen oder Zeilenumbrüchen - Bindestrich-Komposita wie „deutsch-französisch“ zählen also als ein Wort, und Zahlen zählen als Wörter. In Sprachen, die ohne Leerzeichen geschrieben werden, wie Chinesisch und Japanisch, wird jedes Zeichen als Wort gezählt. Das entspricht weitgehend der Zählweise von Textverarbeitungen wie Microsoft Word und Google Docs, wobei verschiedene Tools in Grenzfällen um ein bis zwei Wörter abweichen können."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viele Seiten sind 1.000 Wörter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Etwa 2 Seiten bei einfachem Zeilenabstand oder 4 Seiten bei doppeltem, nach der üblichen Konvention: Times New Roman in 12 Punkt mit 2,5 cm Rand. Schriftart, Schriftgröße, Ränder und Absatzabstände verschieben das Ergebnis - behandle Seitenangaben daher als Näherungswerte."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viele Wörter hat eine 5-minütige Rede?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ungefähr 625–750 Wörter. Die meisten Menschen sprechen bei einem Vortrag 125–150 Wörter pro Minute - multipliziere also deine Redezeit in Minuten mit deinem Tempo. Wer für Betonung und Pausen langsamer spricht, landet eher am unteren Ende."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wird mein Text gespeichert oder irgendwohin gesendet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Alles wird von JavaScript direkt in deinem Browser berechnet - dein Text wird nie hochgeladen, protokolliert oder weitergegeben. Als Komfortfunktion wird ein Entwurf im lokalen Speicher deines eigenen Browsers auf deinem Gerät gesichert; ein Klick auf „Leeren“ entfernt ihn."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum zählen manche Emojis als 2 Zeichen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Computer speichern Text als UTF-16-Codeeinheiten, und viele Emojis und seltene Symbole belegen zwei Einheiten. Dieser Zähler zählt Zeichen auf dieselbe Weise - genau wie die meisten Plattformen ihre Limits durchsetzen. X (Twitter) zum Beispiel zählt die meisten Emojis als 2 Zeichen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wo liegt das Zeichenlimit auf X (Twitter)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "280 Zeichen für Standard-Konten (zahlende Abonnenten dürfen längere Beiträge posten). Beachte: X zählt jeden Link unabhängig von seiner tatsächlichen Länge als 23 Zeichen, und die meisten Emojis zählen als 2."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie genau sind die geschätzte Lesezeit und Sprechzeit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sie beruhen auf vielzitierten Durchschnittswerten: 225 Wörter pro Minute beim stillen Lesen und 150 Wörter pro Minute beim Sprechen. Das tatsächliche Tempo hängt von Lesenden, Publikum und der Fachlichkeit des Textes ab - betrachte die Werte als gute Planungsgrundlage, nicht als Garantie."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Funktioniert der Wortzähler offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Das gesamte Tool ist eine einzige Seite ohne Server-Anfragen - einmal geladen, funktioniert es auch ohne Verbindung weiter. Du kannst die Seite sogar auf deinem Gerät speichern und überall nutzen."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:absolute;top:10px;right:16px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;right:0;margin:6px 0 0;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 10px}
+.toolbar button{
+  font:inherit;font-size:.85rem;padding:6px 12px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.toolbar button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.toolbar button:disabled{opacity:.45;cursor:not-allowed}
+textarea{
+  width:100%;min-height:280px;resize:vertical;padding:16px;font:inherit;
+  color:var(--text);background:var(--card);border:1px solid var(--border);
+  border-radius:12px;box-shadow:var(--shadow)
+}
+textarea::placeholder{color:var(--muted)}
+.stats{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px;padding:0;margin:12px 0 0}
+.stats li{padding:10px 12px;text-align:center}
+.stats .v{display:block;font-size:1.4rem;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.stats .l{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+@media (max-width:760px){.panels{grid-template-columns:1fr}}
+.panel{padding:14px 16px}
+.panel h2{font-size:.95rem;margin:0 0 8px}
+.panel .hint{font-size:.8rem;color:var(--muted);margin:8px 0 0}
+.kw-row,.lim-row{display:flex;align-items:baseline;gap:8px;padding:5px 0;border-bottom:1px dashed var(--border);font-size:.9rem}
+.kw-row:last-of-type,.lim-row:last-of-type{border-bottom:0}
+.kw-word{font-weight:600;overflow-wrap:anywhere}
+.kw-meta,.lim-cap{color:var(--muted);font-size:.82rem;white-space:nowrap}
+.spacer{flex:1}
+.lim-status{font-variant-numeric:tabular-nums;font-size:.85rem;color:var(--muted);white-space:nowrap}
+.lim-status.over{color:var(--over);font-weight:700}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;table-layout:fixed;width:100%;font-size:.92rem}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border);overflow-wrap:break-word}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td{font-variant-numeric:tabular-nums}
+@media (max-width:480px){
+  table{font-size:.8rem}
+  th,td{padding:7px 6px}
+  th{font-size:.64rem}
+}
+.faq p{color:var(--text)}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 DE</summary>
+    <ul>
+      <li><a href="https://wbwordcounter.com/" lang="en" hreflang="en">English</a></li>
+      <li aria-current="page">Deutsch</li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
+  <h1>WBest Wortzähler</h1>
+  <p class="tagline">Zähle Wörter, Zeichen, Sätze und Absätze beim Tippen - mit Lesezeit, Keyword-Dichte und Social-Media-Limits. 100 % privat.</p>
+  <span class="badge">🔒 100 % privat - dein Text verlässt nie deinen Browser</span>
+  <nav class="toc" aria-label="Auf dieser Seite">
+    <a href="#tool">Zähler</a>
+    <a href="#words-per-page">Wörter pro Seite</a>
+    <a href="#speech-length">Redelänge</a>
+    <a href="#word-count-guidelines">Wortzahl-Richtwerte</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Wortzähler-Tool">
+    <div class="toolbar">
+      <button type="button" id="btn-copy">Kopieren</button>
+      <button type="button" id="btn-clear">Leeren</button>
+      <button type="button" id="btn-upper">GROSSBUCHSTABEN</button>
+      <button type="button" id="btn-lower">kleinbuchstaben</button>
+      <button type="button" id="btn-title">Wortanfänge Groß</button>
+      <button type="button" id="btn-sentence">Satzanfänge groß</button>
+      <button type="button" id="btn-undo" disabled>Rückgängig</button>
+    </div>
+    <label class="sr-only" for="text">Tippe oder füge deinen Text ein, um Wörter und Zeichen zu zählen</label>
+    <textarea id="text" placeholder="Tippe oder füge deinen Text hier ein … deine Wörter werden sofort gezählt und verlassen nie dieses Gerät." autofocus spellcheck="true"></textarea>
+    <p class="sr-only" id="live" role="status" aria-live="polite"></p>
+
+    <ul class="stats">
+      <li class="card"><span class="v" id="stat-words">0</span><span class="l">Wörter</span></li>
+      <li class="card"><span class="v" id="stat-chars">0</span><span class="l">Zeichen</span></li>
+      <li class="card"><span class="v" id="stat-chars-ns">0</span><span class="l">Ohne Leerzeichen</span></li>
+      <li class="card"><span class="v" id="stat-sentences">0</span><span class="l">Sätze</span></li>
+      <li class="card"><span class="v" id="stat-paras">0</span><span class="l">Absätze</span></li>
+      <li class="card"><span class="v" id="stat-unique">0</span><span class="l">Verschiedene Wörter</span></li>
+      <li class="card"><span class="v" id="stat-read" title="Bei durchschnittlicher Lesegeschwindigkeit von 225 Wörtern pro Minute">0 Sek.</span><span class="l">Lesezeit</span></li>
+      <li class="card"><span class="v" id="stat-speak" title="Bei durchschnittlichem Sprechtempo von 150 Wörtern pro Minute">0 Sek.</span><span class="l">Sprechzeit</span></li>
+    </ul>
+
+    <div class="panels">
+      <div class="panel card">
+        <h2>Keyword-Dichte</h2>
+        <div id="density"><p class="hint">Beginne zu tippen, um deine häufigsten Wörter zu sehen - praktisch, um Wiederholungen zu erkennen und SEO-Fokus-Keywords zu prüfen.</p></div>
+      </div>
+      <div class="panel card">
+        <h2>Zeichenlimits</h2>
+        <div id="limits"></div>
+        <p class="hint">X zählt Links als 23 Zeichen und die meisten Emojis als 2 - der tatsächliche Restwert kann daher leicht abweichen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="props" aria-label="Warum dieser Wortzähler">
+    <div class="card"><strong>Sofort &amp; genau</strong><p>Die Zählung aktualisiert sich live bei jedem Tastendruck und entspricht der Zählweise von Textverarbeitungen - Bindestrich-Wörter zählen einmal, Zahlen zählen als Wörter.</p></div>
+    <div class="card"><strong>Privat von Grund auf</strong><p>Alles läuft in deinem Browser. Nichts wird hochgeladen, getrackt oder auf einem Server gespeichert - Entwürfe werden nur auf deinem eigenen Gerät gesichert.</p></div>
+    <div class="card"><strong>Kostenlos, für immer</strong><p>Keine Anmeldung, keine Limits, keine Werbung, die dich verfolgt. Einmal geladen, funktioniert die Seite sogar offline.</p></div>
+  </section>
+
+  <section id="words-per-page" class="prose">
+    <h2>Wie viele Seiten ergibt meine Wortzahl?</h2>
+    <p>Die Seitenzahl hängt von Schriftart, Schriftgröße, Rändern und Zeilenabstand ab, deshalb nutzen Verlage und Lehrkräfte eine Standard-Konvention: <strong>Times New Roman in 12 Punkt mit 2,5 cm Rand</strong>. Danach fasst eine Seite mit einfachem Zeilenabstand etwa 500 Wörter, mit doppeltem etwa 250. Schnellübersicht:</p>
+    <div class="table-wrap">
+      <table>
+        <caption>Schätzwerte auf Basis von Times New Roman in 12 Punkt mit 2,5 cm Rand. Dein Layout kann abweichen.</caption>
+        <thead><tr><th scope="col">Wortzahl</th><th scope="col">Seiten<br>einfacher Abstand</th><th scope="col">Seiten<br>doppelter Abstand</th></tr></thead>
+        <tbody>
+          <tr><td>250 Wörter</td><td>½ Seite</td><td>1 Seite</td></tr>
+          <tr><td>500 Wörter</td><td>1 Seite</td><td>2 Seiten</td></tr>
+          <tr><td>750 Wörter</td><td>1½ Seiten</td><td>3 Seiten</td></tr>
+          <tr><td>1.000 Wörter</td><td>2 Seiten</td><td>4 Seiten</td></tr>
+          <tr><td>1.500 Wörter</td><td>3 Seiten</td><td>6 Seiten</td></tr>
+          <tr><td>2.000 Wörter</td><td>4 Seiten</td><td>8 Seiten</td></tr>
+          <tr><td>2.500 Wörter</td><td>5 Seiten</td><td>10 Seiten</td></tr>
+          <tr><td>5.000 Wörter</td><td>10 Seiten</td><td>20 Seiten</td></tr>
+          <tr><td>10.000 Wörter</td><td>20 Seiten</td><td>40 Seiten</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="speech-length" class="prose">
+    <h2>Wie viele Wörter hat eine Rede oder Präsentation?</h2>
+    <p>Die meisten Menschen präsentieren mit <strong>125–150 Wörtern pro Minute</strong> - langsamer als im Gespräch, weil Pausen und Betonung Zeit kosten. Eine 5-minütige Rede hat also rund 625–750 Wörter, ein 20-minütiger Vortrag etwa 2.500–3.000. Plane eher das untere Ende ein, wenn du Folien nutzt oder Fragen erwartest.</p>
+    <div class="table-wrap">
+      <table>
+        <caption>Wortbudgets nach Redezeit. Die Sprechzeit-Schätzung des Tools nutzt den Durchschnitt von 150 Wörtern pro Minute.</caption>
+        <thead><tr><th scope="col">Sprechzeit</th><th scope="col">Langsames Tempo<br>125 WpM</th><th scope="col">Mittleres Tempo<br>150 WpM</th></tr></thead>
+        <tbody>
+          <tr><td>1 Minute</td><td>125 Wörter</td><td>150 Wörter</td></tr>
+          <tr><td>2 Minuten</td><td>250 Wörter</td><td>300 Wörter</td></tr>
+          <tr><td>3 Minuten</td><td>375 Wörter</td><td>450 Wörter</td></tr>
+          <tr><td>5 Minuten</td><td>625 Wörter</td><td>750 Wörter</td></tr>
+          <tr><td>10 Minuten</td><td>1.250 Wörter</td><td>1.500 Wörter</td></tr>
+          <tr><td>15 Minuten</td><td>1.875 Wörter</td><td>2.250 Wörter</td></tr>
+          <tr><td>20 Minuten</td><td>2.500 Wörter</td><td>3.000 Wörter</td></tr>
+          <tr><td>30 Minuten</td><td>3.750 Wörter</td><td>4.500 Wörter</td></tr>
+          <tr><td>60 Minuten</td><td>7.500 Wörter</td><td>9.000 Wörter</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="word-count-guidelines" class="prose">
+    <h2>Wortzahl-Richtwerte für Aufsätze, Blogs und Bücher</h2>
+    <p>Gängige Zielwerte und harte Limits für Schreibende, an einem Ort:</p>
+    <div class="table-wrap">
+      <table>
+        <caption>Harte Limits setzt die Plattform durch; Spannen sind verbreitete Konventionen.</caption>
+        <thead><tr><th scope="col">Format</th><th scope="col">Typische Länge oder Limit</th></tr></thead>
+        <tbody>
+          <tr><td>Beitrag auf X (Twitter)</td><td>280 Zeichen (Standard-Konten)</td></tr>
+          <tr><td>SMS-Nachricht</td><td>160 Zeichen pro Segment (70 mit Emoji)</td></tr>
+          <tr><td>Meta-Description</td><td>~160 Zeichen empfohlen</td></tr>
+          <tr><td>Instagram-Bildunterschrift</td><td>max. 2.200 Zeichen</td></tr>
+          <tr><td>Common-App-Essay (US-Unis)</td><td>250–650 Wörter</td></tr>
+          <tr><td>Schulaufsatz (Oberstufe)</td><td>300–1.000 Wörter</td></tr>
+          <tr><td>Blogartikel</td><td>1.000–2.500 Wörter</td></tr>
+          <tr><td>Hausarbeit (Uni)</td><td>1.500–5.000 Wörter</td></tr>
+          <tr><td>Kurzgeschichte</td><td>1.000–7.500 Wörter</td></tr>
+          <tr><td>Novelle</td><td>17.500–40.000 Wörter</td></tr>
+          <tr><td>NaNoWriMo-Romanziel</td><td>50.000 Wörter</td></tr>
+          <tr><td>Roman (Erwachsene)</td><td>70.000–100.000 Wörter</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Häufig gestellte Fragen</h2>
+
+    <h3>Wie zählt dieser Wortzähler Wörter?</h3>
+    <p>Ein Wort ist jede zusammenhängende Zeichenfolge zwischen Leerzeichen oder Zeilenumbrüchen - Bindestrich-Komposita wie „deutsch-französisch“ zählen also als ein Wort, und Zahlen zählen als Wörter. In Sprachen, die ohne Leerzeichen geschrieben werden, wie Chinesisch und Japanisch, wird jedes Zeichen als Wort gezählt. Das entspricht weitgehend der Zählweise von Textverarbeitungen wie Microsoft Word und Google Docs, wobei verschiedene Tools in Grenzfällen um ein bis zwei Wörter abweichen können.</p>
+
+    <h3>Wie viele Seiten sind 1.000 Wörter?</h3>
+    <p>Etwa 2 Seiten bei einfachem Zeilenabstand oder 4 Seiten bei doppeltem, nach der üblichen Konvention: Times New Roman in 12 Punkt mit 2,5 cm Rand. Schriftart, Schriftgröße, Ränder und Absatzabstände verschieben das Ergebnis - behandle Seitenangaben daher als Näherungswerte.</p>
+
+    <h3>Wie viele Wörter hat eine 5-minütige Rede?</h3>
+    <p>Ungefähr 625–750 Wörter. Die meisten Menschen sprechen bei einem Vortrag 125–150 Wörter pro Minute - multipliziere also deine Redezeit in Minuten mit deinem Tempo. Wer für Betonung und Pausen langsamer spricht, landet eher am unteren Ende.</p>
+
+    <h3>Wird mein Text gespeichert oder irgendwohin gesendet?</h3>
+    <p>Nein. Alles wird von JavaScript direkt in deinem Browser berechnet - dein Text wird nie hochgeladen, protokolliert oder weitergegeben. Als Komfortfunktion wird ein Entwurf im lokalen Speicher deines eigenen Browsers auf deinem Gerät gesichert; ein Klick auf „Leeren“ entfernt ihn.</p>
+
+    <h3>Warum zählen manche Emojis als 2 Zeichen?</h3>
+    <p>Computer speichern Text als UTF-16-Codeeinheiten, und viele Emojis und seltene Symbole belegen zwei Einheiten. Dieser Zähler zählt Zeichen auf dieselbe Weise - genau wie die meisten Plattformen ihre Limits durchsetzen. X (Twitter) zum Beispiel zählt die meisten Emojis als 2 Zeichen.</p>
+
+    <h3>Wo liegt das Zeichenlimit auf X (Twitter)?</h3>
+    <p>280 Zeichen für Standard-Konten (zahlende Abonnenten dürfen längere Beiträge posten). Beachte: X zählt jeden Link unabhängig von seiner tatsächlichen Länge als 23 Zeichen, und die meisten Emojis zählen als 2.</p>
+
+    <h3>Wie genau sind die geschätzte Lesezeit und Sprechzeit?</h3>
+    <p>Sie beruhen auf vielzitierten Durchschnittswerten: 225 Wörter pro Minute beim stillen Lesen und 150 Wörter pro Minute beim Sprechen. Das tatsächliche Tempo hängt von Lesenden, Publikum und der Fachlichkeit des Textes ab - betrachte die Werte als gute Planungsgrundlage, nicht als Garantie.</p>
+
+    <h3>Funktioniert der Wortzähler offline?</h3>
+    <p>Ja. Das gesamte Tool ist eine einzige Seite ohne Server-Anfragen - einmal geladen, funktioniert es auch ohne Verbindung weiter. Du kannst die Seite sogar auf deinem Gerät speichern und überall nutzen.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Gemacht für alle, die ein schnelles Tool brauchen, das einfach funktioniert.
+  <br>© 2026 WBest · Kostenlos nutzbar, keine Anmeldung nötig · <a href="https://wbest.app/">Kostenlose WBest-Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var ta = $('text'), live = $('live'), undoBtn = $('btn-undo');
+  var READ_WPM = 225, SPEAK_WPM = 150, STORE_KEY = 'word-counter-draft';
+  var CJK = /[぀-ヿ㐀-䶿一-鿿豈-﫿ｦ-ﾟ]/g;
+  /* i18n:js:start */
+  var I18N = {
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "copiedLive": "Text in die Zwischenablage kopiert.",
+    "undone": "Rückgängig gemacht.",
+    "cleared": "Text geleert. „Rückgängig“ stellt ihn wieder her.",
+    "left": "noch {n}",
+    "over": "{n} zu viel",
+    "timeZero": "0 Sek.",
+    "timeSec": "{n} Sek.",
+    "timeMin": "{n} Min.",
+    "timeHr": "{h} Std.",
+    "timeHrMin": "{h} Std. {m} Min.",
+    "densityHint": "Beginne zu tippen, um deine häufigsten Wörter zu sehen - praktisch, um Wiederholungen zu erkennen und SEO-Fokus-Keywords zu prüfen.",
+    "stopwords": "der,die,das,den,dem,des,ein,eine,einen,einem,eines,einer,und,oder,aber,doch,wenn,dann,als,wie,was,wer,wem,wen,ist,sind,war,waren,sein,seine,seiner,seinem,seinen,seines,bin,bist,wird,werden,wurde,wurden,worden,hat,haben,hatte,hatten,habe,hast,ich,mich,mir,mein,meine,meiner,meinem,meinen,dich,dir,dein,deine,deiner,deinem,deinen,sie,ihr,ihre,ihrer,ihrem,ihren,ihres,ihn,ihm,uns,unser,unsere,unserer,unserem,unseren,euch,euer,eure,man,sich,nicht,kein,keine,keiner,keinem,keinen,auch,noch,nur,schon,sehr,mehr,auf,aus,bei,bis,durch,für,gegen,ohne,über,unter,vom,von,vor,nach,mit,zum,zur,dass,daß,weil,denn,also,hier,dort,dieser,diese,dieses,diesem,diesen,jeder,jede,jedes,jedem,jeden,alle,alles,allem,allen,aller,etwas,nichts,zwischen,gibt,kann,können,könnte,muss,müssen,musste,soll,sollen,sollte,will,wollen,wollte,darf,dürfen,mag,mögen,würde,würden,wäre,wären,beim,ans,ins,aufs,fürs,ums,damit,dabei,dafür,dagegen,darin,darauf,daraus,darum,davon,dazu,eben,etwa,ganz,gar,immer,jetzt,mal,nun,oben,unten,viel,viele,vielen,vieler,wieder,zwar,zusammen,heute,morgen,gestern,nein,warum,wieso,weshalb,wann",
+    "limits": [
+      {
+        "name": "Beitrag auf X (Twitter)",
+        "limit": 280
+      },
+      {
+        "name": "Instagram-Bildunterschrift",
+        "limit": 2200
+      },
+      {
+        "name": "LinkedIn-Beitrag",
+        "limit": 3000
+      },
+      {
+        "name": "YouTube-Titel",
+        "limit": 100
+      },
+      {
+        "name": "SMS-Segment",
+        "limit": 160
+      },
+      {
+        "name": "Meta-Description",
+        "limit": 160
+      },
+      {
+        "name": "Google-Title-Tag",
+        "limit": 60
+      },
+      {
+        "name": "Facebook-Beitrag",
+        "limit": 63206
+      }
+    ]
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
+  var STOP = new Set(I18N.stopwords.split(','));
+  var LIMITS = I18N.limits;
+  var limitEls = [], snapshot = null, heavyTimer = null, saveTimer = null;
+
+  (function buildLimits() {
+    var box = $('limits'), frag = document.createDocumentFragment();
+    LIMITS.forEach(function (l) {
+      var row = document.createElement('div'); row.className = 'lim-row';
+      var name = document.createElement('span'); name.textContent = l.name;
+      var cap = document.createElement('span'); cap.className = 'lim-cap';
+      cap.textContent = l.limit.toLocaleString(LANG);
+      var sp = document.createElement('span'); sp.className = 'spacer';
+      var status = document.createElement('span'); status.className = 'lim-status';
+      row.append(name, cap, sp, status);
+      frag.appendChild(row);
+      limitEls.push({ el: status, limit: l.limit });
+    });
+    box.appendChild(frag);
+  })();
+
+  function fmtInt(n) { return n.toLocaleString(LANG); }
+
+  function fmtTime(words, wpm) {
+    if (!words) return I18N.timeZero;
+    var min = words / wpm;
+    if (min < 1) return I18N.timeSec.replace('{n}', Math.max(1, Math.round(min * 60)));
+    if (min < 59.5) return I18N.timeMin.replace('{n}', Math.round(min));
+    var h = Math.floor(min / 60), m = Math.round(min % 60);
+    if (m === 60) { h++; m = 0; }
+    return (m ? I18N.timeHrMin : I18N.timeHr).replace('{h}', h).replace('{m}', m);
+  }
+
+  function countWords(text) {
+    var cjk = text.match(CJK), rest = text.replace(CJK, ' ').trim();
+    var n = rest ? rest.split(/\s+/).length : 0;
+    return n + (cjk ? cjk.length : 0);
+  }
+
+  function countSentences(text) {
+    if (!text.trim()) return 0;
+    return text.split(/[.!?…]+(?:\s+|$)/).filter(function (s) { return s.trim(); }).length;
+  }
+
+  function countParagraphs(text) {
+    return text.split(/\n+/).filter(function (p) { return p.trim(); }).length;
+  }
+
+  function normalize(w) {
+    return w.toLowerCase().replace(/’/g, "'").replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, '');
+  }
+
+  function update() {
+    var text = ta.value;
+    var words = countWords(text);
+    var chars = text.length;
+    $('stat-words').textContent = fmtInt(words);
+    $('stat-chars').textContent = fmtInt(chars);
+    $('stat-chars-ns').textContent = fmtInt(text.replace(/\s/g, '').length);
+    $('stat-sentences').textContent = fmtInt(countSentences(text));
+    $('stat-paras').textContent = fmtInt(countParagraphs(text));
+    $('stat-read').textContent = fmtTime(words, READ_WPM);
+    $('stat-speak').textContent = fmtTime(words, SPEAK_WPM);
+    limitEls.forEach(function (l) {
+      var left = l.limit - chars;
+      l.el.textContent = (left >= 0 ? I18N.left : I18N.over).replace('{n}', fmtInt(Math.abs(left)));
+      l.el.classList.toggle('over', left < 0);
+    });
+    clearTimeout(heavyTimer);
+    heavyTimer = setTimeout(function () { heavy(text, words); }, 200);
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(save, 500);
+  }
+
+  function heavy(text, totalWords) {
+    var freq = new Map();
+    if (text.trim()) {
+      text.replace(CJK, ' ').split(/\s+/).forEach(function (raw) {
+        var w = normalize(raw);
+        if (w && w.length > 2 && !STOP.has(w)) freq.set(w, (freq.get(w) || 0) + 1);
+      });
+    }
+    $('stat-unique').textContent = fmtInt(freq.size);
+    var box = $('density');
+    box.textContent = '';
+    if (!freq.size) {
+      var hint = document.createElement('p');
+      hint.className = 'hint';
+      hint.textContent = I18N.densityHint;
+      box.appendChild(hint);
+      return;
+    }
+    Array.from(freq.entries())
+      .sort(function (a, b) { return b[1] - a[1] || a[0].localeCompare(b[0]); })
+      .slice(0, 6)
+      .forEach(function (entry) {
+        var row = document.createElement('div'); row.className = 'kw-row';
+        var w = document.createElement('span'); w.className = 'kw-word'; w.textContent = entry[0];
+        var sp = document.createElement('span'); sp.className = 'spacer';
+        var meta = document.createElement('span'); meta.className = 'kw-meta';
+        meta.textContent = fmtInt(entry[1]) + '× · ' + (totalWords ? (entry[1] / totalWords * 100).toFixed(1) : '0.0') + '%';
+        row.append(w, sp, meta);
+        box.appendChild(row);
+      });
+  }
+
+  function save() {
+    try {
+      if (ta.value) localStorage.setItem(STORE_KEY, ta.value);
+      else localStorage.removeItem(STORE_KEY);
+    } catch (e) { /* storage unavailable (private mode) - counting still works */ }
+  }
+
+  function announce(msg) { live.textContent = msg; }
+
+  function takeSnapshot() {
+    snapshot = ta.value;
+    undoBtn.disabled = false;
+  }
+
+  function transform(fn) {
+    takeSnapshot();
+    ta.value = fn(ta.value);
+    update();
+    ta.focus();
+  }
+
+  $('btn-upper').addEventListener('click', function () {
+    transform(function (t) { return t.toUpperCase(); });
+  });
+  $('btn-lower').addEventListener('click', function () {
+    transform(function (t) { return t.toLowerCase(); });
+  });
+  $('btn-title').addEventListener('click', function () {
+    transform(function (t) {
+      return t.replace(/\S+/g, function (w) { return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); });
+    });
+  });
+  $('btn-sentence').addEventListener('click', function () {
+    transform(function (t) {
+      return t.toLowerCase()
+        .replace(/(^|[.!?…]\s+|\n\s*)(\p{Ll})/gu, function (m, pre, ch) { return pre + ch.toUpperCase(); })
+        .replace(/(^|\s)i(?=[\s'’]|$)/g, '$1I');
+    });
+  });
+  $('btn-undo').addEventListener('click', function () {
+    if (snapshot === null) return;
+    ta.value = snapshot;
+    snapshot = null;
+    undoBtn.disabled = true;
+    update();
+    ta.focus();
+    announce(I18N.undone);
+  });
+  $('btn-clear').addEventListener('click', function () {
+    if (!ta.value) return;
+    takeSnapshot();
+    ta.value = '';
+    update();
+    ta.focus();
+    announce(I18N.cleared);
+  });
+  $('btn-copy').addEventListener('click', function () {
+    var btn = this, done = function () {
+      btn.textContent = I18N.copied;
+      announce(I18N.copiedLive);
+      setTimeout(function () { btn.textContent = I18N.copy; }, 1200);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(ta.value).then(done, function () { fallbackCopy(); done(); });
+    } else { fallbackCopy(); done(); }
+    function fallbackCopy() {
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      ta.setSelectionRange(ta.value.length, ta.value.length);
+    }
+  });
+
+  ta.addEventListener('input', update);
+  window.addEventListener('pagehide', save);
+
+  try {
+    var draft = localStorage.getItem(STORE_KEY);
+    if (draft && !ta.value) ta.value = draft;
+  } catch (e) {}
+  update();
+})();
+</script>
+</body>
+</html>
