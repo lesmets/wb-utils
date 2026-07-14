@@ -1,0 +1,59 @@
+# WBest Word Counter
+
+> Free online word counter and character counter. Counts words, characters, sentences, and paragraphs as you type, with reading time, speaking time, keyword density, and social media character limits. Runs entirely in your browser - no sign-up, and your text never leaves your device.
+
+Use it at https://wbwordcounter.com/ - it is a single page, and the tool is the page.
+
+- Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
+- Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
+- Works offline once the page has loaded, and needs no install.
+- One self-contained page: no cookies, no tracking, no consent popups.
+
+## Features
+
+- Live word count and character count
+- Sentence and paragraph count
+- Reading time and speaking time estimates
+- Keyword density analysis
+- Social media character limit checker
+- Case converter (UPPERCASE, lowercase, Title Case, Sentence case)
+- Private on-device processing with local autosave
+
+## Frequently asked questions
+
+### How does this word counter count words?
+
+A word is any run of characters separated by spaces or line breaks, so hyphenated compounds like “well-known” count as one word and numbers count as words. For languages written without spaces, such as Chinese and Japanese, each character is counted as a word. This closely matches how word processors like Microsoft Word and Google Docs count, though different tools can differ by a word or two on edge cases.
+
+### How many pages is 1,000 words?
+
+About 2 pages single-spaced or 4 pages double-spaced, using the standard convention of 12-point Times New Roman with 1-inch margins. Font, font size, margins, and paragraph spacing all shift the result, so treat page estimates as approximations.
+
+### How many words is a 5-minute speech?
+
+Roughly 625–750 words. Most people speak at 125–150 words per minute in a presentation, so multiply your speaking time in minutes by your pace. Slow down for emphasis and pauses and you'll land near the lower end.
+
+### Is my text saved or sent anywhere?
+
+No. Everything is calculated by JavaScript running in your browser - your text is never uploaded, logged, or shared. As a convenience, a draft is autosaved to your own browser's local storage on your device, and pressing Clear removes it.
+
+### Why do some emoji count as 2 characters?
+
+Computers store text as UTF-16 code units, and many emoji and rare symbols take two units. This counter counts characters the same way, which matches how most platforms enforce their limits - X (Twitter), for example, counts most emoji as 2 characters.
+
+### What is the character limit on X (Twitter)?
+
+280 characters for standard accounts (paid subscribers can post longer). Note that X counts every link as 23 characters regardless of its real length, and most emoji count as 2.
+
+### How accurate are the reading time and speaking time estimates?
+
+They use widely cited averages: 225 words per minute for silent reading and 150 words per minute for speaking. Real speeds vary with the reader, the audience, and how technical the text is, so treat them as good planning estimates rather than guarantees.
+
+### Does the word counter work offline?
+
+Yes. The entire tool is a single page with no server calls, so once it has loaded it keeps working without a connection. You can even save the page to your device and use it anywhere.
+
+## More WB tools
+
+- [Online Notepad](https://notepad.wbest.app/): A private notepad that autosaves to your device, with live word and line counts.
+- [WBest](https://wbest.app/): all 16 free WB tools - private, no sign-up, no uploads.

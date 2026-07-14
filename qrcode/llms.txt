@@ -1,0 +1,61 @@
+# WBest QR Code Generator
+
+> Free QR code generator for URLs, plain text, Wi-Fi logins, vCard contacts, email, SMS, and phone numbers. Creates static QR codes that never expire, with adjustable size, colors, and error correction. Download as PNG or SVG. Runs entirely in your browser - no sign-up, no watermark, and your data never leaves your device.
+
+Use it at https://qrcode.wbest.app/ - it is a single page, and the tool is the page.
+
+- Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
+- Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
+- Works offline once the page has loaded, and needs no install.
+- One self-contained page: no cookies, no tracking, no consent popups.
+
+## Features
+
+- QR codes for URL, text, Wi-Fi, vCard, email, SMS, and phone
+- Static codes that never expire
+- PNG and SVG download, print-ready
+- Custom size, margin, and colors
+- Selectable error correction level (L, M, Q, H)
+- Live preview as you type
+- 100% private on-device generation - no uploads, no tracking
+- Works offline
+
+## Frequently asked questions
+
+### Do QR codes expire?
+
+Static QR codes - the kind this tool makes - never expire. Your content is encoded directly into the pattern itself, so the code works as long as the content works. Codes that "expire" are dynamic codes: they point to a redirect service, and when the provider's trial runs out or the company disappears, every printed code dies. Nothing you create here depends on any service, including this one.
+
+### Is this QR code generator really free?
+
+Yes - completely. No sign-up, no watermark, no trial, no limit on how many codes you create, and full-resolution PNG and SVG downloads. The codes are static, so there is no subscription to keep them alive either.
+
+### Is my link or Wi-Fi password uploaded to a server?
+
+No. The QR code is computed by JavaScript running in your browser and drawn onto a canvas on your device. Nothing you type is transmitted, logged, or stored anywhere. You can verify it: load the page, disconnect from the internet, and the generator keeps working.
+
+### Can I use these QR codes commercially?
+
+Yes. The codes you generate are yours to use anywhere - packaging, menus, posters, business cards, products. QR Code is an open ISO standard (ISO/IEC 18004) and the word "QR Code" is a registered trademark of Denso Wave, which permits free use of the code itself.
+
+### What size should a printed QR code be?
+
+Use the 10:1 rule: the code should be at least one tenth of the expected scanning distance. Scanned from 30 cm (a hand-held phone), it should be at least 3 cm wide; a poster scanned from 3 meters needs a 30 cm code. Never print smaller than about 2 x 2 cm (0.8 x 0.8 in), and keep a white margin around it.
+
+### Which error correction level should I choose?
+
+M (15%) is the right default for most uses. Choose Q (25%) or H (30%) if the code will be printed small, placed where it may get dirty or damaged, or overlaid with a logo. Higher levels make the code denser, so codes with lots of data may need to be printed larger. L (7%) is only worth it when you must squeeze a very long text into a small code.
+
+### Why won't my QR code scan?
+
+The usual causes: too little contrast between the code and its background, inverted colors (scanners expect dark modules on a light background), printing it too small for the scanning distance, cutting off the quiet zone (the empty margin around the code), or too much data making the modules tiny. Fix the colors and margin, print it larger, or shorten the content - and always test with a phone before mass printing.
+
+### How much data fits in a QR code?
+
+Up to 2,953 bytes at the lowest error correction level - roughly 2,900 characters of plain text. But more data means a denser code that is harder to scan, so keep the content short. For URLs, a short link scans far more reliably than a long tracking URL, especially when printed small.
+
+## More WB tools
+
+- [Password Generator](https://passwordgenerator.wbest.app/): Strong random passwords, passphrases, and PINs with time-to-crack estimates.
+- [Random Number Generator](https://randomnumbergenerator.wbest.app/): Secure random numbers, dice, coin flips, and pick-from-a-list draws.
+- [WBest](https://wbest.app/): all 16 free WB tools - private, no sign-up, no uploads.

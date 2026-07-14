@@ -1,0 +1,50 @@
+# WBest Color Converter & Picker
+
+> Free color converter and picker. Choose a color visually or type any HEX, RGB, or HSL value and see it instantly in HEX, RGB, HSL, HSV, and OKLCH. Generate tints, shades, and color harmonies. Runs entirely in your browser - no tracking, works offline.
+
+Use it at https://colorconverter.wbest.app/ - it is a single page, and the tool is the page.
+
+- Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
+- Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
+- Works offline once the page has loaded, and needs no install.
+- One self-contained page: no cookies, no tracking, no consent popups.
+
+## Features
+
+- Visual color picker and eyedropper support
+- Convert between HEX, RGB, HSL, HSV, and OKLCH
+- Parse any HEX, RGB, or HSL input
+- Tints and shades palette
+- Complementary, analogous, and triadic harmonies
+- One-click copy for every format
+
+## Frequently asked questions
+
+### How do I convert a HEX color to RGB?
+
+A HEX color like #2563EB is just RGB written in base 16. Split it into three pairs - 25, 63, EB - and convert each from hexadecimal to decimal to get red 37, green 99, blue 235, or rgb(37, 99, 235). This tool does it instantly the moment you type or pick a color, and shows the reverse too.
+
+### What is the difference between HSL and HSV?
+
+Both describe a color by hue, but HSL uses saturation and lightness while HSV (also called HSB) uses saturation and value/brightness. In HSL, 100% lightness is always white; in HSV, 100% value is the most vivid version of the hue. HSL is common in CSS; HSV appears in many design tools' color pickers.
+
+### What is OKLCH and why use it?
+
+OKLCH is a modern color space - lightness, chroma, and hue - built to be perceptually uniform, meaning equal numeric steps look like equal visual steps. That makes it far better than HSL for building palettes and adjusting brightness without unexpected hue shifts. It is supported in modern CSS as the oklch() function.
+
+### What are tints and shades?
+
+A tint is your color mixed with white, making it lighter; a shade is your color mixed with black, making it darker. The palette here generates a row of each so you can build a consistent light-to-dark scale from a single base color for buttons, backgrounds, and states.
+
+### What is a complementary color?
+
+A complementary color sits directly opposite your color on the hue wheel - 180 degrees away - and gives the strongest contrast. Analogous colors sit right next to it for a harmonious look, and triadic colors are evenly spaced by 120 degrees for a balanced, vibrant scheme. The harmonies section shows all three.
+
+### Is the color tool private?
+
+Yes. All conversion and palette generation happens in your browser with plain JavaScript. Nothing is uploaded or tracked, and the page works offline once loaded.
+
+## More WB tools
+
+- [Unit Converter](https://unitconverter.wbest.app/): Convert length, weight, temperature, and 7 more categories, with the formula shown.
+- [WBest](https://wbest.app/): all 16 free WB tools - private, no sign-up, no uploads.

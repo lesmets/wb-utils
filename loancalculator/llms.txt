@@ -1,0 +1,52 @@
+# WBest Loan Calculator
+
+> Free loan and EMI calculator. Enter the loan amount, interest rate, and term to get the monthly payment (EMI), total interest, total cost, and a full amortization schedule showing principal and interest for every payment. Runs entirely in your browser - private and offline.
+
+Use it at https://loancalculator.wbest.app/ - it is a single page, and the tool is the page.
+
+- Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
+- Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
+- Works offline once the page has loaded, and needs no install.
+- One self-contained page: no cookies, no tracking, no consent popups.
+
+## Features
+
+- Monthly payment (EMI) for any loan
+- Total interest and total amount payable
+- Full amortization schedule by month or year
+- The EMI formula shown with your numbers
+- Choice of currency symbol
+- 100% private on-device calculation, works offline
+
+## Frequently asked questions
+
+### What is EMI and how is it calculated?
+
+EMI stands for Equated Monthly Installment - the fixed amount you pay every month until a loan is repaid. It is calculated with the formula EMI = P × r × (1 + r)^n ÷ ((1 + r)^n − 1), where P is the principal, r is the monthly interest rate (annual rate ÷ 12 ÷ 100), and n is the number of monthly payments. Each installment is part interest and part principal; early payments are mostly interest, later ones mostly principal.
+
+### What is an amortization schedule?
+
+An amortization schedule lists every payment over the life of the loan and splits it into interest and principal, showing the remaining balance after each one. It makes clear how slowly the balance drops at first - because interest is charged on a larger balance early on - and how the principal portion grows over time until the loan reaches zero.
+
+### Does a longer loan term reduce the cost?
+
+A longer term lowers the monthly payment but increases the total interest you pay, because you owe the balance for more months. A shorter term costs more each month but far less overall. The calculator shows both the monthly EMI and the total interest so you can weigh the trade-off directly.
+
+### Is this the same as a mortgage or car loan calculator?
+
+Yes. The EMI math is identical for any fixed-rate installment loan - home loans, car loans, personal loans, and student loans all use the same formula. Just enter that loan's amount, interest rate, and term. Note that real quotes may add fees, insurance, or taxes that a pure EMI figure does not include.
+
+### What interest rate should I enter?
+
+Enter the annual nominal interest rate (APR excluding fees) that the lender quotes. The calculator converts it to a monthly rate internally. If a rate is quoted as a monthly figure, multiply it by 12 first, or check with the lender which basis they mean.
+
+### Is my financial information kept private?
+
+Yes. Every calculation happens in your browser - the amounts you type are never sent to a server, logged, or tracked, and the page works offline once loaded. This is a calculator for planning, not financial advice; confirm any figures with your lender before making a decision.
+
+## More WB tools
+
+- [Age Calculator](https://agecalculator.wbest.app/): Exact age in years, months, and days, plus a countdown to your next birthday.
+- [Percentage Calculator](https://percentagecalculator.wbest.app/): Percent of a number, increase/decrease, discounts, and tips - formula included.
+- [BMI Calculator](https://bmicalculator.wbest.app/): Body mass index in metric or imperial, with your WHO category and healthy range.
+- [WBest](https://wbest.app/): all 16 free WB tools - private, no sign-up, no uploads.

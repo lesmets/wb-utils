@@ -151,6 +151,7 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
 :root{ --good:#16a34a; --int:#f59e0b; }
 @media (prefers-color-scheme: dark){ :root{ --good:#4ade80; --int:#fbbf24; } }
 .layout{display:grid;grid-template-columns:340px 1fr;gap:14px;margin-top:18px;align-items:start}
+.layout>*{min-width:0}
 @media (max-width:820px){.layout{grid-template-columns:1fr}}
 .inputs{padding:18px 20px}
 .inputs h2{font-size:1.02rem;margin:0 0 4px}
@@ -202,6 +203,17 @@ tbody tr.year-sep td{border-bottom:2px solid var(--border)}
 .props strong{display:block;margin-bottom:4px}
 .props p{margin:0;font-size:.9rem;color:var(--muted)}
 .faq p{color:var(--text)}
+
+/* Mobile: the 5 money columns cannot fit 375px, and wrapping would split
+   figures like "$18,962.04" mid-number. Hide Payment instead - it repeats the
+   same EMI on every row and is already shown in the summary above. nowrap keeps
+   the remaining figures whole. Desktop still shows all five columns. */
+@media (max-width:560px){
+  table{min-width:0}
+  th,td{padding-left:4px;padding-right:4px;white-space:nowrap}
+  th:nth-child(2),td:nth-child(2){display:none}
+  thead th{text-transform:none;letter-spacing:normal}
+}
 </style>
 </head>
 <body>

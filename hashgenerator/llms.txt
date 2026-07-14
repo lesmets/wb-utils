@@ -1,0 +1,51 @@
+# WBest Hash Generator
+
+> Free hash generator for MD5, SHA-1, SHA-256, SHA-384, and SHA-512. Hash any text or file, compare a hash to verify a match, and copy the result. Runs entirely in your browser using the Web Crypto API - files and text are never uploaded.
+
+Use it at https://hashgenerator.wbest.app/ - it is a single page, and the tool is the page.
+
+- Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
+- Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
+- Works offline once the page has loaded, and needs no install.
+- One self-contained page: no cookies, no tracking, no consent popups.
+
+## Features
+
+- MD5, SHA-1, SHA-256, SHA-384, and SHA-512
+- Hash text or whole files locally
+- Uppercase or lowercase hex output
+- Verify a file or text against an expected hash
+- One-click copy for every digest
+- 100% private on-device hashing, works offline
+
+## Frequently asked questions
+
+### Are my files or text uploaded to hash them?
+
+No. All hashing happens in your browser using the built-in Web Crypto API (and an inlined MD5 routine). Your text and files never leave your device - you can even disconnect from the internet and the tool keeps working. That makes it safe for hashing sensitive files and secrets.
+
+### What is the difference between MD5, SHA-1, and SHA-256?
+
+They are hash functions of increasing strength. MD5 (128-bit) and SHA-1 (160-bit) are fast but cryptographically broken - collisions can be crafted, so they should only be used for non-security checks like file integrity or deduplication. SHA-256, SHA-384, and SHA-512 are part of the SHA-2 family and remain secure; SHA-256 is the standard choice for signatures, certificates, and password-related hashing.
+
+### How do I verify a file's checksum?
+
+Choose the file, pick the same algorithm the publisher listed (often SHA-256 or MD5), and paste their expected hash into the Verify box. The tool compares the two and tells you whether they match. A match means the file was not altered or corrupted in transit.
+
+### Is a hash the same as encryption?
+
+No. Hashing is one-way: it turns any input into a fixed-length fingerprint that cannot be reversed back into the original. Encryption is two-way and can be decrypted with a key. Hashes are used to verify integrity and to store password fingerprints, not to hide recoverable data.
+
+### Why do the same inputs always produce the same hash?
+
+A hash function is deterministic - identical input always yields identical output. That is what makes hashes useful for verification: change a single byte and the hash changes completely, so any tampering or corruption is obvious.
+
+### Should I use MD5 to store passwords?
+
+No. Plain MD5 or SHA-256 is far too fast and unsalted for password storage. Use a purpose-built, slow password hashing algorithm such as bcrypt, scrypt, or Argon2. The hashes here are for file integrity, checksums, and general-purpose fingerprinting.
+
+## More WB tools
+
+- [JSON Formatter](https://jsonformatter.wbest.app/): Format, minify, and validate JSON with exact error locations and a tree view.
+- [Unix Timestamp Converter](https://timestampconverter.wbest.app/): Convert epoch timestamps to dates and back, in UTC and your local time zone.
+- [WBest](https://wbest.app/): all 16 free WB tools - private, no sign-up, no uploads.

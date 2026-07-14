@@ -1,0 +1,62 @@
+# WBest Age Calculator
+
+> Free age calculator that gives exact age in years, months, and days from a date of birth - plus total months, weeks, days, hours, and minutes lived, the day of the week you were born, and a countdown to the next birthday. Includes a general date-to-date duration mode. Runs entirely in your browser - no sign-up, and your dates never leave your device.
+
+Use it at https://agecalculator.wbest.app/ - it is a single page, and the tool is the page.
+
+- Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
+- Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
+- Works offline once the page has loaded, and needs no install.
+- One self-contained page: no cookies, no tracking, no consent popups.
+
+## Features
+
+- Exact age in years, months, and days
+- Total months, weeks, days, hours, and minutes lived
+- Day of the week you were born
+- Countdown to your next birthday
+- Date-to-date duration calculator
+- Copyable result sentence
+- Correct leap year and February 29 handling
+- 100% private on-device calculation, works offline
+
+## Frequently asked questions
+
+### How do I calculate my exact age?
+
+Count the full years from your birth date to today, then the full months since your last birthday, then the days since your last month-anniversary. The tricky part is that months have different lengths, which is exactly what this calculator handles - enter your date of birth and it returns your age to the day, plus totals in days, hours, and minutes.
+
+### How does the calculator handle leap years and February 29 birthdays?
+
+Leap years are applied exactly: every 4th year, except century years not divisible by 400 (2000 was a leap year; 1900 and 2100 are not). If you were born on February 29, this calculator counts your birthday as March 1 in common years - the moment you have fully completed the year. Some jurisdictions use February 28 instead, which shifts the result by one day.
+
+### Why do different age calculators give slightly different answers?
+
+Because "a month" is ambiguous when the start day doesn't exist in the target month - is January 31 plus one month February 28 or March 1? Different tools pick different conventions for these edge cases, so the days figure can differ by a day or two. This calculator uses the most common convention: a month anniversary that overshoots is clamped to the last day of the month.
+
+### What day of the week was I born?
+
+Enter your date of birth above and the result shows your birth weekday instantly. It is computed from the calendar itself (the Gregorian calendar repeats over a 400-year cycle), so it is exact for any date.
+
+### How many days until my birthday?
+
+The result panel includes a live countdown: the date of your next birthday, which weekday it falls on, how many days remain, and the age you will turn. If today is your birthday, it says so - happy birthday!
+
+### How many days old am I?
+
+Enter your birth date and the calculator shows your exact total of days lived (along with weeks, hours, and minutes). Fun milestones to watch for: 10,000 days falls at about age 27.4, and 20,000 days at about age 54.8.
+
+### Is my birth date uploaded or stored anywhere?
+
+No. All calculations run in JavaScript in your browser - your date of birth is never transmitted, logged, or stored. This page makes no network requests at all after loading.
+
+### Does the age calculator work offline?
+
+Yes. The entire tool is one self-contained page with no server calls, so once it has loaded it keeps working without a connection. Save it to your device and use it anywhere.
+
+## More WB tools
+
+- [Percentage Calculator](https://percentagecalculator.wbest.app/): Percent of a number, increase/decrease, discounts, and tips - formula included.
+- [BMI Calculator](https://bmicalculator.wbest.app/): Body mass index in metric or imperial, with your WHO category and healthy range.
+- [Loan Calculator](https://loancalculator.wbest.app/): Monthly payment, total interest, and a full amortization schedule for any loan.
+- [WBest](https://wbest.app/): all 16 free WB tools - private, no sign-up, no uploads.

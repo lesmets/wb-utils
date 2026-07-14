@@ -160,7 +160,7 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
 .ctl{display:flex;flex-direction:column;gap:5px}
 .ctl label{font-size:.8rem;color:var(--muted)}
 .ctl input[type="text"],.ctl input[type="number"]{
-  font:600 1rem/1.4 inherit;font-variant-numeric:tabular-nums;width:120px;
+  font-weight:600;font-size:1rem;line-height:1.4;font-variant-numeric:tabular-nums;width:120px;
   padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text)
 }
 .ctl input.narrow{width:84px}
@@ -170,7 +170,7 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
 #list-in{
   display:block;width:100%;min-height:120px;resize:vertical;margin-top:4px;
   padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);
-  font:.95rem/1.5 inherit
+  font-size:.95rem;line-height:1.5;
 }
 .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .actions button{
@@ -183,19 +183,20 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
 .actions button.primary:hover{color:#fff}
 .result{margin-top:16px;padding:22px 20px;text-align:center}
 .result .big{
-  font:800 clamp(2.4rem,10vw,4.4rem)/1 inherit;letter-spacing:-.02em;color:var(--accent);
+  font-weight: 800;font-size: clamp(2.4rem, 10vw, 4.4rem);line-height: 1;letter-spacing:-.02em;color:var(--accent);
   font-variant-numeric:tabular-nums;word-break:break-word
 }
 .result .list{
   display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px
 }
 .result .list span{
-  font:700 1.4rem/1 inherit;font-variant-numeric:tabular-nums;padding:8px 12px;
+  font-weight:700;font-size:1.4rem;line-height:1;font-variant-numeric:tabular-nums;padding:8px 12px;
   border-radius:8px;background:var(--accent-soft);color:var(--accent)
 }
 .result .note{margin:14px 0 0;font-size:.9rem;color:var(--muted)}
 .result .err{color:var(--over);font-weight:600}
-.dice-faces{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;font-size:2.4rem;line-height:1}
+.dice-faces{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;font-size:clamp(3.4rem,14vw,6rem);line-height:1}
+.dice-faces.many{font-size:clamp(2rem,7vw,3rem);gap:6px}
 .props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 @media (max-width:760px){.props{grid-template-columns:1fr}}
 .props div{padding:16px}
@@ -446,7 +447,7 @@ if (typeof module !== 'undefined') module.exports = RNG;
     var total = rolls.reduce(function (a, b) { return a + b; }, 0);
     lastText = rolls.join(', ') + ' (total ' + total + ')';
     if (sides === 6) {
-      setResult('<div class="dice-faces">' + rolls.map(function (r) { return DICE[r]; }).join('') + '</div>',
+      setResult('<div class="dice-faces' + (count > 10 ? ' many' : '') + '">' + rolls.map(function (r) { return DICE[r]; }).join('') + '</div>',
         (count > 1 ? 'Rolls: ' + rolls.join(', ') + ' · total ' + total : 'You rolled a ' + rolls[0]));
     } else if (count === 1) {
       setResult(String(rolls[0]), 'A ' + sides + '-sided die.');

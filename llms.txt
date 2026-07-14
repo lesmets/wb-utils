@@ -1,0 +1,65 @@
+# WBest
+
+> Fast & free online tools. No sign-up, no uploads, no tracking.
+
+WBest is a suite of 16 single-purpose online tools, each on its own page and its own domain.
+
+- Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
+- Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
+- Works offline once the page has loaded, and needs no install.
+- One self-contained page: no cookies, no tracking, no consent popups.
+
+## Text & Writing
+
+- [Word Counter](https://wbwordcounter.com/): Words, characters, sentences, reading time, and keyword density as you type.
+- [Online Notepad](https://notepad.wbest.app/): A private notepad that autosaves to your device, with live word and line counts.
+
+## Calculators
+
+- [Age Calculator](https://agecalculator.wbest.app/): Exact age in years, months, and days, plus a countdown to your next birthday.
+- [Percentage Calculator](https://percentagecalculator.wbest.app/): Percent of a number, increase/decrease, discounts, and tips - formula included.
+- [BMI Calculator](https://bmicalculator.wbest.app/): Body mass index in metric or imperial, with your WHO category and healthy range.
+- [Loan Calculator](https://loancalculator.wbest.app/): Monthly payment, total interest, and a full amortization schedule for any loan.
+
+## Converters
+
+- [Unit Converter](https://unitconverter.wbest.app/): Convert length, weight, temperature, and 7 more categories, with the formula shown.
+- [Color Converter & Picker](https://colorconverter.wbest.app/): Convert HEX, RGB, HSL, and OKLCH, with tints, shades, and color harmonies.
+
+## Generators
+
+- [Password Generator](https://passwordgenerator.wbest.app/): Strong random passwords, passphrases, and PINs with time-to-crack estimates.
+- [QR Code Generator](https://qrcode.wbest.app/): QR codes for links, Wi-Fi, vCards, and more - no watermark, never expire.
+- [Random Number Generator](https://randomnumbergenerator.wbest.app/): Secure random numbers, dice, coin flips, and pick-from-a-list draws.
+
+## Developer
+
+- [JSON Formatter](https://jsonformatter.wbest.app/): Format, minify, and validate JSON with exact error locations and a tree view.
+- [Hash Generator](https://hashgenerator.wbest.app/): MD5, SHA-1, and SHA-256/512 for text or files, hashed locally and never uploaded.
+- [Unix Timestamp Converter](https://timestampconverter.wbest.app/): Convert epoch timestamps to dates and back, in UTC and your local time zone.
+
+## Image & Media
+
+- [Image Compressor](https://imagecompressor.wbest.app/): Compress, resize, and convert JPEG, PNG, and WebP to an exact target size.
+
+## Time & Date
+
+- [Timer](https://timer.wbest.app/): Countdown timer and stopwatch with presets, laps, and an alarm.
+
+## Frequently asked questions
+
+### Are these online tools really free?
+
+Yes. Every tool is completely free, with no accounts, subscriptions, usage limits, or watermarks. Each one is a single lightweight page that costs almost nothing to run, so free stays free.
+
+### How do the tools keep my data private?
+
+Every tool runs entirely in your browser using JavaScript. Your text, passwords, images, and QR data are processed on your device and never uploaded, logged, or shared. You can verify it yourself: the tools keep working even with your internet connection switched off.
+
+### Do the tools work offline?
+
+Yes. Each tool is a single self-contained page with no server calls, so once it has loaded it keeps working without a connection. You can even save a page to your device and use it anywhere.
+
+### Do I need to create an account or install anything?
+
+No. There is nothing to sign up for, no email to enter, and no app to install. Every tool works instantly in any modern browser on desktop, tablet, and mobile.

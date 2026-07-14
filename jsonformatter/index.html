@@ -263,6 +263,16 @@ pre.example{
   padding:14px 16px;overflow-x:auto;font:.84rem/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace
 }
 .faq p{color:var(--text)}
+
+/* Mobile: let tables reflow to fit the viewport instead of scrolling.
+   min-width would otherwise hold the table open and overflow the page.
+   Headers drop uppercase so hyphens:auto can break long words like "Compression". */
+@media (max-width:560px){
+  table{min-width:0}
+  th,td{padding-left:8px;padding-right:8px}
+  td{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+  thead th{text-transform:none;letter-spacing:normal}
+}
 </style>
 </head>
 <body>
