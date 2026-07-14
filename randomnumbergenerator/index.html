@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest Random Number Generator - Secure, Dice, Coin &amp; Picker</title>
+<meta name="description" content="Generate truly random numbers in any range, roll dice, flip coins, or pick from a list - using your browser's cryptographic randomness. Free, instant, and 100% private.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://randomnumbergenerator.wbest.app/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Random Number Generator">
+<meta property="og:title" content="WBest Random Number Generator - Secure, Dice, Coin &amp; Picker">
+<meta property="og:description" content="Generate truly random numbers in any range, roll dice, flip coins, or pick from a list - using your browser's cryptographic randomness. Free, instant, and 100% private.">
+<meta property="og:url" content="https://randomnumbergenerator.wbest.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest Random Number Generator - Secure, Dice, Coin &amp; Picker">
+<meta name="twitter:description" content="Generate truly random numbers in any range, roll dice, flip coins, or pick from a list - using your browser's cryptographic randomness. Free, instant, and 100% private.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Random Number Generator",
+  "url": "https://randomnumbergenerator.wbest.app/",
+  "description": "Free random number generator using the browser's cryptographically secure randomness. Generate numbers in any range with optional uniqueness and sorting, roll dice, flip coins, and pick random items from a list. Runs entirely in your browser - no tracking, works offline.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Random integers in any range",
+    "Multiple numbers, unique or repeatable",
+    "Dice roller and coin flip",
+    "Pick random items from a list",
+    "Cryptographically secure randomness",
+    "Copy results, works offline"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How random are these numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The generator uses crypto.getRandomValues(), your browser's cryptographically secure random source, and rejection sampling to map it onto your range without bias. That is far stronger than the ordinary Math.random() used by most sites, and it is more than good enough for draws, giveaways, and games. It is not, however, a substitute for certified hardware randomness in regulated gambling."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I generate numbers with no repeats?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Turn on 'unique' and every number in a batch will be different - useful for lottery-style draws or picking distinct winners. Uniqueness requires the range to contain at least as many values as the count you ask for; otherwise there are not enough distinct numbers to fill it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the range inclusive of both the minimum and maximum?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Both endpoints are included, so a range of 1 to 6 can return 1, 6, and everything in between with equal probability. This matches how people expect dice, raffles, and 'pick a number between' to behave."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it flip a coin or roll dice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The Dice mode rolls one or more dice with any number of sides and totals them, and the Coin mode flips one or more coins and tallies heads and tails - all using the same secure randomness as the number generator."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the random list picker work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Paste or type a list with one item per line, choose how many to draw, and the picker selects them at random. With 'unique' on it draws without replacement (no item twice), which is ideal for choosing winners, assigning teams, or picking who goes first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is anything I enter sent to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All randomness and every result is generated in your browser. Your ranges and lists never leave your device, nothing is logged or tracked, and the tool keeps working offline once loaded."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 12px}
+.tabs button{
+  font:inherit;font-size:.9rem;padding:7px 16px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.tabs button:hover[aria-pressed="false"]{border-color:var(--accent);color:var(--accent)}
+.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.panel{padding:18px 20px}
+.controls{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:flex-end}
+.ctl{display:flex;flex-direction:column;gap:5px}
+.ctl label{font-size:.8rem;color:var(--muted)}
+.ctl input[type="text"],.ctl input[type="number"]{
+  font:600 1rem/1.4 inherit;font-variant-numeric:tabular-nums;width:120px;
+  padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text)
+}
+.ctl input.narrow{width:84px}
+.opts{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0 0;font-size:.9rem}
+.opts label{display:flex;align-items:center;gap:8px;cursor:pointer;color:var(--muted)}
+.opts input[type="checkbox"]{width:16px;height:16px;accent-color:var(--accent);margin:0}
+#list-in{
+  display:block;width:100%;min-height:120px;resize:vertical;margin-top:4px;
+  padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);
+  font:.95rem/1.5 inherit
+}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.actions button{
+  font:inherit;font-size:.95rem;padding:9px 20px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.actions button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.actions button.primary:hover{filter:brightness(1.08)}
+.actions button:hover{border-color:var(--accent);color:var(--accent)}
+.actions button.primary:hover{color:#fff}
+.result{margin-top:16px;padding:22px 20px;text-align:center}
+.result .big{
+  font:800 clamp(2.4rem,10vw,4.4rem)/1 inherit;letter-spacing:-.02em;color:var(--accent);
+  font-variant-numeric:tabular-nums;word-break:break-word
+}
+.result .list{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px
+}
+.result .list span{
+  font:700 1.4rem/1 inherit;font-variant-numeric:tabular-nums;padding:8px 12px;
+  border-radius:8px;background:var(--accent-soft);color:var(--accent)
+}
+.result .note{margin:14px 0 0;font-size:.9rem;color:var(--muted)}
+.result .err{color:var(--over);font-weight:600}
+.dice-faces{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;font-size:2.4rem;line-height:1}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.faq p{color:var(--text)}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WBest Random Number Generator</h1>
+  <p class="tagline">Generate truly random numbers in any range, roll dice, flip coins, or pick from a list - using your browser's cryptographic randomness.</p>
+  <span class="badge">🔒 100% private - generated on your device, never uploaded</span>
+  <nav class="toc" aria-label="On this page">
+    <a href="#tool">Generator</a>
+    <a href="#how">How it works</a>
+    <a href="#uses">Uses</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Random number generator">
+    <div class="tabs" role="tablist" aria-label="Mode">
+      <button type="button" id="tab-number" role="tab" aria-pressed="true">Numbers</button>
+      <button type="button" id="tab-dice" role="tab" aria-pressed="false">Dice</button>
+      <button type="button" id="tab-coin" role="tab" aria-pressed="false">Coin flip</button>
+      <button type="button" id="tab-list" role="tab" aria-pressed="false">List picker</button>
+    </div>
+
+    <div class="card panel" id="pane-number">
+      <div class="controls">
+        <div class="ctl"><label for="min">Minimum</label><input type="number" id="min" value="1" autocomplete="off"></div>
+        <div class="ctl"><label for="max">Maximum</label><input type="number" id="max" value="100" autocomplete="off"></div>
+        <div class="ctl"><label for="count">How many</label><input type="number" id="count" class="narrow" value="1" min="1" max="1000" autocomplete="off"></div>
+      </div>
+      <div class="opts">
+        <label><input type="checkbox" id="unique"> No repeats (unique)</label>
+        <label><input type="checkbox" id="sorted"> Sort ascending</label>
+      </div>
+    </div>
+
+    <div class="card panel" id="pane-dice" hidden>
+      <div class="controls">
+        <div class="ctl"><label for="dice-count">Number of dice</label><input type="number" id="dice-count" class="narrow" value="2" min="1" max="100" autocomplete="off"></div>
+        <div class="ctl"><label for="dice-sides">Sides each</label><input type="number" id="dice-sides" class="narrow" value="6" min="2" max="1000" autocomplete="off"></div>
+      </div>
+    </div>
+
+    <div class="card panel" id="pane-coin" hidden>
+      <div class="controls">
+        <div class="ctl"><label for="coin-count">Number of coins</label><input type="number" id="coin-count" class="narrow" value="1" min="1" max="1000" autocomplete="off"></div>
+      </div>
+    </div>
+
+    <div class="card panel" id="pane-list" hidden>
+      <label class="sr-only" for="list-in">List of items, one per line</label>
+      <textarea id="list-in" spellcheck="false" placeholder="One item per line&#10;Alice&#10;Bob&#10;Carol&#10;Dave"></textarea>
+      <div class="opts">
+        <label>Pick <input type="number" id="list-count" class="narrow" value="1" min="1" style="margin-left:6px" autocomplete="off"></label>
+        <label><input type="checkbox" id="list-unique" checked> No repeats</label>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="primary" id="generate">Generate</button>
+      <button type="button" id="copy">Copy result</button>
+    </div>
+
+    <div class="card result" id="result" aria-live="polite">
+      <div class="big" id="result-main">—</div>
+      <p class="note" id="result-note">Press Generate to begin.</p>
+    </div>
+  </section>
+
+  <section class="props" aria-label="Why use this generator">
+    <div class="card"><strong>Cryptographically secure</strong><p>Numbers come from crypto.getRandomValues() with unbiased rejection sampling - not the weak Math.random() most sites rely on.</p></div>
+    <div class="card"><strong>Four tools in one</strong><p>Ranged numbers with optional uniqueness, a dice roller, a coin flipper, and a random list picker for draws and giveaways.</p></div>
+    <div class="card"><strong>Private by design</strong><p>Every roll and draw happens in your browser. Your ranges and lists are never uploaded, and it works offline.</p></div>
+  </section>
+
+  <section id="how" class="prose">
+    <h2>How the random number generator works</h2>
+    <p>Most online generators call JavaScript's <code>Math.random()</code>, which is fast but not designed to be unpredictable. This tool instead draws from <strong><code>crypto.getRandomValues()</code></strong>, the browser's cryptographically secure random number generator - the same source used for security tokens.</p>
+    <p>Turning raw random bytes into a number within your range without bias is subtler than it looks. Naively taking a remainder (<code>value % range</code>) skews the odds toward the lower numbers. This generator uses <strong>rejection sampling</strong>: it discards the few values that would fall in the biased tail and draws again, so every number in your range is exactly equally likely.</p>
+    <h3>Inclusive range</h3>
+    <p>Both the minimum and the maximum are included. A range of 1 to 6 behaves like a die - each of the six outcomes is equally probable. Ask for more than one number and you get a batch; switch on <em>No repeats</em> to draw each value only once, which needs a range at least as large as the count.</p>
+  </section>
+
+  <section id="uses" class="prose">
+    <h2>What you can use it for</h2>
+    <ul>
+      <li><strong>Giveaways and raffles</strong> - draw winning numbers or pick names from a list, transparently and without repeats.</li>
+      <li><strong>Games and tabletop</strong> - roll any dice (d6, d20, or a hundred-sided die) and total them, or flip coins to decide.</li>
+      <li><strong>Decisions and fairness</strong> - pick who goes first, assign chores, or split a group into random teams.</li>
+      <li><strong>Sampling</strong> - choose random rows, test cases, or survey participants from a numbered set.</li>
+      <li><strong>Lottery-style draws</strong> - generate several unique numbers within a range in one click.</li>
+    </ul>
+    <p>Because Google's built-in widget only handles a single number in a range, the dice, coin, list, and unique-batch modes here cover the cases it can't.</p>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Frequently asked questions</h2>
+
+    <h3>How random are these numbers?</h3>
+    <p>The generator uses crypto.getRandomValues(), your browser's cryptographically secure random source, and rejection sampling to map it onto your range without bias. That is far stronger than the ordinary Math.random() used by most sites, and it is more than good enough for draws, giveaways, and games. It is not, however, a substitute for certified hardware randomness in regulated gambling.</p>
+
+    <h3>Can I generate numbers with no repeats?</h3>
+    <p>Yes. Turn on 'unique' and every number in a batch will be different - useful for lottery-style draws or picking distinct winners. Uniqueness requires the range to contain at least as many values as the count you ask for; otherwise there are not enough distinct numbers to fill it.</p>
+
+    <h3>Is the range inclusive of both the minimum and maximum?</h3>
+    <p>Yes. Both endpoints are included, so a range of 1 to 6 can return 1, 6, and everything in between with equal probability. This matches how people expect dice, raffles, and 'pick a number between' to behave.</p>
+
+    <h3>Can it flip a coin or roll dice?</h3>
+    <p>Yes. The Dice mode rolls one or more dice with any number of sides and totals them, and the Coin mode flips one or more coins and tallies heads and tails - all using the same secure randomness as the number generator.</p>
+
+    <h3>How does the random list picker work?</h3>
+    <p>Paste or type a list with one item per line, choose how many to draw, and the picker selects them at random. With 'unique' on it draws without replacement (no item twice), which is ideal for choosing winners, assigning teams, or picking who goes first.</p>
+
+    <h3>Is anything I enter sent to a server?</h3>
+    <p>No. All randomness and every result is generated in your browser. Your ranges and lists never leave your device, nothing is logged or tracked, and the tool keeps working offline once loaded.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Made for anyone who needs a quick tool that just works.
+  <br>© 2026 WBest · Free to use, no sign-up required · <a href="https://wbest.app/">WBest Free Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+/* Random generation. Unbiased integer sampling with an injectable byte source
+   for testability. Pure/returnable helpers. */
+var RNG = (function () {
+  'use strict';
+
+  // Default secure source: fills a Uint32Array with random values.
+  function secureRand() {
+    var a = new Uint32Array(1);
+    (typeof crypto !== 'undefined' ? crypto : require('crypto').webcrypto).getRandomValues(a);
+    return a[0]; // 0 .. 2^32-1
+  }
+
+  // Unbiased integer in [min, max] inclusive using rejection sampling.
+  // rand() must return an integer in [0, 2^32).
+  function intInRange(min, max, rand) {
+    rand = rand || secureRand;
+    min = Math.ceil(min); max = Math.floor(max);
+    if (min > max) { var t = min; min = max; max = t; }
+    var range = max - min + 1;
+    if (range <= 0) return min;
+    if (range === 1) return min;
+    var maxU = 4294967296; // 2^32
+    var limit = maxU - (maxU % range); // largest multiple of range <= 2^32
+    var x;
+    do { x = rand(); } while (x >= limit);
+    return min + (x % range);
+  }
+
+  // Batch of integers; unique = draw without replacement.
+  function batch(min, max, count, unique, rand) {
+    min = Math.ceil(min); max = Math.floor(max);
+    if (min > max) { var t = min; min = max; max = t; }
+    count = Math.max(1, Math.floor(count));
+    var range = max - min + 1;
+    var out = [], i;
+    if (unique) {
+      if (count > range) return { error: 'Need at least ' + count + ' distinct values, but the range only has ' + range + '.' };
+      // Partial Fisher-Yates over a virtual [min..max]
+      var pool = {};
+      function get(idx) { return pool[idx] === undefined ? idx : pool[idx]; }
+      for (i = 0; i < count; i++) {
+        var j = intInRange(i, range - 1, rand);
+        var vi = get(i), vj = get(j);
+        pool[i] = vj; pool[j] = vi;
+        out.push(min + vj);
+      }
+      return { values: out };
+    }
+    for (i = 0; i < count; i++) out.push(intInRange(min, max, rand));
+    return { values: out };
+  }
+
+  // Pick `count` items from array; unique = without replacement.
+  function pick(items, count, unique, rand) {
+    var n = items.length;
+    if (n === 0) return { error: 'Add at least one item to the list.' };
+    count = Math.max(1, Math.floor(count));
+    if (unique) {
+      if (count > n) return { error: 'Only ' + n + ' item' + (n === 1 ? '' : 's') + ' to pick from - reduce how many you draw.' };
+      var idx = batch(0, n - 1, count, true, rand);
+      return { values: idx.values.map(function (i) { return items[i]; }) };
+    }
+    var out = [];
+    for (var k = 0; k < count; k++) out.push(items[intInRange(0, n - 1, rand)]);
+    return { values: out };
+  }
+
+  return { secureRand: secureRand, intInRange: intInRange, batch: batch, pick: pick };
+})();
+if (typeof module !== 'undefined') module.exports = RNG;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+  var mode = 'number', lastText = '';
+  var DICE = ['', '⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+
+  function num(id) { return parseInt($(id).value, 10); }
+
+  function setResult(mainHTML, note, isErr) {
+    $('result-main').innerHTML = mainHTML;
+    var n = $('result-note');
+    n.textContent = note || '';
+    n.className = 'note' + (isErr ? ' err' : '');
+  }
+  function listHTML(values) {
+    return '<div class="list">' + values.map(function (v) { return '<span>' + v + '</span>'; }).join('') + '</div>';
+  }
+  function esc(s) { return String(s).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); }
+
+  function genNumber() {
+    var min = num('min'), max = num('max'), count = num('count');
+    if (isNaN(min) || isNaN(max)) { setResult('—', 'Enter a minimum and maximum.', true); lastText = ''; return; }
+    if (isNaN(count) || count < 1) count = 1;
+    count = Math.min(count, 1000);
+    var r = RNG.batch(min, max, count, $('unique').checked);
+    if (r.error) { setResult('—', r.error, true); lastText = ''; return; }
+    var vals = r.values.slice();
+    if ($('sorted').checked) vals.sort(function (a, b) { return a - b; });
+    lastText = vals.join(', ');
+    if (vals.length === 1) setResult(esc(String(vals[0])), 'Between ' + Math.min(min, max) + ' and ' + Math.max(min, max) + ', inclusive.');
+    else setResult(listHTML(vals.map(esc)), vals.length + ' numbers' + ($('unique').checked ? ', all unique' : '') + '.');
+  }
+
+  function genDice() {
+    var count = num('dice-count'), sides = num('dice-sides');
+    if (isNaN(count) || count < 1) count = 1; if (isNaN(sides) || sides < 2) sides = 6;
+    count = Math.min(count, 100);
+    var rolls = RNG.batch(1, sides, count, false).values;
+    var total = rolls.reduce(function (a, b) { return a + b; }, 0);
+    lastText = rolls.join(', ') + ' (total ' + total + ')';
+    if (sides === 6) {
+      setResult('<div class="dice-faces">' + rolls.map(function (r) { return DICE[r]; }).join('') + '</div>',
+        (count > 1 ? 'Rolls: ' + rolls.join(', ') + ' · total ' + total : 'You rolled a ' + rolls[0]));
+    } else if (count === 1) {
+      setResult(String(rolls[0]), 'A ' + sides + '-sided die.');
+    } else {
+      setResult(listHTML(rolls), count + ' × d' + sides + ' · total ' + total);
+    }
+  }
+
+  function genCoin() {
+    var count = num('coin-count');
+    if (isNaN(count) || count < 1) count = 1; count = Math.min(count, 1000);
+    var flips = RNG.batch(0, 1, count, false).values; // 0=T,1=H
+    var heads = flips.reduce(function (a, b) { return a + b; }, 0), tails = count - heads;
+    lastText = flips.map(function (f) { return f ? 'Heads' : 'Tails'; }).join(', ');
+    if (count === 1) setResult(flips[0] ? 'Heads' : 'Tails', 'A single coin flip.');
+    else setResult(listHTML(flips.map(function (f) { return f ? 'H' : 'T'; })), 'Heads: ' + heads + ' · Tails: ' + tails);
+  }
+
+  function genList() {
+    var items = $('list-in').value.split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
+    var count = num('list-count');
+    if (isNaN(count) || count < 1) count = 1;
+    var r = RNG.pick(items, count, $('list-unique').checked);
+    if (r.error) { setResult('—', r.error, true); lastText = ''; return; }
+    lastText = r.values.join(', ');
+    if (r.values.length === 1) setResult(esc(r.values[0]), 'Picked from ' + items.length + ' item' + (items.length === 1 ? '' : 's') + '.');
+    else setResult(listHTML(r.values.map(esc)), 'Picked ' + r.values.length + ' of ' + items.length + '.');
+  }
+
+  function generate() {
+    if (mode === 'number') genNumber();
+    else if (mode === 'dice') genDice();
+    else if (mode === 'coin') genCoin();
+    else genList();
+  }
+
+  function selectTab(which) {
+    mode = which;
+    ['number', 'dice', 'coin', 'list'].forEach(function (m) {
+      $('tab-' + m).setAttribute('aria-pressed', String(m === which));
+      $('pane-' + m).hidden = m !== which;
+    });
+    setResult('—', 'Press Generate to begin.');
+    lastText = '';
+  }
+
+  ['number', 'dice', 'coin', 'list'].forEach(function (m) {
+    $('tab-' + m).addEventListener('click', function () { selectTab(m); });
+  });
+  $('generate').addEventListener('click', generate);
+  $('copy').addEventListener('click', function () {
+    if (!lastText) return;
+    var b = $('copy'), done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy result'; }, 1000); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(lastText).then(done, done); else done();
+  });
+  // Enter in a number field regenerates.
+  document.querySelectorAll('#tool input[type="number"]').forEach(function (el) {
+    el.addEventListener('keydown', function (e) { if (e.key === 'Enter') generate(); });
+  });
+
+  generate();
+})();
+</script>
+</body>
+</html>

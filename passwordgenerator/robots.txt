@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://passwordgenerator.wbest.app/sitemap.xml

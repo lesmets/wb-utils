@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://loancalculator.wbest.app/sitemap.xml
