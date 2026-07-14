@@ -9,11 +9,17 @@ scripts
 ROADMAP.md
 agecalculator
 bmicalculator
+colorconverter
+hashgenerator
 imagecompressor
 jsonformatter
+loancalculator
+notepad
 passwordgenerator
 percentagecalculator
 qrcode
+randomnumbergenerator
 timer
+timestampconverter
 unitconverter
 wordcounter
