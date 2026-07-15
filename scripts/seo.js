@@ -89,8 +89,28 @@ function ldType(dir, type) {
 }
 
 // Map every root to its canonical base URL up front so the directory sitemap
-// can list all tool URLs.
+// can list every tool URL on its own site.
 const base = new Map(roots.map(dir => [dir, canonical(dir)]));
+
+// A sitemap may only list URLs on the site that serves it. Search Console
+// rejects a sitemap containing anything outside the property, so a tool that
+// has graduated to its exact-match domain (wbwordcounter.com) cannot ride in
+// the directory's sitemap at wbest.app - the whole file is refused, not just
+// the stray URL. A Domain property covers its subdomains, so *.wbest.app URLs
+// are fine there; a different registrable domain never is. Graduated tools are
+// not orphaned: each serves its own robots.txt + sitemap.xml from its own host
+// and is registered as its own property, and the directory still links to it.
+//
+// This is enforced here rather than written down anywhere, because seo.js
+// projects sitemaps from canonicals on every run: deleting the stray URL by
+// hand only survives until the next generate, and now fails `seo.js --check`
+// as drift in between.
+function sameSite(url, siteHost) {
+  const host = new URL(url).host;
+  return host === siteHost || host.endsWith(`.${siteHost}`);
+}
+
+const offSite = roots.filter(dir => !sameSite(base.get(dir), new URL(base.get('.')).host));
 
 // The directory page groups tools into category sections; read them back so
 // llms.txt inherits the same categories, one-line descriptions, and order the
@@ -172,9 +192,13 @@ function localeUrls(dir) {
 
 function sitemap(dir) {
   // Directory root lists itself + every tool; a tool lists itself + locales.
-  const urls = dir === '.'
+  // Anything off this root's own site is dropped (see sameSite): Search Console
+  // refuses the entire sitemap over one foreign URL.
+  const siteHost = new URL(base.get(dir)).host;
+  const urls = (dir === '.'
     ? roots.map(d => base.get(d))
-    : [base.get(dir), ...localeUrls(dir)];
+    : [base.get(dir), ...localeUrls(dir)]
+  ).filter(u => sameSite(u, siteHost));
   const entries = urls.map(u => `  <url>\n    <loc>${u}</loc>\n  </url>`).join('\n');
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
@@ -289,6 +313,14 @@ for (const dir of roots) {
       }
     }
   }
+}
+
+// Say so out loud: a tool silently missing from the crawl hub is worse than one
+// that is listed and rejected, because nothing ever surfaces it again.
+if (!CHECK && offSite.length) {
+  console.log(
+    `Not in the directory sitemap (own domain, own Search Console property): ${offSite.map(d => base.get(d)).join(', ')}`
+  );
 }
 
 if (CHECK) {
