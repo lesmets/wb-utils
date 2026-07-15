@@ -1,6 +1,6 @@
 # WBest
 
-Fast and free online tools. No sign-up, no uploads, no tracking.
+Fast and free online tools available at [wbest.app](https://wbest.app/). No sign-up, no uploads, no tracking.
 
 WBest is a suite of single-purpose web tools that run entirely in the browser. Since all processing is done client-side, your data never leaves your device. Each tool is built as an independent, lightweight web app without external server dependencies.
 
@@ -41,3 +41,13 @@ WBest is a suite of single-purpose web tools that run entirely in the browser. S
 | | [Time Zone Converter](https://timezoneconverter.wbest.app/) | Compare times across cities with a meeting planner and automatic daylight saving. |
 | **Device Tests** | [Mic Test](https://mictest.wbest.app/) | Check your microphone with a live level meter, waveform, and playback. |
 | | [Webcam Test](https://webcamtest.wbest.app/) | Check your camera with a live preview, real resolution and frame rate, and a snapshot. |
+
+## Local Development
+
+The project is structured as a collection of static directories served from the root.
+
+To run locally, start any static file server from the root directory:
+
+```bash
+python3 -m http.server 8000
+```
