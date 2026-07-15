@@ -1,8 +1,8 @@
 # WBest BMI Calculator
 
-> Free BMI (body mass index) calculator with metric and imperial units. Shows your BMI, WHO category, the healthy weight range for your height, and a visual scale - plus clear reference content on what BMI does and does not measure. Runs entirely in your browser: your measurements are never uploaded or stored.
+> Free BMI (body mass index) calculator with metric and imperial units. Shows your BMI, WHO category, the healthy weight range for your height, and a visual scale, plus clear reference content on what BMI does and does not measure. Runs entirely in your browser: your measurements are never uploaded or stored.
 
-Use it at https://bmicalculator.wbest.app/ - it is a single page, and the tool is the page.
+Use it at https://bmicalculator.wbest.app/. It is a single page, and the tool is the page.
 
 - Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
 - Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
@@ -23,19 +23,19 @@ Use it at https://bmicalculator.wbest.app/ - it is a single page, and the tool i
 
 ### What is a healthy BMI?
 
-For most adults, the World Health Organization defines the healthy range as a BMI of 18.5 to 24.9. Below 18.5 is classed as underweight, 25 to 29.9 as overweight, and 30 or above as obesity. These are population-level screening bands, not personal diagnoses - where your individual healthy weight sits depends on factors BMI cannot see.
+For most adults, the World Health Organization defines the healthy range as a BMI of 18.5 to 24.9. Below 18.5 is classed as underweight, 25 to 29.9 as overweight, and 30 or above as obesity. These are population-level screening bands, not personal diagnoses. Where your individual healthy weight sits depends on factors BMI cannot see.
 
 ### How do I calculate BMI manually?
 
-Metric: divide your weight in kilograms by your height in meters squared - BMI = kg ÷ m². Example: 70 kg at 1.75 m is 70 ÷ 3.0625 = 22.9. Imperial: multiply your weight in pounds by 703, then divide by your height in inches squared - BMI = 703 × lb ÷ in².
+Metric: divide your weight in kilograms by your height in meters squared: BMI = kg ÷ m². Example: 70 kg at 1.75 m is 70 ÷ 3.0625 = 22.9. Imperial: multiply your weight in pounds by 703, then divide by your height in inches squared: BMI = 703 × lb ÷ in².
 
 ### Is BMI accurate for athletes and muscular people?
 
-No - this is BMI's best-known blind spot. It measures weight, not what the weight is made of, and muscle is denser than fat. Strength athletes routinely land in the "overweight" band while carrying very little fat. If you train seriously, waist circumference and body-fat measurements say far more than BMI does.
+No. This is BMI's best-known blind spot. It measures weight, not what the weight is made of, and muscle is denser than fat. Strength athletes routinely land in the "overweight" band while carrying very little fat. If you train seriously, waist circumference and body-fat measurements say far more than BMI does.
 
 ### Does BMI work the same for men, women, and older adults?
 
-The formula and categories are identical for adult men and women, even though body composition differs by sex. In older adults, muscle loss can make BMI flatter than reality - a "healthy" BMI can hide low muscle mass, and some research suggests slightly higher BMI is not harmful in older age. Treat it as one signal among several.
+The formula and categories are identical for adult men and women, even though body composition differs by sex. In older adults, muscle loss can make BMI flatter than reality: a "healthy" BMI can hide low muscle mass, and some research suggests slightly higher BMI is not harmful in older age. Treat it as one signal among several.
 
 ### Are BMI categories different for Asian populations?
 
@@ -43,7 +43,7 @@ Yes. Health risks associated with weight appear at lower BMI values in many Asia
 
 ### Can I use this BMI calculator for children?
 
-No. For anyone under 18, BMI must be interpreted against age-and-sex growth charts as a percentile, not fixed adult cutoffs - a value that is healthy at 16 can mean something different at 8. Use a dedicated pediatric BMI-percentile tool or ask a pediatrician.
+No. For anyone under 18, BMI must be interpreted against age-and-sex growth charts as a percentile, not fixed adult cutoffs. A value that is healthy at 16 can mean something different at 8. Use a dedicated pediatric BMI-percentile tool or ask a pediatrician.
 
 ### What does BMI miss, and what should I check instead?
 
@@ -51,11 +51,11 @@ BMI cannot see body composition or where fat is stored, and abdominal fat carrie
 
 ### Is my height and weight data uploaded anywhere?
 
-No. Your measurements are processed by JavaScript in your browser and never transmitted, logged, or stored - this page makes no network requests after loading and works offline. Health data is exactly the kind of thing that should never touch someone else's server.
+No. Your measurements are processed by JavaScript in your browser and never transmitted, logged, or stored. This page makes no network requests after loading and works offline. Health data is exactly the kind of thing that should never touch someone else's server.
 
 ## More WB tools
 
-- [Percentage Calculator](https://percentagecalculator.wbest.app/): Percent of a number, increase/decrease, discounts, and tips - formula included.
+- [Percentage Calculator](https://percentagecalculator.wbest.app/): Percent of a number, increase/decrease, discounts, and tips. Formula included.
 - [Loan Calculator](https://loancalculator.wbest.app/): Monthly payment, total interest, and a full amortization schedule for any loan.
-- [Car Depreciation Calculator](https://cardepreciation.wbest.app/): What your car will be worth, and what owning it really costs per year and mile.
-- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.
+- [Car Depreciation Calculator](https://cardepreciation.wbest.app/): What your car will be worth, and what owning it really costs per year and distance driven.
+- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.

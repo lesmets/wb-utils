@@ -227,7 +227,7 @@ function llmsTool(dir) {
     '',
     `> ${app.description}`,
     '',
-    `Use it at ${entry.url} - it is a single page, and the tool is the page.`,
+    `Use it at ${entry.url}. It is a single page, and the tool is the page.`,
     '',
     ...PRINCIPLES.map(p => `- ${p}`),
     '',
@@ -241,7 +241,7 @@ function llmsTool(dir) {
     '## More WB tools',
     '',
     ...siblings.map(e => `- [${e.name}](${e.url}): ${e.desc}`),
-    `- [WBest](${base.get('.')}): all ${tools.length} free WB tools - private, no sign-up, no uploads.`,
+    `- [WBest](${base.get('.')}): all ${tools.length} free WB tools, private, no sign-up, no uploads.`,
     '',
   ].join('\n');
 }

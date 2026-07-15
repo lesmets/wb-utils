@@ -1,8 +1,8 @@
 # WBest Unix Timestamp Converter
 
-> Free Unix timestamp converter. Turn an epoch timestamp into a human-readable date and back again, in seconds or milliseconds, showing both UTC and your local time zone plus the relative time. Includes a live current timestamp. Runs entirely in your browser - no tracking, works offline.
+> Free Unix timestamp converter. Turn an epoch timestamp into a human-readable date and back again, in seconds or milliseconds, showing both UTC and your local time zone plus the relative time. Includes a live current timestamp. Runs entirely in your browser. No tracking, works offline.
 
-Use it at https://timestampconverter.wbest.app/ - it is a single page, and the tool is the page.
+Use it at https://timestampconverter.wbest.app/. It is a single page, and the tool is the page.
 
 - Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
 - Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
@@ -38,7 +38,7 @@ Systems that store Unix time in a signed 32-bit integer can only count up to 03:
 
 ### Can a Unix timestamp be negative?
 
-Yes. Dates before 1 January 1970 are represented as negative numbers - for example, -86400 is 31 December 1969. This converter accepts negative values and shows the correct pre-1970 date.
+Yes. Dates before 1 January 1970 are represented as negative numbers. For example, -86400 is 31 December 1969. This converter accepts negative values and shows the correct pre-1970 date.
 
 ### Is my data sent anywhere?
 
@@ -50,4 +50,4 @@ No. Every conversion runs in JavaScript in your browser using your device's own 
 - [Hash Generator](https://hashgenerator.wbest.app/): MD5, SHA-1, and SHA-256/512 for text or files, hashed locally and never uploaded.
 - [Regex Tester](https://regextester.wbest.app/): Test regular expressions live with match highlighting, groups, and replace.
 - [Base64 Encoder & Decoder](https://base64.wbest.app/): Encode and decode Base64 with correct UTF-8, URL-safe output, and files.
-- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.

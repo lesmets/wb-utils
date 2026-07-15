@@ -1,8 +1,8 @@
 # WBest Hash Generator
 
-> Free hash generator for MD5, SHA-1, SHA-256, SHA-384, and SHA-512. Hash any text or file, compare a hash to verify a match, and copy the result. Runs entirely in your browser using the Web Crypto API - files and text are never uploaded.
+> Free hash generator for MD5, SHA-1, SHA-256, SHA-384, and SHA-512. Hash any text or file, compare a hash to verify a match, and copy the result. Runs entirely in your browser using the Web Crypto API. Files and text are never uploaded.
 
-Use it at https://hashgenerator.wbest.app/ - it is a single page, and the tool is the page.
+Use it at https://hashgenerator.wbest.app/. It is a single page, and the tool is the page.
 
 - Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
 - Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
@@ -22,11 +22,11 @@ Use it at https://hashgenerator.wbest.app/ - it is a single page, and the tool i
 
 ### Are my files or text uploaded to hash them?
 
-No. All hashing happens in your browser using the built-in Web Crypto API (and an inlined MD5 routine). Your text and files never leave your device - you can even disconnect from the internet and the tool keeps working. That makes it safe for hashing sensitive files and secrets.
+No. All hashing happens in your browser using the built-in Web Crypto API (and an inlined MD5 routine). Your text and files never leave your device. You can even disconnect from the internet and the tool keeps working. That makes it safe for hashing sensitive files and secrets.
 
 ### What is the difference between MD5, SHA-1, and SHA-256?
 
-They are hash functions of increasing strength. MD5 (128-bit) and SHA-1 (160-bit) are fast but cryptographically broken - collisions can be crafted, so they should only be used for non-security checks like file integrity or deduplication. SHA-256, SHA-384, and SHA-512 are part of the SHA-2 family and remain secure; SHA-256 is the standard choice for signatures, certificates, and password-related hashing.
+They are hash functions of increasing strength. MD5 (128-bit) and SHA-1 (160-bit) are fast but cryptographically broken. Collisions can be crafted, so they should only be used for non-security checks like file integrity or deduplication. SHA-256, SHA-384, and SHA-512 are part of the SHA-2 family and remain secure; SHA-256 is the standard choice for signatures, certificates, and password-related hashing.
 
 ### How do I verify a file's checksum?
 
@@ -38,7 +38,7 @@ No. Hashing is one-way: it turns any input into a fixed-length fingerprint that 
 
 ### Why do the same inputs always produce the same hash?
 
-A hash function is deterministic - identical input always yields identical output. That is what makes hashes useful for verification: change a single byte and the hash changes completely, so any tampering or corruption is obvious.
+A hash function is deterministic: identical input always yields identical output. That is what makes hashes useful for verification: change a single byte and the hash changes completely, so any tampering or corruption is obvious.
 
 ### Should I use MD5 to store passwords?
 
@@ -50,4 +50,4 @@ No. Plain MD5 or SHA-256 is far too fast and unsalted for password storage. Use 
 - [Unix Timestamp Converter](https://timestampconverter.wbest.app/): Convert epoch timestamps to dates and back, in UTC and your local time zone.
 - [Regex Tester](https://regextester.wbest.app/): Test regular expressions live with match highlighting, groups, and replace.
 - [Base64 Encoder & Decoder](https://base64.wbest.app/): Encode and decode Base64 with correct UTF-8, URL-safe output, and files.
-- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.

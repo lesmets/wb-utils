@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WBest Random Number Generator - Secure, Dice, Coin &amp; Picker</title>
-<meta name="description" content="Generate truly random numbers in any range, roll dice, flip coins, or pick from a list - using your browser's cryptographic randomness. Free, instant, and 100% private.">
+<title>WBest Random Number Generator: Secure, Dice, Coin &amp; Picker</title>
+<meta name="description" content="Generate truly random numbers in any range, roll dice, flip coins, or pick from a list, using your browser's cryptographic randomness. Free and 100% private.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://randomnumbergenerator.wbest.app/">
@@ -16,19 +16,19 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Random Number Generator">
-<meta property="og:title" content="WBest Random Number Generator - Secure, Dice, Coin &amp; Picker">
-<meta property="og:description" content="Generate truly random numbers in any range, roll dice, flip coins, or pick from a list - using your browser's cryptographic randomness. Free, instant, and 100% private.">
+<meta property="og:title" content="WBest Random Number Generator: Secure, Dice, Coin &amp; Picker">
+<meta property="og:description" content="Generate truly random numbers in any range, roll dice, flip coins, or pick from a list, using your browser's cryptographic randomness. Free and 100% private.">
 <meta property="og:url" content="https://randomnumbergenerator.wbest.app/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WBest Random Number Generator - Secure, Dice, Coin &amp; Picker">
-<meta name="twitter:description" content="Generate truly random numbers in any range, roll dice, flip coins, or pick from a list - using your browser's cryptographic randomness. Free, instant, and 100% private.">
+<meta name="twitter:title" content="WBest Random Number Generator: Secure, Dice, Coin &amp; Picker">
+<meta name="twitter:description" content="Generate truly random numbers in any range, roll dice, flip coins, or pick from a list, using your browser's cryptographic randomness. Free and 100% private.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Random Number Generator",
   "url": "https://randomnumbergenerator.wbest.app/",
-  "description": "Free random number generator using the browser's cryptographically secure randomness. Generate numbers in any range with optional uniqueness and sorting, roll dice, flip coins, and pick random items from a list. Runs entirely in your browser - no tracking, works offline.",
+  "description": "Free random number generator using the browser's cryptographically secure randomness. Generate numbers in any range with optional uniqueness and sorting, roll dice, flip coins, and pick random items from a list. Runs entirely in your browser. No tracking, works offline.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
@@ -65,7 +65,7 @@
       "name": "Can I generate numbers with no repeats?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Turn on 'unique' and every number in a batch will be different - useful for lottery-style draws or picking distinct winners. Uniqueness requires the range to contain at least as many values as the count you ask for; otherwise there are not enough distinct numbers to fill it."
+        "text": "Yes. Turn on 'unique' and every number in a batch will be different, which suits lottery-style draws or picking distinct winners. Uniqueness requires the range to contain at least as many values as the count you ask for; otherwise there are not enough distinct numbers to fill it."
       }
     },
     {
@@ -81,7 +81,7 @@
       "name": "Can it flip a coin or roll dice?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The Dice mode rolls one or more dice with any number of sides and totals them, and the Coin mode flips one or more coins and tallies heads and tails - all using the same secure randomness as the number generator."
+        "text": "Yes. The Dice mode rolls one or more dice with any number of sides and totals them, and the Coin mode flips one or more coins and tallies heads and tails, all using the same secure randomness as the number generator."
       }
     },
     {
@@ -148,6 +148,7 @@ h3{font-size:1.05rem;margin:22px 0 6px}
 p{margin:0 0 12px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
 .muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
 .lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
@@ -221,8 +222,8 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
 
 <header class="wrap">
   <h1>WBest Random Number Generator</h1>
-  <p class="tagline">Generate truly random numbers in any range, roll dice, flip coins, or pick from a list - using your browser's cryptographic randomness.</p>
-  <span class="badge">🔒 100% private - generated on your device, never uploaded</span>
+  <p class="tagline">Generate truly random numbers in any range, roll dice, flip coins, or pick from a list, using your browser's cryptographic randomness. Free and 100% private.</p>
+  <span class="badge">🔒 100% private, generated on your device, never uploaded</span>
   <nav class="toc" aria-label="On this page">
     <a href="#tool">Generator</a>
     <a href="#how">How it works</a>
@@ -286,28 +287,30 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
     </div>
   </section>
 
+  <p class="cross-link">Need randomness you can actually log in with? The <a href="https://passwordgenerator.wbest.app/">Password Generator</a> uses the same secure source to build passwords, just as privately.</p>
+
   <section class="props" aria-label="Why use this generator">
-    <div class="card"><strong>Cryptographically secure</strong><p>Numbers come from crypto.getRandomValues() with unbiased rejection sampling - not the weak Math.random() most sites rely on.</p></div>
+    <div class="card"><strong>Cryptographically secure</strong><p>Numbers come from crypto.getRandomValues() with unbiased rejection sampling, not the weak Math.random() most sites rely on.</p></div>
     <div class="card"><strong>Four tools in one</strong><p>Ranged numbers with optional uniqueness, a dice roller, a coin flipper, and a random list picker for draws and giveaways.</p></div>
     <div class="card"><strong>Private by design</strong><p>Every roll and draw happens in your browser. Your ranges and lists are never uploaded, and it works offline.</p></div>
   </section>
 
   <section id="how" class="prose">
     <h2>How the random number generator works</h2>
-    <p>Most online generators call JavaScript's <code>Math.random()</code>, which is fast but not designed to be unpredictable. This tool instead draws from <strong><code>crypto.getRandomValues()</code></strong>, the browser's cryptographically secure random number generator - the same source used for security tokens.</p>
+    <p>Most online generators call JavaScript's <code>Math.random()</code>, which is fast but not designed to be unpredictable. This tool instead draws from <strong><code>crypto.getRandomValues()</code></strong>, the browser's cryptographically secure random number generator, the same source used for security tokens.</p>
     <p>Turning raw random bytes into a number within your range without bias is subtler than it looks. Naively taking a remainder (<code>value % range</code>) skews the odds toward the lower numbers. This generator uses <strong>rejection sampling</strong>: it discards the few values that would fall in the biased tail and draws again, so every number in your range is exactly equally likely.</p>
     <h3>Inclusive range</h3>
-    <p>Both the minimum and the maximum are included. A range of 1 to 6 behaves like a die - each of the six outcomes is equally probable. Ask for more than one number and you get a batch; switch on <em>No repeats</em> to draw each value only once, which needs a range at least as large as the count.</p>
+    <p>Both the minimum and the maximum are included. A range of 1 to 6 behaves like a die: each of the six outcomes is equally probable. Ask for more than one number and you get a batch; switch on <em>No repeats</em> to draw each value only once, which needs a range at least as large as the count.</p>
   </section>
 
   <section id="uses" class="prose">
     <h2>What you can use it for</h2>
     <ul>
-      <li><strong>Giveaways and raffles</strong> - draw winning numbers or pick names from a list, transparently and without repeats.</li>
-      <li><strong>Games and tabletop</strong> - roll any dice (d6, d20, or a hundred-sided die) and total them, or flip coins to decide.</li>
-      <li><strong>Decisions and fairness</strong> - pick who goes first, assign chores, or split a group into random teams.</li>
-      <li><strong>Sampling</strong> - choose random rows, test cases, or survey participants from a numbered set.</li>
-      <li><strong>Lottery-style draws</strong> - generate several unique numbers within a range in one click.</li>
+      <li><strong>Giveaways and raffles.</strong> Draw winning numbers or pick names from a list, transparently and without repeats.</li>
+      <li><strong>Games and tabletop.</strong> Roll any dice (d6, d20, or a hundred-sided die) and total them, or flip coins to decide.</li>
+      <li><strong>Decisions and fairness.</strong> Pick who goes first, assign chores, or split a group into random teams.</li>
+      <li><strong>Sampling.</strong> Choose random rows, test cases, or survey participants from a numbered set.</li>
+      <li><strong>Lottery-style draws.</strong> Generate several unique numbers within a range in one click.</li>
     </ul>
     <p>Because Google's built-in widget only handles a single number in a range, the dice, coin, list, and unique-batch modes here cover the cases it can't.</p>
   </section>
@@ -319,13 +322,13 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
     <p>The generator uses crypto.getRandomValues(), your browser's cryptographically secure random source, and rejection sampling to map it onto your range without bias. That is far stronger than the ordinary Math.random() used by most sites, and it is more than good enough for draws, giveaways, and games. It is not, however, a substitute for certified hardware randomness in regulated gambling.</p>
 
     <h3>Can I generate numbers with no repeats?</h3>
-    <p>Yes. Turn on 'unique' and every number in a batch will be different - useful for lottery-style draws or picking distinct winners. Uniqueness requires the range to contain at least as many values as the count you ask for; otherwise there are not enough distinct numbers to fill it.</p>
+    <p>Yes. Turn on 'unique' and every number in a batch will be different, which suits lottery-style draws or picking distinct winners. Uniqueness requires the range to contain at least as many values as the count you ask for; otherwise there are not enough distinct numbers to fill it.</p>
 
     <h3>Is the range inclusive of both the minimum and maximum?</h3>
     <p>Yes. Both endpoints are included, so a range of 1 to 6 can return 1, 6, and everything in between with equal probability. This matches how people expect dice, raffles, and 'pick a number between' to behave.</p>
 
     <h3>Can it flip a coin or roll dice?</h3>
-    <p>Yes. The Dice mode rolls one or more dice with any number of sides and totals them, and the Coin mode flips one or more coins and tallies heads and tails - all using the same secure randomness as the number generator.</p>
+    <p>Yes. The Dice mode rolls one or more dice with any number of sides and totals them, and the Coin mode flips one or more coins and tallies heads and tails, all using the same secure randomness as the number generator.</p>
 
     <h3>How does the random list picker work?</h3>
     <p>Paste or type a list with one item per line, choose how many to draw, and the picker selects them at random. With 'unique' on it draws without replacement (no item twice), which is ideal for choosing winners, assigning teams, or picking who goes first.</p>

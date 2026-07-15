@@ -42,12 +42,12 @@ WBest is a suite of single-purpose web tools that run entirely in the browser. S
 | **Device Tests** | [Mic Test](https://mictest.wbest.app/) | Check your microphone with a live level meter, waveform, and playback. |
 | | [Webcam Test](https://webcamtest.wbest.app/) | Check your camera with a live preview, real resolution and frame rate, and a snapshot. |
 
-## Local Development
+## Running the Tools
 
-The project is structured as a collection of static directories served from the root.
+Because these tools are built with vanilla web technologies, they require no local servers, build pipelines, or packages.
 
-To run locally, start any static file server from the root directory:
+To run a tool locally:
+- **Clone this repository**: Open the `index.html` file inside any tool's directory directly in your browser.
+- **Save from the live site**: Right-click and save the page of any tool from [wbest.app](https://wbest.app/), then open the saved HTML file locally.
 
-```bash
-python3 -m http.server 8000
-```
+No installation, build tools, or active internet connection is required.

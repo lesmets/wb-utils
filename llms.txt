@@ -16,10 +16,10 @@ WBest is a suite of 25 single-purpose online tools, each on its own page and its
 
 ## Calculators
 
-- [Percentage Calculator](https://percentagecalculator.wbest.app/): Percent of a number, increase/decrease, discounts, and tips - formula included.
+- [Percentage Calculator](https://percentagecalculator.wbest.app/): Percent of a number, increase/decrease, discounts, and tips. Formula included.
 - [BMI Calculator](https://bmicalculator.wbest.app/): Body mass index in metric or imperial, with your WHO category and healthy range.
 - [Loan Calculator](https://loancalculator.wbest.app/): Monthly payment, total interest, and a full amortization schedule for any loan.
-- [Car Depreciation Calculator](https://cardepreciation.wbest.app/): What your car will be worth, and what owning it really costs per year and mile.
+- [Car Depreciation Calculator](https://cardepreciation.wbest.app/): What your car will be worth, and what owning it really costs per year and distance driven.
 
 ## Converters
 
@@ -28,7 +28,7 @@ WBest is a suite of 25 single-purpose online tools, each on its own page and its
 ## Generators
 
 - [Password Generator](https://passwordgenerator.wbest.app/): Strong random passwords, passphrases, and PINs with time-to-crack estimates.
-- [QR Code Generator](https://qrcode.wbest.app/): QR codes for links, Wi-Fi, vCards, and more - no watermark, never expire.
+- [QR Code Generator](https://qrcode.wbest.app/): QR codes for links, Wi-Fi, vCards, and more. No watermark, never expire.
 - [Random Number Generator](https://randomnumbergenerator.wbest.app/): Secure random numbers, dice, coin flips, and pick-from-a-list draws.
 - [Barcode Generator](https://barcodegenerator.wbest.app/): Code 128 and EAN-13 barcodes with check digits, as PNG or print-ready SVG.
 

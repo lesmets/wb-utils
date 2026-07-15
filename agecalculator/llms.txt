@@ -1,8 +1,8 @@
 # WBest Age Calculator
 
-> Free age calculator that gives exact age in years, months, and days from a date of birth - plus total months, weeks, days, hours, and minutes lived, the day of the week you were born, and a countdown to the next birthday. Includes a general date-to-date duration mode. Runs entirely in your browser - no sign-up, and your dates never leave your device.
+> Free age calculator that gives exact age in years, months, and days from a date of birth, plus total months, weeks, days, hours, and minutes lived, the day of the week you were born, and a countdown to the next birthday. Includes a general date-to-date duration mode. Runs entirely in your browser. No sign-up, and your dates never leave your device.
 
-Use it at https://agecalculator.wbest.app/ - it is a single page, and the tool is the page.
+Use it at https://agecalculator.wbest.app/. It is a single page, and the tool is the page.
 
 - Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
 - Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
@@ -24,15 +24,15 @@ Use it at https://agecalculator.wbest.app/ - it is a single page, and the tool i
 
 ### How do I calculate my exact age?
 
-Count the full years from your birth date to today, then the full months since your last birthday, then the days since your last month-anniversary. The tricky part is that months have different lengths, which is exactly what this calculator handles - enter your date of birth and it returns your age to the day, plus totals in days, hours, and minutes.
+Count the full years from your birth date to today, then the full months since your last birthday, then the days since your last month-anniversary. The tricky part is that months have different lengths, which is exactly what this calculator handles. Enter your date of birth and it returns your age to the day, plus totals in days, hours, and minutes.
 
 ### How does the calculator handle leap years and February 29 birthdays?
 
-Leap years are applied exactly: every 4th year, except century years not divisible by 400 (2000 was a leap year; 1900 and 2100 are not). If you were born on February 29, this calculator counts your birthday as March 1 in common years - the moment you have fully completed the year. Some jurisdictions use February 28 instead, which shifts the result by one day.
+Leap years are applied exactly: every 4th year, except century years not divisible by 400 (2000 was a leap year; 1900 and 2100 are not). If you were born on February 29, this calculator counts your birthday as March 1 in common years, the moment you have fully completed the year. Some jurisdictions use February 28 instead, which shifts the result by one day.
 
 ### Why do different age calculators give slightly different answers?
 
-Because "a month" is ambiguous when the start day doesn't exist in the target month - is January 31 plus one month February 28 or March 1? Different tools pick different conventions for these edge cases, so the days figure can differ by a day or two. This calculator uses the most common convention: a month anniversary that overshoots is clamped to the last day of the month.
+Because "a month" is ambiguous when the start day doesn't exist in the target month. Is January 31 plus one month February 28 or March 1? Different tools pick different conventions for these edge cases, so the days figure can differ by a day or two. This calculator uses the most common convention: a month anniversary that overshoots is clamped to the last day of the month.
 
 ### What day of the week was I born?
 
@@ -40,7 +40,7 @@ Enter your date of birth above and the result shows your birth weekday instantly
 
 ### How many days until my birthday?
 
-The result panel includes a live countdown: the date of your next birthday, which weekday it falls on, how many days remain, and the age you will turn. If today is your birthday, it says so - happy birthday!
+The result panel includes a live countdown: the date of your next birthday, which weekday it falls on, how many days remain, and the age you will turn. If today is your birthday, it says so.
 
 ### How many days old am I?
 
@@ -48,7 +48,7 @@ Enter your birth date and the calculator shows your exact total of days lived (a
 
 ### Is my birth date uploaded or stored anywhere?
 
-No. All calculations run in JavaScript in your browser - your date of birth is never transmitted, logged, or stored. This page makes no network requests at all after loading.
+No. All calculations run in JavaScript in your browser. Your date of birth is never transmitted, logged, or stored. This page makes no network requests at all after loading.
 
 ### Does the age calculator work offline?
 
@@ -58,4 +58,4 @@ Yes. The entire tool is one self-contained page with no server calls, so once it
 
 - [Timer](https://timer.wbest.app/): Countdown timer and stopwatch with presets, laps, and an alarm.
 - [Time Zone Converter](https://timezoneconverter.wbest.app/): Compare times across cities with a meeting planner and automatic daylight saving.
-- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.

@@ -2,7 +2,7 @@
 
 > Free online countdown timer and stopwatch. One-click presets (including the 25-minute pomodoro), laps, alarm sound generated on-device, remaining time in the tab title, optional browser notification, fullscreen mode, and keyboard shortcuts. No ads, no sign-up, works offline.
 
-Use it at https://timer.wbest.app/ - it is a single page, and the tool is the page.
+Use it at https://timer.wbest.app/. It is a single page, and the tool is the page.
 
 - Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
 - Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
@@ -13,7 +13,7 @@ Use it at https://timer.wbest.app/ - it is a single page, and the tool is the pa
 
 - Countdown timer with 1/5/10/15/25/60 minute presets
 - Stopwatch with laps and best/slowest lap highlighting
-- Alarm sound generated with the Web Audio API - no audio files
+- Alarm sound generated with the Web Audio API, no audio files
 - Remaining time shown in the browser tab title
 - Optional browser notification when time is up
 - Fullscreen mode
@@ -25,27 +25,27 @@ Use it at https://timer.wbest.app/ - it is a single page, and the tool is the pa
 
 ### Does the timer keep working in a background tab?
 
-Yes. The timer stores the exact end time and compares it against the clock, so switching tabs never makes it drift - and the remaining time stays visible in the tab title. Browsers do slow down hidden tabs to save power, so in extreme cases the alarm can ring a moment late, but the countdown itself is always exact when you return.
+Yes. The timer stores the exact end time and compares it against the clock, so switching tabs never makes it drift, and the remaining time stays visible in the tab title. Browsers do slow down hidden tabs to save power, so in extreme cases the alarm can ring a moment late, but the countdown itself is always exact when you return.
 
 ### Why don't I hear the alarm sound?
 
-Browsers only allow sound after you have interacted with the page - pressing Start counts, so normally you are fine. If it is still silent: check the Sound toggle here, your system volume, and your browser's per-site sound permissions (some browsers mute sites by default). Use the Test button next to the Sound toggle to check in one click.
+Browsers only allow sound after you have interacted with the page. Pressing Start counts, so normally you are fine. If it is still silent: check the Sound toggle here, your system volume, and your browser's per-site sound permissions (some browsers mute sites by default). Use the Test button next to the Sound toggle to check in one click.
 
 ### How accurate is this online timer?
 
-Accurate to a few milliseconds. Instead of counting ticks - which drift when the browser is busy - it records the target end time and continuously compares it with your device's clock. A 25-minute timer ends 25 minutes later to within the blink of a frame.
+Accurate to a few milliseconds. Instead of counting ticks, which drift when the browser is busy, it records the target end time and continuously compares it with your device's clock. A 25-minute timer ends 25 minutes later to within the blink of a frame.
 
 ### What is the pomodoro technique?
 
-Work in focused 25-minute blocks separated by 5-minute breaks; after four blocks, take a longer 15-30 minute break. The fixed interval makes starting easier and gives procrastination a deadline. The 25-minute preset above is exactly this - start it and work until the alarm.
+Work in focused 25-minute blocks separated by 5-minute breaks; after four blocks, take a longer 15-30 minute break. The fixed interval makes starting easier and gives procrastination a deadline. The 25-minute preset above is exactly this: start it and work until the alarm.
 
 ### Can I use the timer in fullscreen?
 
-Yes - click the Fullscreen button (or press F) and the countdown fills the screen, readable from across a classroom or kitchen. Press Esc or F again to exit. It works for the stopwatch too.
+Yes. Click the Fullscreen button (or press F) and the countdown fills the screen, readable from across a classroom or kitchen. Press Esc or F again to exit. It works for the stopwatch too.
 
 ### Will the alarm ring if my phone is locked?
 
-Not reliably - mobile browsers pause web pages when the screen locks, and that limitation applies to every web-based timer. For anything critical on a phone (cooking, medication, catching a train), set the built-in clock app's alarm as a backup. On a computer, the timer keeps running and rings normally.
+Not reliably. Mobile browsers pause web pages when the screen locks, and that limitation applies to every web-based timer. For anything critical on a phone (cooking, medication, catching a train), set the built-in clock app's alarm as a backup. On a computer, the timer keeps running and rings normally.
 
 ### Does the timer send any data anywhere?
 
@@ -53,10 +53,10 @@ No. The page makes no network requests after loading, the alarm sound is synthes
 
 ### Does the timer work offline?
 
-Yes. The whole tool is one self-contained page, so once it has loaded it keeps working without a connection - timing, laps, alarm sound and all. Save the page to your device and it works forever.
+Yes. The whole tool is one self-contained page, so once it has loaded it keeps working without a connection: timing, laps, alarm sound and all. Save the page to your device and it works forever.
 
 ## More WB tools
 
 - [Age Calculator](https://agecalculator.wbest.app/): Exact age in years, months, and days, plus a countdown to your next birthday.
 - [Time Zone Converter](https://timezoneconverter.wbest.app/): Compare times across cities with a meeting planner and automatic daylight saving.
-- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.

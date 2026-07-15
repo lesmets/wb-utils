@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WBest Time Zone Converter - Compare Times Across Cities</title>
-<meta name="description" content="Convert a time between any time zones and compare cities side by side with a meeting planner strip. Daylight saving handled automatically. Free, instant, private.">
+<title>WBest Time Zone Converter: Compare Times Across Cities</title>
+<meta name="description" content="Convert a time between any time zones and compare cities side by side with a meeting planner. Daylight saving handled automatically. Free, instant, private.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://timezoneconverter.wbest.app/">
@@ -16,19 +16,19 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Time Zone Converter">
-<meta property="og:title" content="WBest Time Zone Converter - Compare Times Across Cities">
-<meta property="og:description" content="Convert a time between any time zones and compare cities side by side with a meeting planner strip. Daylight saving handled automatically. Free, instant, private.">
+<meta property="og:title" content="WBest Time Zone Converter: Compare Times Across Cities">
+<meta property="og:description" content="Convert a time between any time zones and compare cities side by side with a meeting planner. Daylight saving handled automatically. Free, instant, private.">
 <meta property="og:url" content="https://timezoneconverter.wbest.app/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WBest Time Zone Converter - Compare Times Across Cities">
-<meta name="twitter:description" content="Convert a time between any time zones and compare cities side by side with a meeting planner strip. Daylight saving handled automatically. Free, instant, private.">
+<meta name="twitter:title" content="WBest Time Zone Converter: Compare Times Across Cities">
+<meta name="twitter:description" content="Convert a time between any time zones and compare cities side by side with a meeting planner. Daylight saving handled automatically. Free, instant, private.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Time Zone Converter",
   "url": "https://timezoneconverter.wbest.app/",
-  "description": "Free online time zone converter and meeting planner. Pick a date and time in one zone and see it instantly in as many other zones as you like, with daylight saving handled automatically from your browser's own IANA time zone database. The hour strip shows every city's working hours at a glance so you can find a slot that suits everyone. Runs entirely in your browser - no tracking, works offline.",
+  "description": "Free online time zone converter and meeting planner. Pick a date and time in one zone and see it instantly in as many other zones as you like, with daylight saving handled automatically from your browser's own IANA time zone database. The hour strip shows every city's working hours at a glance so you can find a slot that suits everyone. Runs entirely in your browser. No tracking, works offline.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
@@ -57,7 +57,7 @@
       "name": "How do I convert a time between two time zones?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Set the date and time in the top card and choose which zone that time belongs to. Every city in the list below immediately shows the matching local time for that same instant, along with its UTC offset and how many hours ahead or behind it is. Add as many cities as you need - they are all converted at once, not just a pair."
+        "text": "Set the date and time in the top card and choose which zone that time belongs to. Every city in the list below immediately shows the matching local time for that same instant, along with its UTC offset and how many hours ahead or behind it is. Add as many cities as you need. They are all converted at once, not just a pair."
       }
     },
     {
@@ -65,7 +65,7 @@
       "name": "Does this handle daylight saving time?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, automatically. Conversions use your browser's built-in IANA time zone database, so each zone's offset is calculated for the specific date you picked rather than assumed. That matters most in the weeks when two countries disagree. London is normally 5 hours ahead of New York, in both winter and summer - but for about three weeks each March, after the US has moved its clocks forward and before the UK moves its own, the gap is only 4 hours. Pick a date in mid-March and you can watch it change."
+        "text": "Yes, automatically. Conversions use your browser's built-in IANA time zone database, so each zone's offset is calculated for the specific date you picked rather than assumed. That matters most in the weeks when two countries disagree. London is normally 5 hours ahead of New York, in both winter and summer, but for about three weeks each March, after the US has moved its clocks forward and before the UK moves its own, the gap is only 4 hours. Pick a date in mid-March and you can watch it change."
       }
     },
     {
@@ -148,6 +148,7 @@ h3{font-size:1.05rem;margin:22px 0 6px}
 p{margin:0 0 12px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
 .muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
 .lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
@@ -275,8 +276,8 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 
 <header class="wrap">
   <h1>WBest Time Zone Converter</h1>
-  <p class="tagline">Convert a time across as many cities as you like, and see everyone's working hours at a glance. Daylight saving handled for you.</p>
-  <span class="badge">🔒 100% private - converted in your browser, never uploaded</span>
+  <p class="tagline">Convert a time across as many cities as you like and see everyone's working hours at a glance, with daylight saving handled for you. Free and 100% private.</p>
+  <span class="badge">🔒 100% private, converted in your browser, never uploaded</span>
   <nav class="toc" aria-label="On this page">
     <a href="#tool">Converter</a>
     <a href="#planner">Meeting planner</a>
@@ -311,7 +312,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 
       <div class="add">
         <label class="sr-only" for="add-zone">Add a city or time zone</label>
-        <input type="text" id="add-zone" list="zone-list" placeholder="Add a city - e.g. Asia/Singapore" autocomplete="off" spellcheck="false">
+        <input type="text" id="add-zone" list="zone-list" placeholder="Add a city, e.g. Asia/Singapore" autocomplete="off" spellcheck="false">
         <datalist id="zone-list"></datalist>
         <button type="button" id="add-btn">Add city</button>
       </div>
@@ -332,23 +333,24 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
     </div>
   </section>
 
+  <p class="cross-link">Working with epoch timestamps instead of wall-clock times? The <a href="https://timestampconverter.wbest.app/">Unix Timestamp Converter</a> handles that side, and once the meeting starts the <a href="https://timer.wbest.app/">Timer</a> keeps it to length.</p>
+
   <section class="props" aria-label="Why use this time zone converter">
-    <div class="card"><strong>Every city at once</strong><p>Not just a pair. Add as many zones as your team spans and convert them all in one shot, with day differences called out so nothing lands a day early.</p></div>
-    <div class="card"><strong>Daylight saving, correctly</strong><p>Offsets are looked up for the exact date you chose in your browser's IANA database - not assumed, and not stale for the weeks when countries disagree.</p></div>
-    <div class="card"><strong>Private and instant</strong><p>Your clock, your device, your data. Cities you add are stored only in your own browser, and the page keeps working offline.</p></div>
+    <div class="card"><strong>Every city at once</strong><p>Add as many zones as your team spans and convert them all in one shot, rather than a pair at a time, with day differences called out so nothing lands a day early.</p></div>
+    <div class="card"><strong>Daylight saving, correctly</strong><p>Offsets are looked up for the exact date you chose in your browser's IANA database. They are not assumed, and not stale for the weeks when countries disagree.</p></div>
+    <div class="card"><strong>Private and instant</strong><p>Conversions use your own device's clock and time-zone data. Cities you add are stored only in your own browser, and the page keeps working offline.</p></div>
   </section>
 
   <section id="how" class="prose">
     <h2>How time zone conversion actually works</h2>
-    <p>Every conversion here starts from one idea: a moment in time is a single instant, and a time zone is just a rule for what the clocks read at that instant. Convert a time and you are not changing when something happens - only how it is written down in each place.</p>
+    <p>Every conversion here starts from one idea: a moment in time is a single instant, and a time zone is just a rule for what the clocks read at that instant. Convert a time and you are not changing when something happens, only how it is written down in each place.</p>
     <h3>Offsets are not fixed</h3>
     <p>The most common mistake is treating a zone as a fixed number of hours from UTC. "New York is UTC-5" is only true for part of the year; from mid-March to early November it is UTC-4. Worse, countries switch on <em>different dates</em>, so for a couple of weeks each spring and autumn the usual gap between two cities is simply wrong. Between mid-March and late March, London and New York are 4 hours apart rather than the familiar 5.</p>
-    <p>This is why the converter asks for a <strong>date</strong> and not just a time. Each zone's offset is looked up for that specific instant using the IANA time zone database built into your browser - the same database that powers operating systems and servers worldwide.</p>
+    <p>This is why the converter asks for a <strong>date</strong> and not just a time. Each zone's offset is looked up for that specific instant using the IANA time zone database built into your browser, the same database that powers operating systems and servers worldwide.</p>
     <h3>Why cities, not abbreviations</h3>
     <p>Zones are named <code>America/New_York</code> rather than <code>EST</code> for good reason. Abbreviations are ambiguous and unofficial: <code>CST</code> means Central Standard Time in the US, China Standard Time, and Cuba Standard Time. <code>IST</code> covers India, Ireland, and Israel. A city name is unambiguous and carries that place's entire history of clock changes, so a date in 1990 converts as correctly as one next week.</p>
-    <h3>The gotcha hours</h3>
-    <p>When clocks spring forward, an hour never happens - 02:30 simply does not exist that day. When they fall back, an hour happens twice. This tool resolves such times the way your operating system does, so you always land on a real instant.</p>
-    <p>Working with epoch timestamps instead of wall-clock times? The <a href="https://timestampconverter.wbest.app/">Unix Timestamp Converter</a> handles that side. Counting the gap between two dates is the <a href="https://agecalculator.wbest.app/">Age Calculator</a>'s job.</p>
+    <h3>Missing and repeated hours</h3>
+    <p>When clocks spring forward, an hour never happens: 02:30 simply does not exist that day. When they fall back, an hour happens twice. This tool resolves such times the way your operating system does, so you always land on a real instant.</p>
   </section>
 
   <section id="zones" class="prose">
@@ -380,10 +382,10 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
     <h2>Frequently asked questions</h2>
 
     <h3>How do I convert a time between two time zones?</h3>
-    <p>Set the date and time in the top card and choose which zone that time belongs to. Every city in the list below immediately shows the matching local time for that same instant, along with its UTC offset and how many hours ahead or behind it is. Add as many cities as you need - they are all converted at once, not just a pair.</p>
+    <p>Set the date and time in the top card and choose which zone that time belongs to. Every city in the list below immediately shows the matching local time for that same instant, along with its UTC offset and how many hours ahead or behind it is. Add as many cities as you need. They are all converted at once, not just a pair.</p>
 
     <h3>Does this handle daylight saving time?</h3>
-    <p>Yes, automatically. Conversions use your browser's built-in IANA time zone database, so each zone's offset is calculated for the specific date you picked rather than assumed. That matters most in the weeks when two countries disagree. London is normally 5 hours ahead of New York, in both winter and summer - but for about three weeks each March, after the US has moved its clocks forward and before the UK moves its own, the gap is only 4 hours. Pick a date in mid-March and you can watch it change.</p>
+    <p>Yes, automatically. Conversions use your browser's built-in IANA time zone database, so each zone's offset is calculated for the specific date you picked rather than assumed. That matters most in the weeks when two countries disagree. London is normally 5 hours ahead of New York, in both winter and summer, but for about three weeks each March, after the US has moved its clocks forward and before the UK moves its own, the gap is only 4 hours. Pick a date in mid-March and you can watch it change.</p>
 
     <h3>What is the difference between UTC and GMT?</h3>
     <p>For everyday purposes they name the same moment. UTC (Coordinated Universal Time) is the modern standard, defined by atomic clocks and kept within a second of the Earth's rotation by occasional leap seconds. GMT (Greenwich Mean Time) is an older astronomical time scale that is now also a civil time zone used in the UK and parts of Africa. The practical difference: UTC never changes, whereas the UK's clocks move to BST (UTC+1) in summer, so London is not always GMT.</p>

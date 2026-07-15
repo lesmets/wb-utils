@@ -1,8 +1,8 @@
 # WBest Random Number Generator
 
-> Free random number generator using the browser's cryptographically secure randomness. Generate numbers in any range with optional uniqueness and sorting, roll dice, flip coins, and pick random items from a list. Runs entirely in your browser - no tracking, works offline.
+> Free random number generator using the browser's cryptographically secure randomness. Generate numbers in any range with optional uniqueness and sorting, roll dice, flip coins, and pick random items from a list. Runs entirely in your browser. No tracking, works offline.
 
-Use it at https://randomnumbergenerator.wbest.app/ - it is a single page, and the tool is the page.
+Use it at https://randomnumbergenerator.wbest.app/. It is a single page, and the tool is the page.
 
 - Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
 - Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
@@ -26,7 +26,7 @@ The generator uses crypto.getRandomValues(), your browser's cryptographically se
 
 ### Can I generate numbers with no repeats?
 
-Yes. Turn on 'unique' and every number in a batch will be different - useful for lottery-style draws or picking distinct winners. Uniqueness requires the range to contain at least as many values as the count you ask for; otherwise there are not enough distinct numbers to fill it.
+Yes. Turn on 'unique' and every number in a batch will be different, which suits lottery-style draws or picking distinct winners. Uniqueness requires the range to contain at least as many values as the count you ask for; otherwise there are not enough distinct numbers to fill it.
 
 ### Is the range inclusive of both the minimum and maximum?
 
@@ -34,7 +34,7 @@ Yes. Both endpoints are included, so a range of 1 to 6 can return 1, 6, and ever
 
 ### Can it flip a coin or roll dice?
 
-Yes. The Dice mode rolls one or more dice with any number of sides and totals them, and the Coin mode flips one or more coins and tallies heads and tails - all using the same secure randomness as the number generator.
+Yes. The Dice mode rolls one or more dice with any number of sides and totals them, and the Coin mode flips one or more coins and tallies heads and tails, all using the same secure randomness as the number generator.
 
 ### How does the random list picker work?
 
@@ -47,6 +47,6 @@ No. All randomness and every result is generated in your browser. Your ranges an
 ## More WB tools
 
 - [Password Generator](https://passwordgenerator.wbest.app/): Strong random passwords, passphrases, and PINs with time-to-crack estimates.
-- [QR Code Generator](https://qrcode.wbest.app/): QR codes for links, Wi-Fi, vCards, and more - no watermark, never expire.
+- [QR Code Generator](https://qrcode.wbest.app/): QR codes for links, Wi-Fi, vCards, and more. No watermark, never expire.
 - [Barcode Generator](https://barcodegenerator.wbest.app/): Code 128 and EAN-13 barcodes with check digits, as PNG or print-ready SVG.
-- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.

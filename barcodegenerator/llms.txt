@@ -1,8 +1,8 @@
 # WBest Barcode Generator
 
-> Free online barcode generator for Code 128 and EAN-13. Type your data, get a scannable barcode instantly, and download it as a PNG or a print-ready vector SVG. Check digits are calculated and verified for you, there are no watermarks, and nothing ever expires. Runs entirely in your browser - no tracking, works offline.
+> Free online barcode generator for Code 128 and EAN-13. Type your data, get a scannable barcode instantly, and download it as a PNG or a print-ready vector SVG. Check digits are calculated and verified for you, there are no watermarks, and nothing ever expires. Runs entirely in your browser. No tracking, works offline.
 
-Use it at https://barcodegenerator.wbest.app/ - it is a single page, and the tool is the page.
+Use it at https://barcodegenerator.wbest.app/. It is a single page, and the tool is the page.
 
 - Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
 - Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
@@ -22,7 +22,7 @@ Use it at https://barcodegenerator.wbest.app/ - it is a single page, and the too
 
 ### Which barcode type should I use?
 
-Use Code 128 for internal purposes - inventory labels, asset tags, shipping references, warehouse locations - because it encodes letters, digits, and punctuation in a compact symbol. Use EAN-13 only for retail products that will be scanned at a checkout, since it encodes exactly 13 digits and those digits must come from a GS1-issued company prefix.
+Use Code 128 for internal purposes such as inventory labels, asset tags, shipping references, and warehouse locations, because it encodes letters, digits, and punctuation in a compact symbol. Use EAN-13 only for retail products that will be scanned at a checkout, since it encodes exactly 13 digits and those digits must come from a GS1-issued company prefix.
 
 ### What is a barcode check digit?
 
@@ -30,15 +30,15 @@ A check digit is a final digit calculated from all the preceding digits. The sca
 
 ### Can I use these barcodes on products I sell in shops?
 
-Only if the number is yours to use. Retail EAN-13 numbers are built on a company prefix issued by GS1, the organization that administers them globally. This tool renders any valid 13-digit number correctly, but it cannot assign you a number - inventing one risks colliding with another company's product. For barcodes used only inside your own business, no registration is needed and Code 128 is usually the better choice.
+Only if the number is yours to use. Retail EAN-13 numbers are built on a company prefix issued by GS1, the organization that administers them globally. This tool renders any valid 13-digit number correctly, but it cannot assign you a number, and inventing one risks colliding with another company's product. For barcodes used only inside your own business, no registration is needed and Code 128 is usually the better choice.
 
 ### Should I download PNG or SVG?
 
-Choose SVG for anything printed. It is a vector, so it stays perfectly sharp at any size and the bar edges land exactly where the geometry says - which is what scanners need. Choose PNG for screens, email, or tools that cannot place an SVG. If you print a PNG, generate it at a large bar width so the bars do not blur.
+Choose SVG for anything printed. It is a vector, so it stays perfectly sharp at any size and the bar edges land exactly where the geometry says, which is what scanners need. Choose PNG for screens, email, or tools that cannot place an SVG. If you print a PNG, generate it at a large bar width so the bars do not blur.
 
 ### Why will my printed barcode not scan?
 
-The three usual causes are size, contrast, and quiet zone. Printing too small makes narrow bars blur together - increase the bar width and print at full resolution. Low contrast breaks it too: keep bars dark on a plain light background, and never print on a busy image. Finally, leave the empty margin either side of the symbol intact - that quiet zone is included in every download here, and cropping it off is the most common reason a barcode stops scanning.
+The three usual causes are size, contrast, and quiet zone. Printing too small makes narrow bars blur together, so increase the bar width and print at full resolution. Low contrast breaks it too: keep bars dark on a plain light background, and never print on a busy image. Finally, leave the empty margin either side of the symbol intact. That quiet zone is included in every download here, and cropping it off is the most common reason a barcode stops scanning.
 
 ### Is my barcode data sent anywhere?
 
@@ -47,6 +47,6 @@ No. The barcode is encoded and drawn in your browser with JavaScript, so your pr
 ## More WB tools
 
 - [Password Generator](https://passwordgenerator.wbest.app/): Strong random passwords, passphrases, and PINs with time-to-crack estimates.
-- [QR Code Generator](https://qrcode.wbest.app/): QR codes for links, Wi-Fi, vCards, and more - no watermark, never expire.
+- [QR Code Generator](https://qrcode.wbest.app/): QR codes for links, Wi-Fi, vCards, and more. No watermark, never expire.
 - [Random Number Generator](https://randomnumbergenerator.wbest.app/): Secure random numbers, dice, coin flips, and pick-from-a-list draws.
-- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.

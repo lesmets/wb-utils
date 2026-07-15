@@ -1,8 +1,8 @@
 # WBest JSON Formatter
 
-> Free JSON formatter, validator, and viewer. Pretty-print with your chosen indentation, minify, validate with exact line and column error messages and a caret pointing at the problem, browse a collapsible tree view, sort keys alphabetically, and convert JSON to and from escaped strings. Handles multi-megabyte files. Runs entirely in your browser - API payloads and secrets never leave your device.
+> Free JSON formatter, validator, and viewer. Pretty-print with your chosen indentation, minify, validate with exact line and column error messages and a caret pointing at the problem, browse a collapsible tree view, sort keys alphabetically, and convert JSON to and from escaped strings. Handles multi-megabyte files. Runs entirely in your browser. API payloads and secrets never leave your device.
 
-Use it at https://jsonformatter.wbest.app/ - it is a single page, and the tool is the page.
+Use it at https://jsonformatter.wbest.app/. It is a single page, and the tool is the page.
 
 - Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
 - Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
@@ -25,35 +25,35 @@ Use it at https://jsonformatter.wbest.app/ - it is a single page, and the tool i
 
 ### Is it safe to paste API responses or data with secrets here?
 
-Yes - and that is the point of this tool. Everything runs in JavaScript in your browser: nothing you paste is uploaded, logged, or stored, and the page makes no network requests after loading. Most online JSON tools send your payload to their server; with tokens, keys, and customer data in developer clipboards all day, local-only processing is the only responsible design.
+Yes, and that is the point of this tool. Everything runs in JavaScript in your browser: nothing you paste is uploaded, logged, or stored, and the page makes no network requests after loading. Most online JSON tools send your payload to their server; with tokens, keys, and customer data in developer clipboards all day, local-only processing is the only responsible design.
 
 ### How do I fix "Unexpected token" JSON errors?
 
-Paste the JSON here and validate - instead of a cryptic token message you get the exact line and column plus a plain-language cause. The usual suspects: a trailing comma after the last item, single quotes instead of double quotes, an unquoted key, comments (JSON does not allow them), or a missing comma between items.
+Paste the JSON here and validate. Instead of a cryptic token message you get the exact line and column plus a plain-language cause. The usual suspects: a trailing comma after the last item, single quotes instead of double quotes, an unquoted key, comments (JSON does not allow them), or a missing comma between items.
 
 ### Does JSON allow comments or trailing commas?
 
-No. Standard JSON (RFC 8259) allows neither comments nor trailing commas - both are the most common reasons hand-edited JSON fails to parse. Some tools accept relaxed supersets like JSONC (VS Code configs) or JSON5, but anything you send to an API or parse with a standard library must be strict JSON.
+No. Standard JSON (RFC 8259) allows neither comments nor trailing commas, and both are the most common reasons hand-edited JSON fails to parse. Some tools accept relaxed supersets like JSONC (VS Code configs) or JSON5, but anything you send to an API or parse with a standard library must be strict JSON.
 
 ### How large a JSON file can this handle?
 
-Multi-megabyte files are fine - parsing and formatting use the browser's native engine, which handles tens of MB in well under a second on a modern machine. For very large files the tree view renders containers in chunks of 500 children so the page stays responsive. The practical ceiling is your device's memory.
+Multi-megabyte files are fine. Parsing and formatting use the browser's native engine, which handles tens of MB in well under a second on a modern machine. For very large files the tree view renders containers in chunks of 500 children so the page stays responsive. The practical ceiling is your device's memory.
 
 ### What is the difference between formatting and minifying?
 
-Formatting (pretty-printing) adds line breaks and indentation so humans can read the structure; minifying removes every unnecessary character so machines can transmit it - typically 20-40% smaller than formatted JSON. The data is identical either way. Format while developing and debugging; minify for payloads, configs in tight places, and storage.
+Formatting (pretty-printing) adds line breaks and indentation so humans can read the structure; minifying removes every unnecessary character so machines can transmit it, typically 20-40% smaller than formatted JSON. The data is identical either way. Format while developing and debugging; minify for payloads, configs in tight places, and storage.
 
 ### How do I convert JSON to an escaped string and back?
 
-Use the Escape button to turn the input into a double-quoted string literal with every quote, backslash, and newline escaped - ready to embed inside another JSON document or a source file. Unescape does the reverse: paste a quoted string literal and get the original text back.
+Use the Escape button to turn the input into a double-quoted string literal with every quote, backslash, and newline escaped, ready to embed inside another JSON document or a source file. Unescape does the reverse: paste a quoted string literal and get the original text back.
 
 ### Why did my keys change order?
 
-Only if "Sort keys" is enabled - it rewrites every object with keys in alphabetical order, which makes large payloads diff-able and easy to scan. With it off, key order is preserved exactly as pasted. Note that JSON itself guarantees no key order, so no correct consumer should depend on it either way.
+Only if "Sort keys" is enabled. It rewrites every object with keys in alphabetical order, which makes large payloads diff-able and easy to scan. With it off, key order is preserved exactly as pasted. Note that JSON itself guarantees no key order, so no correct consumer should depend on it either way.
 
 ### Does the JSON formatter work offline?
 
-Yes. The entire tool is one self-contained page - once loaded, formatting, validation, and the tree view all work with no connection. Save the page locally and it works forever, which also makes it safe for air-gapped environments.
+Yes. The entire tool is one self-contained page. Once loaded, formatting, validation, and the tree view all work with no connection. Save the page locally and it works forever, which also makes it safe for air-gapped environments.
 
 ## More WB tools
 
@@ -61,4 +61,4 @@ Yes. The entire tool is one self-contained page - once loaded, formatting, valid
 - [Unix Timestamp Converter](https://timestampconverter.wbest.app/): Convert epoch timestamps to dates and back, in UTC and your local time zone.
 - [Regex Tester](https://regextester.wbest.app/): Test regular expressions live with match highlighting, groups, and replace.
 - [Base64 Encoder & Decoder](https://base64.wbest.app/): Encode and decode Base64 with correct UTF-8, URL-safe output, and files.
-- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.

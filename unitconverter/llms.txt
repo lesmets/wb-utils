@@ -1,8 +1,8 @@
 # WBest Unit Converter
 
-> Free unit converter for length, weight and mass, temperature, area, volume, speed, time, digital data, pressure, and energy. Converts both directions as you type, shows the conversion formula with every result, and runs entirely in your browser - no server, no tracking, works offline.
+> Free unit converter for length, weight and mass, temperature, area, volume, speed, time, digital data, pressure, and energy. Converts both directions as you type, shows the conversion formula with every result, and runs entirely in your browser. No server, no tracking, works offline.
 
-Use it at https://unitconverter.wbest.app/ - it is a single page, and the tool is the page.
+Use it at https://unitconverter.wbest.app/. It is a single page, and the tool is the page.
 
 - Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
 - Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
@@ -35,24 +35,24 @@ One pound is defined as exactly 0.45359237 kilograms, so a kilogram is about 2.2
 
 ### Why is there no currency converter?
 
-Deliberately. Exchange rates change by the minute and would require fetching live data from a server - and this tool's promise is that it makes no network requests at all and works fully offline. Physical units never change, so every conversion here is exact and permanent.
+Deliberately. Exchange rates change by the minute and would require fetching live data from a server, and this tool's promise is that it makes no network requests at all and works fully offline. Physical units never change, so every conversion here is exact and permanent.
 
 ### What is the difference between US and imperial gallons?
 
-A US gallon is 3.785 liters; an imperial (UK) gallon is 4.546 liters - about 20% bigger. The same split affects pints, quarts, and fluid ounces. This converter labels US and imperial units separately so recipes and fuel economy figures don't get silently mistranslated.
+A US gallon is 3.785 liters; an imperial (UK) gallon is 4.546 liters, about 20% bigger. The same split affects pints, quarts, and fluid ounces. This converter labels US and imperial units separately so recipes and fuel economy figures don't get silently mistranslated.
 
 ### What is the difference between a kilobyte (kB) and a kibibyte (KiB)?
 
-A kilobyte is 1,000 bytes (decimal, used by drive manufacturers and networking); a kibibyte is 1,024 bytes (binary, used by operating systems for memory). The gap compounds: a terabyte is 10^12 bytes but a tebibyte is about 10% more. It is why a "1 TB" drive shows up as roughly 931 "GB" in Windows - Windows is actually displaying gibibytes.
+A kilobyte is 1,000 bytes (decimal, used by drive manufacturers and networking); a kibibyte is 1,024 bytes (binary, used by operating systems for memory). The gap compounds: a terabyte is 10^12 bytes but a tebibyte is about 10% more. It is why a "1 TB" drive shows up as roughly 931 "GB" in Windows, because Windows is actually displaying gibibytes.
 
 ### How accurate are the conversions?
 
-Exact, up to floating-point precision (about 15 significant digits). Every factor uses the exact international definition - the inch is exactly 25.4 mm, the pound exactly 0.45359237 kg, the standard atmosphere exactly 101,325 Pa. The only approximations are inherently average units, like the month and year, which are marked as such.
+Exact, up to floating-point precision (about 15 significant digits). Every factor uses the exact international definition: the inch is exactly 25.4 mm, the pound exactly 0.45359237 kg, the standard atmosphere exactly 101,325 Pa. The only approximations are inherently average units, like the month and year, which are marked as such.
 
 ### Does the unit converter work offline?
 
-Yes. All conversion tables are built into the page and the math runs in your browser, so once loaded it works with no connection - nothing you type is ever sent anywhere. Save the page to your device and it works forever.
+Yes. All conversion tables are built into the page and the math runs in your browser, so once loaded it works with no connection, and nothing you type is ever sent anywhere. Save the page to your device and it works forever.
 
 ## More WB tools
 
-- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.

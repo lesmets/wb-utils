@@ -1,8 +1,8 @@
 # WBest Base64 Encoder & Decoder
 
-> Free online Base64 encoder and decoder. Convert text or whole files to Base64 and back, with correct UTF-8 handling, the URL-safe alphabet, optional line wrapping, and data URL output. Decoding tells you when the result is binary rather than text, and offers it as a download. Runs entirely in your browser - your tokens, keys, and payloads are never uploaded.
+> Free online Base64 encoder and decoder. Convert text or whole files to Base64 and back, with correct UTF-8 handling, the URL-safe alphabet, optional line wrapping, and data URL output. Decoding tells you when the result is binary rather than text, and offers it as a download. Runs entirely in your browser. Your tokens, keys, and payloads are never uploaded.
 
-Use it at https://base64.wbest.app/ - it is a single page, and the tool is the page.
+Use it at https://base64.wbest.app/. It is a single page, and the tool is the page.
 
 - Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
 - Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
@@ -22,11 +22,11 @@ Use it at https://base64.wbest.app/ - it is a single page, and the tool is the p
 
 ### What is Base64 encoding?
 
-Base64 is a way of writing binary data using only 64 plain text characters: A-Z, a-z, 0-9, plus and slash. It exists because many systems - email, URLs, JSON, XML - were built for text and will corrupt or reject raw bytes. Base64 takes three bytes at a time and rewrites them as four printable characters, so the data survives any channel that can carry text.
+Base64 is a way of writing binary data using only 64 plain text characters: A-Z, a-z, 0-9, plus and slash. It exists because many systems (email, URLs, JSON, XML) were built for text and will corrupt or reject raw bytes. Base64 takes three bytes at a time and rewrites them as four printable characters, so the data survives any channel that can carry text.
 
 ### Is Base64 encryption? Is it secure?
 
-No. Base64 is not encryption and offers no security whatsoever. There is no key and no secret - anyone can decode it instantly, which is exactly what this page does. It only makes data look scrambled to a human eye. Never use Base64 to hide a password, an API key, or personal data. If you need secrecy, encrypt the data; Base64 only makes an already-encrypted blob safe to transport as text.
+No. Base64 is not encryption and offers no security whatsoever. There is no key and no secret. Anyone can decode it instantly, which is exactly what this page does. It only makes data look scrambled to a human eye. Never use Base64 to hide a password, an API key, or personal data. If you need secrecy, encrypt the data; Base64 only makes an already-encrypted blob safe to transport as text.
 
 ### Why does Base64 make my data bigger?
 
@@ -38,7 +38,7 @@ Standard Base64 uses plus and slash, which both have special meanings in a URL a
 
 ### Why does my decoded text show strange characters?
 
-Usually because the tool that encoded it mishandled UTF-8. Base64 works on bytes, not characters, so text must first be turned into bytes - and the browser's own btoa function only accepts Latin-1, so many tools silently corrupt anything beyond plain ASCII. This page encodes through UTF-8 properly, so emoji, accents, Greek, Arabic, and CJK all round-trip exactly. If a decode here produces something odd, the original encoder was probably at fault.
+Usually because the tool that encoded it mishandled UTF-8. Base64 works on bytes, not characters, so text must first be turned into bytes, and the browser's own btoa function only accepts Latin-1, so many tools silently corrupt anything beyond plain ASCII. This page encodes through UTF-8 properly, so emoji, accents, Greek, Arabic, and CJK all round-trip exactly. If a decode here produces something odd, the original encoder was probably at fault.
 
 ### Is my data uploaded when I encode or decode it?
 
@@ -50,4 +50,4 @@ No. Everything is encoded and decoded in your browser with JavaScript, including
 - [Hash Generator](https://hashgenerator.wbest.app/): MD5, SHA-1, and SHA-256/512 for text or files, hashed locally and never uploaded.
 - [Unix Timestamp Converter](https://timestampconverter.wbest.app/): Convert epoch timestamps to dates and back, in UTC and your local time zone.
 - [Regex Tester](https://regextester.wbest.app/): Test regular expressions live with match highlighting, groups, and replace.
-- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.

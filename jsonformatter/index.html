@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WBest JSON Formatter - Format, Validate &amp; View JSON</title>
+<title>WBest JSON Formatter: Format, Validate &amp; View JSON</title>
 <meta name="description" content="Format, validate, and explore JSON with exact error locations, tree view, and minify. Handles multi-MB files 100% in your browser.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
@@ -16,11 +16,11 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="JSON Formatter">
-<meta property="og:title" content="WBest JSON Formatter - Format, Validate &amp; View JSON">
+<meta property="og:title" content="WBest JSON Formatter: Format, Validate &amp; View JSON">
 <meta property="og:description" content="Format, validate, and explore JSON with exact error locations, tree view, and minify. Handles multi-MB files 100% in your browser.">
 <meta property="og:url" content="https://jsonformatter.wbest.app/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WBest JSON Formatter - Format, Validate &amp; View JSON">
+<meta name="twitter:title" content="WBest JSON Formatter: Format, Validate &amp; View JSON">
 <meta name="twitter:description" content="Format, validate, and explore JSON with exact error locations, tree view, and minify. Handles multi-MB files 100% in your browser.">
 <script type="application/ld+json">
 {
@@ -28,7 +28,7 @@
   "@type": "WebApplication",
   "name": "JSON Formatter",
   "url": "https://jsonformatter.wbest.app/",
-  "description": "Free JSON formatter, validator, and viewer. Pretty-print with your chosen indentation, minify, validate with exact line and column error messages and a caret pointing at the problem, browse a collapsible tree view, sort keys alphabetically, and convert JSON to and from escaped strings. Handles multi-megabyte files. Runs entirely in your browser - API payloads and secrets never leave your device.",
+  "description": "Free JSON formatter, validator, and viewer. Pretty-print with your chosen indentation, minify, validate with exact line and column error messages and a caret pointing at the problem, browse a collapsible tree view, sort keys alphabetically, and convert JSON to and from escaped strings. Handles multi-megabyte files. Runs entirely in your browser. API payloads and secrets never leave your device.",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
@@ -60,7 +60,7 @@
       "name": "Is it safe to paste API responses or data with secrets here?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes - and that is the point of this tool. Everything runs in JavaScript in your browser: nothing you paste is uploaded, logged, or stored, and the page makes no network requests after loading. Most online JSON tools send your payload to their server; with tokens, keys, and customer data in developer clipboards all day, local-only processing is the only responsible design."
+        "text": "Yes, and that is the point of this tool. Everything runs in JavaScript in your browser: nothing you paste is uploaded, logged, or stored, and the page makes no network requests after loading. Most online JSON tools send your payload to their server; with tokens, keys, and customer data in developer clipboards all day, local-only processing is the only responsible design."
       }
     },
     {
@@ -68,7 +68,7 @@
       "name": "How do I fix \"Unexpected token\" JSON errors?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Paste the JSON here and validate - instead of a cryptic token message you get the exact line and column plus a plain-language cause. The usual suspects: a trailing comma after the last item, single quotes instead of double quotes, an unquoted key, comments (JSON does not allow them), or a missing comma between items."
+        "text": "Paste the JSON here and validate. Instead of a cryptic token message you get the exact line and column plus a plain-language cause. The usual suspects: a trailing comma after the last item, single quotes instead of double quotes, an unquoted key, comments (JSON does not allow them), or a missing comma between items."
       }
     },
     {
@@ -76,7 +76,7 @@
       "name": "Does JSON allow comments or trailing commas?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Standard JSON (RFC 8259) allows neither comments nor trailing commas - both are the most common reasons hand-edited JSON fails to parse. Some tools accept relaxed supersets like JSONC (VS Code configs) or JSON5, but anything you send to an API or parse with a standard library must be strict JSON."
+        "text": "No. Standard JSON (RFC 8259) allows neither comments nor trailing commas, and both are the most common reasons hand-edited JSON fails to parse. Some tools accept relaxed supersets like JSONC (VS Code configs) or JSON5, but anything you send to an API or parse with a standard library must be strict JSON."
       }
     },
     {
@@ -84,7 +84,7 @@
       "name": "How large a JSON file can this handle?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Multi-megabyte files are fine - parsing and formatting use the browser's native engine, which handles tens of MB in well under a second on a modern machine. For very large files the tree view renders containers in chunks of 500 children so the page stays responsive. The practical ceiling is your device's memory."
+        "text": "Multi-megabyte files are fine. Parsing and formatting use the browser's native engine, which handles tens of MB in well under a second on a modern machine. For very large files the tree view renders containers in chunks of 500 children so the page stays responsive. The practical ceiling is your device's memory."
       }
     },
     {
@@ -92,7 +92,7 @@
       "name": "What is the difference between formatting and minifying?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Formatting (pretty-printing) adds line breaks and indentation so humans can read the structure; minifying removes every unnecessary character so machines can transmit it - typically 20-40% smaller than formatted JSON. The data is identical either way. Format while developing and debugging; minify for payloads, configs in tight places, and storage."
+        "text": "Formatting (pretty-printing) adds line breaks and indentation so humans can read the structure; minifying removes every unnecessary character so machines can transmit it, typically 20-40% smaller than formatted JSON. The data is identical either way. Format while developing and debugging; minify for payloads, configs in tight places, and storage."
       }
     },
     {
@@ -100,7 +100,7 @@
       "name": "How do I convert JSON to an escaped string and back?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Use the Escape button to turn the input into a double-quoted string literal with every quote, backslash, and newline escaped - ready to embed inside another JSON document or a source file. Unescape does the reverse: paste a quoted string literal and get the original text back."
+        "text": "Use the Escape button to turn the input into a double-quoted string literal with every quote, backslash, and newline escaped, ready to embed inside another JSON document or a source file. Unescape does the reverse: paste a quoted string literal and get the original text back."
       }
     },
     {
@@ -108,7 +108,7 @@
       "name": "Why did my keys change order?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Only if \"Sort keys\" is enabled - it rewrites every object with keys in alphabetical order, which makes large payloads diff-able and easy to scan. With it off, key order is preserved exactly as pasted. Note that JSON itself guarantees no key order, so no correct consumer should depend on it either way."
+        "text": "Only if \"Sort keys\" is enabled. It rewrites every object with keys in alphabetical order, which makes large payloads diff-able and easy to scan. With it off, key order is preserved exactly as pasted. Note that JSON itself guarantees no key order, so no correct consumer should depend on it either way."
       }
     },
     {
@@ -116,7 +116,7 @@
       "name": "Does the JSON formatter work offline?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The entire tool is one self-contained page - once loaded, formatting, validation, and the tree view all work with no connection. Save the page locally and it works forever, which also makes it safe for air-gapped environments."
+        "text": "Yes. The entire tool is one self-contained page. Once loaded, formatting, validation, and the tree view all work with no connection. Save the page locally and it works forever, which also makes it safe for air-gapped environments."
       }
     }
   ]
@@ -167,6 +167,7 @@ h3{font-size:1.05rem;margin:22px 0 6px}
 p{margin:0 0 12px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
 .muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
 .lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
@@ -292,7 +293,7 @@ pre.example{
 <header class="wrap">
   <h1>WBest JSON Formatter</h1>
   <p class="tagline">Format, validate, and explore JSON with exact error locations, tree view, and minify. Handles multi-MB files 100% in your browser.</p>
-  <span class="badge">🔒 100% private - API payloads and secrets are processed on your device only</span>
+  <span class="badge">🔒 100% private, API payloads and secrets are processed on your device only</span>
   <nav class="toc" aria-label="On this page">
     <a href="#tool">Formatter</a>
     <a href="#errors">Common errors</a>
@@ -335,7 +336,7 @@ pre.example{
         </div>
         <label class="sr-only" for="input">JSON input</label>
         <textarea id="input" spellcheck="false" autocapitalize="off" autocomplete="off"
-          placeholder='Paste JSON here, drop a file, or press Sample - then Format (Ctrl/Cmd+Enter).&#10;&#10;Nothing you paste leaves this page.'></textarea>
+          placeholder='Paste JSON here, drop a file, or press Sample, then Format (Ctrl/Cmd+Enter).&#10;&#10;Nothing you paste leaves this page.'></textarea>
       </div>
 
       <div class="card">
@@ -355,10 +356,12 @@ pre.example{
     <p class="sr-only" id="live" role="status" aria-live="polite"></p>
   </section>
 
+  <p class="cross-link">Working on what the payload contains rather than how it reads? The <a href="https://regextester.wbest.app/">Regex Tester</a> helps you write a pattern against it, and the <a href="https://base64.wbest.app/">Base64 Encoder &amp; Decoder</a> unpacks a JWT's segments back into JSON.</p>
+
   <section class="props" aria-label="Why use this JSON formatter">
-    <div class="card"><strong>Errors you can find</strong><p>Not "Unexpected token at position 4193" - you get the line, the column, a caret pointing at the exact spot, and a plain-language cause like "trailing comma before }".</p></div>
-    <div class="card"><strong>Private by design</strong><p>Developers paste API responses, tokens, and customer data into JSON tools every day. Here nothing is uploaded - ever. No requests, no analytics, no storage.</p></div>
-    <div class="card"><strong>Free, forever</strong><p>No pro tier, no size limit games, no ads between you and your data. Multi-MB files are fine, and it works offline.</p></div>
+    <div class="card"><strong>Errors you can find</strong><p>Instead of "Unexpected token at position 4193" you get the line, the column, a caret pointing at the exact spot, and a plain-language cause like "trailing comma before }".</p></div>
+    <div class="card"><strong>Private by design</strong><p>Developers paste API responses, tokens, and customer data into JSON tools every day. Here nothing is uploaded, ever. No requests, no analytics, no storage.</p></div>
+    <div class="card"><strong>Free, forever</strong><p>No pro tier, no size limits, no ads. Multi-MB files are fine, and it works offline.</p></div>
   </section>
 
   <section id="errors" class="prose">
@@ -366,13 +369,13 @@ pre.example{
     <p>Nearly every "invalid JSON" failure is one of these seven mistakes. The validator above names them for you and points at the exact spot:</p>
     <div class="table-wrap">
       <table>
-        <caption>JSON is defined by RFC 8259. All of these are legal in JavaScript - and illegal in JSON, which is why hand-edited files break.</caption>
+        <caption>JSON is defined by RFC 8259. All of these are legal in JavaScript and illegal in JSON, which is why hand-edited files break.</caption>
         <thead><tr><th scope="col">Mistake</th><th scope="col">Example</th><th scope="col">Fix</th></tr></thead>
         <tbody>
           <tr><td>Trailing comma</td><td><code>[1, 2, 3,]</code></td><td>Remove the comma after the last item</td></tr>
           <tr><td>Single quotes</td><td><code>{'name': 'Ada'}</code></td><td>Use double quotes: <code>{"name": "Ada"}</code></td></tr>
           <tr><td>Unquoted key</td><td><code>{name: "Ada"}</code></td><td>Quote every key: <code>{"name": …}</code></td></tr>
-          <tr><td>Comments</td><td><code>// config</code></td><td>Delete them - JSON has no comments</td></tr>
+          <tr><td>Comments</td><td><code>// config</code></td><td>Delete them; JSON has no comments</td></tr>
           <tr><td>NaN / Infinity / undefined</td><td><code>{"x": NaN}</code></td><td>Use <code>null</code> or a number</td></tr>
           <tr><td>Real line break in a string</td><td><code>"line one⏎two"</code></td><td>Escape it as <code>\n</code></td></tr>
           <tr><td>Missing comma or colon</td><td><code>{"a": 1 "b": 2}</code></td><td>Separate pairs with commas, keys with colons</td></tr>
@@ -393,35 +396,35 @@ pre.example{
   "address": { "city": "London" }
 }</pre>
     <h3>JSON vs JSONC vs JSON5</h3>
-    <p>Editors and config systems often accept relaxed supersets: <strong>JSONC</strong> (JSON with comments - VS Code settings) and <strong>JSON5</strong> (comments, trailing commas, unquoted keys, single quotes). They are fine as input to tools that explicitly support them - but anything sent to an API, stored as <code>.json</code>, or parsed by a standard library must be strict JSON. When in doubt, validate here first.</p>
+    <p>Editors and config systems often accept relaxed supersets: <strong>JSONC</strong> (JSON with comments, as in VS Code settings) and <strong>JSON5</strong> (comments, trailing commas, unquoted keys, single quotes). They are fine as input to tools that explicitly support them, but anything sent to an API, stored as <code>.json</code>, or parsed by a standard library must be strict JSON. When in doubt, validate here first.</p>
   </section>
 
   <section id="faq" class="prose faq">
     <h2>Frequently asked questions</h2>
 
     <h3>Is it safe to paste API responses or data with secrets here?</h3>
-    <p>Yes - and that is the point of this tool. Everything runs in JavaScript in your browser: nothing you paste is uploaded, logged, or stored, and the page makes no network requests after loading. Most online JSON tools send your payload to their server; with tokens, keys, and customer data in developer clipboards all day, local-only processing is the only responsible design.</p>
+    <p>Yes, and that is the point of this tool. Everything runs in JavaScript in your browser: nothing you paste is uploaded, logged, or stored, and the page makes no network requests after loading. Most online JSON tools send your payload to their server; with tokens, keys, and customer data in developer clipboards all day, local-only processing is the only responsible design.</p>
 
     <h3>How do I fix "Unexpected token" JSON errors?</h3>
-    <p>Paste the JSON here and validate - instead of a cryptic token message you get the exact line and column plus a plain-language cause. The usual suspects: a trailing comma after the last item, single quotes instead of double quotes, an unquoted key, comments (JSON does not allow them), or a missing comma between items.</p>
+    <p>Paste the JSON here and validate. Instead of a cryptic token message you get the exact line and column plus a plain-language cause. The usual suspects: a trailing comma after the last item, single quotes instead of double quotes, an unquoted key, comments (JSON does not allow them), or a missing comma between items.</p>
 
     <h3>Does JSON allow comments or trailing commas?</h3>
-    <p>No. Standard JSON (RFC 8259) allows neither comments nor trailing commas - both are the most common reasons hand-edited JSON fails to parse. Some tools accept relaxed supersets like JSONC (VS Code configs) or JSON5, but anything you send to an API or parse with a standard library must be strict JSON.</p>
+    <p>No. Standard JSON (RFC 8259) allows neither comments nor trailing commas, and both are the most common reasons hand-edited JSON fails to parse. Some tools accept relaxed supersets like JSONC (VS Code configs) or JSON5, but anything you send to an API or parse with a standard library must be strict JSON.</p>
 
     <h3>How large a JSON file can this handle?</h3>
-    <p>Multi-megabyte files are fine - parsing and formatting use the browser's native engine, which handles tens of MB in well under a second on a modern machine. For very large files the tree view renders containers in chunks of 500 children so the page stays responsive. The practical ceiling is your device's memory.</p>
+    <p>Multi-megabyte files are fine. Parsing and formatting use the browser's native engine, which handles tens of MB in well under a second on a modern machine. For very large files the tree view renders containers in chunks of 500 children so the page stays responsive. The practical ceiling is your device's memory.</p>
 
     <h3>What is the difference between formatting and minifying?</h3>
-    <p>Formatting (pretty-printing) adds line breaks and indentation so humans can read the structure; minifying removes every unnecessary character so machines can transmit it - typically 20-40% smaller than formatted JSON. The data is identical either way. Format while developing and debugging; minify for payloads, configs in tight places, and storage.</p>
+    <p>Formatting (pretty-printing) adds line breaks and indentation so humans can read the structure; minifying removes every unnecessary character so machines can transmit it, typically 20-40% smaller than formatted JSON. The data is identical either way. Format while developing and debugging; minify for payloads, configs in tight places, and storage.</p>
 
     <h3>How do I convert JSON to an escaped string and back?</h3>
-    <p>Use the Escape button to turn the input into a double-quoted string literal with every quote, backslash, and newline escaped - ready to embed inside another JSON document or a source file. Unescape does the reverse: paste a quoted string literal and get the original text back.</p>
+    <p>Use the Escape button to turn the input into a double-quoted string literal with every quote, backslash, and newline escaped, ready to embed inside another JSON document or a source file. Unescape does the reverse: paste a quoted string literal and get the original text back.</p>
 
     <h3>Why did my keys change order?</h3>
-    <p>Only if "Sort keys" is enabled - it rewrites every object with keys in alphabetical order, which makes large payloads diff-able and easy to scan. With it off, key order is preserved exactly as pasted. Note that JSON itself guarantees no key order, so no correct consumer should depend on it either way.</p>
+    <p>Only if "Sort keys" is enabled. It rewrites every object with keys in alphabetical order, which makes large payloads diff-able and easy to scan. With it off, key order is preserved exactly as pasted. Note that JSON itself guarantees no key order, so no correct consumer should depend on it either way.</p>
 
     <h3>Does the JSON formatter work offline?</h3>
-    <p>Yes. The entire tool is one self-contained page - once loaded, formatting, validation, and the tree view all work with no connection. Save the page locally and it works forever, which also makes it safe for air-gapped environments.</p>
+    <p>Yes. The entire tool is one self-contained page. Once loaded, formatting, validation, and the tree view all work with no connection. Save the page locally and it works forever, which also makes it safe for air-gapped environments.</p>
   </section>
 
 </main>

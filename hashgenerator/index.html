@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WBest Hash Generator - MD5, SHA-1, SHA-256 &amp; SHA-512</title>
-<meta name="description" content="Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes from text or files. Everything is hashed in your browser - your data and files are never uploaded.">
+<title>WBest Hash Generator: MD5, SHA-1, SHA-256 &amp; SHA-512</title>
+<meta name="description" content="Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes from text or files. Hashed in your browser, never uploaded. Free, no sign-up.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://hashgenerator.wbest.app/">
@@ -16,19 +16,19 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Hash Generator">
-<meta property="og:title" content="WBest Hash Generator - MD5, SHA-1, SHA-256 &amp; SHA-512">
-<meta property="og:description" content="Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes from text or files. Everything is hashed in your browser - your data and files are never uploaded.">
+<meta property="og:title" content="WBest Hash Generator: MD5, SHA-1, SHA-256 &amp; SHA-512">
+<meta property="og:description" content="Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes from text or files. Hashed in your browser, never uploaded. Free, no sign-up.">
 <meta property="og:url" content="https://hashgenerator.wbest.app/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WBest Hash Generator - MD5, SHA-1, SHA-256 &amp; SHA-512">
-<meta name="twitter:description" content="Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes from text or files. Everything is hashed in your browser - your data and files are never uploaded.">
+<meta name="twitter:title" content="WBest Hash Generator: MD5, SHA-1, SHA-256 &amp; SHA-512">
+<meta name="twitter:description" content="Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes from text or files. Hashed in your browser, never uploaded. Free, no sign-up.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Hash Generator",
   "url": "https://hashgenerator.wbest.app/",
-  "description": "Free hash generator for MD5, SHA-1, SHA-256, SHA-384, and SHA-512. Hash any text or file, compare a hash to verify a match, and copy the result. Runs entirely in your browser using the Web Crypto API - files and text are never uploaded.",
+  "description": "Free hash generator for MD5, SHA-1, SHA-256, SHA-384, and SHA-512. Hash any text or file, compare a hash to verify a match, and copy the result. Runs entirely in your browser using the Web Crypto API. Files and text are never uploaded.",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
@@ -57,7 +57,7 @@
       "name": "Are my files or text uploaded to hash them?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. All hashing happens in your browser using the built-in Web Crypto API (and an inlined MD5 routine). Your text and files never leave your device - you can even disconnect from the internet and the tool keeps working. That makes it safe for hashing sensitive files and secrets."
+        "text": "No. All hashing happens in your browser using the built-in Web Crypto API (and an inlined MD5 routine). Your text and files never leave your device. You can even disconnect from the internet and the tool keeps working. That makes it safe for hashing sensitive files and secrets."
       }
     },
     {
@@ -65,7 +65,7 @@
       "name": "What is the difference between MD5, SHA-1, and SHA-256?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "They are hash functions of increasing strength. MD5 (128-bit) and SHA-1 (160-bit) are fast but cryptographically broken - collisions can be crafted, so they should only be used for non-security checks like file integrity or deduplication. SHA-256, SHA-384, and SHA-512 are part of the SHA-2 family and remain secure; SHA-256 is the standard choice for signatures, certificates, and password-related hashing."
+        "text": "They are hash functions of increasing strength. MD5 (128-bit) and SHA-1 (160-bit) are fast but cryptographically broken. Collisions can be crafted, so they should only be used for non-security checks like file integrity or deduplication. SHA-256, SHA-384, and SHA-512 are part of the SHA-2 family and remain secure; SHA-256 is the standard choice for signatures, certificates, and password-related hashing."
       }
     },
     {
@@ -89,7 +89,7 @@
       "name": "Why do the same inputs always produce the same hash?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A hash function is deterministic - identical input always yields identical output. That is what makes hashes useful for verification: change a single byte and the hash changes completely, so any tampering or corruption is obvious."
+        "text": "A hash function is deterministic: identical input always yields identical output. That is what makes hashes useful for verification: change a single byte and the hash changes completely, so any tampering or corruption is obvious."
       }
     },
     {
@@ -148,6 +148,7 @@ h3{font-size:1.05rem;margin:22px 0 6px}
 p{margin:0 0 12px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
 .muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
 .lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
@@ -239,8 +240,8 @@ th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mu
 
 <header class="wrap">
   <h1>WBest Hash Generator</h1>
-  <p class="tagline">Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes from text or files. Everything is hashed in your browser - your data and files are never uploaded.</p>
-  <span class="badge">🔒 100% private - hashed on your device, never uploaded</span>
+  <p class="tagline">Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes from text or files. Hashed in your browser, never uploaded. Free, no sign-up.</p>
+  <span class="badge">🔒 100% private, hashed on your device, never uploaded</span>
   <nav class="toc" aria-label="On this page">
     <a href="#tool">Generator</a>
     <a href="#algos">Algorithms</a>
@@ -265,7 +266,7 @@ th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mu
     <div class="card panel" id="pane-file" hidden>
       <div class="drop" id="drop" tabindex="0" role="button" aria-label="Choose a file to hash">
         <strong>Click to choose a file</strong> or drag &amp; drop<br>
-        <span>The file is read and hashed locally - never uploaded.</span>
+        <span>The file is read and hashed locally, never uploaded.</span>
       </div>
       <input type="file" id="file-in" class="sr-only" aria-hidden="true">
       <p class="file-meta" id="file-meta" hidden></p>
@@ -285,6 +286,8 @@ th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mu
     </div>
   </section>
 
+  <p class="cross-link">Encoding data rather than fingerprinting it? The <a href="https://base64.wbest.app/">Base64 Encoder &amp; Decoder</a> is the reversible counterpart, and the <a href="https://passwordgenerator.wbest.app/">Password Generator</a> builds the kind of secret worth hashing.</p>
+
   <section class="props" aria-label="Why use this hash generator">
     <div class="card"><strong>Files never leave your device</strong><p>Text and files are hashed right in your browser with the Web Crypto API. Nothing is uploaded, so it is safe for private files and secrets.</p></div>
     <div class="card"><strong>Every common algorithm</strong><p>MD5 for legacy checksums plus the full SHA-1 and SHA-2 family (SHA-256/384/512), all computed at once for the same input.</p></div>
@@ -293,14 +296,14 @@ th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mu
 
   <section id="algos" class="prose">
     <h2>Which hash algorithm should I use?</h2>
-    <p>Pick based on <em>why</em> you are hashing. For plain integrity checks - confirming a download did not corrupt - any algorithm the publisher provides is fine, including MD5. For anything security-sensitive, use SHA-256 or stronger; MD5 and SHA-1 are considered broken because attackers can construct collisions.</p>
+    <p>Pick based on <em>why</em> you are hashing. For plain integrity checks, such as confirming a download did not corrupt, any algorithm the publisher provides is fine, including MD5. For anything security-sensitive, use SHA-256 or stronger; MD5 and SHA-1 are considered broken because attackers can construct collisions.</p>
     <div class="table-wrap">
       <table>
         <caption>Digest length is in hexadecimal characters (4 bits each).</caption>
         <thead><tr><th scope="col">Algorithm</th><th scope="col">Bits</th><th scope="col">Hex length</th><th scope="col">Use for</th></tr></thead>
         <tbody>
-          <tr><td>MD5</td><td>128</td><td>32</td><td>Legacy checksums only - broken for security</td></tr>
-          <tr><td>SHA-1</td><td>160</td><td>40</td><td>Legacy compatibility - broken for security</td></tr>
+          <tr><td>MD5</td><td>128</td><td>32</td><td>Legacy checksums only, broken for security</td></tr>
+          <tr><td>SHA-1</td><td>160</td><td>40</td><td>Legacy compatibility, broken for security</td></tr>
           <tr><td>SHA-256</td><td>256</td><td>64</td><td>General-purpose, signatures, certificates</td></tr>
           <tr><td>SHA-384</td><td>384</td><td>96</td><td>Higher-security signatures</td></tr>
           <tr><td>SHA-512</td><td>512</td><td>128</td><td>Maximum-strength SHA-2 fingerprints</td></tr>
@@ -311,7 +314,7 @@ th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mu
 
   <section id="how" class="prose">
     <h2>How cryptographic hashing works</h2>
-    <p>A hash function takes an input of any size and produces a fixed-length fingerprint - the <strong>digest</strong>. Three properties make it useful. It is <strong>deterministic</strong>: the same input always gives the same digest. It is <strong>one-way</strong>: you cannot work backwards from a digest to the original input. And it has the <strong>avalanche effect</strong>: changing a single bit of the input changes roughly half the output bits, so even a tiny edit produces a completely different digest.</p>
+    <p>A hash function takes an input of any size and produces a fixed-length fingerprint, the <strong>digest</strong>. Three properties make it useful. It is <strong>deterministic</strong>: the same input always gives the same digest. It is <strong>one-way</strong>: you cannot work backwards from a digest to the original input. And it has the <strong>avalanche effect</strong>: changing a single bit of the input changes roughly half the output bits, so even a tiny edit produces a completely different digest.</p>
     <p>That is why hashes verify integrity so well. Publishers list a checksum next to a download; you hash the file you received and compare. If the two digests match, your copy is byte-for-byte identical to theirs. If a single byte was corrupted or tampered with, the digests will not match.</p>
     <h3>Why "broken" algorithms still appear</h3>
     <p>MD5 and SHA-1 are broken in the sense that attackers can deliberately craft two different inputs with the <em>same</em> digest (a collision). That defeats security uses like signatures. It does <em>not</em> mean random corruption will sneak past them, which is why they are still handed out as convenience checksums. When integrity against a motivated attacker matters, use SHA-256 or above.</p>
@@ -321,10 +324,10 @@ th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mu
     <h2>Frequently asked questions</h2>
 
     <h3>Are my files or text uploaded to hash them?</h3>
-    <p>No. All hashing happens in your browser using the built-in Web Crypto API (and an inlined MD5 routine). Your text and files never leave your device - you can even disconnect from the internet and the tool keeps working. That makes it safe for hashing sensitive files and secrets.</p>
+    <p>No. All hashing happens in your browser using the built-in Web Crypto API (and an inlined MD5 routine). Your text and files never leave your device. You can even disconnect from the internet and the tool keeps working. That makes it safe for hashing sensitive files and secrets.</p>
 
     <h3>What is the difference between MD5, SHA-1, and SHA-256?</h3>
-    <p>They are hash functions of increasing strength. MD5 (128-bit) and SHA-1 (160-bit) are fast but cryptographically broken - collisions can be crafted, so they should only be used for non-security checks like file integrity or deduplication. SHA-256, SHA-384, and SHA-512 are part of the SHA-2 family and remain secure; SHA-256 is the standard choice for signatures, certificates, and password-related hashing.</p>
+    <p>They are hash functions of increasing strength. MD5 (128-bit) and SHA-1 (160-bit) are fast but cryptographically broken. Collisions can be crafted, so they should only be used for non-security checks like file integrity or deduplication. SHA-256, SHA-384, and SHA-512 are part of the SHA-2 family and remain secure; SHA-256 is the standard choice for signatures, certificates, and password-related hashing.</p>
 
     <h3>How do I verify a file's checksum?</h3>
     <p>Choose the file, pick the same algorithm the publisher listed (often SHA-256 or MD5), and paste their expected hash into the Verify box. The tool compares the two and tells you whether they match. A match means the file was not altered or corrupted in transit.</p>
@@ -333,7 +336,7 @@ th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mu
     <p>No. Hashing is one-way: it turns any input into a fixed-length fingerprint that cannot be reversed back into the original. Encryption is two-way and can be decrypted with a key. Hashes are used to verify integrity and to store password fingerprints, not to hide recoverable data.</p>
 
     <h3>Why do the same inputs always produce the same hash?</h3>
-    <p>A hash function is deterministic - identical input always yields identical output. That is what makes hashes useful for verification: change a single byte and the hash changes completely, so any tampering or corruption is obvious.</p>
+    <p>A hash function is deterministic: identical input always yields identical output. That is what makes hashes useful for verification: change a single byte and the hash changes completely, so any tampering or corruption is obvious.</p>
 
     <h3>Should I use MD5 to store passwords?</h3>
     <p>No. Plain MD5 or SHA-256 is far too fast and unsalted for password storage. Use a purpose-built, slow password hashing algorithm such as bcrypt, scrypt, or Argon2. The hashes here are for file integrity, checksums, and general-purpose fingerprinting.</p>

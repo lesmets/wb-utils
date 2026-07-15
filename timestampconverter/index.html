@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WBest Unix Timestamp Converter - Epoch to Date &amp; Back</title>
+<title>WBest Unix Timestamp Converter: Epoch to Date &amp; Back</title>
 <meta name="description" content="Convert a Unix timestamp (epoch) to a human date and back, in both seconds and milliseconds, with UTC and your local time zone. Free, instant, and 100% private.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
@@ -16,11 +16,11 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Unix Timestamp Converter">
-<meta property="og:title" content="WBest Unix Timestamp Converter - Epoch to Date &amp; Back">
+<meta property="og:title" content="WBest Unix Timestamp Converter: Epoch to Date &amp; Back">
 <meta property="og:description" content="Convert a Unix timestamp (epoch) to a human date and back, in both seconds and milliseconds, with UTC and your local time zone. Free, instant, and 100% private.">
 <meta property="og:url" content="https://timestampconverter.wbest.app/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WBest Unix Timestamp Converter - Epoch to Date &amp; Back">
+<meta name="twitter:title" content="WBest Unix Timestamp Converter: Epoch to Date &amp; Back">
 <meta name="twitter:description" content="Convert a Unix timestamp (epoch) to a human date and back, in both seconds and milliseconds, with UTC and your local time zone. Free, instant, and 100% private.">
 <script type="application/ld+json">
 {
@@ -28,7 +28,7 @@
   "@type": "WebApplication",
   "name": "Unix Timestamp Converter",
   "url": "https://timestampconverter.wbest.app/",
-  "description": "Free Unix timestamp converter. Turn an epoch timestamp into a human-readable date and back again, in seconds or milliseconds, showing both UTC and your local time zone plus the relative time. Includes a live current timestamp. Runs entirely in your browser - no tracking, works offline.",
+  "description": "Free Unix timestamp converter. Turn an epoch timestamp into a human-readable date and back again, in seconds or milliseconds, showing both UTC and your local time zone plus the relative time. Includes a live current timestamp. Runs entirely in your browser. No tracking, works offline.",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
@@ -89,7 +89,7 @@
       "name": "Can a Unix timestamp be negative?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Dates before 1 January 1970 are represented as negative numbers - for example, -86400 is 31 December 1969. This converter accepts negative values and shows the correct pre-1970 date."
+        "text": "Yes. Dates before 1 January 1970 are represented as negative numbers. For example, -86400 is 31 December 1969. This converter accepts negative values and shows the correct pre-1970 date."
       }
     },
     {
@@ -148,6 +148,7 @@ h3{font-size:1.05rem;margin:22px 0 6px}
 p{margin:0 0 12px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
 .muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
 .lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
@@ -225,8 +226,8 @@ td{font-variant-numeric:tabular-nums}
 
 <header class="wrap">
   <h1>WBest Unix Timestamp Converter</h1>
-  <p class="tagline">Convert a Unix timestamp (epoch) to a human date and back, in both seconds and milliseconds, with UTC and your local time zone.</p>
-  <span class="badge">🔒 100% private - converted in your browser, never uploaded</span>
+  <p class="tagline">Convert a Unix timestamp (epoch) to a human date and back, in both seconds and milliseconds, with UTC and your local time zone. Free and 100% private.</p>
+  <span class="badge">🔒 100% private, converted in your browser, never uploaded</span>
   <nav class="toc" aria-label="On this page">
     <a href="#tool">Converter</a>
     <a href="#what">What is epoch time</a>
@@ -283,6 +284,8 @@ td{font-variant-numeric:tabular-nums}
     </div>
   </section>
 
+  <p class="cross-link">Reading those seconds as a wall-clock time somewhere else? The <a href="https://timezoneconverter.wbest.app/">Time Zone Converter</a> compares cities, and the <a href="https://agecalculator.wbest.app/">Age Calculator</a> measures the gap between two dates in plain units.</p>
+
   <section class="props" aria-label="Why use this timestamp converter">
     <div class="card"><strong>Both directions, both units</strong><p>Epoch to date and date to epoch, in seconds or milliseconds, with the unit detected automatically from the number you paste.</p></div>
     <div class="card"><strong>UTC and your local time</strong><p>Every result shows UTC, your local zone, ISO 8601, and a plain-language relative time, so there is never any ambiguity.</p></div>
@@ -291,10 +294,10 @@ td{font-variant-numeric:tabular-nums}
 
   <section id="what" class="prose">
     <h2>What is a Unix timestamp?</h2>
-    <p>A Unix timestamp is the number of seconds since the <strong>Unix epoch</strong> - midnight UTC on 1 January 1970 - ignoring leap seconds. Because it is a single integer with no time zone attached, it is the most portable way for software to record <em>when</em> something happened. Databases, log files, JSON APIs, JWTs, and version-control systems all lean on it.</p>
-    <p>The catch is that the same number looks like different clock times depending on where you are. The instant <code>1700000000</code> is one wall-clock time in London and another in Tokyo, even though it is the exact same moment. That is the whole point of epoch time - and the reason this converter always shows both UTC and your local zone.</p>
+    <p>A Unix timestamp is the number of seconds since the <strong>Unix epoch</strong>, midnight UTC on 1 January 1970, ignoring leap seconds. Because it is a single integer with no time zone attached, it is the most portable way for software to record <em>when</em> something happened. Databases, log files, JSON APIs, JWTs, and version-control systems all lean on it.</p>
+    <p>The catch is that the same number looks like different clock times depending on where you are. The instant <code>1700000000</code> is one wall-clock time in London and another in Tokyo, even though it is the exact same moment. That is the whole point of epoch time, and the reason this converter always shows both UTC and your local zone.</p>
     <h3>Seconds vs. milliseconds</h3>
-    <p>Traditional Unix time counts <strong>seconds</strong> (a 10-digit number for today's dates). JavaScript's <code>Date.now()</code> and many web APIs count <strong>milliseconds</strong> (13 digits). Mixing them up is the most common timestamp bug - a millisecond value read as seconds lands roughly 50,000 years in the future. The Auto setting here picks the unit from the digit count, and you can override it whenever you know better.</p>
+    <p>Traditional Unix time counts <strong>seconds</strong> (a 10-digit number for today's dates). JavaScript's <code>Date.now()</code> and many web APIs count <strong>milliseconds</strong> (13 digits). Mixing them up is the most common timestamp bug: a millisecond value read as seconds lands roughly 50,000 years in the future. The Auto setting here picks the unit from the digit count, and you can override it whenever you know better.</p>
   </section>
 
   <section id="formats" class="prose">
@@ -304,15 +307,15 @@ td{font-variant-numeric:tabular-nums}
         <caption>Handy epoch values, in seconds, for sanity-checking conversions.</caption>
         <thead><tr><th scope="col">Moment (UTC)</th><th scope="col">Unix seconds</th></tr></thead>
         <tbody>
-          <tr><td>1 Jan 1970, 00:00:00 - the epoch</td><td>0</td></tr>
+          <tr><td>1 Jan 1970, 00:00:00 (the epoch)</td><td>0</td></tr>
           <tr><td>31 Dec 1969, 00:00:00</td><td>-86400</td></tr>
-          <tr><td>13 Feb 2009, 23:31:30 - 1.234 billion</td><td>1234567890</td></tr>
+          <tr><td>13 Feb 2009, 23:31:30 (1.234 billion)</td><td>1234567890</td></tr>
           <tr><td>18 May 2033, 03:33:20</td><td>2000000000</td></tr>
-          <tr><td>19 Jan 2038, 03:14:07 - 32-bit limit</td><td>2147483647</td></tr>
+          <tr><td>19 Jan 2038, 03:14:07 (32-bit limit)</td><td>2147483647</td></tr>
         </tbody>
       </table>
     </div>
-    <p>One day is 86,400 seconds, one hour is 3,600, and one minute is 60 - useful when adding or subtracting spans by hand.</p>
+    <p>One day is 86,400 seconds, one hour is 3,600, and one minute is 60, useful when adding or subtracting spans by hand.</p>
   </section>
 
   <section id="faq" class="prose faq">
@@ -331,7 +334,7 @@ td{font-variant-numeric:tabular-nums}
     <p>Systems that store Unix time in a signed 32-bit integer can only count up to 03:14:07 UTC on 19 January 2038. One second later the value overflows and wraps to a negative number, misreading the date as 1901. Modern systems use 64-bit timestamps, which push the limit hundreds of billions of years into the future.</p>
 
     <h3>Can a Unix timestamp be negative?</h3>
-    <p>Yes. Dates before 1 January 1970 are represented as negative numbers - for example, -86400 is 31 December 1969. This converter accepts negative values and shows the correct pre-1970 date.</p>
+    <p>Yes. Dates before 1 January 1970 are represented as negative numbers. For example, -86400 is 31 December 1969. This converter accepts negative values and shows the correct pre-1970 date.</p>
 
     <h3>Is my data sent anywhere?</h3>
     <p>No. Every conversion runs in JavaScript in your browser using your device's own clock and time-zone settings. Nothing is uploaded or tracked, and the page keeps working offline once loaded.</p>

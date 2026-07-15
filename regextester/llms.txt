@@ -1,8 +1,8 @@
 # WBest Regex Tester
 
-> Free online regex tester and debugger. Write a regular expression, see every match highlighted live in your test string, inspect capture groups and named groups, and preview a replace before you run it. Supports every JavaScript flag. Runs entirely in your browser - no tracking, works offline.
+> Free online regex tester and debugger. Write a regular expression, see every match highlighted live in your test string, inspect capture groups and named groups, and preview a replace before you run it. Supports every JavaScript flag. Runs entirely in your browser. No tracking, works offline.
 
-Use it at https://regextester.wbest.app/ - it is a single page, and the tool is the page.
+Use it at https://regextester.wbest.app/. It is a single page, and the tool is the page.
 
 - Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
 - Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
@@ -22,7 +22,7 @@ Use it at https://regextester.wbest.app/ - it is a single page, and the tool is 
 
 ### What is a regular expression?
 
-A regular expression (regex) is a compact pattern that describes a set of strings. Instead of searching for one fixed word, you describe its shape - "three digits, a dash, then four digits" - and the engine finds every piece of text matching that shape. Regex powers find-and-replace in editors, input validation, log searching, and text extraction in almost every programming language.
+A regular expression (regex) is a compact pattern that describes a set of strings. Instead of searching for one fixed word, you describe its shape ("three digits, a dash, then four digits") and the engine finds every piece of text matching that shape. Regex powers find-and-replace in editors, input validation, log searching, and text extraction in almost every programming language.
 
 ### What do the regex flags g, i, m, s, u, and y mean?
 
@@ -42,7 +42,7 @@ It uses your browser's own JavaScript (ECMAScript) engine, so results match exac
 
 ### Is my regex or test text sent anywhere?
 
-No. Matching runs in JavaScript in your browser using your device's own regex engine. Your pattern and test string - often production log lines or real customer data - are never uploaded, logged, or tracked, and the page keeps working offline once loaded.
+No. Matching runs in JavaScript in your browser using your device's own regex engine. Your pattern and test string, often production log lines or real customer data, are never uploaded, logged, or tracked, and the page keeps working offline once loaded.
 
 ## More WB tools
 
@@ -50,4 +50,4 @@ No. Matching runs in JavaScript in your browser using your device's own regex en
 - [Hash Generator](https://hashgenerator.wbest.app/): MD5, SHA-1, and SHA-256/512 for text or files, hashed locally and never uploaded.
 - [Unix Timestamp Converter](https://timestampconverter.wbest.app/): Convert epoch timestamps to dates and back, in UTC and your local time zone.
 - [Base64 Encoder & Decoder](https://base64.wbest.app/): Encode and decode Base64 with correct UTF-8, URL-safe output, and files.
-- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.

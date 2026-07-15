@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WBest Image Cropper - Crop Photos Online, Free &amp; Private</title>
+<title>WBest Image Cropper: Crop Photos Online, Free &amp; Private</title>
 <meta name="description" content="Crop any image online with pixel-exact control, aspect ratio presets, and rotate or flip. Your photos never leave your device. Free, instant, no sign-up.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
@@ -16,11 +16,11 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Image Cropper">
-<meta property="og:title" content="WBest Image Cropper - Crop Photos Online, Free &amp; Private">
+<meta property="og:title" content="WBest Image Cropper: Crop Photos Online, Free &amp; Private">
 <meta property="og:description" content="Crop any image online with pixel-exact control, aspect ratio presets, and rotate or flip. Your photos never leave your device. Free, instant, no sign-up.">
 <meta property="og:url" content="https://imagecropper.wbest.app/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WBest Image Cropper - Crop Photos Online, Free &amp; Private">
+<meta name="twitter:title" content="WBest Image Cropper: Crop Photos Online, Free &amp; Private">
 <meta name="twitter:description" content="Crop any image online with pixel-exact control, aspect ratio presets, and rotate or flip. Your photos never leave your device. Free, instant, no sign-up.">
 <script type="application/ld+json">
 {
@@ -28,7 +28,7 @@
   "@type": "WebApplication",
   "name": "Image Cropper",
   "url": "https://imagecropper.wbest.app/",
-  "description": "Free online image cropper. Drag a crop box or type exact pixel values, lock it to a preset aspect ratio, rotate and flip, then export as JPEG, PNG, or WebP. Your photos are processed on your device and never uploaded - it even works offline.",
+  "description": "Free online image cropper. Drag a crop box or type exact pixel values, lock it to a preset aspect ratio, rotate and flip, then export as JPEG, PNG, or WebP. Your photos are processed on your device and never uploaded. It even works offline.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
@@ -65,7 +65,7 @@
       "name": "Does cropping reduce image quality?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Cropping itself only discards the pixels outside your selection - the pixels you keep are untouched. Quality loss comes from re-encoding: saving as JPEG or WebP compresses the result again, so use the quality slider or choose PNG for a lossless copy. The crop is always taken at the image's full original resolution, never at the size shown on screen."
+        "text": "Cropping itself only discards the pixels outside your selection. The pixels you keep are untouched. Quality loss comes from re-encoding: saving as JPEG or WebP compresses the result again, so use the quality slider or choose PNG for a lossless copy. The crop is always taken at the image's full original resolution, never at the size shown on screen."
       }
     },
     {
@@ -81,7 +81,7 @@
       "name": "Can I crop to an exact pixel size?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Type the width and height you need into the pixel fields and the crop box snaps to that exact size, which you can then drag into position. The exported file is exactly those pixel dimensions - useful when a platform demands a precise size, such as a 1200 x 630 social preview image."
+        "text": "Yes. Type the width and height you need into the pixel fields and the crop box snaps to that exact size, which you can then drag into position. The exported file is exactly those pixel dimensions, useful when a platform demands a precise size, such as a 1200 x 630 social preview image."
       }
     },
     {
@@ -89,7 +89,7 @@
       "name": "Which format should I export?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Use JPEG for photographs - it gives the smallest file at a quality most people cannot distinguish from the original. Use PNG when you need lossless quality or a transparent background, such as logos and screenshots with sharp text. Use WebP when you want JPEG-like photo compression at a noticeably smaller size and only modern browsers need to open it."
+        "text": "Use JPEG for photographs. It gives the smallest file at a quality most people cannot distinguish from the original. Use PNG when you need lossless quality or a transparent background, such as logos and screenshots with sharp text. Use WebP when you want JPEG-like photo compression at a noticeably smaller size and only modern browsers need to open it."
       }
     },
     {
@@ -97,7 +97,7 @@
       "name": "Does the cropped image keep my photo's location data?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No, and that is deliberate. Redrawing the image through a canvas discards all EXIF metadata, so the exported crop carries no GPS coordinates, camera serial number, or timestamp. The crop you download is just pixels - which is usually exactly what you want before sharing a photo publicly."
+        "text": "No, and that is deliberate. Redrawing the image through a canvas discards all EXIF metadata, so the exported crop carries no GPS coordinates, camera serial number, or timestamp. The crop you download is just pixels, which is usually exactly what you want before sharing a photo publicly."
       }
     }
   ]
@@ -148,6 +148,7 @@ h3{font-size:1.05rem;margin:22px 0 6px}
 p{margin:0 0 12px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
 .muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
 .lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
@@ -275,8 +276,8 @@ td{font-variant-numeric:tabular-nums}
 
 <header class="wrap">
   <h1>WBest Image Cropper</h1>
-  <p class="tagline">Crop any photo to the exact size or aspect ratio you need - drag it, or type the pixels. Rotate, flip, and export in one step.</p>
-  <span class="badge">🔒 100% private - your photos never leave your device</span>
+  <p class="tagline">Crop any photo to the exact size or aspect ratio you need, then rotate, flip, and export in one step. Your photos never leave your device.</p>
+  <span class="badge">🔒 100% private, your photos never leave your device</span>
   <nav class="toc" aria-label="On this page">
     <a href="#tool">Cropper</a>
     <a href="#how">How to crop</a>
@@ -373,8 +374,10 @@ td{font-variant-numeric:tabular-nums}
     </div>
   </section>
 
+  <p class="cross-link">Working with the colors in a photo rather than its framing? The <a href="https://imagecolorpicker.wbest.app/">Image Color Picker</a> pulls exact hex values straight out of an image, and the <a href="https://imagecompressor.wbest.app/">Image Compressor</a> shrinks the file once you are happy with the crop.</p>
+
   <section class="props" aria-label="Why use this image cropper">
-    <div class="card"><strong>Photos never leave your device</strong><p>Every other cropper uploads your image to a server first. This one uses your browser's canvas, so the file stays where it is - and works offline.</p></div>
+    <div class="card"><strong>Photos never leave your device</strong><p>Most online croppers upload your image to a server first. This one uses your browser's canvas, so the file stays where it is, and works offline.</p></div>
     <div class="card"><strong>Pixel-exact, full resolution</strong><p>The crop is taken from the original image at full resolution, never the preview. Type an exact width and height and that is precisely what you get.</p></div>
     <div class="card"><strong>Location data stripped</strong><p>Redrawing through a canvas drops all EXIF metadata, so the crop you share carries no GPS coordinates, camera serial, or timestamp.</p></div>
   </section>
@@ -383,11 +386,11 @@ td{font-variant-numeric:tabular-nums}
     <h2>How to crop an image</h2>
     <p>Drop a photo onto the box above (or paste one straight from your clipboard), then:</p>
     <h3>1. Pick a ratio, or stay free</h3>
-    <p>Leave it on <strong>Free</strong> to drag any shape you like. Choose a preset and the crop box locks to that proportion no matter how you drag it - the only way to be certain a profile picture is genuinely square or a thumbnail is genuinely 16:9.</p>
+    <p>Leave it on <strong>Free</strong> to drag any shape you like. Choose a preset and the crop box locks to that proportion no matter how you drag it, the only way to be certain a profile picture is genuinely square or a thumbnail is genuinely 16:9.</p>
     <h3>2. Frame it</h3>
     <p>Drag inside the box to reposition, drag a handle to resize. The dimmed area is what gets discarded. The faint grid is the <strong>rule of thirds</strong>: placing your subject on a line or intersection, rather than dead centre, is the oldest and most reliable composition trick there is.</p>
     <h3>3. Or type exact pixels</h3>
-    <p>If a platform demands a precise size, type the width and height directly and drag the resulting box into position. Note that you cannot crop to a size <em>larger</em> than the source - cropping only ever removes pixels. To make an image bigger or smaller overall, use the <a href="https://imagecompressor.wbest.app/">Image Compressor &amp; Resizer</a>.</p>
+    <p>If a platform demands a precise size, type the width and height directly and drag the resulting box into position. Note that you cannot crop to a size <em>larger</em> than the source, because cropping only ever removes pixels. To make an image bigger or smaller overall, use the <a href="https://imagecompressor.wbest.app/">Image Compressor &amp; Resizer</a>.</p>
     <h3>4. Export</h3>
     <p>Choose a format, adjust quality if it is JPEG or WebP, and download. The result is exactly the pixels inside your box, at the original resolution.</p>
   </section>
@@ -408,8 +411,7 @@ td{font-variant-numeric:tabular-nums}
         </tbody>
       </table>
     </div>
-    <p>Aspect ratio is the <em>proportion</em>; pixel size is the actual resolution. A 1:1 crop can be 400 × 400 or 4000 × 4000 - both are square. Crop for the ratio first, then resize for the pixels if a platform is specific about it.</p>
-    <p>Working with the colours in a photo rather than its framing? The <a href="https://imagecolorpicker.wbest.app/">Image Color Picker</a> pulls exact hex values straight out of an image, just as privately.</p>
+    <p>Aspect ratio is the <em>proportion</em>; pixel size is the actual resolution. A 1:1 crop can be 400 × 400 or 4000 × 4000, and both are square. Crop for the ratio first, then resize for the pixels if a platform is specific about it.</p>
   </section>
 
   <section id="faq" class="prose faq">
@@ -419,19 +421,19 @@ td{font-variant-numeric:tabular-nums}
     <p>No. The image is read and cropped entirely on your device using the browser's canvas, so the file is never uploaded, stored, or seen by anyone else. You can prove it: load the page, switch off your internet connection, and the cropper keeps working perfectly.</p>
 
     <h3>Does cropping reduce image quality?</h3>
-    <p>Cropping itself only discards the pixels outside your selection - the pixels you keep are untouched. Quality loss comes from re-encoding: saving as JPEG or WebP compresses the result again, so use the quality slider or choose PNG for a lossless copy. The crop is always taken at the image's full original resolution, never at the size shown on screen.</p>
+    <p>Cropping itself only discards the pixels outside your selection. The pixels you keep are untouched. Quality loss comes from re-encoding: saving as JPEG or WebP compresses the result again, so use the quality slider or choose PNG for a lossless copy. The crop is always taken at the image's full original resolution, never at the size shown on screen.</p>
 
     <h3>What aspect ratio should I crop to?</h3>
     <p>It depends where the image will appear. 1:1 square suits profile pictures and Instagram posts. 16:9 is the standard for video thumbnails, presentations, and website heroes. 4:3 and 3:2 match what most cameras and phones shoot. 9:16 vertical fits stories, Reels, TikTok, and phone wallpapers. Lock the ratio before you drag and the crop box will hold it exactly.</p>
 
     <h3>Can I crop to an exact pixel size?</h3>
-    <p>Yes. Type the width and height you need into the pixel fields and the crop box snaps to that exact size, which you can then drag into position. The exported file is exactly those pixel dimensions - useful when a platform demands a precise size, such as a 1200 × 630 social preview image.</p>
+    <p>Yes. Type the width and height you need into the pixel fields and the crop box snaps to that exact size, which you can then drag into position. The exported file is exactly those pixel dimensions, useful when a platform demands a precise size, such as a 1200 × 630 social preview image.</p>
 
     <h3>Which format should I export?</h3>
-    <p>Use JPEG for photographs - it gives the smallest file at a quality most people cannot distinguish from the original. Use PNG when you need lossless quality or a transparent background, such as logos and screenshots with sharp text. Use WebP when you want JPEG-like photo compression at a noticeably smaller size and only modern browsers need to open it.</p>
+    <p>Use JPEG for photographs. It gives the smallest file at a quality most people cannot distinguish from the original. Use PNG when you need lossless quality or a transparent background, such as logos and screenshots with sharp text. Use WebP when you want JPEG-like photo compression at a noticeably smaller size and only modern browsers need to open it.</p>
 
     <h3>Does the cropped image keep my photo's location data?</h3>
-    <p>No, and that is deliberate. Redrawing the image through a canvas discards all EXIF metadata, so the exported crop carries no GPS coordinates, camera serial number, or timestamp. The crop you download is just pixels - which is usually exactly what you want before sharing a photo publicly.</p>
+    <p>No, and that is deliberate. Redrawing the image through a canvas discards all EXIF metadata, so the exported crop carries no GPS coordinates, camera serial number, or timestamp. The crop you download is just pixels, which is usually exactly what you want before sharing a photo publicly.</p>
   </section>
 
 </main>

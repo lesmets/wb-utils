@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WBest Mic Test - Test Your Microphone Online, Free &amp; Private</title>
-<meta name="description" content="Test your microphone in seconds: live level meter, waveform, and record-and-play-back to hear yourself. Nothing is uploaded or recorded to any server. Free, no sign-up.">
+<title>WBest Mic Test: Test Your Microphone Online, Free &amp; Private</title>
+<meta name="description" content="Test your microphone in seconds: live level meter, waveform, and record-and-play-back to hear yourself. Nothing is uploaded or recorded. Free, no sign-up.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://mictest.wbest.app/">
@@ -16,19 +16,19 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mic Test">
-<meta property="og:title" content="WBest Mic Test - Test Your Microphone Online, Free &amp; Private">
-<meta property="og:description" content="Test your microphone in seconds: live level meter, waveform, and record-and-play-back to hear yourself. Nothing is uploaded or recorded to any server. Free, no sign-up.">
+<meta property="og:title" content="WBest Mic Test: Test Your Microphone Online, Free &amp; Private">
+<meta property="og:description" content="Test your microphone in seconds: live level meter, waveform, and record-and-play-back to hear yourself. Nothing is uploaded or recorded. Free, no sign-up.">
 <meta property="og:url" content="https://mictest.wbest.app/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WBest Mic Test - Test Your Microphone Online, Free &amp; Private">
-<meta name="twitter:description" content="Test your microphone in seconds: live level meter, waveform, and record-and-play-back to hear yourself. Nothing is uploaded or recorded to any server. Free, no sign-up.">
+<meta name="twitter:title" content="WBest Mic Test: Test Your Microphone Online, Free &amp; Private">
+<meta name="twitter:description" content="Test your microphone in seconds: live level meter, waveform, and record-and-play-back to hear yourself. Nothing is uploaded or recorded. Free, no sign-up.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Mic Test",
   "url": "https://mictest.wbest.app/",
-  "description": "Free online microphone test. See your mic's input level and live waveform, check that the right device is selected, and record a few seconds to play back and hear exactly how you sound. Everything happens inside your browser using the Web Audio API - no recording is ever uploaded, stored, or sent anywhere.",
+  "description": "Free online microphone test. See your mic's input level and live waveform, check that the right device is selected, and record a few seconds to play back and hear exactly how you sound. Everything happens inside your browser using the Web Audio API. No recording is ever uploaded, stored, or sent anywhere.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript and a microphone",
@@ -43,7 +43,7 @@
     "Record and play back to hear yourself",
     "Switch between all connected microphones",
     "Plain-language verdict on whether your level is usable",
-    "Nothing uploaded - audio never leaves your device"
+    "Nothing uploaded: audio never leaves your device"
   ]
 }
 </script>
@@ -57,7 +57,7 @@
       "name": "How do I test my microphone?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Click Start microphone and allow access when your browser asks. Speak normally: the level meter should move with your voice and the waveform should ripple. If you want to hear yourself, record a few seconds and play it back. Nothing is uploaded at any point - the recording exists only in your browser's memory until you leave the page."
+        "text": "Click Start microphone and allow access when your browser asks. Speak normally: the level meter should move with your voice and the waveform should ripple. If you want to hear yourself, record a few seconds and play it back. Nothing is uploaded at any point. The recording exists only in your browser's memory until you leave the page."
       }
     },
     {
@@ -73,7 +73,7 @@
       "name": "Why is my microphone not working?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Work through it in order. First, permission: if you blocked access, click the camera or lock icon in the address bar and allow the microphone, then reload. Second, the device: use the dropdown here to pick the right microphone - laptops often default to the wrong one, and headsets can appear twice. Third, mute: check the physical switch on the mic, headset, or laptop function key. Fourth, another app: a video call already using the mic can hold it exclusively, so quit it and try again. Finally, check your operating system's own sound input settings."
+        "text": "Work through it in order. First, permission: if you blocked access, click the camera or lock icon in the address bar and allow the microphone, then reload. Second, the device: use the dropdown here to pick the right microphone, since laptops often default to the wrong one and headsets can appear twice. Third, mute: check the physical switch on the mic, headset, or laptop function key. Fourth, another app: a video call already using the mic can hold it exclusively, so quit it and try again. Finally, check your operating system's own sound input settings."
       }
     },
     {
@@ -97,7 +97,7 @@
       "name": "Why does my voice sound different when I play it back?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "That is normal and not a fault with your microphone. When you speak, you hear yourself partly through the bones of your skull, which carries lower frequencies that never reach a microphone. Recorded playback is only the airborne sound, so it seems thinner and higher pitched than the voice in your head - it is what everyone else has always heard."
+        "text": "That is normal and not a fault with your microphone. When you speak, you hear yourself partly through the bones of your skull, which carries lower frequencies that never reach a microphone. Recorded playback is only the airborne sound, so it seems thinner and higher pitched than the voice in your head. It is what everyone else has always heard."
       }
     }
   ]
@@ -148,6 +148,7 @@ h3{font-size:1.05rem;margin:22px 0 6px}
 p{margin:0 0 12px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
 .muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
 .lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
@@ -277,8 +278,8 @@ ol.steps li{margin-bottom:8px}
 
 <header class="wrap">
   <h1>WBest Mic Test</h1>
-  <p class="tagline">Check your microphone in seconds - watch the level, see the waveform, and record a clip to hear exactly how you sound.</p>
-  <span class="badge">🔒 100% private - your audio is never uploaded or stored</span>
+  <p class="tagline">Check your microphone in seconds: watch the level, see the waveform, and record a clip to hear exactly how you sound. Free, no sign-up.</p>
+  <span class="badge">🔒 100% private, your audio is never uploaded or stored</span>
   <nav class="toc" aria-label="On this page">
     <a href="#tool">Mic test</a>
     <a href="#fix">Not working?</a>
@@ -294,7 +295,7 @@ ol.steps li{margin-bottom:8px}
 
       <div class="intro" id="intro">
         <button type="button" class="start" id="start">Start microphone</button>
-        <p>Your browser will ask permission. Nothing is recorded or uploaded until you press Record - and even then it stays on your device.</p>
+        <p>Your browser will ask permission. Nothing is recorded or uploaded until you press Record, and even then it stays on your device.</p>
       </div>
 
       <div id="live" hidden>
@@ -344,23 +345,24 @@ ol.steps li{margin-bottom:8px}
     </div>
   </section>
 
+  <p class="cross-link">Checking your camera as well before a call? The <a href="https://webcamtest.wbest.app/">Webcam Test</a> does the same job for video, just as privately.</p>
+
   <section class="props" aria-label="Why use this mic test">
-    <div class="card"><strong>Nothing is uploaded</strong><p>Other mic testers send your recording to a server to "analyse" it. This one uses the Web Audio API - your voice never leaves the browser tab.</p></div>
-    <div class="card"><strong>Hear yourself, honestly</strong><p>A level meter proves the mic works; playback proves it sounds right. Record a few seconds and listen back before the call, not during it.</p></div>
-    <div class="card"><strong>Every device, one click</strong><p>Laptops routinely default to the wrong microphone. Switch between all of them here and see instantly which one is actually picking you up.</p></div>
+    <div class="card"><strong>Your voice never leaves the tab</strong><p>The level meter, the waveform, and playback all run on the Web Audio API built into your browser. No server, no upload, no account, and it works offline.</p></div>
+    <div class="card"><strong>Record and play yourself back</strong><p>A level meter tells you the mic is picking you up. Playing a clip back tells you how you sound to everyone else. The recording is held in memory and is gone when you close the page.</p></div>
+    <div class="card"><strong>Switch between every microphone</strong><p>Laptops often default to the wrong input, and a headset can appear twice. Pick each one from the dropdown and watch the meter to see which is actually picking you up.</p></div>
   </section>
 
   <section id="fix" class="prose">
     <h2>Microphone not working? Work through this</h2>
-    <p>If the meter above is not moving when you speak, it is almost always one of five things - in this order:</p>
+    <p>If the meter above is not moving when you speak, it is almost always one of five things, in this order:</p>
     <ol class="steps">
       <li><strong>Permission.</strong> If you dismissed or blocked the prompt, the browser will not ask again. Click the lock or camera icon in the address bar, set the microphone to Allow, and reload the page.</li>
-      <li><strong>The wrong device.</strong> Use the Microphone dropdown above. Laptops with a webcam, a headset, and a built-in mic often default to whichever was plugged in last - and a headset can appear twice, once for each mode.</li>
+      <li><strong>The wrong device.</strong> Use the Microphone dropdown above. Laptops with a webcam, a headset, and a built-in mic often default to whichever was plugged in last. A headset can appear twice, once for each mode.</li>
       <li><strong>Muted hardware.</strong> Check the physical mute switch on the microphone, the inline button on a headset cable, and the mute key on your keyboard. This is the single most common cause, and the most embarrassing.</li>
-      <li><strong>Another app has it.</strong> A video call, recorder, or streaming tool may be holding the microphone exclusively. Quit it fully - not just the window - and try again.</li>
+      <li><strong>Another app has it.</strong> A video call, recorder, or streaming tool may be holding the microphone exclusively. Quit it fully, not just the window, and try again.</li>
       <li><strong>System settings.</strong> Open your operating system's sound input settings and confirm the device is enabled and its input volume is not at zero. If the meter moves there but not here, it is a browser permission problem, not a hardware one.</li>
     </ol>
-    <p>Still nothing on every device? Try another browser. If it fails there too, the problem is the hardware or the operating system rather than any website.</p>
   </section>
 
   <section id="levels" class="prose">
@@ -373,9 +375,9 @@ ol.steps li{margin-bottom:8px}
         <tbody>
           <tr><td>Silent</td><td>No signal is arriving at all</td><td>Check mute, the selected device, and permission</td></tr>
           <tr><td>Quiet</td><td>Usable, but listeners will strain and hiss will show</td><td>Move closer, or raise input gain in system settings</td></tr>
-          <tr><td>Good</td><td>Healthy speech level with headroom to spare</td><td>Nothing - this is the target</td></tr>
+          <tr><td>Good</td><td>Healthy speech level with headroom to spare</td><td>Nothing, this is the target</td></tr>
           <tr><td>Loud</td><td>Fine for peaks, risky as a resting level</td><td>Back off slightly or lower the gain</td></tr>
-          <tr><td>Clipping</td><td>The signal exceeds what can be captured</td><td>Lower the gain now - clipped audio cannot be repaired</td></tr>
+          <tr><td>Clipping</td><td>The signal exceeds what can be captured</td><td>Lower the gain now. Clipped audio cannot be repaired</td></tr>
         </tbody>
       </table>
     </div>
@@ -383,20 +385,19 @@ ol.steps li{margin-bottom:8px}
     <p><strong>Get closer.</strong> Halving the distance to the microphone is a bigger improvement than most hardware upgrades, because it raises your voice relative to the room. A hand's width away, slightly off to the side, is ideal for most headsets and desk mics.</p>
     <p><strong>Fix the room, not the gear.</strong> Echo comes from bare walls and hard surfaces. Soft furnishings, a rug, or curtains do more for clarity than a better capsule ever will.</p>
     <p><strong>Set the gain, don't shout.</strong> Adjust the input level in your operating system's sound settings until normal speech lands in the good band. Raising your voice to compensate for a low gain just makes you sound tense.</p>
-    <p>Testing a countdown or a timed recording next? The <a href="https://timer.wbest.app/">Timer &amp; Stopwatch</a> is one tab away, and equally free of tracking.</p>
   </section>
 
   <section id="faq" class="prose faq">
     <h2>Frequently asked questions</h2>
 
     <h3>How do I test my microphone?</h3>
-    <p>Click Start microphone and allow access when your browser asks. Speak normally: the level meter should move with your voice and the waveform should ripple. If you want to hear yourself, record a few seconds and play it back. Nothing is uploaded at any point - the recording exists only in your browser's memory until you leave the page.</p>
+    <p>Click Start microphone and allow access when your browser asks. Speak normally: the level meter should move with your voice and the waveform should ripple. If you want to hear yourself, record a few seconds and play it back. Nothing is uploaded at any point. The recording exists only in your browser's memory until you leave the page.</p>
 
     <h3>Is my recording uploaded or stored anywhere?</h3>
     <p>No. Audio is captured with the Web Audio API and stays in memory on your device. There is no server involved, nothing is written to disk unless you choose to download it, and closing the tab discards everything. That is a meaningful difference from mic testers that upload your recording to check it.</p>
 
     <h3>Why is my microphone not working?</h3>
-    <p>Work through it in order. First, permission: if you blocked access, click the camera or lock icon in the address bar and allow the microphone, then reload. Second, the device: use the dropdown here to pick the right microphone - laptops often default to the wrong one, and headsets can appear twice. Third, mute: check the physical switch on the mic, headset, or laptop function key. Fourth, another app: a video call already using the mic can hold it exclusively, so quit it and try again. Finally, check your operating system's own sound input settings.</p>
+    <p>Work through it in order. First, permission: if you blocked access, click the camera or lock icon in the address bar and allow the microphone, then reload. Second, the device: use the dropdown here to pick the right microphone, since laptops often default to the wrong one and headsets can appear twice. Third, mute: check the physical switch on the mic, headset, or laptop function key. Fourth, another app: a video call already using the mic can hold it exclusively, so quit it and try again. Finally, check your operating system's own sound input settings.</p>
 
     <h3>What is a good microphone level?</h3>
     <p>When you speak at a normal volume, the meter should sit roughly between a third and three quarters of the way across, peaking near the top only on your loudest moments. Too quiet and listeners strain to hear you while background hiss becomes obvious. Too loud and the signal clips, which sounds harsh and crackly and cannot be repaired afterwards. Adjust the input gain in your operating system's sound settings rather than by shouting or backing away.</p>
@@ -405,7 +406,7 @@ ol.steps li{margin-bottom:8px}
     <p>Yes. It works in any modern mobile browser and will use your phone's built-in microphone, or a connected headset if you pick it in the device list. Note that browsers require a secure connection for microphone access, which this site uses. Some mobile browsers also stop the audio when the tab moves to the background, so keep the page in view while testing.</p>
 
     <h3>Why does my voice sound different when I play it back?</h3>
-    <p>That is normal and not a fault with your microphone. When you speak, you hear yourself partly through the bones of your skull, which carries lower frequencies that never reach a microphone. Recorded playback is only the airborne sound, so it seems thinner and higher pitched than the voice in your head - it is what everyone else has always heard.</p>
+    <p>That is normal and not a fault with your microphone. When you speak, you hear yourself partly through the bones of your skull, which carries lower frequencies that never reach a microphone. Recorded playback is only the airborne sound, so it seems thinner and higher pitched than the voice in your head. It is what everyone else has always heard.</p>
   </section>
 
 </main>

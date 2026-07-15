@@ -1,8 +1,8 @@
 # WBest Percentage Calculator
 
-> Free percentage calculator covering every common form: what is X% of Y, X is what percent of Y, X is Y% of what, percentage increase and decrease between two numbers, discount prices, and tips with bill splitting. Shows the worked formula under every answer. Runs entirely in your browser - no sign-up, no tracking, works offline.
+> Free percentage calculator covering every common form: what is X% of Y, X is what percent of Y, X is Y% of what, percentage increase and decrease between two numbers, discount prices, and tips with bill splitting. Shows the worked formula under every answer. Runs entirely in your browser. No sign-up, no tracking, works offline.
 
-Use it at https://percentagecalculator.wbest.app/ - it is a single page, and the tool is the page.
+Use it at https://percentagecalculator.wbest.app/. It is a single page, and the tool is the page.
 
 - Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
 - Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
@@ -24,19 +24,19 @@ Use it at https://percentagecalculator.wbest.app/ - it is a single page, and the
 
 ### How do I calculate a percentage of a number?
 
-Divide the percentage by 100 and multiply by the number: X% of Y = (X ÷ 100) × Y. For example, 20% of 150 = 0.20 × 150 = 30. Mental shortcut: find 10% by moving the decimal point one place left, then scale - 20% is double that, 5% is half of it.
+Divide the percentage by 100 and multiply by the number: X% of Y = (X ÷ 100) × Y. For example, 20% of 150 = 0.20 × 150 = 30. Mental shortcut: find 10% by moving the decimal point one place left, then scale: 20% is double that, 5% is half of it.
 
 ### How do I find what percent one number is of another?
 
-Divide the part by the whole and multiply by 100: (part ÷ whole) × 100. So 30 out of 150 is 30 ÷ 150 × 100 = 20%. This is the formula for test scores, market share, progress toward a goal - any "out of" question.
+Divide the part by the whole and multiply by 100: (part ÷ whole) × 100. So 30 out of 150 is 30 ÷ 150 × 100 = 20%. This is the formula for test scores, market share, progress toward a goal, and any "out of" question.
 
 ### What is the formula for percentage increase or decrease?
 
-Percentage change = (new − old) ÷ old × 100. From 80 to 100: (100 − 80) ÷ 80 × 100 = +25%. From 100 to 80: (80 − 100) ÷ 100 × 100 = −20%. Note the asymmetry - the change is always measured relative to the starting value, which is why +25% and −20% undo each other.
+Percentage change = (new − old) ÷ old × 100. From 80 to 100: (100 − 80) ÷ 80 × 100 = +25%. From 100 to 80: (80 − 100) ÷ 100 × 100 = −20%. Note the asymmetry: the change is always measured relative to the starting value, which is why +25% and −20% undo each other.
 
 ### What is the difference between a percentage change and percentage points?
 
-If an interest rate rises from 4% to 5%, it rose by 1 percentage point but by 25 percent (1 is a quarter of 4). Percentage points compare two percentages by subtraction; percent change compares them by division. News reports mix these up constantly - when a change of rates is described, check which one is meant.
+If an interest rate rises from 4% to 5%, it rose by 1 percentage point but by 25 percent (1 is a quarter of 4). Percentage points compare two percentages by subtraction; percent change compares them by division. News reports mix these up constantly, so when a change of rates is described, check which one is meant.
 
 ### How do I calculate a discount price quickly?
 
@@ -44,7 +44,7 @@ Multiply the price by (100 − discount) ÷ 100. A $80 item at 25% off: 80 × 0.
 
 ### How do I find the original price before a discount?
 
-Divide the sale price by (100 − discount) ÷ 100. If something costs $60 after 25% off, the original was 60 ÷ 0.75 = $80. A common mistake is adding 25% back to $60, which gives $75 - wrong, because the 25% was taken from the larger original price.
+Divide the sale price by (100 − discount) ÷ 100. If something costs $60 after 25% off, the original was 60 ÷ 0.75 = $80. A common mistake is adding 25% back to $60, which gives $75. That is wrong, because the 25% was taken from the larger original price.
 
 ### How much should I tip?
 
@@ -52,11 +52,11 @@ In the United States, 15-20% of the pre-tax bill is standard for table service, 
 
 ### Is anything I type sent to a server?
 
-No. Every calculation runs in JavaScript in your browser - numbers never leave your device, and the page keeps working offline once loaded. No sign-up, no tracking, no limits.
+No. Every calculation runs in JavaScript in your browser. Numbers never leave your device, and the page keeps working offline once loaded. No sign-up, no tracking, no limits.
 
 ## More WB tools
 
 - [BMI Calculator](https://bmicalculator.wbest.app/): Body mass index in metric or imperial, with your WHO category and healthy range.
 - [Loan Calculator](https://loancalculator.wbest.app/): Monthly payment, total interest, and a full amortization schedule for any loan.
-- [Car Depreciation Calculator](https://cardepreciation.wbest.app/): What your car will be worth, and what owning it really costs per year and mile.
-- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.
+- [Car Depreciation Calculator](https://cardepreciation.wbest.app/): What your car will be worth, and what owning it really costs per year and distance driven.
+- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.

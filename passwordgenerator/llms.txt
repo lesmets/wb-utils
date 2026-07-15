@@ -1,8 +1,8 @@
 # WBest Password Generator
 
-> Free strong random password generator with password, passphrase, and PIN modes. Uses the cryptographic random number generator built into your browser, shows honest entropy and time-to-crack estimates, and never sends or stores anything - everything runs on your device.
+> Free strong random password generator with password, passphrase, and PIN modes. Uses the cryptographic random number generator built into your browser, shows honest entropy and time-to-crack estimates, and never sends or stores anything. Everything runs on your device.
 
-Use it at https://passwordgenerator.wbest.app/ - it is a single page, and the tool is the page.
+Use it at https://passwordgenerator.wbest.app/. It is a single page, and the tool is the page.
 
 - Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
 - Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
@@ -17,46 +17,46 @@ Use it at https://passwordgenerator.wbest.app/ - it is a single page, and the to
 - Random PIN generator
 - Live entropy calculation and time-to-crack estimates
 - Option to exclude look-alike characters
-- 100% private on-device generation - no network requests, no storage
+- 100% private on-device generation: no network requests, no storage
 - Works offline
 
 ## Frequently asked questions
 
 ### Is it safe to use an online password generator?
 
-It depends on the generator. This one is safe by design: passwords are created by the cryptographic random number generator built into your own browser, the page makes no network requests, and nothing you generate is ever transmitted, logged, or stored. You can verify this yourself - watch the network tab in your browser's developer tools, or load the page once and use it with Wi-Fi turned off.
+It depends on the generator. This one is safe by design: passwords are created by the cryptographic random number generator built into your own browser, the page makes no network requests, and nothing you generate is ever transmitted, logged, or stored. You can verify this yourself: watch the network tab in your browser's developer tools, or load the page once and use it with Wi-Fi turned off.
 
 ### How long should a password be in 2026?
 
-Use at least 16 random characters for anything important, or a passphrase of six or more words. Current NIST guidance recommends length over complexity rules - a longer simple password beats a short convoluted one. Every character you add multiplies the work an attacker must do, so length is the cheapest security upgrade there is.
+Use at least 16 random characters for anything important, or a passphrase of six or more words. Current NIST guidance recommends length over complexity rules, because a longer simple password beats a short convoluted one. Every character you add multiplies the work an attacker must do, so length is the cheapest security upgrade there is.
 
 ### What is the strongest type of password?
 
-A long, fully random string using all four character sets is strongest per character - a random 20-character password has about 131 bits of entropy and is effectively uncrackable with today's hardware. For passwords you must remember or type by hand, a six-to-eight word passphrase is a better balance: slightly fewer bits, far easier to recall, and much faster to type on a phone.
+A long, fully random string using all four character sets is strongest per character: a random 20-character password has about 131 bits of entropy and is effectively uncrackable with today's hardware. For passwords you must remember or type by hand, a six-to-eight word passphrase is a better balance: slightly fewer bits, far easier to recall, and much faster to type on a phone.
 
 ### Are passphrases really as secure as random passwords?
 
-Yes, when the words are chosen randomly rather than invented. Each word drawn from this tool's 1,024-word list adds exactly 10 bits of entropy, so six words gives 60 bits and eight words gives 80 - comparable to a fully random 12-character password. The security comes from random selection: a lyric, quote, or sentence you thought up yourself is dramatically weaker, because attackers try those first.
+Yes, when the words are chosen randomly rather than invented. Each word drawn from this tool's 1,024-word list adds exactly 10 bits of entropy, so six words gives 60 bits and eight words gives 80, comparable to a fully random 12-character password. The security comes from random selection: a lyric, quote, or sentence you thought up yourself is dramatically weaker, because attackers try those first.
 
 ### How accurate are the time-to-crack estimates?
 
-They assume a worst-case offline attack: someone who has stolen your password's hash trying one trillion guesses per second, roughly what a rack of modern GPUs achieves against a fast hash like NTLM or MD5. Real conditions are usually far better for you - websites throttle login attempts to a handful per minute, and slow hashes like bcrypt cut attack speed by a factor of millions. Treat the estimate as a conservative floor, not a guarantee.
+They assume a worst-case offline attack: someone who has stolen your password's hash trying one trillion guesses per second, roughly what a rack of modern GPUs achieves against a fast hash like NTLM or MD5. Real conditions are usually far better for you: websites throttle login attempts to a handful per minute, and slow hashes like bcrypt cut attack speed by a factor of millions. Treat the estimate as a conservative floor, not a guarantee.
 
 ### Do you store or ever see the passwords I generate?
 
-No. Generation happens entirely on your device, the page makes no network requests, and there are no analytics or trackers. Nothing is written to disk either - this tool deliberately has no autosave, and the recent-passwords panel lives only in memory and vanishes the moment you close or reload the tab.
+No. Generation happens entirely on your device, the page makes no network requests, and there are no analytics or trackers. Nothing is written to disk either. This tool deliberately has no autosave, and the recent-passwords panel lives only in memory and vanishes the moment you close or reload the tab.
 
 ### Why is reusing a password so dangerous?
 
-Because breaches are routine. When any site you use is hacked, criminals take the leaked email and password pairs and automatically try them on banks, email providers, and shops - an attack called credential stuffing that succeeds against a meaningful share of accounts. A unique random password for every site means one breach compromises one account instead of your whole digital life. This is the problem password managers solve.
+Because breaches are routine. When any site you use is hacked, criminals take the leaked email and password pairs and automatically try them on banks, email providers, and shops, an attack called credential stuffing that succeeds against a meaningful share of accounts. A unique random password for every site means one breach compromises one account instead of your whole digital life. This is the problem password managers solve.
 
 ### Does this password generator work offline?
 
-Yes. The entire tool is one self-contained page with no server calls, and the random number generator is part of your browser itself - so once the page has loaded, it keeps working without a connection. You can save it to your device and generate passwords anywhere.
+Yes. The entire tool is one self-contained page with no server calls, and the random number generator is part of your browser itself, so once the page has loaded it keeps working without a connection. You can save it to your device and generate passwords anywhere.
 
 ## More WB tools
 
-- [QR Code Generator](https://qrcode.wbest.app/): QR codes for links, Wi-Fi, vCards, and more - no watermark, never expire.
+- [QR Code Generator](https://qrcode.wbest.app/): QR codes for links, Wi-Fi, vCards, and more. No watermark, never expire.
 - [Random Number Generator](https://randomnumbergenerator.wbest.app/): Secure random numbers, dice, coin flips, and pick-from-a-list draws.
 - [Barcode Generator](https://barcodegenerator.wbest.app/): Code 128 and EAN-13 barcodes with check digits, as PNG or print-ready SVG.
-- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.

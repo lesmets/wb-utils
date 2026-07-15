@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WBest Base64 Encoder &amp; Decoder - Free, Instant, Private</title>
-<meta name="description" content="Encode and decode Base64 online, with correct UTF-8, URL-safe output, and file support. Your tokens and data never leave your browser. Free, instant, no sign-up.">
+<title>WBest Base64 Encoder &amp; Decoder: Free, Instant, Private</title>
+<meta name="description" content="Encode and decode Base64 online, with correct UTF-8, URL-safe output, and file support. Your tokens never leave your browser. Free, instant, no sign-up.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://base64.wbest.app/">
@@ -16,19 +16,19 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Base64 Encoder &amp; Decoder">
-<meta property="og:title" content="WBest Base64 Encoder &amp; Decoder - Free, Instant, Private">
-<meta property="og:description" content="Encode and decode Base64 online, with correct UTF-8, URL-safe output, and file support. Your tokens and data never leave your browser. Free, instant, no sign-up.">
+<meta property="og:title" content="WBest Base64 Encoder &amp; Decoder: Free, Instant, Private">
+<meta property="og:description" content="Encode and decode Base64 online, with correct UTF-8, URL-safe output, and file support. Your tokens never leave your browser. Free, instant, no sign-up.">
 <meta property="og:url" content="https://base64.wbest.app/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WBest Base64 Encoder &amp; Decoder - Free, Instant, Private">
-<meta name="twitter:description" content="Encode and decode Base64 online, with correct UTF-8, URL-safe output, and file support. Your tokens and data never leave your browser. Free, instant, no sign-up.">
+<meta name="twitter:title" content="WBest Base64 Encoder &amp; Decoder: Free, Instant, Private">
+<meta name="twitter:description" content="Encode and decode Base64 online, with correct UTF-8, URL-safe output, and file support. Your tokens never leave your browser. Free, instant, no sign-up.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Base64 Encoder & Decoder",
   "url": "https://base64.wbest.app/",
-  "description": "Free online Base64 encoder and decoder. Convert text or whole files to Base64 and back, with correct UTF-8 handling, the URL-safe alphabet, optional line wrapping, and data URL output. Decoding tells you when the result is binary rather than text, and offers it as a download. Runs entirely in your browser - your tokens, keys, and payloads are never uploaded.",
+  "description": "Free online Base64 encoder and decoder. Convert text or whole files to Base64 and back, with correct UTF-8 handling, the URL-safe alphabet, optional line wrapping, and data URL output. Decoding tells you when the result is binary rather than text, and offers it as a download. Runs entirely in your browser. Your tokens, keys, and payloads are never uploaded.",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
@@ -57,7 +57,7 @@
       "name": "What is Base64 encoding?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Base64 is a way of writing binary data using only 64 plain text characters: A-Z, a-z, 0-9, plus and slash. It exists because many systems - email, URLs, JSON, XML - were built for text and will corrupt or reject raw bytes. Base64 takes three bytes at a time and rewrites them as four printable characters, so the data survives any channel that can carry text."
+        "text": "Base64 is a way of writing binary data using only 64 plain text characters: A-Z, a-z, 0-9, plus and slash. It exists because many systems (email, URLs, JSON, XML) were built for text and will corrupt or reject raw bytes. Base64 takes three bytes at a time and rewrites them as four printable characters, so the data survives any channel that can carry text."
       }
     },
     {
@@ -65,7 +65,7 @@
       "name": "Is Base64 encryption? Is it secure?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Base64 is not encryption and offers no security whatsoever. There is no key and no secret - anyone can decode it instantly, which is exactly what this page does. It only makes data look scrambled to a human eye. Never use Base64 to hide a password, an API key, or personal data. If you need secrecy, encrypt the data; Base64 only makes an already-encrypted blob safe to transport as text."
+        "text": "No. Base64 is not encryption and offers no security whatsoever. There is no key and no secret. Anyone can decode it instantly, which is exactly what this page does. It only makes data look scrambled to a human eye. Never use Base64 to hide a password, an API key, or personal data. If you need secrecy, encrypt the data; Base64 only makes an already-encrypted blob safe to transport as text."
       }
     },
     {
@@ -89,7 +89,7 @@
       "name": "Why does my decoded text show strange characters?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Usually because the tool that encoded it mishandled UTF-8. Base64 works on bytes, not characters, so text must first be turned into bytes - and the browser's own btoa function only accepts Latin-1, so many tools silently corrupt anything beyond plain ASCII. This page encodes through UTF-8 properly, so emoji, accents, Greek, Arabic, and CJK all round-trip exactly. If a decode here produces something odd, the original encoder was probably at fault."
+        "text": "Usually because the tool that encoded it mishandled UTF-8. Base64 works on bytes, not characters, so text must first be turned into bytes, and the browser's own btoa function only accepts Latin-1, so many tools silently corrupt anything beyond plain ASCII. This page encodes through UTF-8 properly, so emoji, accents, Greek, Arabic, and CJK all round-trip exactly. If a decode here produces something odd, the original encoder was probably at fault."
       }
     },
     {
@@ -148,6 +148,7 @@ h3{font-size:1.05rem;margin:22px 0 6px}
 p{margin:0 0 12px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
 .muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
 .lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
@@ -260,8 +261,8 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 
 <header class="wrap">
   <h1>WBest Base64 Encoder &amp; Decoder</h1>
-  <p class="tagline">Encode and decode Base64 as you type - with correct UTF-8, URL-safe output, and whole files. Nothing is ever uploaded.</p>
-  <span class="badge">🔒 100% private - your tokens and keys never leave your browser</span>
+  <p class="tagline">Encode and decode Base64 as you type, with correct UTF-8, URL-safe output, and whole files. Nothing uploaded, free, no sign-up.</p>
+  <span class="badge">🔒 100% private, your tokens and keys never leave your browser</span>
   <nav class="toc" aria-label="On this page">
     <a href="#tool">Encoder</a>
     <a href="#what">What is Base64</a>
@@ -334,29 +335,31 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
     </div>
   </section>
 
+  <p class="cross-link">Need a one-way fingerprint of some data instead? That is hashing: see the <a href="https://hashgenerator.wbest.app/">Hash Generator</a>. Decoded a JWT segment and want it readable? The <a href="https://jsonformatter.wbest.app/">JSON Formatter</a> takes it from there.</p>
+
   <section class="props" aria-label="Why use this Base64 tool">
     <div class="card"><strong>UTF-8 done properly</strong><p>Most tools lean on the browser's <code>btoa</code>, which only accepts Latin-1 and quietly corrupts anything else. Emoji, accents, and CJK round-trip exactly here.</p></div>
-    <div class="card"><strong>Safe for secrets</strong><p>Base64 strings carry API keys, tokens, and credentials. This page never sends them anywhere - it works with your connection switched off.</p></div>
+    <div class="card"><strong>Safe for secrets</strong><p>Base64 strings carry API keys, tokens, and credentials. This page never sends them anywhere. It works with your connection switched off.</p></div>
     <div class="card warn-card"><strong>Not encryption</strong><p>Base64 hides nothing. Anyone can decode it in a second, exactly as this page does. Never use it to protect a password or a key.</p></div>
   </section>
 
   <section id="what" class="prose">
     <h2>What is Base64?</h2>
-    <p><strong>Base64</strong> is a way to write arbitrary binary data using only 64 characters that survive anywhere: <code>A-Z</code>, <code>a-z</code>, <code>0-9</code>, <code>+</code>, and <code>/</code>. It exists because much of the internet's plumbing - email, URLs, JSON, XML, HTTP headers - was designed for text, and will happily corrupt, strip, or reject raw bytes.</p>
-    <p>The mechanism is simple arithmetic. Three bytes are 24 bits; split those 24 bits into four groups of six; each 6-bit group is a number from 0 to 63, which indexes the alphabet. So <strong>three bytes in, four characters out</strong> - and that ratio is the whole story of Base64, including its 33% size increase.</p>
+    <p><strong>Base64</strong> is a way to write arbitrary binary data using only 64 characters that survive anywhere: <code>A-Z</code>, <code>a-z</code>, <code>0-9</code>, <code>+</code>, and <code>/</code>. It exists because much of the internet's plumbing (email, URLs, JSON, XML, HTTP headers) was designed for text, and will happily corrupt, strip, or reject raw bytes.</p>
+    <p>The mechanism is simple arithmetic. Three bytes are 24 bits; split those 24 bits into four groups of six; each 6-bit group is a number from 0 to 63, which indexes the alphabet. So <strong>three bytes in, four characters out</strong>, and that ratio is the whole story of Base64, including its 33% size increase.</p>
     <h3>What the padding is for</h3>
-    <p>If your data is not a clean multiple of three bytes, the last group is short. Base64 pads the output with <code>=</code> so the length is always a multiple of four, which tells a decoder how many real bytes the final group held. Some systems drop the padding because they know the length anyway - that is why the padding toggle is here, and why a decoder should accept it missing. This one does.</p>
+    <p>If your data is not a clean multiple of three bytes, the last group is short. Base64 pads the output with <code>=</code> so the length is always a multiple of four, which tells a decoder how many real bytes the final group held. Some systems drop the padding because they know the length anyway. That is why the padding toggle is here, and why a decoder should accept it missing. This one does.</p>
     <h3>Bytes, not characters</h3>
-    <p>This is the subtlety that breaks most implementations. Base64 encodes <em>bytes</em>, so text must first become bytes, and that requires choosing an encoding - virtually always UTF-8. The browser's built-in <code>btoa()</code> refuses anything above Latin-1, so tools built on it either throw or silently mangle "café", "日本語", or "🎉". This page converts through UTF-8 with <code>TextEncoder</code>, so every alphabet and emoji survives the round trip intact. Try it.</p>
+    <p>This is the subtlety that breaks most implementations. Base64 encodes <em>bytes</em>, so text must first become bytes, and that requires choosing an encoding, virtually always UTF-8. The browser's built-in <code>btoa()</code> refuses anything above Latin-1, so tools built on it either throw or silently mangle "café", "日本語", or "🎉". This page converts through UTF-8 with <code>TextEncoder</code>, so every alphabet and emoji survives the round trip intact. Try it.</p>
   </section>
 
   <section id="not-encryption" class="prose">
     <h2>Base64 is not encryption</h2>
-    <p>This deserves its own section, because it is the most consequential misunderstanding in the whole topic - and it shows up in real breaches.</p>
-    <p><strong>Base64 provides zero security.</strong> There is no key, no secret, and nothing to break. It is a public, reversible transformation that anyone can undo instantly - as this very page demonstrates. It makes data <em>unreadable to a casual human glance</em>, and that is all.</p>
+    <p>This deserves its own section, because it is the most consequential misunderstanding in the whole topic, and it shows up in real breaches.</p>
+    <p><strong>Base64 provides zero security.</strong> There is no key, no secret, and nothing to break. It is a public, reversible transformation that anyone can undo instantly, as this very page demonstrates. It makes data <em>unreadable to a casual human glance</em>, and that is all.</p>
     <p>So: never Base64 a password and call it protected. Never "obscure" an API key by encoding it. Never assume Base64 in a config file, a cookie, or a database column means the contents are safe. If someone can read the string, they can read the data.</p>
-    <p>What Base64 is genuinely for is <strong>transport</strong>: making bytes survive a text-only channel. Encryption and encoding solve different problems, and they compose well - encrypt first, then Base64 the ciphertext so it can travel through email or JSON. In that order, the Base64 layer adds nothing to the secrecy and everything to the compatibility.</p>
-    <p>Need a one-way fingerprint of some data instead? That is hashing - see the <a href="https://hashgenerator.wbest.app/">Hash Generator</a>. Need to inspect a token's contents? A JWT is three URL-safe Base64 segments, and you can paste any of them here.</p>
+    <p>What Base64 is genuinely for is <strong>transport</strong>: making bytes survive a text-only channel. Encryption and encoding solve different problems, and they compose well: encrypt first, then Base64 the ciphertext so it can travel through email or JSON. In that order, the Base64 layer adds nothing to the secrecy and everything to the compatibility.</p>
+    <p>Need to inspect a token's contents? A JWT is three URL-safe Base64 segments, and you can paste any of them here.</p>
   </section>
 
   <section id="uses" class="prose">
@@ -367,16 +370,16 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
         <thead><tr><th scope="col">Where</th><th scope="col">Looks like</th><th scope="col">Notes</th></tr></thead>
         <tbody>
           <tr><td>Data URLs</td><td><code>data:image/png;base64,iVBORw0…</code></td><td>Embeds a file directly in HTML or CSS. Convenient for tiny icons; wasteful for anything larger, since it cannot be cached separately</td></tr>
-          <tr><td>HTTP Basic auth</td><td><code>Authorization: Basic dXNlcjpwYXNz</code></td><td>Just <code>user:password</code> encoded - not protected at all, which is why it needs HTTPS</td></tr>
+          <tr><td>HTTP Basic auth</td><td><code>Authorization: Basic dXNlcjpwYXNz</code></td><td>Just <code>user:password</code> encoded, not protected at all, which is why it needs HTTPS</td></tr>
           <tr><td>JSON Web Tokens</td><td><code>eyJhbGciOi…</code></td><td>Three URL-safe segments joined by dots. The payload is readable by anyone; the signature is what makes it trustworthy</td></tr>
-          <tr><td>Email attachments</td><td>MIME, wrapped at 76 chars</td><td>The original reason Base64 exists - SMTP was built for 7-bit text</td></tr>
+          <tr><td>Email attachments</td><td>MIME, wrapped at 76 chars</td><td>The original reason Base64 exists: SMTP was built for 7-bit text</td></tr>
           <tr><td>Keys and certificates</td><td><code>-----BEGIN CERTIFICATE-----</code></td><td>PEM format is Base64 of the binary DER, with header lines</td></tr>
           <tr><td>API payloads</td><td>Encoded blobs inside JSON</td><td>JSON has no binary type, so bytes are Base64'd into a string</td></tr>
         </tbody>
       </table>
     </div>
     <h3>Standard vs. URL-safe</h3>
-    <p>Standard Base64's <code>+</code> and <code>/</code> are both meaningful inside a URL: <code>+</code> can be read as a space, and <code>/</code> as a path separator. <strong>URL-safe Base64</strong> (RFC 4648 §5) substitutes <code>-</code> and <code>_</code>, and typically drops the <code>=</code> padding as well, so the string can sit in a query parameter or path untouched. This is what JWTs use. Flip the URL-safe toggle above and watch the characters change - the underlying bytes are identical.</p>
+    <p>Standard Base64's <code>+</code> and <code>/</code> are both meaningful inside a URL: <code>+</code> can be read as a space, and <code>/</code> as a path separator. <strong>URL-safe Base64</strong> (RFC 4648 §5) substitutes <code>-</code> and <code>_</code>, and typically drops the <code>=</code> padding as well, so the string can sit in a query parameter or path untouched. This is what JWTs use. Flip the URL-safe toggle above and watch the characters change. The underlying bytes are identical.</p>
     <p>Working with the URLs themselves rather than their payloads? Percent-encoding is a different scheme with a different job.</p>
   </section>
 
@@ -384,10 +387,10 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
     <h2>Frequently asked questions</h2>
 
     <h3>What is Base64 encoding?</h3>
-    <p>Base64 is a way of writing binary data using only 64 plain text characters: A-Z, a-z, 0-9, plus and slash. It exists because many systems - email, URLs, JSON, XML - were built for text and will corrupt or reject raw bytes. Base64 takes three bytes at a time and rewrites them as four printable characters, so the data survives any channel that can carry text.</p>
+    <p>Base64 is a way of writing binary data using only 64 plain text characters: A-Z, a-z, 0-9, plus and slash. It exists because many systems (email, URLs, JSON, XML) were built for text and will corrupt or reject raw bytes. Base64 takes three bytes at a time and rewrites them as four printable characters, so the data survives any channel that can carry text.</p>
 
     <h3>Is Base64 encryption? Is it secure?</h3>
-    <p>No. Base64 is not encryption and offers no security whatsoever. There is no key and no secret - anyone can decode it instantly, which is exactly what this page does. It only makes data look scrambled to a human eye. Never use Base64 to hide a password, an API key, or personal data. If you need secrecy, encrypt the data; Base64 only makes an already-encrypted blob safe to transport as text.</p>
+    <p>No. Base64 is not encryption and offers no security whatsoever. There is no key and no secret. Anyone can decode it instantly, which is exactly what this page does. It only makes data look scrambled to a human eye. Never use Base64 to hide a password, an API key, or personal data. If you need secrecy, encrypt the data; Base64 only makes an already-encrypted blob safe to transport as text.</p>
 
     <h3>Why does Base64 make my data bigger?</h3>
     <p>Because it spends four characters to describe every three bytes, Base64 output is about 33% larger than the input, plus a little padding. That is the price of using only safe characters. It is why you should not Base64 a large image into a web page: the bytes are bigger and, unlike a real image file, they cannot be cached separately by the browser.</p>
@@ -396,7 +399,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
     <p>Standard Base64 uses plus and slash, which both have special meanings in a URL and get mangled or re-encoded. URL-safe Base64 (RFC 4648) swaps them for minus and underscore, and usually drops the equals padding too. It is what JSON Web Tokens use for each of their segments. Turn on the URL-safe option here and the output is safe to drop into a query string or a path.</p>
 
     <h3>Why does my decoded text show strange characters?</h3>
-    <p>Usually because the tool that encoded it mishandled UTF-8. Base64 works on bytes, not characters, so text must first be turned into bytes - and the browser's own <code>btoa</code> function only accepts Latin-1, so many tools silently corrupt anything beyond plain ASCII. This page encodes through UTF-8 properly, so emoji, accents, Greek, Arabic, and CJK all round-trip exactly. If a decode here produces something odd, the original encoder was probably at fault.</p>
+    <p>Usually because the tool that encoded it mishandled UTF-8. Base64 works on bytes, not characters, so text must first be turned into bytes, and the browser's own <code>btoa</code> function only accepts Latin-1, so many tools silently corrupt anything beyond plain ASCII. This page encodes through UTF-8 properly, so emoji, accents, Greek, Arabic, and CJK all round-trip exactly. If a decode here produces something odd, the original encoder was probably at fault.</p>
 
     <h3>Is my data uploaded when I encode or decode it?</h3>
     <p>No. Everything is encoded and decoded in your browser with JavaScript, including whole files, so nothing is uploaded, logged, or tracked. That matters here more than almost anywhere: Base64 strings routinely carry API keys, tokens, and credentials, and pasting those into a site that sends them to a server is a genuine leak. This page keeps working offline once loaded.</p>

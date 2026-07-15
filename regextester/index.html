@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WBest Regex Tester - Test &amp; Debug Regular Expressions Online</title>
+<title>WBest Regex Tester: Test &amp; Debug Regular Expressions Online</title>
 <meta name="description" content="Test regular expressions live with match highlighting, capture groups, and a replace preview. Supports all JavaScript flags. Free, instant, and 100% private.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
@@ -16,11 +16,11 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Regex Tester">
-<meta property="og:title" content="WBest Regex Tester - Test &amp; Debug Regular Expressions Online">
+<meta property="og:title" content="WBest Regex Tester: Test &amp; Debug Regular Expressions Online">
 <meta property="og:description" content="Test regular expressions live with match highlighting, capture groups, and a replace preview. Supports all JavaScript flags. Free, instant, and 100% private.">
 <meta property="og:url" content="https://regextester.wbest.app/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WBest Regex Tester - Test &amp; Debug Regular Expressions Online">
+<meta name="twitter:title" content="WBest Regex Tester: Test &amp; Debug Regular Expressions Online">
 <meta name="twitter:description" content="Test regular expressions live with match highlighting, capture groups, and a replace preview. Supports all JavaScript flags. Free, instant, and 100% private.">
 <script type="application/ld+json">
 {
@@ -28,7 +28,7 @@
   "@type": "WebApplication",
   "name": "Regex Tester",
   "url": "https://regextester.wbest.app/",
-  "description": "Free online regex tester and debugger. Write a regular expression, see every match highlighted live in your test string, inspect capture groups and named groups, and preview a replace before you run it. Supports every JavaScript flag. Runs entirely in your browser - no tracking, works offline.",
+  "description": "Free online regex tester and debugger. Write a regular expression, see every match highlighted live in your test string, inspect capture groups and named groups, and preview a replace before you run it. Supports every JavaScript flag. Runs entirely in your browser. No tracking, works offline.",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
@@ -57,7 +57,7 @@
       "name": "What is a regular expression?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A regular expression (regex) is a compact pattern that describes a set of strings. Instead of searching for one fixed word, you describe its shape - \"three digits, a dash, then four digits\" - and the engine finds every piece of text matching that shape. Regex powers find-and-replace in editors, input validation, log searching, and text extraction in almost every programming language."
+        "text": "A regular expression (regex) is a compact pattern that describes a set of strings. Instead of searching for one fixed word, you describe its shape (\"three digits, a dash, then four digits\") and the engine finds every piece of text matching that shape. Regex powers find-and-replace in editors, input validation, log searching, and text extraction in almost every programming language."
       }
     },
     {
@@ -97,7 +97,7 @@
       "name": "Is my regex or test text sent anywhere?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Matching runs in JavaScript in your browser using your device's own regex engine. Your pattern and test string - often production log lines or real customer data - are never uploaded, logged, or tracked, and the page keeps working offline once loaded."
+        "text": "No. Matching runs in JavaScript in your browser using your device's own regex engine. Your pattern and test string, often production log lines or real customer data, are never uploaded, logged, or tracked, and the page keeps working offline once loaded."
       }
     }
   ]
@@ -148,6 +148,7 @@ h3{font-size:1.05rem;margin:22px 0 6px}
 p{margin:0 0 12px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
 .muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
 .lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
@@ -282,8 +283,8 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 
 <header class="wrap">
   <h1>WBest Regex Tester</h1>
-  <p class="tagline">Write a regular expression and watch every match light up as you type - with capture groups, flags, and a replace preview.</p>
-  <span class="badge">🔒 100% private - matched in your browser, never uploaded</span>
+  <p class="tagline">Write a regular expression and watch every match light up as you type, with capture groups, flags, and a replace preview. Free and 100% private.</p>
+  <span class="badge">🔒 100% private, matched in your browser, never uploaded</span>
   <nav class="toc" aria-label="On this page">
     <a href="#tool">Tester</a>
     <a href="#what">What is regex</a>
@@ -346,7 +347,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 
       <div class="card pane rep">
         <h2><label for="replace">Replace preview</label></h2>
-        <input type="text" id="replace" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="$1 - use $1, $&lt;name&gt;, $&amp; ...">
+        <input type="text" id="replace" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Use $1, $&lt;name&gt;, $&amp; ...">
         <pre id="rep-out"></pre>
         <div class="status">
           <span class="spacer"></span>
@@ -356,20 +357,22 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
     </div>
   </section>
 
+  <p class="cross-link">Also useful: the <a href="https://jsonformatter.wbest.app/">JSON Formatter</a> for inspecting payloads before you write a pattern against them, and the <a href="https://hashgenerator.wbest.app/">Hash Generator</a> for checksums. Both are equally private.</p>
+
   <section class="props" aria-label="Why use this regex tester">
-    <div class="card"><strong>See it, don't guess it</strong><p>Every match is highlighted in place as you type, numbered, and broken out into its capture groups - so you can tell which part of the pattern did what.</p></div>
+    <div class="card"><strong>Every match, highlighted live</strong><p>Every match is highlighted in place as you type, numbered, and broken out into its capture groups, so you can tell which part of the pattern did what.</p></div>
     <div class="card"><strong>Your browser's real engine</strong><p>Matching uses the same JavaScript regex engine your code will run on, so what you see here is exactly what Node and the browser will do.</p></div>
     <div class="card"><strong>Safe for real data</strong><p>Regex debugging usually means pasting production logs. Nothing leaves your device, nothing is logged, and the page works offline.</p></div>
   </section>
 
   <section id="what" class="prose">
     <h2>What is a regular expression?</h2>
-    <p>A <strong>regular expression</strong> - regex for short - is a small language for describing the <em>shape</em> of text. Rather than searching for one literal string, you describe a pattern: "an @ sign with word characters either side", "four digits, a dash, two digits". The engine then finds every stretch of text that fits.</p>
-    <p>That power comes with a famous downside: regex is written densely and read rarely. A pattern that works is easy; a pattern you can still understand next month is the hard part. Testing interactively - watching matches appear and disappear as you edit a single character - is by far the fastest way to build one correctly.</p>
+    <p>A <strong>regular expression</strong>, regex for short, is a small language for describing the <em>shape</em> of text. Rather than searching for one literal string, you describe a pattern: "an @ sign with word characters either side", "four digits, a dash, two digits". The engine then finds every stretch of text that fits.</p>
+    <p>That power comes with a famous downside: regex is written densely and read rarely. A pattern that works is easy; a pattern you can still understand next month is the hard part. Testing interactively, watching matches appear and disappear as you edit a single character, is by far the fastest way to build one correctly.</p>
     <h3>How to use this tester</h3>
-    <p>Type your pattern in the field at the top (no surrounding slashes needed - they are drawn for you), toggle the flags you want, and paste your text below. Matches highlight instantly, alternating shades so you can see where one ends and the next begins. The <strong>Matches</strong> panel lists each result with its position and capture groups, and the <strong>Replace preview</strong> shows what a find-and-replace would produce before you run it anywhere real.</p>
+    <p>Type your pattern in the field at the top (no surrounding slashes needed; they are drawn for you), toggle the flags you want, and paste your text below. Matches highlight instantly, alternating shades so you can see where one ends and the next begins. The <strong>Matches</strong> panel lists each result with its position and capture groups, and the <strong>Replace preview</strong> shows what a find-and-replace would produce before you run it anywhere real.</p>
     <h3>Greedy vs. lazy quantifiers</h3>
-    <p>By default quantifiers are <strong>greedy</strong>: <code>.+</code> takes as much text as it can and then backs off only as far as it must. Add a <code>?</code> to make one <strong>lazy</strong> - <code>.+?</code> takes as little as possible. This single character explains most "why does my regex match the whole line?" bugs. Try <code>&lt;.+&gt;</code> against <code>&lt;a&gt;&lt;b&gt;</code>, then try <code>&lt;.+?&gt;</code>.</p>
+    <p>By default quantifiers are <strong>greedy</strong>: <code>.+</code> takes as much text as it can and then backs off only as far as it must. Add a <code>?</code> to make one <strong>lazy</strong>: <code>.+?</code> takes as little as possible. This single character explains most "why does my regex match the whole line?" bugs. Try <code>&lt;.+&gt;</code> against <code>&lt;a&gt;&lt;b&gt;</code>, then try <code>&lt;.+?&gt;</code>.</p>
   </section>
 
   <section id="cheatsheet" class="prose">
@@ -385,18 +388,18 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
           <tr><td><code>\s</code> <code>\S</code></td><td>Any whitespace (space, tab, newline) / anything else</td></tr>
           <tr><td><code>[abc]</code> <code>[^abc]</code></td><td>Any one of a, b, c / any character except those</td></tr>
           <tr><td><code>[a-z]</code></td><td>Any character in the range a to z</td></tr>
-          <tr><td><code>^</code> <code>$</code></td><td>Start / end of the string - or of each line with the <code>m</code> flag</td></tr>
-          <tr><td><code>\b</code></td><td>A word boundary - the edge between <code>\w</code> and non-<code>\w</code></td></tr>
+          <tr><td><code>^</code> <code>$</code></td><td>Start / end of the string, or of each line with the <code>m</code> flag</td></tr>
+          <tr><td><code>\b</code></td><td>A word boundary, the edge between <code>\w</code> and non-<code>\w</code></td></tr>
           <tr><td><code>*</code> <code>+</code> <code>?</code></td><td>The preceding item zero or more / one or more / zero or one times</td></tr>
           <tr><td><code>{2}</code> <code>{2,}</code> <code>{2,5}</code></td><td>Exactly 2 / 2 or more / between 2 and 5 times</td></tr>
-          <tr><td><code>+?</code> <code>*?</code></td><td>Lazy versions - match as few characters as possible</td></tr>
-          <tr><td><code>(abc)</code></td><td>Capture group - stores the match as <code>$1</code></td></tr>
-          <tr><td><code>(?:abc)</code></td><td>Non-capturing group - groups without storing</td></tr>
-          <tr><td><code>(?&lt;name&gt;abc)</code></td><td>Named capture group - read back as <code>$&lt;name&gt;</code></td></tr>
+          <tr><td><code>+?</code> <code>*?</code></td><td>Lazy versions, matching as few characters as possible</td></tr>
+          <tr><td><code>(abc)</code></td><td>Capture group, stores the match as <code>$1</code></td></tr>
+          <tr><td><code>(?:abc)</code></td><td>Non-capturing group, groups without storing</td></tr>
+          <tr><td><code>(?&lt;name&gt;abc)</code></td><td>Named capture group, read back as <code>$&lt;name&gt;</code></td></tr>
           <tr><td><code>a|b</code></td><td>Either a or b</td></tr>
           <tr><td><code>(?=abc)</code> <code>(?!abc)</code></td><td>Lookahead: followed by / not followed by (does not consume text)</td></tr>
           <tr><td><code>(?&lt;=abc)</code> <code>(?&lt;!abc)</code></td><td>Lookbehind: preceded by / not preceded by</td></tr>
-          <tr><td><code>\.</code> <code>\/</code> <code>\\</code></td><td>A literal dot, slash, or backslash - escape any special character with <code>\</code></td></tr>
+          <tr><td><code>\.</code> <code>\/</code> <code>\\</code></td><td>A literal dot, slash, or backslash. Escape any special character with <code>\</code></td></tr>
         </tbody>
       </table>
     </div>
@@ -404,7 +407,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 
   <section id="patterns" class="prose">
     <h2>Common regex patterns</h2>
-    <p>Useful starting points - click any example button in the tester above to load one. Treat these as pragmatic, not exhaustive: an email regex that satisfies the full RFC is famously unreadable and still would not tell you the address exists.</p>
+    <p>Useful starting points. Click any example button in the tester above to load one. Treat these as pragmatic, not exhaustive: an email regex that satisfies the full RFC is famously unreadable and still would not tell you the address exists.</p>
     <div class="table-wrap">
       <table>
         <caption>Practical patterns for everyday validation and extraction.</caption>
@@ -421,14 +424,13 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
         </tbody>
       </table>
     </div>
-    <p>Also useful: the <a href="https://jsonformatter.wbest.app/">JSON Formatter</a> for inspecting payloads before you write a pattern against them, and the <a href="https://hashgenerator.wbest.app/">Hash Generator</a> for checksums - both equally private.</p>
   </section>
 
   <section id="faq" class="prose faq">
     <h2>Frequently asked questions</h2>
 
     <h3>What is a regular expression?</h3>
-    <p>A regular expression (regex) is a compact pattern that describes a set of strings. Instead of searching for one fixed word, you describe its shape - "three digits, a dash, then four digits" - and the engine finds every piece of text matching that shape. Regex powers find-and-replace in editors, input validation, log searching, and text extraction in almost every programming language.</p>
+    <p>A regular expression (regex) is a compact pattern that describes a set of strings. Instead of searching for one fixed word, you describe its shape ("three digits, a dash, then four digits") and the engine finds every piece of text matching that shape. Regex powers find-and-replace in editors, input validation, log searching, and text extraction in almost every programming language.</p>
 
     <h3>What do the regex flags g, i, m, s, u, and y mean?</h3>
     <p>The <code>g</code> (global) flag finds every match instead of stopping at the first. <code>i</code> makes matching case-insensitive. <code>m</code> (multiline) makes <code>^</code> and <code>$</code> match at the start and end of each line rather than the whole string. <code>s</code> (dotAll) lets the dot match newline characters too. <code>u</code> enables full Unicode mode, which is required for <code>\p{...}</code> property escapes. <code>y</code> (sticky) forces each match to start exactly where the previous one ended.</p>
@@ -443,7 +445,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
     <p>It uses your browser's own JavaScript (ECMAScript) engine, so results match exactly what Node.js and browser code will do. JavaScript syntax overlaps heavily with PCRE, Python, and Java, but a few things differ: JavaScript has no free-spacing <code>x</code> flag, no atomic groups, and no recursion. Lookbehind, named groups, and <code>\p{...}</code> property escapes are all supported in modern browsers.</p>
 
     <h3>Is my regex or test text sent anywhere?</h3>
-    <p>No. Matching runs in JavaScript in your browser using your device's own regex engine. Your pattern and test string - often production log lines or real customer data - are never uploaded, logged, or tracked, and the page keeps working offline once loaded.</p>
+    <p>No. Matching runs in JavaScript in your browser using your device's own regex engine. Your pattern and test string, often production log lines or real customer data, are never uploaded, logged, or tracked, and the page keeps working offline once loaded.</p>
   </section>
 
 </main>
