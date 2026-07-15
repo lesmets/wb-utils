@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest Mic Test - Test Your Microphone Online, Free &amp; Private</title>
+<meta name="description" content="Test your microphone in seconds: live level meter, waveform, and record-and-play-back to hear yourself. Nothing is uploaded or recorded to any server. Free, no sign-up.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://mictest.wbest.app/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mic Test">
+<meta property="og:title" content="WBest Mic Test - Test Your Microphone Online, Free &amp; Private">
+<meta property="og:description" content="Test your microphone in seconds: live level meter, waveform, and record-and-play-back to hear yourself. Nothing is uploaded or recorded to any server. Free, no sign-up.">
+<meta property="og:url" content="https://mictest.wbest.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest Mic Test - Test Your Microphone Online, Free &amp; Private">
+<meta name="twitter:description" content="Test your microphone in seconds: live level meter, waveform, and record-and-play-back to hear yourself. Nothing is uploaded or recorded to any server. Free, no sign-up.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Mic Test",
+  "url": "https://mictest.wbest.app/",
+  "description": "Free online microphone test. See your mic's input level and live waveform, check that the right device is selected, and record a few seconds to play back and hear exactly how you sound. Everything happens inside your browser using the Web Audio API - no recording is ever uploaded, stored, or sent anywhere.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript and a microphone",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Live input level meter with peak hold",
+    "Real-time waveform display",
+    "Record and play back to hear yourself",
+    "Switch between all connected microphones",
+    "Plain-language verdict on whether your level is usable",
+    "Nothing uploaded - audio never leaves your device"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I test my microphone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Click Start microphone and allow access when your browser asks. Speak normally: the level meter should move with your voice and the waveform should ripple. If you want to hear yourself, record a few seconds and play it back. Nothing is uploaded at any point - the recording exists only in your browser's memory until you leave the page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my recording uploaded or stored anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Audio is captured with the Web Audio API and stays in memory on your device. There is no server involved, nothing is written to disk unless you choose to download it, and closing the tab discards everything. That is a meaningful difference from mic testers that upload your recording to check it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my microphone not working?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Work through it in order. First, permission: if you blocked access, click the camera or lock icon in the address bar and allow the microphone, then reload. Second, the device: use the dropdown here to pick the right microphone - laptops often default to the wrong one, and headsets can appear twice. Third, mute: check the physical switch on the mic, headset, or laptop function key. Fourth, another app: a video call already using the mic can hold it exclusively, so quit it and try again. Finally, check your operating system's own sound input settings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good microphone level?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When you speak at a normal volume, the meter should sit roughly between a third and three quarters of the way across, peaking near the top only on your loudest moments. Too quiet and listeners strain to hear you while background hiss becomes obvious. Too loud and the signal clips, which sounds harsh and crackly and cannot be repaired afterwards. Adjust the input gain in your operating system's sound settings rather than by shouting or backing away."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this test work on a phone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It works in any modern mobile browser and will use your phone's built-in microphone, or a connected headset if you pick it in the device list. Note that browsers require a secure connection for microphone access, which this site uses. Some mobile browsers also stop the audio when the tab moves to the background, so keep the page in view while testing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my voice sound different when I play it back?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That is normal and not a fault with your microphone. When you speak, you hear yourself partly through the bones of your skull, which carries lower frequencies that never reach a microphone. Recorded playback is only the airborne sound, so it seems thinner and higher pitched than the voice in your head - it is what everyone else has always heard."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+:root{
+  --good:#16a34a; --warn:#d97706; --meter-bg:#e8ecf2; --wave:#2563eb;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --good:#4ade80; --warn:#fbbf24; --meter-bg:#1e2532; --wave:#60a5fa;
+  }
+}
+.pane{padding:18px 20px}
+.pane h2{font-size:1.02rem;margin:0 0 12px}
+
+.start{
+  display:block;margin:0 auto;font:inherit;font-size:1.05rem;font-weight:600;
+  padding:14px 30px;border-radius:10px;cursor:pointer;
+  border:1px solid var(--accent);background:var(--accent);color:#fff
+}
+.start:hover{opacity:.92}
+.intro{text-align:center;padding:32px 20px}
+.intro p{color:var(--muted);font-size:.9rem;margin:12px 0 0}
+
+.status{
+  display:flex;align-items:center;gap:10px;justify-content:center;margin:0 0 16px;
+  font-size:.95rem;font-weight:600
+}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--muted);flex:none}
+.dot.live{background:var(--good);animation:pulse 1.6s ease-in-out infinite}
+.dot.bad{background:var(--over)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion: reduce){.dot.live{animation:none}}
+
+.meter-wrap{margin:0 0 6px}
+.meter{
+  position:relative;height:26px;border-radius:7px;background:var(--meter-bg);
+  overflow:hidden;border:1px solid var(--border)
+}
+.meter .fill{
+  position:absolute;left:0;top:0;bottom:0;width:0%;border-radius:6px 0 0 6px;
+  background:linear-gradient(to right,var(--good) 0%,var(--good) 60%,var(--warn) 80%,var(--over) 100%);
+  background-size:calc(100% * (100 / var(--fill-pct, 100))) 100%
+}
+.meter .peak{
+  position:absolute;top:0;bottom:0;width:2px;background:var(--text);opacity:.7;left:0
+}
+.meter .ticks{position:absolute;inset:0;pointer-events:none;display:flex}
+.meter .ticks i{flex:1;border-right:1px solid var(--border);opacity:.5}
+.meter .ticks i:last-child{border-right:0}
+.scale{display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-top:3px}
+
+.verdict{text-align:center;font-size:.9rem;margin:12px 0 0;min-height:1.4em}
+.verdict b{color:var(--text)}
+.verdict.good b{color:var(--good)}
+.verdict.warn b{color:var(--warn)}
+.verdict.bad b{color:var(--over)}
+
+.wave{
+  width:100%;height:130px;display:block;border:1px solid var(--border);border-radius:9px;
+  background:var(--card);margin:16px 0 0
+}
+
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0;align-items:center}
+.controls button{
+  font:inherit;font-size:.88rem;font-weight:600;padding:9px 16px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.controls button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.controls button.rec{border-color:var(--over);color:var(--over)}
+.controls button.rec.on{background:var(--over);color:#fff}
+.controls button:disabled{opacity:.45;cursor:not-allowed}
+.controls .spacer{flex:1}
+.rec-time{
+  font:600 .85rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--muted);
+  font-variant-numeric:tabular-nums
+}
+.device{display:grid;gap:5px;margin:16px 0 0}
+.device label{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.device select{
+  font:inherit;font-size:.9rem;padding:9px 10px;border-radius:8px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);width:100%
+}
+.playback{margin:14px 0 0;display:none}
+.playback.on{display:block}
+.playback audio{width:100%}
+.err{
+  color:var(--over);font-size:.88rem;margin:14px 0 0;text-align:center;
+  min-height:1.2em;overflow-wrap:anywhere
+}
+.err a{color:inherit}
+
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:420px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.faq p{color:var(--text)}
+ol.steps{max-width:46rem;padding-left:1.2rem}
+ol.steps li{margin-bottom:8px}
+
+/* Mobile: let tables reflow to fit the viewport instead of scrolling.
+   min-width would otherwise hold the table open and overflow the page. */
+@media (max-width:560px){
+  table{min-width:0}
+  th,td{padding-left:8px;padding-right:8px}
+  td{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+  thead th{text-transform:none;letter-spacing:normal}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WBest Mic Test</h1>
+  <p class="tagline">Check your microphone in seconds - watch the level, see the waveform, and record a clip to hear exactly how you sound.</p>
+  <span class="badge">🔒 100% private - your audio is never uploaded or stored</span>
+  <nav class="toc" aria-label="On this page">
+    <a href="#tool">Mic test</a>
+    <a href="#fix">Not working?</a>
+    <a href="#levels">Good levels</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Microphone test">
+    <div class="card pane">
+
+      <div class="intro" id="intro">
+        <button type="button" class="start" id="start">Start microphone</button>
+        <p>Your browser will ask permission. Nothing is recorded or uploaded until you press Record - and even then it stays on your device.</p>
+      </div>
+
+      <div id="live" hidden>
+        <div class="status">
+          <span class="dot live" id="dot" aria-hidden="true"></span>
+          <span id="status-text" aria-live="polite">Listening…</span>
+        </div>
+
+        <div class="meter-wrap">
+          <div class="meter" role="meter" aria-labelledby="status-text" id="meter"
+               aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="fill" id="fill"></div>
+            <div class="peak" id="peak"></div>
+            <div class="ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="scale" aria-hidden="true">
+            <span>silent</span><span>quiet</span><span>good</span><span>loud</span><span>clipping</span>
+          </div>
+        </div>
+
+        <p class="verdict" id="verdict"></p>
+
+        <canvas class="wave" id="wave" aria-label="Live waveform of your microphone input"></canvas>
+
+        <div class="controls">
+          <button type="button" class="rec" id="rec">● Record</button>
+          <span class="rec-time" id="rec-time" aria-live="off"></span>
+          <span class="spacer"></span>
+          <button type="button" id="stop">Stop microphone</button>
+        </div>
+
+        <div class="playback" id="playback">
+          <audio id="audio" controls></audio>
+          <div class="controls">
+            <button type="button" id="download">Download recording</button>
+            <button type="button" id="discard">Discard</button>
+          </div>
+        </div>
+
+        <div class="device">
+          <label for="devices">Microphone</label>
+          <select id="devices"></select>
+        </div>
+      </div>
+
+      <p class="err" id="err" aria-live="assertive"></p>
+    </div>
+  </section>
+
+  <section class="props" aria-label="Why use this mic test">
+    <div class="card"><strong>Nothing is uploaded</strong><p>Other mic testers send your recording to a server to "analyse" it. This one uses the Web Audio API - your voice never leaves the browser tab.</p></div>
+    <div class="card"><strong>Hear yourself, honestly</strong><p>A level meter proves the mic works; playback proves it sounds right. Record a few seconds and listen back before the call, not during it.</p></div>
+    <div class="card"><strong>Every device, one click</strong><p>Laptops routinely default to the wrong microphone. Switch between all of them here and see instantly which one is actually picking you up.</p></div>
+  </section>
+
+  <section id="fix" class="prose">
+    <h2>Microphone not working? Work through this</h2>
+    <p>If the meter above is not moving when you speak, it is almost always one of five things - in this order:</p>
+    <ol class="steps">
+      <li><strong>Permission.</strong> If you dismissed or blocked the prompt, the browser will not ask again. Click the lock or camera icon in the address bar, set the microphone to Allow, and reload the page.</li>
+      <li><strong>The wrong device.</strong> Use the Microphone dropdown above. Laptops with a webcam, a headset, and a built-in mic often default to whichever was plugged in last - and a headset can appear twice, once for each mode.</li>
+      <li><strong>Muted hardware.</strong> Check the physical mute switch on the microphone, the inline button on a headset cable, and the mute key on your keyboard. This is the single most common cause, and the most embarrassing.</li>
+      <li><strong>Another app has it.</strong> A video call, recorder, or streaming tool may be holding the microphone exclusively. Quit it fully - not just the window - and try again.</li>
+      <li><strong>System settings.</strong> Open your operating system's sound input settings and confirm the device is enabled and its input volume is not at zero. If the meter moves there but not here, it is a browser permission problem, not a hardware one.</li>
+    </ol>
+    <p>Still nothing on every device? Try another browser. If it fails there too, the problem is the hardware or the operating system rather than any website.</p>
+  </section>
+
+  <section id="levels" class="prose">
+    <h2>What a good microphone level looks like</h2>
+    <p>Getting the level right matters more than the price of the microphone. Speaking normally, aim for the meter to sit in the <strong>good</strong> band, touching <strong>loud</strong> only on your most emphatic moments.</p>
+    <div class="table-wrap">
+      <table>
+        <caption>What the meter is telling you, and what to do about it.</caption>
+        <thead><tr><th scope="col">Reading</th><th scope="col">Means</th><th scope="col">Do this</th></tr></thead>
+        <tbody>
+          <tr><td>Silent</td><td>No signal is arriving at all</td><td>Check mute, the selected device, and permission</td></tr>
+          <tr><td>Quiet</td><td>Usable, but listeners will strain and hiss will show</td><td>Move closer, or raise input gain in system settings</td></tr>
+          <tr><td>Good</td><td>Healthy speech level with headroom to spare</td><td>Nothing - this is the target</td></tr>
+          <tr><td>Loud</td><td>Fine for peaks, risky as a resting level</td><td>Back off slightly or lower the gain</td></tr>
+          <tr><td>Clipping</td><td>The signal exceeds what can be captured</td><td>Lower the gain now - clipped audio cannot be repaired</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Three fixes that beat buying a new mic</h3>
+    <p><strong>Get closer.</strong> Halving the distance to the microphone is a bigger improvement than most hardware upgrades, because it raises your voice relative to the room. A hand's width away, slightly off to the side, is ideal for most headsets and desk mics.</p>
+    <p><strong>Fix the room, not the gear.</strong> Echo comes from bare walls and hard surfaces. Soft furnishings, a rug, or curtains do more for clarity than a better capsule ever will.</p>
+    <p><strong>Set the gain, don't shout.</strong> Adjust the input level in your operating system's sound settings until normal speech lands in the good band. Raising your voice to compensate for a low gain just makes you sound tense.</p>
+    <p>Testing a countdown or a timed recording next? The <a href="https://timer.wbest.app/">Timer &amp; Stopwatch</a> is one tab away, and equally free of tracking.</p>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Frequently asked questions</h2>
+
+    <h3>How do I test my microphone?</h3>
+    <p>Click Start microphone and allow access when your browser asks. Speak normally: the level meter should move with your voice and the waveform should ripple. If you want to hear yourself, record a few seconds and play it back. Nothing is uploaded at any point - the recording exists only in your browser's memory until you leave the page.</p>
+
+    <h3>Is my recording uploaded or stored anywhere?</h3>
+    <p>No. Audio is captured with the Web Audio API and stays in memory on your device. There is no server involved, nothing is written to disk unless you choose to download it, and closing the tab discards everything. That is a meaningful difference from mic testers that upload your recording to check it.</p>
+
+    <h3>Why is my microphone not working?</h3>
+    <p>Work through it in order. First, permission: if you blocked access, click the camera or lock icon in the address bar and allow the microphone, then reload. Second, the device: use the dropdown here to pick the right microphone - laptops often default to the wrong one, and headsets can appear twice. Third, mute: check the physical switch on the mic, headset, or laptop function key. Fourth, another app: a video call already using the mic can hold it exclusively, so quit it and try again. Finally, check your operating system's own sound input settings.</p>
+
+    <h3>What is a good microphone level?</h3>
+    <p>When you speak at a normal volume, the meter should sit roughly between a third and three quarters of the way across, peaking near the top only on your loudest moments. Too quiet and listeners strain to hear you while background hiss becomes obvious. Too loud and the signal clips, which sounds harsh and crackly and cannot be repaired afterwards. Adjust the input gain in your operating system's sound settings rather than by shouting or backing away.</p>
+
+    <h3>Does this test work on a phone?</h3>
+    <p>Yes. It works in any modern mobile browser and will use your phone's built-in microphone, or a connected headset if you pick it in the device list. Note that browsers require a secure connection for microphone access, which this site uses. Some mobile browsers also stop the audio when the tab moves to the background, so keep the page in view while testing.</p>
+
+    <h3>Why does my voice sound different when I play it back?</h3>
+    <p>That is normal and not a fault with your microphone. When you speak, you hear yourself partly through the bones of your skull, which carries lower frequencies that never reach a microphone. Recorded playback is only the airborne sound, so it seems thinner and higher pitched than the voice in your head - it is what everyone else has always heard.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Made for anyone who needs a quick tool that just works.
+  <br>© 2026 WBest · Free to use, no sign-up required · <a href="https://wbest.app/">WBest Free Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+/* Audio level maths + device labelling. Pure functions, returned for testability. */
+var MIC = (function () {
+  'use strict';
+
+  var FLOOR_DB = -60; // quieter than this reads as silence on the meter
+
+  // Root mean square of a frame of samples: the level the ear tracks, unlike
+  // peak which reacts to single transients.
+  function rms(buf) {
+    if (!buf || !buf.length) return 0;
+    var sum = 0;
+    for (var i = 0; i < buf.length; i++) sum += buf[i] * buf[i];
+    return Math.sqrt(sum / buf.length);
+  }
+
+  function peak(buf) {
+    var m = 0;
+    for (var i = 0; i < (buf ? buf.length : 0); i++) {
+      var a = Math.abs(buf[i]);
+      if (a > m) m = a;
+    }
+    return m;
+  }
+
+  // Amplitude (0..1) to dBFS. Silence is -Infinity, so clamp to the floor.
+  function toDb(amp) {
+    if (amp <= 0) return FLOOR_DB;
+    var db = 20 * Math.log10(amp);
+    return db < FLOOR_DB ? FLOOR_DB : db;
+  }
+
+  // dBFS to a 0..100 meter position, linear across the floor..0 range.
+  function meterPercent(db) {
+    var p = (db - FLOOR_DB) / (0 - FLOOR_DB) * 100;
+    return p < 0 ? 0 : (p > 100 ? 100 : p);
+  }
+
+  // Plain-language verdict. Bands match the labels printed under the meter.
+  function verdict(db, clipped) {
+    if (clipped) return { key: 'clipping', level: 'bad', text: 'Clipping - lower your input gain' };
+    if (db <= FLOOR_DB + 2) return { key: 'silent', level: 'bad', text: 'No sound detected' };
+    if (db < -36) return { key: 'quiet', level: 'warn', text: 'Very quiet - move closer or raise the gain' };
+    if (db < -24) return { key: 'low', level: 'warn', text: 'A little quiet, but usable' };
+    if (db < -6) return { key: 'good', level: 'good', text: 'Good level' };
+    return { key: 'loud', level: 'warn', text: 'Loud - fine for peaks, lower it if constant' };
+  }
+
+  // A frame is clipping if samples are pinned at full scale.
+  function isClipping(buf, threshold) {
+    threshold = threshold == null ? 0.99 : threshold;
+    var hits = 0;
+    for (var i = 0; i < (buf ? buf.length : 0); i++) {
+      if (Math.abs(buf[i]) >= threshold) hits++;
+    }
+    return hits >= 3;
+  }
+
+  // Browsers hide device labels until permission is granted; give the empty
+  // ones a stable, honest name rather than showing a blank option.
+  function deviceLabel(device, index) {
+    if (device && device.label) return device.label;
+    return 'Microphone ' + (index + 1);
+  }
+
+  function fmtTime(seconds) {
+    var s = Math.floor(seconds % 60), m = Math.floor(seconds / 60);
+    return m + ':' + (s < 10 ? '0' + s : s);
+  }
+
+  // Peak-hold that falls back slowly, so a transient stays readable.
+  function decayPeak(previous, current, decayPerFrame) {
+    var next = previous - (decayPerFrame == null ? 0.6 : decayPerFrame);
+    return current > next ? current : (next < 0 ? 0 : next);
+  }
+
+  return {
+    FLOOR_DB: FLOOR_DB, rms: rms, peak: peak, toDb: toDb,
+    meterPercent: meterPercent, verdict: verdict, isClipping: isClipping,
+    deviceLabel: deviceLabel, fmtTime: fmtTime, decayPeak: decayPeak
+  };
+})();
+if (typeof module !== 'undefined') module.exports = MIC;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+
+  var stream = null, ctx = null, analyser = null, source = null, raf = null;
+  var recorder = null, chunks = [], recStart = 0, recTimer = null, recBlob = null;
+  var peakHold = 0;
+  var buf = null;
+
+  function fail(msg) {
+    $('err').innerHTML = msg;
+    $('dot').className = 'dot bad';
+  }
+
+  function stopAll() {
+    if (raf) { cancelAnimationFrame(raf); raf = null; }
+    if (recorder && recorder.state === 'recording') recorder.stop();
+    if (recTimer) { clearInterval(recTimer); recTimer = null; }
+    if (source) { try { source.disconnect(); } catch (e) {} source = null; }
+    if (ctx) { try { ctx.close(); } catch (e) {} ctx = null; }
+    if (stream) {
+      stream.getTracks().forEach(function (t) { t.stop(); });
+      stream = null;
+    }
+    analyser = null;
+  }
+
+  function drawWave() {
+    var canvas = $('wave');
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    var dpr = window.devicePixelRatio || 1;
+    if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+    }
+    var c = canvas.getContext('2d');
+    c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    c.clearRect(0, 0, w, h);
+
+    var css = getComputedStyle(document.documentElement);
+    c.strokeStyle = css.getPropertyValue('--border').trim() || '#ccc';
+    c.lineWidth = 1;
+    c.beginPath(); c.moveTo(0, h / 2); c.lineTo(w, h / 2); c.stroke();
+
+    c.strokeStyle = css.getPropertyValue('--wave').trim() || '#2563eb';
+    c.lineWidth = 2;
+    c.beginPath();
+    for (var i = 0; i < buf.length; i++) {
+      var x = i / (buf.length - 1) * w;
+      var y = h / 2 - buf[i] * (h / 2 - 4);
+      if (i === 0) c.moveTo(x, y); else c.lineTo(x, y);
+    }
+    c.stroke();
+  }
+
+  function tick() {
+    analyser.getFloatTimeDomainData(buf);
+    var level = MIC.rms(buf);
+    var db = MIC.toDb(level);
+    var pct = MIC.meterPercent(db);
+    var clipped = MIC.isClipping(buf);
+
+    $('fill').style.width = pct + '%';
+    peakHold = MIC.decayPeak(peakHold, pct);
+    $('peak').style.left = peakHold + '%';
+    $('meter').setAttribute('aria-valuenow', Math.round(pct));
+
+    var v = MIC.verdict(db, clipped);
+    var el = $('verdict');
+    el.className = 'verdict ' + v.level;
+    el.innerHTML = '<b>' + v.text + '</b>';
+    $('meter').setAttribute('aria-valuetext', v.text);
+
+    drawWave();
+    raf = requestAnimationFrame(tick);
+  }
+
+  function listDevices() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) return;
+    navigator.mediaDevices.enumerateDevices().then(function (list) {
+      var mics = list.filter(function (d) { return d.kind === 'audioinput'; });
+      var sel = $('devices');
+      var current = sel.value;
+      sel.textContent = '';
+      mics.forEach(function (d, i) {
+        var o = document.createElement('option');
+        o.value = d.deviceId;
+        o.textContent = MIC.deviceLabel(d, i);
+        sel.appendChild(o);
+      });
+      var track = stream && stream.getAudioTracks()[0];
+      var settings = (track && track.getSettings) ? track.getSettings() : {};
+      var has = function (id) {
+        return !!id && mics.some(function (d) { return d.deviceId === id; });
+      };
+      // Show whichever microphone is actually running: the live track is the
+      // truth, and the previous selection only stands in when there is no
+      // stream to ask. Only ever assign an id the list actually holds - setting
+      // select.value to an unknown id sets selectedIndex to -1, which blanks the
+      // dropdown and hides which microphone is running. A track's deviceId is
+      // not always among the enumerated ones, so fall through to the default.
+      if (has(settings.deviceId)) sel.value = settings.deviceId;
+      else if (has(current)) sel.value = current;
+    }).catch(function () {});
+  }
+
+  function start(deviceId) {
+    $('err').textContent = '';
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      fail('This browser does not support microphone access.');
+      return;
+    }
+    var constraints = {
+      audio: deviceId ? { deviceId: { exact: deviceId } } : true,
+      video: false
+    };
+    navigator.mediaDevices.getUserMedia(constraints).then(function (s) {
+      stopAll();
+      stream = s;
+      var AC = window.AudioContext || window.webkitAudioContext;
+      ctx = new AC();
+      // Autoplay policy can hand back a suspended context even after a click.
+      if (ctx.state === 'suspended' && ctx.resume) ctx.resume();
+      analyser = ctx.createAnalyser();
+      analyser.fftSize = 2048;
+      // The analyser is a sink here: nothing is connected to the speakers, so
+      // there is no feedback loop while monitoring.
+      source = ctx.createMediaStreamSource(stream);
+      source.connect(analyser);
+      buf = new Float32Array(analyser.fftSize);
+
+      $('intro').hidden = true;
+      $('live').hidden = false;
+      $('dot').className = 'dot live';
+      $('status-text').textContent = 'Listening - speak into your microphone';
+      peakHold = 0;
+      listDevices();
+      tick();
+    }).catch(function (e) {
+      var name = e && e.name;
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        fail('Microphone access was blocked. Click the lock or camera icon in your address bar, allow the microphone, then reload this page.');
+      } else if (name === 'NotFoundError' || name === 'DevicesNotFoundError') {
+        fail('No microphone was found. Plug one in, then reload.');
+      } else if (name === 'NotReadableError' || name === 'TrackStartError') {
+        fail('Your microphone is in use by another app. Close it and try again.');
+      } else {
+        fail('Could not start the microphone' + (name ? ' (' + name + ')' : '') + '.');
+      }
+    });
+  }
+
+  $('start').addEventListener('click', function () { start(null); });
+
+  $('devices').addEventListener('change', function () {
+    if (stream) start($('devices').value);
+  });
+
+  $('stop').addEventListener('click', function () {
+    stopAll();
+    $('live').hidden = true;
+    $('intro').hidden = false;
+    $('start').textContent = 'Start microphone';
+    $('start').focus();
+  });
+
+  // --- recording, entirely in memory ---
+
+  function setRecording(on) {
+    $('rec').classList.toggle('on', on);
+    $('rec').textContent = on ? '■ Stop recording' : '● Record';
+  }
+
+  $('rec').addEventListener('click', function () {
+    if (!stream) return;
+    if (recorder && recorder.state === 'recording') { recorder.stop(); return; }
+    if (typeof MediaRecorder === 'undefined') {
+      fail('This browser cannot record audio, but the level meter above still works.');
+      return;
+    }
+    chunks = [];
+    try {
+      recorder = new MediaRecorder(stream);
+    } catch (e) {
+      fail('This browser could not start a recording.');
+      return;
+    }
+    recorder.ondataavailable = function (e) { if (e.data && e.data.size) chunks.push(e.data); };
+    recorder.onstop = function () {
+      if (recTimer) { clearInterval(recTimer); recTimer = null; }
+      setRecording(false);
+      $('rec-time').textContent = '';
+      if (!chunks.length) return;
+      recBlob = new Blob(chunks, { type: recorder.mimeType || 'audio/webm' });
+      var url = URL.createObjectURL(recBlob);
+      var audio = $('audio');
+      if (audio.src) URL.revokeObjectURL(audio.src);
+      audio.src = url;
+      $('playback').classList.add('on');
+    };
+    recorder.start();
+    recStart = Date.now();
+    setRecording(true);
+    $('rec-time').textContent = '0:00';
+    recTimer = setInterval(function () {
+      $('rec-time').textContent = MIC.fmtTime((Date.now() - recStart) / 1000);
+    }, 250);
+  });
+
+  $('download').addEventListener('click', function () {
+    if (!recBlob) return;
+    var ext = (recBlob.type.indexOf('ogg') !== -1) ? 'ogg' : 'webm';
+    var url = URL.createObjectURL(recBlob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'mic-test.' + ext;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  });
+
+  $('discard').addEventListener('click', function () {
+    var audio = $('audio');
+    if (audio.src) { URL.revokeObjectURL(audio.src); audio.removeAttribute('src'); audio.load(); }
+    recBlob = null; chunks = [];
+    $('playback').classList.remove('on');
+  });
+
+  // A device being plugged in or removed should refresh the list.
+  if (navigator.mediaDevices && 'ondevicechange' in navigator.mediaDevices) {
+    navigator.mediaDevices.addEventListener('devicechange', listDevices);
+  }
+  // Release the microphone when the page goes away; do not leave it live.
+  window.addEventListener('pagehide', stopAll);
+})();
+</script>
+</body>
+</html>

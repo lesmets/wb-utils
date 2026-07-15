@@ -46,7 +46,7 @@ Yes. Every calculation happens in your browser - the amounts you type are never 
 
 ## More WB tools
 
-- [Age Calculator](https://agecalculator.wbest.app/): Exact age in years, months, and days, plus a countdown to your next birthday.
 - [Percentage Calculator](https://percentagecalculator.wbest.app/): Percent of a number, increase/decrease, discounts, and tips - formula included.
 - [BMI Calculator](https://bmicalculator.wbest.app/): Body mass index in metric or imperial, with your WHO category and healthy range.
-- [WBest](https://wbest.app/): all 16 free WB tools - private, no sign-up, no uploads.
+- [Car Depreciation Calculator](https://cardepreciation.wbest.app/): What your car will be worth, and what owning it really costs per year and mile.
+- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.

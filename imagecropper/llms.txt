@@ -1,0 +1,52 @@
+# WBest Image Cropper
+
+> Free online image cropper. Drag a crop box or type exact pixel values, lock it to a preset aspect ratio, rotate and flip, then export as JPEG, PNG, or WebP. Your photos are processed on your device and never uploaded - it even works offline.
+
+Use it at https://imagecropper.wbest.app/ - it is a single page, and the tool is the page.
+
+- Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
+- Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
+- Works offline once the page has loaded, and needs no install.
+- One self-contained page: no cookies, no tracking, no consent popups.
+
+## Features
+
+- Drag and resize a crop box, or type exact pixel dimensions
+- Aspect ratio presets: square, 4:3, 16:9, 3:2, and story
+- Rotate in 90 degree steps and flip horizontally or vertically
+- Export as JPEG, PNG, or WebP with a quality slider
+- No upload, no sign-up, no watermark
+- EXIF metadata stripped from the exported crop
+
+## Frequently asked questions
+
+### Are my photos uploaded to a server?
+
+No. The image is read and cropped entirely on your device using the browser's canvas, so the file is never uploaded, stored, or seen by anyone else. You can prove it: load the page, switch off your internet connection, and the cropper keeps working perfectly.
+
+### Does cropping reduce image quality?
+
+Cropping itself only discards the pixels outside your selection - the pixels you keep are untouched. Quality loss comes from re-encoding: saving as JPEG or WebP compresses the result again, so use the quality slider or choose PNG for a lossless copy. The crop is always taken at the image's full original resolution, never at the size shown on screen.
+
+### What aspect ratio should I crop to?
+
+It depends where the image will appear. 1:1 square suits profile pictures and Instagram posts. 16:9 is the standard for video thumbnails, presentations, and website heroes. 4:3 and 3:2 match what most cameras and phones shoot. 9:16 vertical fits stories, Reels, TikTok, and phone wallpapers. Lock the ratio before you drag and the crop box will hold it exactly.
+
+### Can I crop to an exact pixel size?
+
+Yes. Type the width and height you need into the pixel fields and the crop box snaps to that exact size, which you can then drag into position. The exported file is exactly those pixel dimensions - useful when a platform demands a precise size, such as a 1200 x 630 social preview image.
+
+### Which format should I export?
+
+Use JPEG for photographs - it gives the smallest file at a quality most people cannot distinguish from the original. Use PNG when you need lossless quality or a transparent background, such as logos and screenshots with sharp text. Use WebP when you want JPEG-like photo compression at a noticeably smaller size and only modern browsers need to open it.
+
+### Does the cropped image keep my photo's location data?
+
+No, and that is deliberate. Redrawing the image through a canvas discards all EXIF metadata, so the exported crop carries no GPS coordinates, camera serial number, or timestamp. The crop you download is just pixels - which is usually exactly what you want before sharing a photo publicly.
+
+## More WB tools
+
+- [Image Compressor](https://imagecompressor.wbest.app/): Compress, resize, and convert JPEG, PNG, and WebP to an exact target size.
+- [Color Converter & Picker](https://colorconverter.wbest.app/): Convert HEX, RGB, HSL, and OKLCH, with tints, shades, and color harmonies.
+- [Image Color Picker](https://imagecolorpicker.wbest.app/): Pick exact HEX, RGB, and HSL from any photo, with a magnifier and palette.
+- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.

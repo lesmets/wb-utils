@@ -57,4 +57,6 @@ Yes. The whole tool is one self-contained page, so once it has loaded it keeps w
 
 ## More WB tools
 
-- [WBest](https://wbest.app/): all 16 free WB tools - private, no sign-up, no uploads.
+- [Age Calculator](https://agecalculator.wbest.app/): Exact age in years, months, and days, plus a countdown to your next birthday.
+- [Time Zone Converter](https://timezoneconverter.wbest.app/): Compare times across cities with a meeting planner and automatic daylight saving.
+- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.

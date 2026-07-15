@@ -56,4 +56,4 @@ Yes. The entire tool is a single page with no server calls, so once it has loade
 ## More WB tools
 
 - [Online Notepad](https://notepad.wbest.app/): A private notepad that autosaves to your device, with live word and line counts.
-- [WBest](https://wbest.app/): all 16 free WB tools - private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.

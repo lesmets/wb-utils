@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://timezoneconverter.wbest.app/sitemap.xml

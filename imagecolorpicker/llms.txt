@@ -1,0 +1,52 @@
+# WBest Image Color Picker
+
+> Free online image color picker. Hover or tap anywhere on a photo to read the exact color under the cursor as HEX, RGB, and HSL, with a magnifier for pixel-precise picking. Automatically extracts the image's dominant color palette, and keeps a history of everything you picked. Runs entirely in your browser - your image is never uploaded.
+
+Use it at https://imagecolorpicker.wbest.app/ - it is a single page, and the tool is the page.
+
+- Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
+- Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
+- Works offline once the page has loaded, and needs no install.
+- One self-contained page: no cookies, no tracking, no consent popups.
+
+## Features
+
+- Pick colors from any image with a pixel magnifier
+- HEX, RGB, and HSL values with one-click copy
+- Automatic dominant color palette extraction
+- History of every color picked
+- Screen eyedropper in supported browsers
+- No upload - the image stays on your device
+
+## Frequently asked questions
+
+### How do I get the HEX code of a color in an image?
+
+Load the image onto this page, then move your cursor over it - the color under the pointer is read live and shown as a HEX code. Click to lock that color in, then copy it. The magnifier that follows your cursor shows the individual pixels enlarged, so you can pick precisely even in a detailed photo.
+
+### What is the difference between HEX, RGB, and HSL?
+
+They are three ways of writing the same color. HEX (#2563eb) is a compact six-digit form used throughout CSS and design tools. RGB (37, 99, 235) states how much red, green, and blue light is mixed, from 0 to 255 each. HSL (221, 83%, 53%) describes hue, saturation, and lightness, which is far easier to adjust by hand - to lighten a color in HSL you simply raise the L.
+
+### How is the color palette extracted from my image?
+
+The image's pixels are sampled and sorted into a grid of color buckets, and the buckets holding the most pixels win - so the swatches really are the colors that fill the most of the picture, not a few arbitrary samples. One extra rule keeps the result useful: a bucket is skipped if it is too close to a color already chosen. Without it, a photo of a blue sky would hand you six almost identical blues. Each swatch is the true average of the pixels in its bucket, so a flat color comes back exactly.
+
+### Why is the color I picked slightly different from the original?
+
+Two common reasons. Lossy formats such as JPEG alter pixels slightly during compression, so a region that looks like one flat color often contains many near-identical shades - the magnifier reveals this immediately. Screenshots and photos also carry lighting, shadow, and color-profile differences. The value shown here is always the true pixel value from the decoded image data.
+
+### Can I pick a color from anywhere on my screen?
+
+Yes, in browsers that support the EyeDropper API (Chrome, Edge, and Opera). The Pick from screen button appears automatically when it is available and lets you sample any pixel on your display, not just the loaded image. In other browsers, take a screenshot and drop it onto this page instead - the result is identical.
+
+### Is my image uploaded anywhere?
+
+No. The image is decoded and read pixel by pixel in your browser using canvas, so it is never uploaded, stored, or seen by anyone else. Nothing is tracked, there is no account, and the page keeps working with your connection switched off.
+
+## More WB tools
+
+- [Image Compressor](https://imagecompressor.wbest.app/): Compress, resize, and convert JPEG, PNG, and WebP to an exact target size.
+- [Color Converter & Picker](https://colorconverter.wbest.app/): Convert HEX, RGB, HSL, and OKLCH, with tints, shades, and color harmonies.
+- [Image Cropper](https://imagecropper.wbest.app/): Crop to any aspect ratio or exact pixel size, then rotate, flip, and export.
+- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.

@@ -55,7 +55,7 @@ No. Your measurements are processed by JavaScript in your browser and never tran
 
 ## More WB tools
 
-- [Age Calculator](https://agecalculator.wbest.app/): Exact age in years, months, and days, plus a countdown to your next birthday.
 - [Percentage Calculator](https://percentagecalculator.wbest.app/): Percent of a number, increase/decrease, discounts, and tips - formula included.
 - [Loan Calculator](https://loancalculator.wbest.app/): Monthly payment, total interest, and a full amortization schedule for any loan.
-- [WBest](https://wbest.app/): all 16 free WB tools - private, no sign-up, no uploads.
+- [Car Depreciation Calculator](https://cardepreciation.wbest.app/): What your car will be worth, and what owning it really costs per year and mile.
+- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.

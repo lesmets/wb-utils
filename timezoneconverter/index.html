@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest Time Zone Converter - Compare Times Across Cities</title>
+<meta name="description" content="Convert a time between any time zones and compare cities side by side with a meeting planner strip. Daylight saving handled automatically. Free, instant, private.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://timezoneconverter.wbest.app/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Time Zone Converter">
+<meta property="og:title" content="WBest Time Zone Converter - Compare Times Across Cities">
+<meta property="og:description" content="Convert a time between any time zones and compare cities side by side with a meeting planner strip. Daylight saving handled automatically. Free, instant, private.">
+<meta property="og:url" content="https://timezoneconverter.wbest.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest Time Zone Converter - Compare Times Across Cities">
+<meta name="twitter:description" content="Convert a time between any time zones and compare cities side by side with a meeting planner strip. Daylight saving handled automatically. Free, instant, private.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Time Zone Converter",
+  "url": "https://timezoneconverter.wbest.app/",
+  "description": "Free online time zone converter and meeting planner. Pick a date and time in one zone and see it instantly in as many other zones as you like, with daylight saving handled automatically from your browser's own IANA time zone database. The hour strip shows every city's working hours at a glance so you can find a slot that suits everyone. Runs entirely in your browser - no tracking, works offline.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Convert any time between any IANA time zones",
+    "Compare unlimited cities side by side",
+    "Meeting planner strip showing working hours in every zone",
+    "Daylight saving transitions handled automatically",
+    "UTC offset, zone abbreviation, and day difference shown",
+    "Your chosen cities are remembered on your device only"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I convert a time between two time zones?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Set the date and time in the top card and choose which zone that time belongs to. Every city in the list below immediately shows the matching local time for that same instant, along with its UTC offset and how many hours ahead or behind it is. Add as many cities as you need - they are all converted at once, not just a pair."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this handle daylight saving time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, automatically. Conversions use your browser's built-in IANA time zone database, so each zone's offset is calculated for the specific date you picked rather than assumed. That matters most in the weeks when two countries disagree. London is normally 5 hours ahead of New York, in both winter and summer - but for about three weeks each March, after the US has moved its clocks forward and before the UK moves its own, the gap is only 4 hours. Pick a date in mid-March and you can watch it change."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between UTC and GMT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For everyday purposes they name the same moment. UTC (Coordinated Universal Time) is the modern standard, defined by atomic clocks and kept within a second of the Earth's rotation by occasional leap seconds. GMT (Greenwich Mean Time) is an older astronomical time scale that is now also a civil time zone used in the UK and parts of Africa. The practical difference: UTC never changes, whereas the UK's clocks move to BST (UTC+1) in summer, so London is not always GMT."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the date change when I convert a time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because the world's zones span more than 24 hours, one instant can fall on different calendar days in different places. When it is 9am Thursday in New York it is already 10pm Thursday in Tokyo, and 8am Monday in Los Angeles is 1am Tuesday in Sydney. Any city on a different day shows a +1 or -1 day marker so a meeting invitation never lands on the wrong date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I find a meeting time that works across time zones?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the hour strip. Each row is one city and each cell is one hour of the chosen day, shaded to show typical working hours, evenings, and night. Scan down a column and you can see instantly whether that moment is reasonable everywhere or the middle of the night for someone. Click any cell to convert that exact hour."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my data sent anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Every conversion runs in JavaScript in your browser using its own time zone database and your device's clock. The cities you add are saved only in your browser's local storage, never uploaded, and the page keeps working offline once loaded."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+:root{
+  --work:#dbeafe; --work-b:#93c5fd; --evening:#fef3c7; --night:#e2e8f0;
+  --now:#2563eb;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --work:#1e3a5f; --work-b:#2563eb; --evening:#4a3a12; --night:#1e2532;
+    --now:#60a5fa;
+  }
+}
+.pane{padding:16px 18px}
+.pane h2{font-size:1.02rem;margin:0 0 12px}
+
+.src{display:grid;grid-template-columns:auto auto 1fr auto;gap:10px;align-items:end}
+@media (max-width:760px){.src{grid-template-columns:1fr 1fr}}
+.f label{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:4px}
+.f input,.f select{
+  font:600 .95rem/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  padding:9px 10px;border:1px solid var(--border);border-radius:8px;
+  background:var(--card);color:var(--text);width:100%
+}
+.f select{font-family:inherit;font-weight:400}
+.src .now-btn{
+  font:inherit;font-size:.85rem;padding:9px 14px;border-radius:8px;cursor:pointer;white-space:nowrap;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.src .now-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+.zones{display:grid;gap:8px;margin:12px 0 0;padding:0;list-style:none}
+.zone{
+  display:grid;grid-template-columns:1fr auto auto;gap:6px 14px;align-items:center;
+  padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:var(--card)
+}
+.zone.is-src{border-color:var(--accent);background:var(--accent-soft)}
+.zone .city{font-weight:600;overflow-wrap:anywhere}
+.zone .sub{font-size:.75rem;color:var(--muted);display:block;font-weight:400}
+.zone .t{
+  font:700 1.35rem/1.1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-variant-numeric:tabular-nums;text-align:right
+}
+.zone .d{font-size:.75rem;color:var(--muted);text-align:right;display:block;font-weight:400}
+.zone .d b{color:var(--over);font-weight:700}
+.zone .rm{
+  font:inherit;font-size:1rem;line-height:1;padding:5px 9px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--muted)
+}
+.zone .rm:hover{border-color:var(--over);color:var(--over)}
+.zone .rm[disabled]{opacity:.3;cursor:not-allowed}
+
+.add{display:flex;gap:8px;margin:12px 0 0;flex-wrap:wrap}
+.add input{
+  flex:1;min-width:180px;font:inherit;font-size:.9rem;padding:9px 11px;
+  border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text)
+}
+.add button{
+  font:inherit;font-size:.88rem;font-weight:600;padding:9px 16px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--accent);background:var(--accent);color:#fff
+}
+.err{color:var(--over);font-size:.85rem;margin:8px 0 0;min-height:1.2em}
+
+.strip-wrap{overflow-x:auto}
+.strip{border-collapse:separate;border-spacing:0;width:100%;min-width:640px}
+.strip th{
+  text-align:left;font-size:.75rem;font-weight:600;color:var(--text);padding:5px 8px 5px 0;
+  white-space:nowrap;text-transform:none;letter-spacing:normal;position:sticky;left:0;background:var(--bg)
+}
+.strip thead th{font-size:.65rem;color:var(--muted);text-align:center;padding:0 0 4px;font-weight:400}
+.strip td{padding:0}
+.strip button{
+  width:100%;height:30px;border:1px solid var(--border);border-left:0;cursor:pointer;padding:0;
+  font:500 .68rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--text);
+  background:var(--night)
+}
+.strip tr td:first-child button{border-left:1px solid var(--border);border-radius:6px 0 0 6px}
+.strip tr td:last-child button{border-radius:0 6px 6px 0}
+.strip button.work{background:var(--work)}
+.strip button.evening{background:var(--evening)}
+.strip button.sel{outline:2px solid var(--now);outline-offset:-2px;font-weight:700;z-index:2;position:relative}
+.strip button:hover{filter:brightness(.94)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0 0;font-size:.78rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend i{width:12px;height:12px;border-radius:3px;border:1px solid var(--border);display:inline-block}
+
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table.ref{border-collapse:collapse;width:100%;font-size:.92rem;min-width:420px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+table.ref th,table.ref td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+table.ref tbody tr:last-child td{border-bottom:0}
+table.ref th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+table.ref td{font-variant-numeric:tabular-nums}
+.faq p{color:var(--text)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+/* Mobile: let the reference table reflow to fit the viewport instead of
+   scrolling. The hour strip keeps its min-width and scrolls on purpose. */
+@media (max-width:560px){
+  table.ref{min-width:0}
+  table.ref th,table.ref td{padding-left:8px;padding-right:8px}
+  table.ref td{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+  /* IANA zone ids like America/Los_Angeles are one unbreakable word that
+     hyphens:auto cannot split; allow breaking anywhere in that column only. */
+  table.ref td:first-child{overflow-wrap:anywhere}
+  table.ref thead th{text-transform:none;letter-spacing:normal}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WBest Time Zone Converter</h1>
+  <p class="tagline">Convert a time across as many cities as you like, and see everyone's working hours at a glance. Daylight saving handled for you.</p>
+  <span class="badge">🔒 100% private - converted in your browser, never uploaded</span>
+  <nav class="toc" aria-label="On this page">
+    <a href="#tool">Converter</a>
+    <a href="#planner">Meeting planner</a>
+    <a href="#how">How it works</a>
+    <a href="#zones">Common zones</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Time zone converter">
+    <div class="card pane">
+      <h2>Convert a time</h2>
+      <div class="src">
+        <div class="f">
+          <label for="date">Date</label>
+          <input type="date" id="date">
+        </div>
+        <div class="f">
+          <label for="time">Time</label>
+          <input type="time" id="time">
+        </div>
+        <div class="f">
+          <label for="src-zone">In this zone</label>
+          <select id="src-zone"></select>
+        </div>
+        <button type="button" class="now-btn" id="now">Now</button>
+      </div>
+
+      <ul class="zones" id="zones"></ul>
+
+      <div class="add">
+        <label class="sr-only" for="add-zone">Add a city or time zone</label>
+        <input type="text" id="add-zone" list="zone-list" placeholder="Add a city - e.g. Asia/Singapore" autocomplete="off" spellcheck="false">
+        <datalist id="zone-list"></datalist>
+        <button type="button" id="add-btn">Add city</button>
+      </div>
+      <p class="err" id="err" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section id="planner" aria-labelledby="planner-heading">
+    <h2 id="planner-heading">Meeting planner</h2>
+    <p class="muted" style="margin:0 0 12px;font-size:.9rem">Every hour of the selected day, in each city. Click any hour to convert it.</p>
+    <div class="strip-wrap">
+      <table class="strip" id="strip"></table>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--work)"></i> Working hours (9-17)</span>
+      <span><i style="background:var(--evening)"></i> Early or evening (7-9, 17-22)</span>
+      <span><i style="background:var(--night)"></i> Night</span>
+    </div>
+  </section>
+
+  <section class="props" aria-label="Why use this time zone converter">
+    <div class="card"><strong>Every city at once</strong><p>Not just a pair. Add as many zones as your team spans and convert them all in one shot, with day differences called out so nothing lands a day early.</p></div>
+    <div class="card"><strong>Daylight saving, correctly</strong><p>Offsets are looked up for the exact date you chose in your browser's IANA database - not assumed, and not stale for the weeks when countries disagree.</p></div>
+    <div class="card"><strong>Private and instant</strong><p>Your clock, your device, your data. Cities you add are stored only in your own browser, and the page keeps working offline.</p></div>
+  </section>
+
+  <section id="how" class="prose">
+    <h2>How time zone conversion actually works</h2>
+    <p>Every conversion here starts from one idea: a moment in time is a single instant, and a time zone is just a rule for what the clocks read at that instant. Convert a time and you are not changing when something happens - only how it is written down in each place.</p>
+    <h3>Offsets are not fixed</h3>
+    <p>The most common mistake is treating a zone as a fixed number of hours from UTC. "New York is UTC-5" is only true for part of the year; from mid-March to early November it is UTC-4. Worse, countries switch on <em>different dates</em>, so for a couple of weeks each spring and autumn the usual gap between two cities is simply wrong. Between mid-March and late March, London and New York are 4 hours apart rather than the familiar 5.</p>
+    <p>This is why the converter asks for a <strong>date</strong> and not just a time. Each zone's offset is looked up for that specific instant using the IANA time zone database built into your browser - the same database that powers operating systems and servers worldwide.</p>
+    <h3>Why cities, not abbreviations</h3>
+    <p>Zones are named <code>America/New_York</code> rather than <code>EST</code> for good reason. Abbreviations are ambiguous and unofficial: <code>CST</code> means Central Standard Time in the US, China Standard Time, and Cuba Standard Time. <code>IST</code> covers India, Ireland, and Israel. A city name is unambiguous and carries that place's entire history of clock changes, so a date in 1990 converts as correctly as one next week.</p>
+    <h3>The gotcha hours</h3>
+    <p>When clocks spring forward, an hour never happens - 02:30 simply does not exist that day. When they fall back, an hour happens twice. This tool resolves such times the way your operating system does, so you always land on a real instant.</p>
+    <p>Working with epoch timestamps instead of wall-clock times? The <a href="https://timestampconverter.wbest.app/">Unix Timestamp Converter</a> handles that side. Counting the gap between two dates is the <a href="https://agecalculator.wbest.app/">Age Calculator</a>'s job.</p>
+  </section>
+
+  <section id="zones" class="prose">
+    <h2>Common time zones</h2>
+    <div class="table-wrap">
+      <table class="ref">
+        <caption>Standard and daylight offsets for widely used zones. Offsets shift on local rules, which is exactly why the converter checks your chosen date.</caption>
+        <thead><tr><th scope="col">Zone</th><th scope="col">City</th><th scope="col">Standard</th><th scope="col">Daylight</th></tr></thead>
+        <tbody>
+          <tr><td>UTC</td><td>Coordinated Universal Time</td><td>UTC+0</td><td>Never changes</td></tr>
+          <tr><td>America/Los_Angeles</td><td>Los Angeles</td><td>UTC-8 (PST)</td><td>UTC-7 (PDT)</td></tr>
+          <tr><td>America/Chicago</td><td>Chicago</td><td>UTC-6 (CST)</td><td>UTC-5 (CDT)</td></tr>
+          <tr><td>America/New_York</td><td>New York</td><td>UTC-5 (EST)</td><td>UTC-4 (EDT)</td></tr>
+          <tr><td>Europe/London</td><td>London</td><td>UTC+0 (GMT)</td><td>UTC+1 (BST)</td></tr>
+          <tr><td>Europe/Berlin</td><td>Berlin, Paris, Madrid</td><td>UTC+1 (CET)</td><td>UTC+2 (CEST)</td></tr>
+          <tr><td>Asia/Dubai</td><td>Dubai</td><td>UTC+4</td><td>No daylight saving</td></tr>
+          <tr><td>Asia/Kolkata</td><td>Mumbai, Delhi</td><td>UTC+5:30</td><td>No daylight saving</td></tr>
+          <tr><td>Asia/Singapore</td><td>Singapore</td><td>UTC+8</td><td>No daylight saving</td></tr>
+          <tr><td>Asia/Shanghai</td><td>Beijing, Shanghai</td><td>UTC+8</td><td>No daylight saving</td></tr>
+          <tr><td>Asia/Tokyo</td><td>Tokyo</td><td>UTC+9</td><td>No daylight saving</td></tr>
+          <tr><td>Australia/Sydney</td><td>Sydney</td><td>UTC+10 (AEST)</td><td>UTC+11 (AEDT)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Note the half-hour and quarter-hour zones: India is UTC+5:30, Nepal is UTC+5:45, and parts of Australia sit at UTC+9:30. Any assumption that offsets are whole hours will eventually break.</p>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Frequently asked questions</h2>
+
+    <h3>How do I convert a time between two time zones?</h3>
+    <p>Set the date and time in the top card and choose which zone that time belongs to. Every city in the list below immediately shows the matching local time for that same instant, along with its UTC offset and how many hours ahead or behind it is. Add as many cities as you need - they are all converted at once, not just a pair.</p>
+
+    <h3>Does this handle daylight saving time?</h3>
+    <p>Yes, automatically. Conversions use your browser's built-in IANA time zone database, so each zone's offset is calculated for the specific date you picked rather than assumed. That matters most in the weeks when two countries disagree. London is normally 5 hours ahead of New York, in both winter and summer - but for about three weeks each March, after the US has moved its clocks forward and before the UK moves its own, the gap is only 4 hours. Pick a date in mid-March and you can watch it change.</p>
+
+    <h3>What is the difference between UTC and GMT?</h3>
+    <p>For everyday purposes they name the same moment. UTC (Coordinated Universal Time) is the modern standard, defined by atomic clocks and kept within a second of the Earth's rotation by occasional leap seconds. GMT (Greenwich Mean Time) is an older astronomical time scale that is now also a civil time zone used in the UK and parts of Africa. The practical difference: UTC never changes, whereas the UK's clocks move to BST (UTC+1) in summer, so London is not always GMT.</p>
+
+    <h3>Why does the date change when I convert a time?</h3>
+    <p>Because the world's zones span more than 24 hours, one instant can fall on different calendar days in different places. When it is 9am Thursday in New York it is already 10pm Thursday in Tokyo, and 8am Monday in Los Angeles is 1am Tuesday in Sydney. Any city on a different day shows a +1 or -1 day marker so a meeting invitation never lands on the wrong date.</p>
+
+    <h3>How do I find a meeting time that works across time zones?</h3>
+    <p>Use the hour strip. Each row is one city and each cell is one hour of the chosen day, shaded to show typical working hours, evenings, and night. Scan down a column and you can see instantly whether that moment is reasonable everywhere or the middle of the night for someone. Click any cell to convert that exact hour.</p>
+
+    <h3>Is my data sent anywhere?</h3>
+    <p>No. Every conversion runs in JavaScript in your browser using its own time zone database and your device's clock. The cities you add are saved only in your browser's local storage, never uploaded, and the page keeps working offline once loaded.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Made for anyone who needs a quick tool that just works.
+  <br>© 2026 WBest · Free to use, no sign-up required · <a href="https://wbest.app/">WBest Free Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+/* Time zone maths built on Intl's IANA database. Pure functions, returned for testability. */
+var TZ = (function () {
+  'use strict';
+
+  var cache = {};
+  function formatter(zone) {
+    if (!cache[zone]) {
+      cache[zone] = new Intl.DateTimeFormat('en-US', {
+        timeZone: zone, hour12: false,
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      });
+    }
+    return cache[zone];
+  }
+
+  // What the wall clock reads in `zone` at instant `utcMs`.
+  function partsInZone(utcMs, zone) {
+    var out = {};
+    formatter(zone).formatToParts(new Date(utcMs)).forEach(function (p) {
+      if (p.type !== 'literal') out[p.type] = p.value;
+    });
+    return {
+      year: +out.year, month: +out.month, day: +out.day,
+      // Intl can report midnight as hour "24" in some engines.
+      hour: +out.hour % 24, minute: +out.minute, second: +out.second
+    };
+  }
+
+  // A zone's offset from UTC at a given instant, in minutes (east positive).
+  // Derived by reading the wall clock there and asking how far it is from UTC.
+  function offsetAt(utcMs, zone) {
+    var p = partsInZone(utcMs, zone);
+    var asUTC = Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, p.second);
+    // Round to the second: Date.UTC drops the milliseconds we never read.
+    return (asUTC - (Math.floor(utcMs / 1000) * 1000)) / 60000;
+  }
+
+  // The instant at which `zone`'s wall clock reads the given date and time.
+  // Offsets depend on the instant, and the instant depends on the offset, so
+  // guess once and correct - the second pass settles DST boundaries.
+  function zonedToUtc(p, zone) {
+    var guess = Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, 0);
+    var off = offsetAt(guess, zone);
+    var ts = guess - off * 60000;
+    var off2 = offsetAt(ts, zone);
+    if (off2 !== off) ts = guess - off2 * 60000;
+    return ts;
+  }
+
+  // "UTC+05:30" / "UTC-8" style label for an offset in minutes.
+  function offsetLabel(minutes) {
+    var sign = minutes < 0 ? '-' : '+';
+    var abs = Math.abs(minutes);
+    var h = Math.floor(abs / 60), m = abs % 60;
+    return 'UTC' + sign + h + (m ? ':' + (m < 10 ? '0' + m : m) : '');
+  }
+
+  // Short zone name for a date, e.g. "GMT+2", "EST". Intl decides the wording.
+  function abbreviation(utcMs, zone) {
+    try {
+      var parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: zone, timeZoneName: 'short', hour: '2-digit', hour12: false
+      }).formatToParts(new Date(utcMs));
+      for (var i = 0; i < parts.length; i++) {
+        if (parts[i].type === 'timeZoneName') return parts[i].value;
+      }
+    } catch (e) { /* fall through */ }
+    return '';
+  }
+
+  // A zone observes DST if its offset differs across the year; it is currently
+  // in DST if this instant's offset is the larger of the two extremes.
+  function isDST(utcMs, zone) {
+    var y = partsInZone(utcMs, zone).year;
+    var jan = offsetAt(Date.UTC(y, 0, 1), zone);
+    var jul = offsetAt(Date.UTC(y, 6, 1), zone);
+    if (jan === jul) return false;
+    return offsetAt(utcMs, zone) === Math.max(jan, jul);
+  }
+
+  // Calendar days between the same instant seen from two zones: -1, 0, or +1.
+  function dayDelta(utcMs, zone, refZone) {
+    var a = partsInZone(utcMs, zone), b = partsInZone(utcMs, refZone);
+    var da = Date.UTC(a.year, a.month - 1, a.day);
+    var db = Date.UTC(b.year, b.month - 1, b.day);
+    return Math.round((da - db) / 86400000);
+  }
+
+  // City name out of an IANA identifier: "Asia/Ho_Chi_Minh" -> "Ho Chi Minh".
+  function cityName(zone) {
+    var last = zone.split('/').pop();
+    return last.replace(/_/g, ' ');
+  }
+  function regionName(zone) {
+    var bits = zone.split('/');
+    return bits.length > 1 ? bits[0].replace(/_/g, ' ') : '';
+  }
+
+  function pad2(n) { return n < 10 ? '0' + n : String(n); }
+  function hhmm(p) { return pad2(p.hour) + ':' + pad2(p.minute); }
+
+  // Rough shading band for the meeting planner.
+  function hourBand(hour) {
+    if (hour >= 9 && hour < 17) return 'work';
+    if ((hour >= 7 && hour < 9) || (hour >= 17 && hour < 22)) return 'evening';
+    return 'night';
+  }
+
+  function isValidZone(zone) {
+    try {
+      new Intl.DateTimeFormat('en-US', { timeZone: zone });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  return {
+    partsInZone: partsInZone, offsetAt: offsetAt, zonedToUtc: zonedToUtc,
+    offsetLabel: offsetLabel, abbreviation: abbreviation, isDST: isDST,
+    dayDelta: dayDelta, cityName: cityName, regionName: regionName,
+    hhmm: hhmm, pad2: pad2, hourBand: hourBand, isValidZone: isValidZone
+  };
+})();
+if (typeof module !== 'undefined') module.exports = TZ;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+
+  var STORE = 'wb-tz-zones';
+  var local = 'UTC';
+  try { local = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'; } catch (e) {}
+
+  var allZones = [];
+  try {
+    if (typeof Intl.supportedValuesOf === 'function') allZones = Intl.supportedValuesOf('timeZone');
+  } catch (e) {}
+  if (!allZones.length) {
+    // Older engines: a workable set rather than nothing.
+    allZones = [
+      'UTC', 'America/Los_Angeles', 'America/Denver', 'America/Chicago', 'America/New_York',
+      'America/Sao_Paulo', 'Europe/London', 'Europe/Berlin', 'Europe/Paris', 'Europe/Madrid',
+      'Europe/Moscow', 'Africa/Lagos', 'Africa/Johannesburg', 'Asia/Dubai', 'Asia/Kolkata',
+      'Asia/Bangkok', 'Asia/Singapore', 'Asia/Shanghai', 'Asia/Tokyo', 'Asia/Seoul',
+      'Australia/Perth', 'Australia/Sydney', 'Pacific/Auckland'
+    ];
+  }
+  if (allZones.indexOf('UTC') === -1) allZones.unshift('UTC');
+  if (allZones.indexOf(local) === -1) allZones.unshift(local);
+
+  var DEFAULTS = ['America/New_York', 'Europe/London', 'Asia/Tokyo'];
+  var zones = [];
+  try {
+    var saved = JSON.parse(localStorage.getItem(STORE) || 'null');
+    if (Array.isArray(saved) && saved.length) zones = saved.filter(TZ.isValidZone);
+  } catch (e) {}
+  if (!zones.length) {
+    zones = [local];
+    DEFAULTS.forEach(function (z) { if (zones.indexOf(z) === -1 && TZ.isValidZone(z)) zones.push(z); });
+    if (zones.indexOf('UTC') === -1) zones.push('UTC');
+  }
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(zones)); } catch (e) {}
+  }
+
+  // Populate the source-zone select and the add-city datalist.
+  (function fillLists() {
+    var sel = $('src-zone'), dl = $('zone-list');
+    var frag = document.createDocumentFragment(), dfrag = document.createDocumentFragment();
+    allZones.forEach(function (z) {
+      var o = document.createElement('option');
+      o.value = z;
+      o.textContent = TZ.cityName(z) + (TZ.regionName(z) ? ' - ' + TZ.regionName(z) : '');
+      frag.appendChild(o);
+      var d = document.createElement('option');
+      d.value = z;
+      dfrag.appendChild(d);
+    });
+    sel.appendChild(frag);
+    dl.appendChild(dfrag);
+    sel.value = local;
+  })();
+
+  function srcZone() { return $('src-zone').value; }
+
+  // The instant currently selected, derived from the date/time fields read as
+  // wall-clock time in the source zone.
+  function instant() {
+    var d = $('date').value, t = $('time').value;
+    var dm = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d);
+    var tm = /^(\d{2}):(\d{2})/.exec(t);
+    if (!dm || !tm) return null;
+    return TZ.zonedToUtc({
+      year: +dm[1], month: +dm[2], day: +dm[3], hour: +tm[1], minute: +tm[2]
+    }, srcZone());
+  }
+
+  function setFromInstant(ts) {
+    var p = TZ.partsInZone(ts, srcZone());
+    $('date').value = p.year + '-' + TZ.pad2(p.month) + '-' + TZ.pad2(p.day);
+    $('time').value = TZ.pad2(p.hour) + ':' + TZ.pad2(p.minute);
+  }
+
+  function zoneRow(zone, ts, srcOffset) {
+    var li = document.createElement('li');
+    li.className = 'zone' + (zone === srcZone() ? ' is-src' : '');
+
+    var p = TZ.partsInZone(ts, zone);
+    var off = TZ.offsetAt(ts, zone);
+
+    var name = document.createElement('div');
+    name.className = 'city';
+    name.textContent = TZ.cityName(zone);
+    var sub = document.createElement('span');
+    sub.className = 'sub';
+    var abbr = TZ.abbreviation(ts, zone);
+    var bits = [TZ.offsetLabel(off)];
+    if (abbr && abbr !== TZ.offsetLabel(off)) bits.push(abbr);
+    if (TZ.isDST(ts, zone)) bits.push('daylight saving');
+    sub.textContent = bits.join(' · ');
+    name.appendChild(sub);
+
+    var t = document.createElement('div');
+    t.className = 't';
+    t.textContent = TZ.hhmm(p);
+    var d = document.createElement('span');
+    d.className = 'd';
+    var delta = TZ.dayDelta(ts, zone, srcZone());
+    var weekday = new Date(Date.UTC(p.year, p.month - 1, p.day))
+      .toLocaleDateString('en-US', { weekday: 'short', timeZone: 'UTC' });
+    var diff = (off - srcOffset) / 60;
+    var diffText = diff === 0 ? 'same time' :
+      (diff > 0 ? '+' + diff : diff) + 'h';
+    d.textContent = weekday + ' ' + p.day + ' · ' + diffText;
+    if (delta !== 0) {
+      var b = document.createElement('b');
+      b.textContent = ' ' + (delta > 0 ? '+1 day' : '-1 day');
+      d.appendChild(b);
+    }
+    t.appendChild(d);
+
+    var rm = document.createElement('button');
+    rm.type = 'button';
+    rm.className = 'rm';
+    rm.textContent = '×';
+    rm.setAttribute('aria-label', 'Remove ' + TZ.cityName(zone));
+    rm.disabled = zones.length <= 1;
+    rm.addEventListener('click', function () {
+      zones = zones.filter(function (z) { return z !== zone; });
+      save(); render();
+    });
+
+    li.appendChild(name); li.appendChild(t); li.appendChild(rm);
+    return li;
+  }
+
+  function renderStrip(ts) {
+    var table = $('strip');
+    table.textContent = '';
+    var p = TZ.partsInZone(ts, srcZone());
+    // Midnight of the selected day in the source zone anchors the 24 columns.
+    var dayStart = TZ.zonedToUtc({ year: p.year, month: p.month, day: p.day, hour: 0, minute: 0 }, srcZone());
+
+    var thead = document.createElement('thead');
+    var hr = document.createElement('tr');
+    hr.appendChild(document.createElement('th'));
+    for (var h = 0; h < 24; h++) {
+      var th = document.createElement('th');
+      th.scope = 'col';
+      th.textContent = h % 3 === 0 ? h : '';
+      hr.appendChild(th);
+    }
+    thead.appendChild(hr);
+    table.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    zones.forEach(function (zone) {
+      var tr = document.createElement('tr');
+      var th = document.createElement('th');
+      th.scope = 'row';
+      th.textContent = TZ.cityName(zone);
+      tr.appendChild(th);
+      for (var i = 0; i < 24; i++) {
+        var cellTs = dayStart + i * 3600000;
+        var zp = TZ.partsInZone(cellTs, zone);
+        var td = document.createElement('td');
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = TZ.hourBand(zp.hour);
+        if (Math.abs(cellTs - ts) < 1800000) b.className += ' sel';
+        b.textContent = zp.hour;
+        b.setAttribute('aria-label', TZ.cityName(zone) + ' ' + TZ.hhmm(zp));
+        (function (when) {
+          b.addEventListener('click', function () { setFromInstant(when); render(); });
+        })(cellTs);
+        td.appendChild(b);
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+  }
+
+  function render() {
+    var ts = instant();
+    if (ts === null) { $('err').textContent = 'Pick a valid date and time.'; return; }
+    $('err').textContent = '';
+    var srcOffset = TZ.offsetAt(ts, srcZone());
+
+    var list = $('zones');
+    list.textContent = '';
+    zones.forEach(function (z) { list.appendChild(zoneRow(z, ts, srcOffset)); });
+    renderStrip(ts);
+  }
+
+  $('now').addEventListener('click', function () { setFromInstant(Date.now()); render(); });
+  $('date').addEventListener('change', render);
+  $('time').addEventListener('change', render);
+  $('src-zone').addEventListener('change', function () {
+    if (zones.indexOf(srcZone()) === -1) { zones.unshift(srcZone()); save(); }
+    render();
+  });
+
+  function addZone() {
+    var v = $('add-zone').value.trim();
+    if (!v) return;
+    // Accept the IANA id, or a city name typed without its region.
+    var match = allZones.filter(function (z) {
+      return z.toLowerCase() === v.toLowerCase() ||
+        TZ.cityName(z).toLowerCase() === v.toLowerCase();
+    })[0];
+    if (!match) {
+      $('err').textContent = 'No time zone matches "' + v + '". Try a city like Asia/Singapore.';
+      return;
+    }
+    if (zones.indexOf(match) !== -1) {
+      $('err').textContent = TZ.cityName(match) + ' is already in the list.';
+      return;
+    }
+    zones.push(match);
+    save();
+    $('add-zone').value = '';
+    render();
+  }
+  $('add-btn').addEventListener('click', addZone);
+  $('add-zone').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); addZone(); }
+  });
+
+  setFromInstant(Date.now());
+  render();
+})();
+</script>
+</body>
+</html>

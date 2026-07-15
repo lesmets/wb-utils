@@ -137,6 +137,10 @@
   }
 }
 *{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 body{
   margin:0; background:var(--bg); color:var(--text);
@@ -645,7 +649,7 @@ if (typeof module !== 'undefined') module.exports = JV;
     uploadsData: null,
     features: ['format', 'minify', 'validate', 'tree view', 'sort keys'],
     limits: { maxFileMB: 'memory-bound', cost: 0 },
-    nested: { a: [1, 2, { b: [true, false] }], unicode: 'õäöü — 你好 🎉' }
+    nested: { a: [1, 2, { b: [true, false] }], unicode: 'õäöü - 你好 🎉' }
   };
 
   function announce(msg) { live.textContent = msg; }

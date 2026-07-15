@@ -4,14 +4,14 @@
 //
 // Each subdomain/domain is its own site to search engines, so every root gets
 // its own robots.txt and sitemap.xml keyed to that host's canonical URL (read
-// from the <link rel="canonical"> in its index.html — the single source of
+// from the <link rel="canonical"> in its index.html - the single source of
 // truth). Tool sitemaps list just their one URL today; the directory sitemap
 // lists every tool URL, making it the suite's crawl hub. Guide/locale URLs get
 // added here as they appear.
 //
 // llms.txt (llmstxt.org) is the same idea aimed at AI answer engines: a plain
 // markdown brief a model can cite without executing our JS. Nothing in it is
-// new content — it is projected from what each page already states in its
+// new content - it is projected from what each page already states in its
 // JSON-LD (WebApplication + FAQPage) and, for the directory, its category
 // sections. Writing it by hand would guarantee drift; generating it means the
 // brief is stale only if the page is, and --check proves it mechanically.
@@ -131,7 +131,7 @@ const byUrl = new Map(listed.map(e => [e.url, e]));
 // A brief is only as trustworthy as the agreement between the three places a
 // tool is declared: its own canonical, its directory card, and the ItemList.
 // A tool missing from any of them is exactly the orphan §3's "definition of
-// shipped" rules out — catch it here rather than in a crawler.
+// shipped" rules out - catch it here rather than in a crawler.
 const canonicals = new Set(tools.map(d => base.get(d)));
 const problems = [
   ...tools.filter(d => !byUrl.has(base.get(d)))
@@ -217,7 +217,7 @@ function faqSection(dir) {
 }
 
 // A tool's brief: what it is, what it does, and the answers it already gives
-// on-page — the citable facts, minus the interface.
+// on-page - the citable facts, minus the interface.
 function llmsTool(dir) {
   const app = ldType(dir, 'WebApplication');
   const entry = byUrl.get(base.get(dir));

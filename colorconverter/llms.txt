@@ -46,5 +46,7 @@ Yes. All conversion and palette generation happens in your browser with plain Ja
 
 ## More WB tools
 
-- [Unit Converter](https://unitconverter.wbest.app/): Convert length, weight, temperature, and 7 more categories, with the formula shown.
-- [WBest](https://wbest.app/): all 16 free WB tools - private, no sign-up, no uploads.
+- [Image Compressor](https://imagecompressor.wbest.app/): Compress, resize, and convert JPEG, PNG, and WebP to an exact target size.
+- [Image Cropper](https://imagecropper.wbest.app/): Crop to any aspect ratio or exact pixel size, then rotate, flip, and export.
+- [Image Color Picker](https://imagecolorpicker.wbest.app/): Pick exact HEX, RGB, and HSL from any photo, with a magnifier and palette.
+- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.

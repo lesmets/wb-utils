@@ -55,5 +55,4 @@ Yes. All conversion tables are built into the page and the math runs in your bro
 
 ## More WB tools
 
-- [Color Converter & Picker](https://colorconverter.wbest.app/): Convert HEX, RGB, HSL, and OKLCH, with tints, shades, and color harmonies.
-- [WBest](https://wbest.app/): all 16 free WB tools - private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.

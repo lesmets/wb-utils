@@ -1,0 +1,51 @@
+# WBest Time Zone Converter
+
+> Free online time zone converter and meeting planner. Pick a date and time in one zone and see it instantly in as many other zones as you like, with daylight saving handled automatically from your browser's own IANA time zone database. The hour strip shows every city's working hours at a glance so you can find a slot that suits everyone. Runs entirely in your browser - no tracking, works offline.
+
+Use it at https://timezoneconverter.wbest.app/ - it is a single page, and the tool is the page.
+
+- Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
+- Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
+- Works offline once the page has loaded, and needs no install.
+- One self-contained page: no cookies, no tracking, no consent popups.
+
+## Features
+
+- Convert any time between any IANA time zones
+- Compare unlimited cities side by side
+- Meeting planner strip showing working hours in every zone
+- Daylight saving transitions handled automatically
+- UTC offset, zone abbreviation, and day difference shown
+- Your chosen cities are remembered on your device only
+
+## Frequently asked questions
+
+### How do I convert a time between two time zones?
+
+Set the date and time in the top card and choose which zone that time belongs to. Every city in the list below immediately shows the matching local time for that same instant, along with its UTC offset and how many hours ahead or behind it is. Add as many cities as you need - they are all converted at once, not just a pair.
+
+### Does this handle daylight saving time?
+
+Yes, automatically. Conversions use your browser's built-in IANA time zone database, so each zone's offset is calculated for the specific date you picked rather than assumed. That matters most in the weeks when two countries disagree. London is normally 5 hours ahead of New York, in both winter and summer - but for about three weeks each March, after the US has moved its clocks forward and before the UK moves its own, the gap is only 4 hours. Pick a date in mid-March and you can watch it change.
+
+### What is the difference between UTC and GMT?
+
+For everyday purposes they name the same moment. UTC (Coordinated Universal Time) is the modern standard, defined by atomic clocks and kept within a second of the Earth's rotation by occasional leap seconds. GMT (Greenwich Mean Time) is an older astronomical time scale that is now also a civil time zone used in the UK and parts of Africa. The practical difference: UTC never changes, whereas the UK's clocks move to BST (UTC+1) in summer, so London is not always GMT.
+
+### Why does the date change when I convert a time?
+
+Because the world's zones span more than 24 hours, one instant can fall on different calendar days in different places. When it is 9am Thursday in New York it is already 10pm Thursday in Tokyo, and 8am Monday in Los Angeles is 1am Tuesday in Sydney. Any city on a different day shows a +1 or -1 day marker so a meeting invitation never lands on the wrong date.
+
+### How do I find a meeting time that works across time zones?
+
+Use the hour strip. Each row is one city and each cell is one hour of the chosen day, shaded to show typical working hours, evenings, and night. Scan down a column and you can see instantly whether that moment is reasonable everywhere or the middle of the night for someone. Click any cell to convert that exact hour.
+
+### Is my data sent anywhere?
+
+No. Every conversion runs in JavaScript in your browser using its own time zone database and your device's clock. The cities you add are saved only in your browser's local storage, never uploaded, and the page keeps working offline once loaded.
+
+## More WB tools
+
+- [Age Calculator](https://agecalculator.wbest.app/): Exact age in years, months, and days, plus a countdown to your next birthday.
+- [Timer](https://timer.wbest.app/): Countdown timer and stopwatch with presets, laps, and an alarm.
+- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.

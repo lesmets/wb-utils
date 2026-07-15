@@ -118,6 +118,10 @@
   }
 }
 *{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 body{
   margin:0; background:var(--bg); color:var(--text);
@@ -283,18 +287,18 @@ tbody tr.year-sep td{border-bottom:2px solid var(--border)}
       <div class="results">
         <div class="card summary">
           <p class="emi-label">Monthly payment (EMI)</p>
-          <div class="emi-big" id="emi">—</div>
+          <div class="emi-big" id="emi">-</div>
           <div class="totrow">
-            <div class="box"><div class="n" id="tot-principal">—</div><div class="l">Principal</div></div>
-            <div class="box"><div class="n" id="tot-interest">—</div><div class="l">Total interest</div></div>
-            <div class="box"><div class="n" id="tot-total">—</div><div class="l">Total payable</div></div>
+            <div class="box"><div class="n" id="tot-principal">-</div><div class="l">Principal</div></div>
+            <div class="box"><div class="n" id="tot-interest">-</div><div class="l">Total interest</div></div>
+            <div class="box"><div class="n" id="tot-total">-</div><div class="l">Total payable</div></div>
           </div>
           <div class="bar" role="img" aria-label="Principal versus interest split">
             <div class="p" id="bar-p"></div><div class="i" id="bar-i"></div>
           </div>
           <div class="legend">
             <span><span class="dot p"></span>Principal</span>
-            <span><span class="dot i"></span>Interest <b id="int-pct" style="margin-left:4px">—</b></span>
+            <span><span class="dot i"></span>Interest <b id="int-pct" style="margin-left:4px">-</b></span>
           </div>
           <p class="formula" id="formula"></p>
         </div>
@@ -445,11 +449,11 @@ if (typeof module !== 'undefined') module.exports = LOAN;
   var cur = '$', view = 'year', last = null;
 
   function money(n) {
-    if (!isFinite(n)) return '—';
+    if (!isFinite(n)) return '-';
     return cur + Math.round(n).toLocaleString('en-US');
   }
   function money2(n) {
-    if (!isFinite(n)) return '—';
+    if (!isFinite(n)) return '-';
     return cur + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
@@ -466,8 +470,8 @@ if (typeof module !== 'undefined') module.exports = LOAN;
     $('cur-pre').textContent = cur || '#';
 
     if (!(P > 0) || isNaN(rate) || rate < 0 || !(n > 0)) {
-      $('emi').textContent = '—';
-      ['tot-principal', 'tot-interest', 'tot-total', 'int-pct'].forEach(function (id) { $(id).textContent = '—'; });
+      $('emi').textContent = '-';
+      ['tot-principal', 'tot-interest', 'tot-total', 'int-pct'].forEach(function (id) { $(id).textContent = '-'; });
       $('formula').textContent = 'Enter a loan amount, rate, and term.';
       $('sched').innerHTML = ''; last = null;
       $('bar-p').style.width = $('bar-i').style.width = '50%';

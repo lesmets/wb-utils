@@ -118,6 +118,10 @@
   }
 }
 *{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 body{
   margin:0; background:var(--bg); color:var(--text);
@@ -277,7 +281,7 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
     </div>
 
     <div class="card result" id="result" aria-live="polite">
-      <div class="big" id="result-main">—</div>
+      <div class="big" id="result-main">-</div>
       <p class="note" id="result-note">Press Generate to begin.</p>
     </div>
   </section>
@@ -435,11 +439,11 @@ if (typeof module !== 'undefined') module.exports = RNG;
 
   function genNumber() {
     var min = num('min'), max = num('max'), count = num('count');
-    if (isNaN(min) || isNaN(max)) { setResult('—', 'Enter a minimum and maximum.', true); lastText = ''; return; }
+    if (isNaN(min) || isNaN(max)) { setResult('-', 'Enter a minimum and maximum.', true); lastText = ''; return; }
     if (isNaN(count) || count < 1) count = 1;
     count = Math.min(count, 1000);
     var r = RNG.batch(min, max, count, $('unique').checked);
-    if (r.error) { setResult('—', r.error, true); lastText = ''; return; }
+    if (r.error) { setResult('-', r.error, true); lastText = ''; return; }
     var vals = r.values.slice();
     if ($('sorted').checked) vals.sort(function (a, b) { return a - b; });
     lastText = vals.join(', ');
@@ -479,7 +483,7 @@ if (typeof module !== 'undefined') module.exports = RNG;
     var count = num('list-count');
     if (isNaN(count) || count < 1) count = 1;
     var r = RNG.pick(items, count, $('list-unique').checked);
-    if (r.error) { setResult('—', r.error, true); lastText = ''; return; }
+    if (r.error) { setResult('-', r.error, true); lastText = ''; return; }
     lastText = r.values.join(', ');
     if (r.values.length === 1) setResult(esc(r.values[0]), 'Picked from ' + items.length + ' item' + (items.length === 1 ? '' : 's') + '.');
     else setResult(listHTML(r.values.map(esc)), 'Picked ' + r.values.length + ' of ' + items.length + '.');
@@ -498,7 +502,7 @@ if (typeof module !== 'undefined') module.exports = RNG;
       $('tab-' + m).setAttribute('aria-pressed', String(m === which));
       $('pane-' + m).hidden = m !== which;
     });
-    setResult('—', 'Press Generate to begin.');
+    setResult('-', 'Press Generate to begin.');
     lastText = '';
   }
 

@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest Image Cropper - Crop Photos Online, Free &amp; Private</title>
+<meta name="description" content="Crop any image online with pixel-exact control, aspect ratio presets, and rotate or flip. Your photos never leave your device. Free, instant, no sign-up.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://imagecropper.wbest.app/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Image Cropper">
+<meta property="og:title" content="WBest Image Cropper - Crop Photos Online, Free &amp; Private">
+<meta property="og:description" content="Crop any image online with pixel-exact control, aspect ratio presets, and rotate or flip. Your photos never leave your device. Free, instant, no sign-up.">
+<meta property="og:url" content="https://imagecropper.wbest.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest Image Cropper - Crop Photos Online, Free &amp; Private">
+<meta name="twitter:description" content="Crop any image online with pixel-exact control, aspect ratio presets, and rotate or flip. Your photos never leave your device. Free, instant, no sign-up.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Image Cropper",
+  "url": "https://imagecropper.wbest.app/",
+  "description": "Free online image cropper. Drag a crop box or type exact pixel values, lock it to a preset aspect ratio, rotate and flip, then export as JPEG, PNG, or WebP. Your photos are processed on your device and never uploaded - it even works offline.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Drag and resize a crop box, or type exact pixel dimensions",
+    "Aspect ratio presets: square, 4:3, 16:9, 3:2, and story",
+    "Rotate in 90 degree steps and flip horizontally or vertically",
+    "Export as JPEG, PNG, or WebP with a quality slider",
+    "No upload, no sign-up, no watermark",
+    "EXIF metadata stripped from the exported crop"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are my photos uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The image is read and cropped entirely on your device using the browser's canvas, so the file is never uploaded, stored, or seen by anyone else. You can prove it: load the page, switch off your internet connection, and the cropper keeps working perfectly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does cropping reduce image quality?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cropping itself only discards the pixels outside your selection - the pixels you keep are untouched. Quality loss comes from re-encoding: saving as JPEG or WebP compresses the result again, so use the quality slider or choose PNG for a lossless copy. The crop is always taken at the image's full original resolution, never at the size shown on screen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What aspect ratio should I crop to?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends where the image will appear. 1:1 square suits profile pictures and Instagram posts. 16:9 is the standard for video thumbnails, presentations, and website heroes. 4:3 and 3:2 match what most cameras and phones shoot. 9:16 vertical fits stories, Reels, TikTok, and phone wallpapers. Lock the ratio before you drag and the crop box will hold it exactly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I crop to an exact pixel size?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Type the width and height you need into the pixel fields and the crop box snaps to that exact size, which you can then drag into position. The exported file is exactly those pixel dimensions - useful when a platform demands a precise size, such as a 1200 x 630 social preview image."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which format should I export?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use JPEG for photographs - it gives the smallest file at a quality most people cannot distinguish from the original. Use PNG when you need lossless quality or a transparent background, such as logos and screenshots with sharp text. Use WebP when you want JPEG-like photo compression at a noticeably smaller size and only modern browsers need to open it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the cropped image keep my photo's location data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, and that is deliberate. Redrawing the image through a canvas discards all EXIF metadata, so the exported crop carries no GPS coordinates, camera serial number, or timestamp. The crop you download is just pixels - which is usually exactly what you want before sharing a photo publicly."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+:root{ --grid:#c9ced8; }
+@media (prefers-color-scheme: dark){ :root{ --grid:#3a4658; } }
+
+.drop{
+  width:100%;padding:44px 20px;border:2px dashed var(--border);border-radius:12px;
+  background:var(--card);color:var(--text);cursor:pointer;text-align:center;font:inherit
+}
+.drop:hover,.drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.drop strong{display:block;font-size:1.1rem;margin-bottom:4px}
+.drop span{color:var(--muted);font-size:.9rem}
+
+.editor{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:12px;align-items:start}
+@media (max-width:900px){.editor{grid-template-columns:1fr}}
+
+.stage-card{padding:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.stage{
+  position:relative;margin:0 auto;overflow:hidden;touch-action:none;
+  background-image:
+    linear-gradient(45deg,var(--grid) 25%,transparent 25%,transparent 75%,var(--grid) 75%),
+    linear-gradient(45deg,var(--grid) 25%,transparent 25%,transparent 75%,var(--grid) 75%);
+  background-size:16px 16px;background-position:0 0,8px 8px
+}
+.stage canvas{display:block;width:100%;height:auto}
+.box{
+  position:absolute;box-sizing:border-box;border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 0 0 9999px rgba(0,0,0,.5);cursor:move;touch-action:none
+}
+/* Rule-of-thirds guides, drawn with gradients so they cost no elements. */
+.box::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background:
+    linear-gradient(to right,transparent calc(33.333% - .5px),#fff calc(33.333% - .5px),#fff calc(33.333% + .5px),transparent calc(33.333% + .5px)),
+    linear-gradient(to right,transparent calc(66.666% - .5px),#fff calc(66.666% - .5px),#fff calc(66.666% + .5px),transparent calc(66.666% + .5px)),
+    linear-gradient(to bottom,transparent calc(33.333% - .5px),#fff calc(33.333% - .5px),#fff calc(33.333% + .5px),transparent calc(33.333% + .5px)),
+    linear-gradient(to bottom,transparent calc(66.666% - .5px),#fff calc(66.666% - .5px),#fff calc(66.666% + .5px),transparent calc(66.666% + .5px))
+}
+.h{position:absolute;width:14px;height:14px;background:#fff;border:1px solid rgba(0,0,0,.35);border-radius:2px;touch-action:none}
+.h[data-h="nw"]{left:-7px;top:-7px;cursor:nwse-resize}
+.h[data-h="ne"]{right:-7px;top:-7px;cursor:nesw-resize}
+.h[data-h="se"]{right:-7px;bottom:-7px;cursor:nwse-resize}
+.h[data-h="sw"]{left:-7px;bottom:-7px;cursor:nesw-resize}
+.h[data-h="n"]{left:50%;top:-7px;margin-left:-7px;cursor:ns-resize}
+.h[data-h="s"]{left:50%;bottom:-7px;margin-left:-7px;cursor:ns-resize}
+.h[data-h="w"]{left:-7px;top:50%;margin-top:-7px;cursor:ew-resize}
+.h[data-h="e"]{right:-7px;top:50%;margin-top:-7px;cursor:ew-resize}
+.stage.locked .h[data-h="n"],.stage.locked .h[data-h="s"],
+.stage.locked .h[data-h="w"],.stage.locked .h[data-h="e"]{display:none}
+
+.side{display:grid;gap:12px}
+.panel{padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.panel h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:0 0 10px}
+.ratios{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.ratios button,.tools button{
+  font:inherit;font-size:.82rem;padding:7px 6px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.ratios button:hover,.tools button:hover{border-color:var(--accent);color:var(--accent)}
+.ratios button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:600}
+.tools{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.dims{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center}
+.dims input{
+  width:100%;font:600 .9rem/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  padding:8px 9px;border:1px solid var(--border);border-radius:7px;background:var(--card);color:var(--text)
+}
+.dims .x{color:var(--muted);font-size:.85rem}
+.dims label{font-size:.72rem;color:var(--muted);display:block;margin-bottom:3px}
+.row{display:flex;align-items:center;gap:8px;justify-content:space-between;font-size:.85rem;margin-top:10px}
+.row select,.row input[type="range"]{accent-color:var(--accent)}
+.row select{
+  font:inherit;font-size:.85rem;padding:6px 8px;border-radius:7px;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.row .val{font:600 .8rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--accent)}
+.out{font-size:.85rem;color:var(--muted);margin:10px 0 0;display:grid;gap:3px}
+.out b{color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:600}
+.go{
+  width:100%;font:inherit;font-size:.92rem;font-weight:600;padding:11px 16px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--accent);background:var(--accent);color:#fff;margin-top:12px
+}
+.go:hover{opacity:.92}
+.ghost{
+  width:100%;font:inherit;font-size:.85rem;padding:8px 16px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text);margin-top:6px
+}
+.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.err{color:var(--over);font-size:.85rem;margin:10px 0 0;min-height:1.2em}
+
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:420px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td{font-variant-numeric:tabular-nums}
+.faq p{color:var(--text)}
+
+/* Mobile: let tables reflow to fit the viewport instead of scrolling.
+   min-width would otherwise hold the table open and overflow the page. */
+@media (max-width:560px){
+  table{min-width:0}
+  th,td{padding-left:8px;padding-right:8px}
+  td{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+  thead th{text-transform:none;letter-spacing:normal}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WBest Image Cropper</h1>
+  <p class="tagline">Crop any photo to the exact size or aspect ratio you need - drag it, or type the pixels. Rotate, flip, and export in one step.</p>
+  <span class="badge">🔒 100% private - your photos never leave your device</span>
+  <nav class="toc" aria-label="On this page">
+    <a href="#tool">Cropper</a>
+    <a href="#how">How to crop</a>
+    <a href="#ratios">Aspect ratios</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Image cropper">
+    <button type="button" class="drop" id="drop">
+      <strong>Drop an image here</strong>
+      <span>or click to choose · paste from clipboard · JPEG, PNG, WebP, GIF, AVIF</span>
+    </button>
+    <input type="file" id="file" accept="image/*" class="sr-only" aria-label="Choose an image to crop">
+
+    <div class="editor" id="editor" hidden>
+      <div class="stage-card">
+        <div class="stage" id="stage">
+          <canvas id="canvas"></canvas>
+          <div class="box" id="box" tabindex="0" role="group"
+               aria-label="Crop area. Arrow keys move it, shift with arrow keys resizes it.">
+            <span class="h" data-h="nw"></span><span class="h" data-h="n"></span><span class="h" data-h="ne"></span>
+            <span class="h" data-h="e"></span><span class="h" data-h="se"></span><span class="h" data-h="s"></span>
+            <span class="h" data-h="sw"></span><span class="h" data-h="w"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="panel">
+          <h2>Aspect ratio</h2>
+          <div class="ratios" id="ratios">
+            <button type="button" data-r="0" aria-pressed="true">Free</button>
+            <button type="button" data-r="1">1:1</button>
+            <button type="button" data-r="1.3333333333333333">4:3</button>
+            <button type="button" data-r="1.7777777777777777">16:9</button>
+            <button type="button" data-r="1.5">3:2</button>
+            <button type="button" data-r="0.5625">9:16</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Crop size</h2>
+          <div class="dims">
+            <div>
+              <label for="cw">Width</label>
+              <input type="text" id="cw" inputmode="numeric" autocomplete="off">
+            </div>
+            <span class="x" aria-hidden="true">×</span>
+            <div>
+              <label for="ch">Height</label>
+              <input type="text" id="ch" inputmode="numeric" autocomplete="off">
+            </div>
+          </div>
+          <button type="button" class="ghost" id="reset-box">Select whole image</button>
+        </div>
+
+        <div class="panel">
+          <h2>Transform</h2>
+          <div class="tools">
+            <button type="button" id="rot-l">⟲ Rotate left</button>
+            <button type="button" id="rot-r">⟳ Rotate right</button>
+            <button type="button" id="flip-h">⇄ Flip</button>
+            <button type="button" id="flip-v">⇅ Flip</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Export</h2>
+          <div class="row">
+            <label for="fmt">Format</label>
+            <select id="fmt">
+              <option value="image/jpeg">JPEG</option>
+              <option value="image/png">PNG</option>
+              <option value="image/webp">WebP</option>
+            </select>
+          </div>
+          <div class="row" id="q-row">
+            <label for="quality">Quality</label>
+            <span class="val" id="q-val">90</span>
+          </div>
+          <input type="range" id="quality" min="10" max="100" step="5" value="90" style="width:100%;accent-color:var(--accent)">
+          <div class="out">
+            <span>Source: <b id="src-size">-</b></span>
+            <span>Crop: <b id="crop-size">-</b></span>
+          </div>
+          <button type="button" class="go" id="download">Download crop</button>
+          <button type="button" class="ghost" id="new">Choose another image</button>
+          <p class="err" id="err" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="props" aria-label="Why use this image cropper">
+    <div class="card"><strong>Photos never leave your device</strong><p>Every other cropper uploads your image to a server first. This one uses your browser's canvas, so the file stays where it is - and works offline.</p></div>
+    <div class="card"><strong>Pixel-exact, full resolution</strong><p>The crop is taken from the original image at full resolution, never the preview. Type an exact width and height and that is precisely what you get.</p></div>
+    <div class="card"><strong>Location data stripped</strong><p>Redrawing through a canvas drops all EXIF metadata, so the crop you share carries no GPS coordinates, camera serial, or timestamp.</p></div>
+  </section>
+
+  <section id="how" class="prose">
+    <h2>How to crop an image</h2>
+    <p>Drop a photo onto the box above (or paste one straight from your clipboard), then:</p>
+    <h3>1. Pick a ratio, or stay free</h3>
+    <p>Leave it on <strong>Free</strong> to drag any shape you like. Choose a preset and the crop box locks to that proportion no matter how you drag it - the only way to be certain a profile picture is genuinely square or a thumbnail is genuinely 16:9.</p>
+    <h3>2. Frame it</h3>
+    <p>Drag inside the box to reposition, drag a handle to resize. The dimmed area is what gets discarded. The faint grid is the <strong>rule of thirds</strong>: placing your subject on a line or intersection, rather than dead centre, is the oldest and most reliable composition trick there is.</p>
+    <h3>3. Or type exact pixels</h3>
+    <p>If a platform demands a precise size, type the width and height directly and drag the resulting box into position. Note that you cannot crop to a size <em>larger</em> than the source - cropping only ever removes pixels. To make an image bigger or smaller overall, use the <a href="https://imagecompressor.wbest.app/">Image Compressor &amp; Resizer</a>.</p>
+    <h3>4. Export</h3>
+    <p>Choose a format, adjust quality if it is JPEG or WebP, and download. The result is exactly the pixels inside your box, at the original resolution.</p>
+  </section>
+
+  <section id="ratios" class="prose">
+    <h2>Which aspect ratio to crop to</h2>
+    <div class="table-wrap">
+      <table>
+        <caption>Common aspect ratios and where each one is expected.</caption>
+        <thead><tr><th scope="col">Ratio</th><th scope="col">Shape</th><th scope="col">Where it is used</th></tr></thead>
+        <tbody>
+          <tr><td>1:1</td><td>Square</td><td>Profile pictures, avatars, Instagram posts, album art</td></tr>
+          <tr><td>16:9</td><td>Widescreen</td><td>YouTube thumbnails, presentations, website heroes, TV</td></tr>
+          <tr><td>4:3</td><td>Classic</td><td>Standard camera and phone photos, older displays</td></tr>
+          <tr><td>3:2</td><td>Photographic</td><td>DSLR and mirrorless output, 6×4 inch prints</td></tr>
+          <tr><td>9:16</td><td>Vertical</td><td>Stories, Reels, TikTok, phone wallpapers</td></tr>
+          <tr><td>1.91:1</td><td>Social preview</td><td>Open Graph link previews, typically 1200 × 630 px</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Aspect ratio is the <em>proportion</em>; pixel size is the actual resolution. A 1:1 crop can be 400 × 400 or 4000 × 4000 - both are square. Crop for the ratio first, then resize for the pixels if a platform is specific about it.</p>
+    <p>Working with the colours in a photo rather than its framing? The <a href="https://imagecolorpicker.wbest.app/">Image Color Picker</a> pulls exact hex values straight out of an image, just as privately.</p>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Frequently asked questions</h2>
+
+    <h3>Are my photos uploaded to a server?</h3>
+    <p>No. The image is read and cropped entirely on your device using the browser's canvas, so the file is never uploaded, stored, or seen by anyone else. You can prove it: load the page, switch off your internet connection, and the cropper keeps working perfectly.</p>
+
+    <h3>Does cropping reduce image quality?</h3>
+    <p>Cropping itself only discards the pixels outside your selection - the pixels you keep are untouched. Quality loss comes from re-encoding: saving as JPEG or WebP compresses the result again, so use the quality slider or choose PNG for a lossless copy. The crop is always taken at the image's full original resolution, never at the size shown on screen.</p>
+
+    <h3>What aspect ratio should I crop to?</h3>
+    <p>It depends where the image will appear. 1:1 square suits profile pictures and Instagram posts. 16:9 is the standard for video thumbnails, presentations, and website heroes. 4:3 and 3:2 match what most cameras and phones shoot. 9:16 vertical fits stories, Reels, TikTok, and phone wallpapers. Lock the ratio before you drag and the crop box will hold it exactly.</p>
+
+    <h3>Can I crop to an exact pixel size?</h3>
+    <p>Yes. Type the width and height you need into the pixel fields and the crop box snaps to that exact size, which you can then drag into position. The exported file is exactly those pixel dimensions - useful when a platform demands a precise size, such as a 1200 × 630 social preview image.</p>
+
+    <h3>Which format should I export?</h3>
+    <p>Use JPEG for photographs - it gives the smallest file at a quality most people cannot distinguish from the original. Use PNG when you need lossless quality or a transparent background, such as logos and screenshots with sharp text. Use WebP when you want JPEG-like photo compression at a noticeably smaller size and only modern browsers need to open it.</p>
+
+    <h3>Does the cropped image keep my photo's location data?</h3>
+    <p>No, and that is deliberate. Redrawing the image through a canvas discards all EXIF metadata, so the exported crop carries no GPS coordinates, camera serial number, or timestamp. The crop you download is just pixels - which is usually exactly what you want before sharing a photo publicly.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Made for anyone who needs a quick tool that just works.
+  <br>© 2026 WBest · Free to use, no sign-up required · <a href="https://wbest.app/">WBest Free Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+/* Crop rectangle geometry. Pure functions, returned for testability.
+   All rects are { x, y, w, h } in source-image pixels. */
+var CROP = (function () {
+  'use strict';
+
+  var MIN = 8; // smallest crop side, in image pixels
+
+  function clamp(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
+
+  // Largest rect of the given aspect that fits in the image, centred.
+  // aspect of 0 (or falsy) means "free" - the whole image.
+  function fit(aspect, bw, bh) {
+    if (!aspect) return { x: 0, y: 0, w: bw, h: bh };
+    var w = bw, h = w / aspect;
+    if (h > bh) { h = bh; w = h * aspect; }
+    return { x: (bw - w) / 2, y: (bh - h) / 2, w: w, h: h };
+  }
+
+  // Slide a rect without resizing it, keeping it inside the image.
+  function move(rect, dx, dy, bw, bh) {
+    return {
+      x: clamp(rect.x + dx, 0, bw - rect.w),
+      y: clamp(rect.y + dy, 0, bh - rect.h),
+      w: rect.w, h: rect.h
+    };
+  }
+
+  // Drag a handle. With an aspect locked only the corner handles are live
+  // (the UI hides the edge ones), so the opposite corner is always the anchor.
+  function resize(rect, handle, dx, dy, o) {
+    var bw = o.bw, bh = o.bh, aspect = o.aspect || 0, min = o.min || MIN;
+    var l = rect.x, t = rect.y, r = rect.x + rect.w, b = rect.y + rect.h;
+    var west = handle.indexOf('w') !== -1, east = handle.indexOf('e') !== -1;
+    var north = handle.indexOf('n') !== -1, south = handle.indexOf('s') !== -1;
+
+    if (!aspect) {
+      if (west) l = clamp(l + dx, 0, r - min);
+      if (east) r = clamp(r + dx, l + min, bw);
+      if (north) t = clamp(t + dy, 0, b - min);
+      if (south) b = clamp(b + dy, t + min, bh);
+      return { x: l, y: t, w: r - l, h: b - t };
+    }
+
+    // Anchor is the corner opposite the one being dragged.
+    var ax = west ? r : l, ay = north ? b : t;
+    var wantW = west ? (r - (l + dx)) : ((r + dx) - l);
+    var wantH = north ? (b - (t + dy)) : ((b + dy) - t);
+    // Follow whichever axis the pointer pushed further.
+    var w = Math.max(wantW, wantH * aspect);
+    // Never grow past the image edge from the anchor.
+    var maxW = west ? ax : bw - ax;
+    var maxH = north ? ay : bh - ay;
+    w = Math.min(w, maxW, maxH * aspect);
+    w = Math.max(w, min, min * aspect);
+    var h = w / aspect;
+
+    l = west ? ax - w : ax;
+    t = north ? ay - h : ay;
+    return { x: l, y: t, w: w, h: h };
+  }
+
+  // Force an explicit pixel size, keeping the rect anchored at its top-left
+  // where possible and inside the image.
+  function setSize(rect, w, h, bw, bh) {
+    w = clamp(w, MIN, bw);
+    h = clamp(h, MIN, bh);
+    return {
+      x: clamp(rect.x, 0, bw - w),
+      y: clamp(rect.y, 0, bh - h),
+      w: w, h: h
+    };
+  }
+
+  // Snap to whole pixels for export. Clamp the origin first, leaving at least
+  // one pixel of room: rounding x up to the far edge and then fixing the width
+  // would put the rect outside the image, and drawImage would export nothing.
+  function round(rect, bw, bh) {
+    var x = clamp(Math.round(rect.x), 0, Math.max(0, bw - 1));
+    var y = clamp(Math.round(rect.y), 0, Math.max(0, bh - 1));
+    return {
+      x: x, y: y,
+      w: clamp(Math.round(rect.w), 1, bw - x),
+      h: clamp(Math.round(rect.h), 1, bh - y)
+    };
+  }
+
+  // Dimensions of the source after a rotation in 90-degree steps.
+  function oriented(w, h, rot) {
+    return (Math.abs(rot) % 180 === 90) ? { w: h, h: w } : { w: w, h: h };
+  }
+
+  return {
+    MIN: MIN, fit: fit, move: move, resize: resize,
+    setSize: setSize, round: round, oriented: oriented, clamp: clamp
+  };
+})();
+if (typeof module !== 'undefined') module.exports = CROP;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+
+  var img = null;        // the decoded source image
+  var base = null;       // source after rotate/flip, the pixels we crop from
+  var rect = null;       // crop rect, in base pixels
+  var aspect = 0;
+  var rot = 0, flipH = false, flipV = false;
+
+  var stage = $('stage'), canvas = $('canvas'), box = $('box'), editor = $('editor');
+
+  function fmtBytes(n) {
+    if (n < 1024) return n + ' B';
+    if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' KB';
+    return (n / 1048576).toFixed(2) + ' MB';
+  }
+
+  // Redraw `base` from the source image with the current rotation and flip.
+  function buildBase() {
+    var d = CROP.oriented(img.naturalWidth, img.naturalHeight, rot);
+    var c = document.createElement('canvas');
+    c.width = d.w; c.height = d.h;
+    var ctx = c.getContext('2d');
+    ctx.translate(d.w / 2, d.h / 2);
+    ctx.rotate(rot * Math.PI / 180);
+    ctx.scale(flipH ? -1 : 1, flipV ? -1 : 1);
+    ctx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2);
+    base = c;
+    canvas.width = d.w; canvas.height = d.h;
+    canvas.getContext('2d').drawImage(c, 0, 0);
+    // Cap the on-screen stage so a huge photo does not blow out the layout.
+    stage.style.maxWidth = Math.min(d.w, 900) + 'px';
+    $('src-size').textContent = d.w + ' × ' + d.h + ' px';
+  }
+
+  function paint() {
+    var bw = base.width, bh = base.height;
+    box.style.left = (rect.x / bw * 100) + '%';
+    box.style.top = (rect.y / bh * 100) + '%';
+    box.style.width = (rect.w / bw * 100) + '%';
+    box.style.height = (rect.h / bh * 100) + '%';
+    var r = CROP.round(rect, bw, bh);
+    $('crop-size').textContent = r.w + ' × ' + r.h + ' px';
+    if (document.activeElement !== $('cw')) $('cw').value = r.w;
+    if (document.activeElement !== $('ch')) $('ch').value = r.h;
+  }
+
+  function setRect(next) { rect = next; paint(); }
+
+  // Pointer movement is in CSS pixels; the crop rect lives in image pixels.
+  function scaleFactor() {
+    return base.width / stage.getBoundingClientRect().width;
+  }
+
+  function startDrag(e, handle) {
+    e.preventDefault();
+    var startX = e.clientX, startY = e.clientY;
+    var start = { x: rect.x, y: rect.y, w: rect.w, h: rect.h };
+    var k = scaleFactor();
+    var target = e.currentTarget;
+    target.setPointerCapture(e.pointerId);
+
+    function onMove(ev) {
+      var dx = (ev.clientX - startX) * k, dy = (ev.clientY - startY) * k;
+      if (handle) {
+        setRect(CROP.resize(start, handle, dx, dy, { bw: base.width, bh: base.height, aspect: aspect }));
+      } else {
+        setRect(CROP.move(start, dx, dy, base.width, base.height));
+      }
+    }
+    function onUp(ev) {
+      target.releasePointerCapture(ev.pointerId);
+      target.removeEventListener('pointermove', onMove);
+      target.removeEventListener('pointerup', onUp);
+      target.removeEventListener('pointercancel', onUp);
+    }
+    target.addEventListener('pointermove', onMove);
+    target.addEventListener('pointerup', onUp);
+    target.addEventListener('pointercancel', onUp);
+  }
+
+  box.addEventListener('pointerdown', function (e) {
+    if (e.target !== box) return; // handles deal with their own drags
+    startDrag(e, null);
+  });
+  Array.prototype.forEach.call(box.querySelectorAll('.h'), function (h) {
+    h.addEventListener('pointerdown', function (e) {
+      e.stopPropagation();
+      startDrag(e, h.getAttribute('data-h'));
+    });
+  });
+
+  // Dragging is the only way to frame a crop with a mouse; arrow keys make the
+  // same thing possible without one. Shift resizes instead of moving.
+  var NUDGE = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] };
+  box.addEventListener('keydown', function (e) {
+    var d = NUDGE[e.key];
+    if (!d || !base) return;
+    e.preventDefault();
+    var dx = d[0] * 10, dy = d[1] * 10;
+    if (e.shiftKey) {
+      // Resize from the bottom-right, honouring any locked aspect.
+      setRect(CROP.resize(rect, 'se', dx, dy, { bw: base.width, bh: base.height, aspect: aspect }));
+    } else {
+      setRect(CROP.move(rect, dx, dy, base.width, base.height));
+    }
+  });
+
+  // --- loading ---
+
+  function load(file) {
+    if (!file || !/^image\//.test(file.type)) {
+      $('err').textContent = 'That file is not an image.';
+      return;
+    }
+    var url = URL.createObjectURL(file);
+    var im = new Image();
+    im.onload = function () {
+      URL.revokeObjectURL(url);
+      img = im;
+      rot = 0; flipH = flipV = false;
+      buildBase();
+      setRect(CROP.fit(aspect, base.width, base.height));
+      editor.hidden = false;
+      $('drop').hidden = true;
+      $('err').textContent = '';
+      // Focus the crop box, not a control further down: the drop button that
+      // had focus is now hidden, and focusing anything in the side panel
+      // scrolls the image the user just loaded out of view.
+      box.focus({ preventScroll: true });
+    };
+    im.onerror = function () {
+      URL.revokeObjectURL(url);
+      $('err').textContent = 'That image could not be decoded.';
+    };
+    im.src = url;
+  }
+
+  $('drop').addEventListener('click', function () { $('file').click(); });
+  $('file').addEventListener('change', function (e) { if (e.target.files[0]) load(e.target.files[0]); });
+  ['dragover', 'dragenter'].forEach(function (ev) {
+    $('drop').addEventListener(ev, function (e) { e.preventDefault(); $('drop').classList.add('over'); });
+  });
+  ['dragleave', 'drop'].forEach(function (ev) {
+    $('drop').addEventListener(ev, function (e) { e.preventDefault(); $('drop').classList.remove('over'); });
+  });
+  $('drop').addEventListener('drop', function (e) {
+    if (e.dataTransfer.files[0]) load(e.dataTransfer.files[0]);
+  });
+  document.addEventListener('paste', function (e) {
+    var items = (e.clipboardData || {}).items || [];
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].type.indexOf('image/') === 0) { load(items[i].getAsFile()); return; }
+    }
+  });
+  $('new').addEventListener('click', function () {
+    editor.hidden = true; $('drop').hidden = false; $('file').value = '';
+  });
+
+  // --- controls ---
+
+  $('ratios').addEventListener('click', function (e) {
+    var b = e.target.closest('button');
+    if (!b) return;
+    aspect = +b.getAttribute('data-r');
+    Array.prototype.forEach.call($('ratios').querySelectorAll('button'), function (x) {
+      x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+    });
+    stage.classList.toggle('locked', aspect !== 0);
+    if (base) setRect(CROP.fit(aspect, base.width, base.height));
+  });
+
+  $('reset-box').addEventListener('click', function () {
+    if (base) setRect(CROP.fit(aspect, base.width, base.height));
+  });
+
+  function applyTyped() {
+    if (!base) return;
+    var w = parseInt($('cw').value, 10), h = parseInt($('ch').value, 10);
+    if (!isFinite(w) || !isFinite(h)) return;
+    setRect(CROP.setSize(rect, w, h, base.width, base.height));
+  }
+  $('cw').addEventListener('change', applyTyped);
+  $('ch').addEventListener('change', applyTyped);
+
+  function reorient(fn) {
+    if (!base) return;
+    fn();
+    buildBase();
+    setRect(CROP.fit(aspect, base.width, base.height));
+  }
+  $('rot-l').addEventListener('click', function () { reorient(function () { rot = (rot + 270) % 360; }); });
+  $('rot-r').addEventListener('click', function () { reorient(function () { rot = (rot + 90) % 360; }); });
+  $('flip-h').addEventListener('click', function () { reorient(function () { flipH = !flipH; }); });
+  $('flip-v').addEventListener('click', function () { reorient(function () { flipV = !flipV; }); });
+
+  function syncQuality() {
+    var lossy = $('fmt').value !== 'image/png';
+    $('q-row').hidden = !lossy;
+    $('quality').hidden = !lossy;
+    $('q-val').textContent = $('quality').value;
+  }
+  $('fmt').addEventListener('change', syncQuality);
+  $('quality').addEventListener('input', syncQuality);
+  syncQuality();
+
+  // --- export ---
+
+  // Draw the selected region at full source resolution, never the preview size.
+  function renderCrop() {
+    var r = CROP.round(rect, base.width, base.height);
+    var c = document.createElement('canvas');
+    c.width = r.w; c.height = r.h;
+    var ctx = c.getContext('2d');
+    if ($('fmt').value === 'image/jpeg') {
+      // JPEG has no alpha; without this, transparency turns black.
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, r.w, r.h);
+    }
+    ctx.drawImage(base, r.x, r.y, r.w, r.h, 0, 0, r.w, r.h);
+    return c;
+  }
+
+  $('download').addEventListener('click', function () {
+    if (!base) return;
+    var fmt = $('fmt').value;
+    var c = renderCrop();
+    c.toBlob(function (blob) {
+      if (!blob) { $('err').textContent = 'This browser could not export that format.'; return; }
+      var ext = fmt === 'image/jpeg' ? 'jpg' : (fmt === 'image/webp' ? 'webp' : 'png');
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = 'crop-' + c.width + 'x' + c.height + '.' + ext;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      $('err').textContent = '';
+      $('crop-size').textContent = c.width + ' × ' + c.height + ' px · ' + fmtBytes(blob.size);
+    }, fmt, fmt === 'image/png' ? undefined : +$('quality').value / 100);
+  });
+
+  // Keep the box painted correctly when the stage width changes.
+  window.addEventListener('resize', function () { if (base) paint(); });
+})();
+</script>
+</body>
+</html>

@@ -48,4 +48,6 @@ No. Every conversion runs in JavaScript in your browser using your device's own 
 
 - [JSON Formatter](https://jsonformatter.wbest.app/): Format, minify, and validate JSON with exact error locations and a tree view.
 - [Hash Generator](https://hashgenerator.wbest.app/): MD5, SHA-1, and SHA-256/512 for text or files, hashed locally and never uploaded.
-- [WBest](https://wbest.app/): all 16 free WB tools - private, no sign-up, no uploads.
+- [Regex Tester](https://regextester.wbest.app/): Test regular expressions live with match highlighting, groups, and replace.
+- [Base64 Encoder & Decoder](https://base64.wbest.app/): Encode and decode Base64 with correct UTF-8, URL-safe output, and files.
+- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.

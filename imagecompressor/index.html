@@ -167,6 +167,10 @@
   }
 }
 *{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 body{
   margin:0; background:var(--bg); color:var(--text);
@@ -236,6 +240,10 @@ ol.steps li{margin:0 0 8px}
   font:inherit;font-size:.88rem;padding:4px 8px;border-radius:8px;max-width:110px;
   border:1px solid var(--border);background:var(--card);color:var(--text)
 }
+/* A native select paints its arrow inside the padding box, so the text needs
+   reserved room on the right - and enough width for the longest option, or
+   "Max dimensions" and "PNG (lossless)" run underneath the chevron. */
+.opt-row select{padding-right:26px;max-width:150px}
 .opt-row input[type="number"]{width:82px}
 .range-val{font-weight:700;font-variant-numeric:tabular-nums;min-width:2.6ch;text-align:right}
 .summary{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 16px;margin:0 0 12px}

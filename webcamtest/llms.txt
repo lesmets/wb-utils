@@ -1,0 +1,50 @@
+# WBest Webcam Test
+
+> Free online webcam test. Check that your camera works with a live preview, see the exact resolution, frame rate, and aspect ratio it is actually delivering, switch between connected cameras, mirror the image, and take a snapshot. Everything happens inside your browser - no video is ever recorded, uploaded, or sent anywhere.
+
+Use it at https://webcamtest.wbest.app/ - it is a single page, and the tool is the page.
+
+- Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
+- Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
+- Works offline once the page has loaded, and needs no install.
+- One self-contained page: no cookies, no tracking, no consent popups.
+
+## Features
+
+- Live camera preview with one click
+- Actual resolution, frame rate, and aspect ratio readout
+- Switch between all connected cameras
+- Mirror the image and take a snapshot
+- Download a still as PNG or JPEG
+- Nothing recorded or uploaded - the video never leaves your device
+
+## Frequently asked questions
+
+### How do I test my webcam?
+
+Click Start camera and allow access when your browser asks. If you can see yourself, your webcam works. The panel beside the preview reports the resolution, frame rate, and aspect ratio your camera is actually delivering, which is what a video call will use. Nothing is recorded or uploaded at any point.
+
+### Is my video recorded or uploaded?
+
+No. The camera stream is displayed directly in the page and never leaves your device. There is no server involved and no recording is made - if you take a snapshot it is drawn in your browser and only saved if you choose to download it. Closing the tab releases the camera and discards everything.
+
+### Why is my webcam not working?
+
+Work through it in order. First, permission: if you blocked access, click the camera or lock icon in the address bar, allow the camera, then reload. Second, the device: use the dropdown here to pick the right camera - laptops with an external webcam often default to the wrong one. Third, the privacy shutter: many laptops have a physical slider or a lens cover, and a black preview with no error usually means it is closed. Fourth, another app: video calls hold the camera exclusively, so quit them fully and try again. Finally, check your operating system's camera privacy settings, which can block the browser entirely.
+
+### Why is my webcam picture green, black, or frozen?
+
+A black picture with no error almost always means a closed privacy shutter or another app holding the camera. A green or purple image, or one that freezes, usually points to a driver or USB bandwidth problem: try a different USB port, avoid unpowered hubs, and update the camera driver. If the preview works here but fails in one particular app, the fault is that app's, not your camera's.
+
+### What resolution and frame rate should my webcam be?
+
+For video calls, 720p at 30fps is perfectly good and 1080p at 30fps is plenty. Higher is rarely better in practice: most calling apps compress the picture far below your camera's maximum anyway, and a higher resolution costs bandwidth and CPU. Frame rate matters more than resolution for looking natural - 30fps is smooth, while anything below about 20fps looks stuttery. If your frame rate is low, blame the light before the camera.
+
+### Why does my webcam look bad even at 1080p?
+
+Almost always lighting, not resolution. Webcam sensors are tiny, so in dim rooms they raise gain, which adds noise, and drop the frame rate to compensate, which adds stutter. Put a soft light in front of your face rather than behind you - sitting with a window at your back turns you into a silhouette that no amount of megapixels can fix. Cleaning the lens is the other free improvement people forget.
+
+## More WB tools
+
+- [Mic Test](https://mictest.wbest.app/): Check your microphone with a live level meter, waveform, and playback.
+- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.

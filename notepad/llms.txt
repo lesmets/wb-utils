@@ -48,4 +48,4 @@ No. There is nothing to install and no sign-up. Open the page in any modern brow
 ## More WB tools
 
 - [Word Counter](https://wbwordcounter.com/): Words, characters, sentences, reading time, and keyword density as you type.
-- [WBest](https://wbest.app/): all 16 free WB tools - private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 25 free WB tools - private, no sign-up, no uploads.

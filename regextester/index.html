@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest Regex Tester - Test &amp; Debug Regular Expressions Online</title>
+<meta name="description" content="Test regular expressions live with match highlighting, capture groups, and a replace preview. Supports all JavaScript flags. Free, instant, and 100% private.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://regextester.wbest.app/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Regex Tester">
+<meta property="og:title" content="WBest Regex Tester - Test &amp; Debug Regular Expressions Online">
+<meta property="og:description" content="Test regular expressions live with match highlighting, capture groups, and a replace preview. Supports all JavaScript flags. Free, instant, and 100% private.">
+<meta property="og:url" content="https://regextester.wbest.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest Regex Tester - Test &amp; Debug Regular Expressions Online">
+<meta name="twitter:description" content="Test regular expressions live with match highlighting, capture groups, and a replace preview. Supports all JavaScript flags. Free, instant, and 100% private.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Regex Tester",
+  "url": "https://regextester.wbest.app/",
+  "description": "Free online regex tester and debugger. Write a regular expression, see every match highlighted live in your test string, inspect capture groups and named groups, and preview a replace before you run it. Supports every JavaScript flag. Runs entirely in your browser - no tracking, works offline.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Live match highlighting as you type",
+    "Numbered and named capture groups per match",
+    "All JavaScript flags: g, i, m, s, u, y",
+    "Replace preview with $1 and $<name> substitution",
+    "Match position, length, and count",
+    "Built-in syntax cheat sheet and common patterns"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a regular expression?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A regular expression (regex) is a compact pattern that describes a set of strings. Instead of searching for one fixed word, you describe its shape - \"three digits, a dash, then four digits\" - and the engine finds every piece of text matching that shape. Regex powers find-and-replace in editors, input validation, log searching, and text extraction in almost every programming language."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do the regex flags g, i, m, s, u, and y mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The g (global) flag finds every match instead of stopping at the first. i makes matching case-insensitive. m (multiline) makes ^ and $ match at the start and end of each line rather than the whole string. s (dotAll) lets the dot match newline characters too. u enables full Unicode mode, which is required for \\p{...} property escapes. y (sticky) forces each match to start exactly where the previous one ended."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a capture group and a non-capturing group?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Parentheses like (\\d+) create a capture group: the matched text is stored and can be reused as $1 in a replacement or read from the match result. Writing (?:\\d+) instead creates a non-capturing group, which still groups the pattern for alternation or repetition but does not store the result. Use non-capturing groups when you only need the grouping, since they keep your group numbers meaningful."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I use capture groups in a replacement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Refer to a numbered group as $1, $2, and so on, counting opening parentheses from the left. A named group written as (?<year>\\d{4}) is referenced as $<year>. Use $& for the whole match and $$ for a literal dollar sign. The replace preview on this page shows the result before you apply it anywhere."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which regex flavor does this tester use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It uses your browser's own JavaScript (ECMAScript) engine, so results match exactly what Node.js and browser code will do. JavaScript syntax overlaps heavily with PCRE, Python, and Java, but a few things differ: JavaScript has no free-spacing x flag, no atomic groups, and no recursion. Lookbehind, named groups, and \\p{...} property escapes are all supported in modern browsers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my regex or test text sent anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Matching runs in JavaScript in your browser using your device's own regex engine. Your pattern and test string - often production log lines or real customer data - are never uploaded, logged, or tracked, and the page keeps working offline once loaded."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+:root{
+  --hl:#fde68a; --hl2:#fbbf24; --ok:#15803d;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --hl:#78500a; --hl2:#a16207; --ok:#4ade80;
+  }
+}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.pane{padding:16px 18px}
+.pane h2{font-size:1.02rem;margin:0 0 12px}
+
+.pattern{display:flex;align-items:center;gap:0;border:1px solid var(--border);border-radius:8px;background:var(--card);padding:0 10px}
+.pattern:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.pattern .slash{color:var(--muted);font:600 1.05rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:0 4px;user-select:none}
+.pattern input{
+  flex:1;min-width:0;border:0;background:transparent;color:var(--text);
+  font:600 1rem/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:10px 4px
+}
+.pattern input:focus-visible{outline:none}
+.pattern .flags-read{color:var(--accent);font:600 .95rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:0 2px;min-width:1ch}
+
+.flags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.flag{position:relative}
+.flag input{position:absolute;opacity:0;width:0;height:0}
+.flag span{
+  display:inline-block;padding:5px 10px;border:1px solid var(--border);border-radius:7px;
+  background:var(--card);color:var(--muted);cursor:pointer;font-size:.82rem;user-select:none
+}
+.flag span b{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--text)}
+.flag input:checked+span{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.flag input:checked+span b{color:var(--accent)}
+.flag input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+
+.editor{position:relative;margin-top:12px}
+.backdrop,#test{
+  font:.92rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  padding:12px;border:1px solid var(--border);border-radius:8px;width:100%;
+  white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;margin:0
+}
+.backdrop{position:absolute;inset:0;overflow:hidden;color:transparent;background:var(--card)}
+.backdrop mark{background:var(--hl);color:transparent;border-radius:2px}
+.backdrop mark.alt{background:var(--hl2)}
+.backdrop mark.empty{outline:2px solid var(--hl2);outline-offset:-1px}
+#test{position:relative;display:block;min-height:190px;background:transparent;color:var(--text);resize:vertical;overflow:auto}
+
+.status{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:12px 0 0;font-size:.88rem}
+.count{font-weight:600;color:var(--ok)}
+.count.none{color:var(--muted)}
+.err{color:var(--over);font-size:.88rem;overflow-wrap:anywhere}
+.status .spacer{flex:1}
+button.mini{
+  font:inherit;font-size:.8rem;padding:5px 11px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+button.mini:hover{border-color:var(--accent);color:var(--accent)}
+
+.matches{margin:0;padding:0;list-style:none;display:grid;gap:8px;max-height:340px;overflow-y:auto}
+.matches li{border:1px solid var(--border);border-radius:8px;padding:9px 11px;font-size:.86rem}
+.matches .head{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.matches .n{font-weight:700;color:var(--accent)}
+.matches .at{color:var(--muted);font-size:.78rem}
+.matches .txt{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--hl);
+  color:var(--text);border-radius:3px;padding:0 3px;overflow-wrap:anywhere
+}
+.matches .grp{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:7px 0 0;font-size:.8rem}
+.matches .gk{color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:nowrap}
+.matches .gv{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-wrap:anywhere}
+.matches .gv.undef{color:var(--muted);font-style:italic}
+.empty-note{color:var(--muted);font-size:.88rem;margin:0}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+
+.rep input{
+  width:100%;font:.92rem/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  padding:9px 11px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text)
+}
+.rep pre{
+  margin:10px 0 0;padding:12px;border:1px solid var(--border);border-radius:8px;background:var(--bg);
+  font:.88rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;
+  overflow-wrap:break-word;max-height:180px;overflow:auto
+}
+
+.samples{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.samples button{
+  font:inherit;font-size:.8rem;padding:5px 11px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--muted)
+}
+.samples button:hover{border-color:var(--accent);color:var(--accent)}
+
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:420px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;background:var(--accent-soft);color:var(--accent);padding:1px 5px;border-radius:4px;white-space:nowrap}
+.faq p{color:var(--text)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+/* Mobile: let tables reflow to fit the viewport instead of scrolling.
+   min-width would otherwise hold the table open and overflow the page. */
+@media (max-width:560px){
+  table{min-width:0}
+  th,td{padding-left:8px;padding-right:8px}
+  td{overflow-wrap:break-word}
+  td code{white-space:normal}
+  thead th{text-transform:none;letter-spacing:normal}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WBest Regex Tester</h1>
+  <p class="tagline">Write a regular expression and watch every match light up as you type - with capture groups, flags, and a replace preview.</p>
+  <span class="badge">🔒 100% private - matched in your browser, never uploaded</span>
+  <nav class="toc" aria-label="On this page">
+    <a href="#tool">Tester</a>
+    <a href="#what">What is regex</a>
+    <a href="#cheatsheet">Cheat sheet</a>
+    <a href="#patterns">Common patterns</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Regular expression tester">
+    <div class="card pane">
+      <h2><label for="pattern">Regular expression</label></h2>
+      <div class="pattern">
+        <span class="slash" aria-hidden="true">/</span>
+        <input type="text" id="pattern" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="\d{3}-\d{4}">
+        <span class="slash" aria-hidden="true">/</span>
+        <span class="flags-read mono" id="flags-read" aria-hidden="true"></span>
+      </div>
+
+      <div class="flags" role="group" aria-label="Flags">
+        <label class="flag"><input type="checkbox" id="f-g" value="g" checked><span><b>g</b> global</span></label>
+        <label class="flag"><input type="checkbox" id="f-i" value="i"><span><b>i</b> ignore case</span></label>
+        <label class="flag"><input type="checkbox" id="f-m" value="m"><span><b>m</b> multiline</span></label>
+        <label class="flag"><input type="checkbox" id="f-s" value="s"><span><b>s</b> dotAll</span></label>
+        <label class="flag"><input type="checkbox" id="f-u" value="u"><span><b>u</b> unicode</span></label>
+        <label class="flag"><input type="checkbox" id="f-y" value="y"><span><b>y</b> sticky</span></label>
+      </div>
+
+      <div class="samples" aria-label="Example patterns">
+        <button type="button" data-p="[\w.+-]+@[\w-]+\.[\w.]+" data-f="gi">Email</button>
+        <button type="button" data-p="https?://[^\s&quot;&lt;&gt;]+" data-f="g">URL</button>
+        <button type="button" data-p="(?&lt;year&gt;\d{4})-(?&lt;month&gt;\d{2})-(?&lt;day&gt;\d{2})" data-f="g">Date (named groups)</button>
+        <button type="button" data-p="#(?:[0-9a-f]{3}|[0-9a-f]{6})\b" data-f="gi">Hex color</button>
+        <button type="button" data-p="^\s*$" data-f="gm">Blank lines</button>
+      </div>
+
+      <p class="err" id="err" aria-live="polite"></p>
+
+      <div class="editor">
+        <div class="backdrop mono" id="backdrop" aria-hidden="true"></div>
+        <label class="sr-only" for="test">Test string</label>
+        <textarea id="test" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Paste the text you want to test against."></textarea>
+      </div>
+
+      <div class="status">
+        <span class="count" id="count" aria-live="polite">0 matches</span>
+        <span class="spacer"></span>
+        <button type="button" class="mini" id="clear">Clear text</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card pane">
+        <h2 id="matches-heading">Matches</h2>
+        <ul class="matches" id="matches" aria-labelledby="matches-heading"></ul>
+        <p class="empty-note" id="matches-empty">Matches and their capture groups appear here.</p>
+      </div>
+
+      <div class="card pane rep">
+        <h2><label for="replace">Replace preview</label></h2>
+        <input type="text" id="replace" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="$1 - use $1, $&lt;name&gt;, $&amp; ...">
+        <pre id="rep-out"></pre>
+        <div class="status">
+          <span class="spacer"></span>
+          <button type="button" class="mini" id="rep-copy">Copy result</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="props" aria-label="Why use this regex tester">
+    <div class="card"><strong>See it, don't guess it</strong><p>Every match is highlighted in place as you type, numbered, and broken out into its capture groups - so you can tell which part of the pattern did what.</p></div>
+    <div class="card"><strong>Your browser's real engine</strong><p>Matching uses the same JavaScript regex engine your code will run on, so what you see here is exactly what Node and the browser will do.</p></div>
+    <div class="card"><strong>Safe for real data</strong><p>Regex debugging usually means pasting production logs. Nothing leaves your device, nothing is logged, and the page works offline.</p></div>
+  </section>
+
+  <section id="what" class="prose">
+    <h2>What is a regular expression?</h2>
+    <p>A <strong>regular expression</strong> - regex for short - is a small language for describing the <em>shape</em> of text. Rather than searching for one literal string, you describe a pattern: "an @ sign with word characters either side", "four digits, a dash, two digits". The engine then finds every stretch of text that fits.</p>
+    <p>That power comes with a famous downside: regex is written densely and read rarely. A pattern that works is easy; a pattern you can still understand next month is the hard part. Testing interactively - watching matches appear and disappear as you edit a single character - is by far the fastest way to build one correctly.</p>
+    <h3>How to use this tester</h3>
+    <p>Type your pattern in the field at the top (no surrounding slashes needed - they are drawn for you), toggle the flags you want, and paste your text below. Matches highlight instantly, alternating shades so you can see where one ends and the next begins. The <strong>Matches</strong> panel lists each result with its position and capture groups, and the <strong>Replace preview</strong> shows what a find-and-replace would produce before you run it anywhere real.</p>
+    <h3>Greedy vs. lazy quantifiers</h3>
+    <p>By default quantifiers are <strong>greedy</strong>: <code>.+</code> takes as much text as it can and then backs off only as far as it must. Add a <code>?</code> to make one <strong>lazy</strong> - <code>.+?</code> takes as little as possible. This single character explains most "why does my regex match the whole line?" bugs. Try <code>&lt;.+&gt;</code> against <code>&lt;a&gt;&lt;b&gt;</code>, then try <code>&lt;.+?&gt;</code>.</p>
+  </section>
+
+  <section id="cheatsheet" class="prose">
+    <h2>Regex cheat sheet</h2>
+    <div class="table-wrap">
+      <table>
+        <caption>The syntax that covers the large majority of real-world patterns.</caption>
+        <thead><tr><th scope="col">Token</th><th scope="col">Matches</th></tr></thead>
+        <tbody>
+          <tr><td><code>.</code></td><td>Any character except a newline (any character at all with the <code>s</code> flag)</td></tr>
+          <tr><td><code>\d</code> <code>\D</code></td><td>A digit 0-9 / anything that is not a digit</td></tr>
+          <tr><td><code>\w</code> <code>\W</code></td><td>A word character (letter, digit, underscore) / anything else</td></tr>
+          <tr><td><code>\s</code> <code>\S</code></td><td>Any whitespace (space, tab, newline) / anything else</td></tr>
+          <tr><td><code>[abc]</code> <code>[^abc]</code></td><td>Any one of a, b, c / any character except those</td></tr>
+          <tr><td><code>[a-z]</code></td><td>Any character in the range a to z</td></tr>
+          <tr><td><code>^</code> <code>$</code></td><td>Start / end of the string - or of each line with the <code>m</code> flag</td></tr>
+          <tr><td><code>\b</code></td><td>A word boundary - the edge between <code>\w</code> and non-<code>\w</code></td></tr>
+          <tr><td><code>*</code> <code>+</code> <code>?</code></td><td>The preceding item zero or more / one or more / zero or one times</td></tr>
+          <tr><td><code>{2}</code> <code>{2,}</code> <code>{2,5}</code></td><td>Exactly 2 / 2 or more / between 2 and 5 times</td></tr>
+          <tr><td><code>+?</code> <code>*?</code></td><td>Lazy versions - match as few characters as possible</td></tr>
+          <tr><td><code>(abc)</code></td><td>Capture group - stores the match as <code>$1</code></td></tr>
+          <tr><td><code>(?:abc)</code></td><td>Non-capturing group - groups without storing</td></tr>
+          <tr><td><code>(?&lt;name&gt;abc)</code></td><td>Named capture group - read back as <code>$&lt;name&gt;</code></td></tr>
+          <tr><td><code>a|b</code></td><td>Either a or b</td></tr>
+          <tr><td><code>(?=abc)</code> <code>(?!abc)</code></td><td>Lookahead: followed by / not followed by (does not consume text)</td></tr>
+          <tr><td><code>(?&lt;=abc)</code> <code>(?&lt;!abc)</code></td><td>Lookbehind: preceded by / not preceded by</td></tr>
+          <tr><td><code>\.</code> <code>\/</code> <code>\\</code></td><td>A literal dot, slash, or backslash - escape any special character with <code>\</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="patterns" class="prose">
+    <h2>Common regex patterns</h2>
+    <p>Useful starting points - click any example button in the tester above to load one. Treat these as pragmatic, not exhaustive: an email regex that satisfies the full RFC is famously unreadable and still would not tell you the address exists.</p>
+    <div class="table-wrap">
+      <table>
+        <caption>Practical patterns for everyday validation and extraction.</caption>
+        <thead><tr><th scope="col">Goal</th><th scope="col">Pattern</th></tr></thead>
+        <tbody>
+          <tr><td>Email address</td><td><code>[\w.+-]+@[\w-]+\.[\w.]+</code></td></tr>
+          <tr><td>URL</td><td><code>https?://[^\s"&lt;&gt;]+</code></td></tr>
+          <tr><td>ISO date, named groups</td><td><code>(?&lt;year&gt;\d{4})-(?&lt;month&gt;\d{2})-(?&lt;day&gt;\d{2})</code></td></tr>
+          <tr><td>Hex color</td><td><code>#(?:[0-9a-f]{3}|[0-9a-f]{6})\b</code></td></tr>
+          <tr><td>IPv4 address</td><td><code>\b(?:\d{1,3}\.){3}\d{1,3}\b</code></td></tr>
+          <tr><td>Blank lines (with <code>m</code>)</td><td><code>^\s*$</code></td></tr>
+          <tr><td>Duplicated word</td><td><code>\b(\w+)\s+\1\b</code></td></tr>
+          <tr><td>Trailing whitespace</td><td><code>[ \t]+$</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Also useful: the <a href="https://jsonformatter.wbest.app/">JSON Formatter</a> for inspecting payloads before you write a pattern against them, and the <a href="https://hashgenerator.wbest.app/">Hash Generator</a> for checksums - both equally private.</p>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Frequently asked questions</h2>
+
+    <h3>What is a regular expression?</h3>
+    <p>A regular expression (regex) is a compact pattern that describes a set of strings. Instead of searching for one fixed word, you describe its shape - "three digits, a dash, then four digits" - and the engine finds every piece of text matching that shape. Regex powers find-and-replace in editors, input validation, log searching, and text extraction in almost every programming language.</p>
+
+    <h3>What do the regex flags g, i, m, s, u, and y mean?</h3>
+    <p>The <code>g</code> (global) flag finds every match instead of stopping at the first. <code>i</code> makes matching case-insensitive. <code>m</code> (multiline) makes <code>^</code> and <code>$</code> match at the start and end of each line rather than the whole string. <code>s</code> (dotAll) lets the dot match newline characters too. <code>u</code> enables full Unicode mode, which is required for <code>\p{...}</code> property escapes. <code>y</code> (sticky) forces each match to start exactly where the previous one ended.</p>
+
+    <h3>What is the difference between a capture group and a non-capturing group?</h3>
+    <p>Parentheses like <code>(\d+)</code> create a capture group: the matched text is stored and can be reused as <code>$1</code> in a replacement or read from the match result. Writing <code>(?:\d+)</code> instead creates a non-capturing group, which still groups the pattern for alternation or repetition but does not store the result. Use non-capturing groups when you only need the grouping, since they keep your group numbers meaningful.</p>
+
+    <h3>How do I use capture groups in a replacement?</h3>
+    <p>Refer to a numbered group as <code>$1</code>, <code>$2</code>, and so on, counting opening parentheses from the left. A named group written as <code>(?&lt;year&gt;\d{4})</code> is referenced as <code>$&lt;year&gt;</code>. Use <code>$&amp;</code> for the whole match and <code>$$</code> for a literal dollar sign. The replace preview on this page shows the result before you apply it anywhere.</p>
+
+    <h3>Which regex flavor does this tester use?</h3>
+    <p>It uses your browser's own JavaScript (ECMAScript) engine, so results match exactly what Node.js and browser code will do. JavaScript syntax overlaps heavily with PCRE, Python, and Java, but a few things differ: JavaScript has no free-spacing <code>x</code> flag, no atomic groups, and no recursion. Lookbehind, named groups, and <code>\p{...}</code> property escapes are all supported in modern browsers.</p>
+
+    <h3>Is my regex or test text sent anywhere?</h3>
+    <p>No. Matching runs in JavaScript in your browser using your device's own regex engine. Your pattern and test string - often production log lines or real customer data - are never uploaded, logged, or tracked, and the page keeps working offline once loaded.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Made for anyone who needs a quick tool that just works.
+  <br>© 2026 WBest · Free to use, no sign-up required · <a href="https://wbest.app/">WBest Free Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+/* Regex matching + segmentation. Pure functions, returned for testability. */
+var RX = (function () {
+  'use strict';
+
+  var MAX_MATCHES = 500;
+
+  // Build a RegExp, or report the engine's own syntax error.
+  // Returns { re } | { error } - 'empty' signals "nothing typed yet", not a fault.
+  function build(pattern, flags) {
+    if (!pattern) return { error: 'empty' };
+    try {
+      return { re: new RegExp(pattern, flags) };
+    } catch (e) {
+      return { error: e.message };
+    }
+  }
+
+  function toMatch(m) {
+    var named = null;
+    if (m.groups) {
+      named = {};
+      for (var k in m.groups) if (Object.prototype.hasOwnProperty.call(m.groups, k)) named[k] = m.groups[k];
+    }
+    return {
+      index: m.index,
+      end: m.index + m[0].length,
+      text: m[0],
+      groups: Array.prototype.slice.call(m, 1),
+      named: named
+    };
+  }
+
+  // All matches of re in text. Non-global patterns yield at most one, matching
+  // what String.match does without /g.
+  // Returns { matches, truncated }
+  function find(re, text, limit) {
+    limit = limit || MAX_MATCHES;
+    var out = [], m;
+    if (re.global === false) {
+      m = re.exec(text);
+      if (m) out.push(toMatch(m));
+      return { matches: out, truncated: false };
+    }
+    re.lastIndex = 0;
+    while ((m = re.exec(text)) !== null) {
+      out.push(toMatch(m));
+      // A zero-length match leaves lastIndex where it was; step over it or loop forever.
+      if (m[0] === '') re.lastIndex++;
+      if (out.length >= limit) return { matches: out, truncated: true };
+      // Sticky patterns stop at the first gap; exec returning null ends the loop.
+    }
+    return { matches: out, truncated: false };
+  }
+
+  // Split text into runs tagged with the match they belong to (-1 = no match),
+  // so a highlighter can render without doing its own index arithmetic.
+  function segments(text, matches) {
+    var out = [], pos = 0;
+    for (var i = 0; i < matches.length; i++) {
+      var m = matches[i];
+      if (m.index > pos) out.push({ text: text.slice(pos, m.index), match: -1 });
+      out.push({ text: text.slice(m.index, m.end), match: i });
+      pos = Math.max(pos, m.end);
+    }
+    if (pos < text.length) out.push({ text: text.slice(pos), match: -1 });
+    return out;
+  }
+
+  // Replacement uses the engine's own $1 / $<name> / $& handling.
+  function replace(re, text, repl) {
+    try {
+      if (re.global) re.lastIndex = 0;
+      return { text: text.replace(re, repl) };
+    } catch (e) {
+      return { error: e.message };
+    }
+  }
+
+  return {
+    MAX_MATCHES: MAX_MATCHES,
+    build: build, find: find, segments: segments, replace: replace
+  };
+})();
+if (typeof module !== 'undefined') module.exports = RX;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+
+  var FLAGS = ['g', 'i', 'm', 's', 'u', 'y'];
+  var pattern = $('pattern'), test = $('test'), backdrop = $('backdrop');
+  var err = $('err'), count = $('count'), list = $('matches'), listEmpty = $('matches-empty');
+  var repIn = $('replace'), repOut = $('rep-out');
+
+  function flags() {
+    return FLAGS.filter(function (f) { return $('f-' + f).checked; }).join('');
+  }
+
+  function truncate(s, max) {
+    return s.length > max ? s.slice(0, max) + '…' : s;
+  }
+
+  // Show whitespace-only matches as something visible rather than a blank line.
+  function display(s) {
+    if (s === '') return '(empty match)';
+    return truncate(s, 120);
+  }
+
+  function renderBackdrop(text, matches) {
+    backdrop.textContent = '';
+    var segs = RX.segments(text, matches);
+    for (var i = 0; i < segs.length; i++) {
+      var s = segs[i];
+      if (s.match === -1) {
+        backdrop.appendChild(document.createTextNode(s.text));
+      } else {
+        var mk = document.createElement('mark');
+        // Alternate shades so two adjacent matches stay visually distinct.
+        if (s.match % 2) mk.className = 'alt';
+        if (s.text === '') mk.className += ' empty';
+        mk.textContent = s.text;
+        backdrop.appendChild(mk);
+      }
+    }
+    // A trailing newline is not rendered by the backdrop div but is by the
+    // textarea; pad it so the two stay aligned when the text ends in one.
+    backdrop.appendChild(document.createTextNode('\n'));
+  }
+
+  function groupRow(k, v) {
+    var kEl = document.createElement('span');
+    kEl.className = 'gk'; kEl.textContent = k;
+    var vEl = document.createElement('span');
+    vEl.className = 'gv';
+    if (v === undefined) { vEl.className += ' undef'; vEl.textContent = 'undefined'; }
+    else vEl.textContent = display(v);
+    return [kEl, vEl];
+  }
+
+  function renderMatches(matches, truncated) {
+    list.textContent = '';
+    for (var i = 0; i < matches.length; i++) {
+      var m = matches[i];
+      var li = document.createElement('li');
+
+      var head = document.createElement('div');
+      head.className = 'head';
+      var n = document.createElement('span');
+      n.className = 'n'; n.textContent = '#' + (i + 1);
+      var txt = document.createElement('span');
+      txt.className = 'txt'; txt.textContent = display(m.text);
+      var at = document.createElement('span');
+      at.className = 'at';
+      at.textContent = 'index ' + m.index + ' · length ' + m.text.length;
+      head.appendChild(n); head.appendChild(txt); head.appendChild(at);
+      li.appendChild(head);
+
+      var rows = [];
+      for (var g = 0; g < m.groups.length; g++) rows.push(groupRow('$' + (g + 1), m.groups[g]));
+      if (m.named) {
+        for (var k in m.named) if (Object.prototype.hasOwnProperty.call(m.named, k)) {
+          rows.push(groupRow('$<' + k + '>', m.named[k]));
+        }
+      }
+      if (rows.length) {
+        var grp = document.createElement('div');
+        grp.className = 'grp';
+        rows.forEach(function (pair) { grp.appendChild(pair[0]); grp.appendChild(pair[1]); });
+        li.appendChild(grp);
+      }
+      list.appendChild(li);
+    }
+    if (truncated) {
+      var li2 = document.createElement('li');
+      li2.className = 'empty-note';
+      li2.textContent = 'Showing the first ' + RX.MAX_MATCHES + ' matches.';
+      list.appendChild(li2);
+    }
+    listEmpty.hidden = matches.length > 0;
+  }
+
+  function update() {
+    var text = test.value;
+    var built = RX.build(pattern.value, flags());
+    $('flags-read').textContent = flags();
+
+    if (built.error) {
+      // An empty pattern is the start state, not a mistake - say nothing.
+      err.textContent = built.error === 'empty' ? '' : built.error;
+      backdrop.textContent = text + '\n';
+      count.textContent = built.error === 'empty' ? '0 matches' : 'Invalid pattern';
+      count.className = 'count none';
+      renderMatches([], false);
+      repOut.textContent = '';
+      return;
+    }
+    err.textContent = '';
+
+    var res = RX.find(built.re, text);
+    renderBackdrop(text, res.matches);
+    renderMatches(res.matches, res.truncated);
+
+    var n = res.matches.length;
+    count.textContent = n === 1 ? '1 match' : n + (res.truncated ? '+' : '') + ' matches';
+    count.className = 'count' + (n ? '' : ' none');
+
+    var rep = RX.replace(built.re, text, repIn.value);
+    repOut.textContent = rep.error ? '' : rep.text;
+    if (rep.error) err.textContent = rep.error;
+  }
+
+  // Keep the highlight layer aligned with the textarea's own scrolling.
+  test.addEventListener('scroll', function () {
+    backdrop.scrollTop = test.scrollTop;
+    backdrop.scrollLeft = test.scrollLeft;
+  });
+
+  pattern.addEventListener('input', update);
+  test.addEventListener('input', update);
+  repIn.addEventListener('input', update);
+  FLAGS.forEach(function (f) { $('f-' + f).addEventListener('change', update); });
+
+  $('clear').addEventListener('click', function () {
+    test.value = ''; update(); test.focus();
+  });
+
+  function copied(btn) {
+    var old = btn.textContent;
+    btn.textContent = 'Copied';
+    setTimeout(function () { btn.textContent = old; }, 1000);
+  }
+  $('rep-copy').addEventListener('click', function () {
+    var b = $('rep-copy'), t = repOut.textContent;
+    var done = function () { copied(b); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, done);
+    else done();
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.samples button'), function (b) {
+    b.addEventListener('click', function () {
+      pattern.value = b.getAttribute('data-p');
+      var want = b.getAttribute('data-f');
+      FLAGS.forEach(function (f) { $('f-' + f).checked = want.indexOf(f) !== -1; });
+      update();
+      pattern.focus();
+    });
+  });
+
+  // Seed with a worked example so the page demonstrates itself on load.
+  pattern.value = '(?<user>[\\w.+-]+)@(?<domain>[\\w-]+\\.[\\w.]+)';
+  test.value = 'Contact ada@example.com or grace.hopper@navy.mil for access.\n' +
+    'Escalations go to on-call+urgent@example.co.uk (24/7).\n' +
+    'Not an address: user at example dot com.';
+  repIn.value = '$<user> [at] $<domain>';
+  update();
+})();
+</script>
+</body>
+</html>

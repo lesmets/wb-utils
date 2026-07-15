@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://imagecolorpicker.wbest.app/sitemap.xml
