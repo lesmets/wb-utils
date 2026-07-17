@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest Farb-Konverter &amp; Farbwähler: HEX, RGB, HSL &amp; OKLCH</title>
+<meta name="description" content="Wähle eine Farbe und rechne sofort zwischen HEX, RGB, HSL, HSV und OKLCH um. Erzeuge Tönungen, Schattierungen und Harmonien. Kostenlos, sofort, 100 % privat.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://colorconverter.wbest.app/de/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://colorconverter.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://colorconverter.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://colorconverter.wbest.app/">
+<!-- i18n:hreflang:end -->
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Farb-Konverter & Farbwähler">
+<meta property="og:title" content="WBest Farb-Konverter &amp; Farbwähler: HEX, RGB, HSL &amp; OKLCH">
+<meta property="og:description" content="Wähle eine Farbe und rechne sofort zwischen HEX, RGB, HSL, HSV und OKLCH um. Erzeuge Tönungen, Schattierungen und Harmonien. Kostenlos, sofort, 100 % privat.">
+<meta property="og:url" content="https://colorconverter.wbest.app/de/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest Farb-Konverter &amp; Farbwähler: HEX, RGB, HSL &amp; OKLCH">
+<meta name="twitter:description" content="Wähle eine Farbe und rechne sofort zwischen HEX, RGB, HSL, HSV und OKLCH um. Erzeuge Tönungen, Schattierungen und Harmonien. Kostenlos, sofort, 100 % privat.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Farb-Konverter & Farbwähler",
+  "url": "https://colorconverter.wbest.app/de/",
+  "description": "Kostenloser Farb-Konverter und Farbwähler. Wähle eine Farbe visuell oder tippe einen beliebigen HEX-, RGB- oder HSL-Wert und sieh sie sofort in HEX, RGB, HSL, HSV und OKLCH. Erzeuge Tönungen, Schattierungen und Farbharmonien. Läuft vollständig in deinem Browser. Kein Tracking, funktioniert offline.",
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Benötigt JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Visueller Farbwähler und Pipetten-Unterstützung",
+    "Umrechnung zwischen HEX, RGB, HSL, HSV und OKLCH",
+    "Beliebige HEX-, RGB- oder HSL-Eingabe erkennen",
+    "Palette aus Tönungen und Schattierungen",
+    "Komplementäre, analoge und triadische Harmonien",
+    "Ein-Klick-Kopieren für jedes Format"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie wandle ich eine HEX-Farbe in RGB um?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eine HEX-Farbe wie #2563EB ist einfach RGB im Zahlensystem zur Basis 16. Teile sie in drei Paare (25, 63, EB) und rechne jedes von hexadezimal nach dezimal um, um Rot 37, Grün 99, Blau 235 zu erhalten, also rgb(37, 99, 235). Dieses Tool erledigt das sofort, sobald du eine Farbe tippst oder wählst, und zeigt auch den umgekehrten Weg."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist der Unterschied zwischen HSL und HSV?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Beide beschreiben eine Farbe über den Farbton, aber HSL nutzt Sättigung und Helligkeit (Lightness), während HSV (auch HSB genannt) Sättigung und Hellwert (Value/Brightness) nutzt. Bei HSL ist 100 % Helligkeit immer Weiß; bei HSV ist 100 % Hellwert die kräftigste Version des Farbtons. HSL ist in CSS verbreitet; HSV taucht in den Farbwählern vieler Design-Tools auf."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist OKLCH und warum sollte man es nutzen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "OKLCH ist ein moderner Farbraum (Helligkeit, Chroma und Farbton), der wahrnehmungsgleich aufgebaut ist, das heißt: gleiche numerische Schritte sehen wie gleiche visuelle Schritte aus. Das macht ihn weit besser als HSL, um Paletten zu bauen und die Helligkeit ohne unerwartete Farbtonverschiebungen anzupassen. Er wird in modernem CSS als Funktion oklch() unterstützt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was sind Tönungen und Schattierungen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eine Tönung ist deine Farbe mit Weiß gemischt, wodurch sie heller wird; eine Schattierung ist deine Farbe mit Schwarz gemischt, wodurch sie dunkler wird. Die Palette hier erzeugt von jedem eine Reihe, sodass du aus einer einzigen Grundfarbe eine gleichmäßige Hell-zu-Dunkel-Skala für Buttons, Hintergründe und Zustände bauen kannst."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist eine Komplementärfarbe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eine Komplementärfarbe liegt auf dem Farbkreis direkt gegenüber deiner Farbe, 180 Grad entfernt, und ergibt den stärksten Kontrast. Analoge Farben liegen direkt daneben für einen harmonischen Look, und triadische Farben sind gleichmäßig um 120 Grad verteilt für ein ausgewogenes, lebendiges Schema. Der Abschnitt „Harmonien“ zeigt alle drei."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist das Farb-Tool privat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Sämtliche Umrechnung und Palettenerzeugung passiert in deinem Browser mit reinem JavaScript. Nichts wird hochgeladen oder getrackt, und einmal geladen funktioniert die Seite offline."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+.layout{display:grid;grid-template-columns:280px 1fr;gap:14px;margin-top:18px;align-items:start}
+@media (max-width:760px){.layout{grid-template-columns:1fr}}
+.preview{border-radius:12px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow)}
+.swatch{height:150px;width:100%;display:block}
+.pick{padding:14px 16px;background:var(--card)}
+.pick-row{display:flex;gap:8px;align-items:center}
+input[type="color"]{
+  -webkit-appearance:none;appearance:none;width:46px;height:40px;padding:0;border:1px solid var(--border);
+  border-radius:8px;background:none;cursor:pointer;flex:none
+}
+input[type="color"]::-webkit-color-swatch-wrapper{padding:3px}
+input[type="color"]::-webkit-color-swatch{border:0;border-radius:5px}
+#hex-main{
+  flex:1;min-width:0;font:600 1rem/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  text-transform:uppercase;padding:9px 11px;border:1px solid var(--border);border-radius:8px;
+  background:var(--card);color:var(--text)
+}
+#eyedropper{
+  font:inherit;font-size:.85rem;padding:8px 10px;border-radius:8px;cursor:pointer;flex:none;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+#eyedropper:hover{border-color:var(--accent);color:var(--accent)}
+.parse{margin-top:10px}
+.parse label{display:block;font-size:.8rem;color:var(--muted);margin:0 0 5px}
+#any-in{
+  width:100%;font:.9rem/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text)
+}
+#any-err{color:var(--over);font-size:.8rem;margin:6px 0 0;min-height:1em}
+.formats{display:grid;gap:10px}
+.frow{display:grid;grid-template-columns:70px 1fr auto;gap:12px;align-items:center;padding:12px 14px}
+@media (max-width:520px){.frow{grid-template-columns:60px 1fr auto}}
+.frow .name{font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+.frow .code{font:.95rem/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-wrap:anywhere;user-select:all;-webkit-user-select:all}
+.frow button.copy{
+  font:inherit;font-size:.8rem;padding:5px 12px;border-radius:7px;cursor:pointer;justify-self:end;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.frow button.copy:hover{border-color:var(--accent);color:var(--accent)}
+.pal-block{margin-top:12px}
+.pal-block h3{margin:0 0 8px}
+.pal{display:grid;grid-template-columns:repeat(11,1fr);gap:6px}
+@media (max-width:620px){.pal{grid-template-columns:repeat(6,1fr)}}
+.harm{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px}
+.chip{border:1px solid var(--border);border-radius:9px;overflow:hidden;cursor:pointer;background:var(--card);text-align:left}
+.chip .c{height:46px;display:block}
+.chip .t{display:block;padding:5px 7px;font:.72rem/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--muted);text-transform:uppercase}
+.pal .chip .c{height:40px}
+.pal .chip .t{font-size:.62rem;padding:3px 4px;text-align:center}
+.chip:hover{border-color:var(--accent)}
+.harm .chip .lab{display:block;padding:0 7px 6px;font-size:.72rem;color:var(--text)}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:420px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.faq p{color:var(--text)}
+
+/* Mobile: let tables reflow to fit the viewport instead of scrolling.
+   min-width would otherwise hold the table open and overflow the page.
+   Headers drop uppercase so hyphens:auto can break long words like "Compression". */
+@media (max-width:560px){
+  table{min-width:0}
+  th,td{padding-left:8px;padding-right:8px}
+  td{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+  thead th{text-transform:none;letter-spacing:normal}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WBest Farb-Konverter &amp; Farbwähler</h1>
+  <p class="tagline">Wähle eine Farbe oder tippe einen beliebigen Wert und rechne sofort zwischen HEX, RGB, HSL, HSV und OKLCH um, dazu Tönungen, Schattierungen und Harmonien. Kostenlos und 100 % privat.</p>
+  <span class="badge">🔒 100 % privat, alles läuft in deinem Browser</span>
+  <nav class="toc" aria-label="Auf dieser Seite">
+    <a href="#tool">Konverter</a>
+    <a href="#palette">Palette</a>
+    <a href="#formats">Formate</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Farb-Konverter und Farbwähler">
+    <div class="layout">
+
+      <div>
+        <div class="preview">
+          <span class="swatch" id="swatch" aria-hidden="true"></span>
+          <div class="pick">
+            <div class="pick-row">
+              <label class="sr-only" for="picker">Farbwähler</label>
+              <input type="color" id="picker" value="#2563eb">
+              <label class="sr-only" for="hex-main">HEX-Wert</label>
+              <input type="text" id="hex-main" spellcheck="false" autocomplete="off" value="#2563EB">
+              <button type="button" id="eyedropper" hidden title="Eine Farbe vom Bildschirm aufnehmen">⌖</button>
+            </div>
+            <div class="parse">
+              <label for="any-in">Oder füge einen beliebigen Farbwert ein</label>
+              <input type="text" id="any-in" spellcheck="false" autocomplete="off" placeholder="rgb(37, 99, 235) · hsl(221, 83%, 53%) · #2563eb">
+              <p id="any-err" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="formats" id="formats" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="palette" aria-label="Palette und Harmonien">
+    <div class="pal-block">
+      <h3>Tönungen (Richtung Weiß)</h3>
+      <div class="pal" id="tints"></div>
+    </div>
+    <div class="pal-block">
+      <h3>Schattierungen (Richtung Schwarz)</h3>
+      <div class="pal" id="shades"></div>
+    </div>
+    <div class="pal-block">
+      <h3>Harmonien</h3>
+      <div class="harm" id="harmonies"></div>
+    </div>
+    <p class="muted" style="font-size:.82rem;margin-top:12px">Klicke auf ein Farbfeld, um es als aktuelle Farbe zu laden.</p>
+  </section>
+
+  <p class="cross-link">Du startest mit einem Foto statt mit einem Farbwert? Der <a href="https://imagecolorpicker.wbest.app/de/">Bild-Farbwähler</a> holt exakte Hex-Codes direkt aus einem Bild, genauso privat.</p>
+
+  <section id="formats-info" class="prose">
+    <h2>Farbformate erklärt</h2>
+    <p>Dieselbe Farbe lässt sich auf viele Arten schreiben. Jedes Format ist ein anderer Satz von Koordinaten, der auf dieselbe sichtbare Farbe zeigt. Das Umrechnen ändert also nie die Farbe, nur ihre Beschreibung.</p>
+    <div class="table-wrap">
+      <table>
+        <caption>Alle fünf beschreiben dasselbe Blau, das auf dieser Seite verwendet wird.</caption>
+        <thead><tr><th scope="col">Format</th><th scope="col">Sieht aus wie</th><th scope="col">Am besten für</th></tr></thead>
+        <tbody>
+          <tr><td>HEX</td><td>#2563EB</td><td>Kompaktes CSS und Design-Übergabe</td></tr>
+          <tr><td>RGB</td><td>rgb(37, 99, 235)</td><td>Bildschirme, Canvas, Bilddaten</td></tr>
+          <tr><td>HSL</td><td>hsl(221, 83%, 53%)</td><td>Feinabstimmung von Farbton, Sättigung, Helligkeit</td></tr>
+          <tr><td>HSV / HSB</td><td>hsv(221, 84%, 92%)</td><td>Farbwähler in Design-Tools</td></tr>
+          <tr><td>OKLCH</td><td>oklch(0.546 0.215 263)</td><td>Wahrnehmungsgleiche Paletten, modernes CSS</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Häufig gestellte Fragen</h2>
+
+    <h3>Wie wandle ich eine HEX-Farbe in RGB um?</h3>
+    <p>Eine HEX-Farbe wie #2563EB ist einfach RGB im Zahlensystem zur Basis 16. Teile sie in drei Paare (25, 63, EB) und rechne jedes von hexadezimal nach dezimal um, um Rot 37, Grün 99, Blau 235 zu erhalten, also rgb(37, 99, 235). Dieses Tool erledigt das sofort, sobald du eine Farbe tippst oder wählst, und zeigt auch den umgekehrten Weg.</p>
+
+    <h3>Was ist der Unterschied zwischen HSL und HSV?</h3>
+    <p>Beide beschreiben eine Farbe über den Farbton, aber HSL nutzt Sättigung und Helligkeit (Lightness), während HSV (auch HSB genannt) Sättigung und Hellwert (Value/Brightness) nutzt. Bei HSL ist 100 % Helligkeit immer Weiß; bei HSV ist 100 % Hellwert die kräftigste Version des Farbtons. HSL ist in CSS verbreitet; HSV taucht in den Farbwählern vieler Design-Tools auf.</p>
+
+    <h3>Was ist OKLCH und warum sollte man es nutzen?</h3>
+    <p>OKLCH ist ein moderner Farbraum (Helligkeit, Chroma und Farbton), der wahrnehmungsgleich aufgebaut ist, das heißt: gleiche numerische Schritte sehen wie gleiche visuelle Schritte aus. Das macht ihn weit besser als HSL, um Paletten zu bauen und die Helligkeit ohne unerwartete Farbtonverschiebungen anzupassen. Er wird in modernem CSS als Funktion oklch() unterstützt.</p>
+
+    <h3>Was sind Tönungen und Schattierungen?</h3>
+    <p>Eine Tönung ist deine Farbe mit Weiß gemischt, wodurch sie heller wird; eine Schattierung ist deine Farbe mit Schwarz gemischt, wodurch sie dunkler wird. Die Palette hier erzeugt von jedem eine Reihe, sodass du aus einer einzigen Grundfarbe eine gleichmäßige Hell-zu-Dunkel-Skala für Buttons, Hintergründe und Zustände bauen kannst.</p>
+
+    <h3>Was ist eine Komplementärfarbe?</h3>
+    <p>Eine Komplementärfarbe liegt auf dem Farbkreis direkt gegenüber deiner Farbe, 180 Grad entfernt, und ergibt den stärksten Kontrast. Analoge Farben liegen direkt daneben für einen harmonischen Look, und triadische Farben sind gleichmäßig um 120 Grad verteilt für ein ausgewogenes, lebendiges Schema. Der Abschnitt „Harmonien“ zeigt alle drei.</p>
+
+    <h3>Ist das Farb-Tool privat?</h3>
+    <p>Ja. Sämtliche Umrechnung und Palettenerzeugung passiert in deinem Browser mit reinem JavaScript. Nichts wird hochgeladen oder getrackt, und einmal geladen funktioniert die Seite offline.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 DE</summary>
+    <ul>
+      <li><a href="https://colorconverter.wbest.app/" lang="en" hreflang="en">English</a></li>
+      <li aria-current="page">Deutsch</li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Gemacht für alle, die ein schnelles Tool brauchen, das einfach funktioniert.
+  <br>© 2026 WBest · Kostenlos nutzbar, keine Anmeldung nötig · <a href="https://wbest.app/">Kostenlose WBest-Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+/* Color math. Pure functions, returned for testability. */
+var COLOR = (function () {
+  'use strict';
+  function clamp(n, lo, hi) { return n < lo ? lo : n > hi ? hi : n; }
+  function round(n) { return Math.round(n); }
+
+  function hexToRgb(hex) {
+    var s = String(hex).trim().replace(/^#/, '');
+    if (/^[0-9a-fA-F]{3}$/.test(s)) s = s[0] + s[0] + s[1] + s[1] + s[2] + s[2];
+    if (!/^[0-9a-fA-F]{6}$/.test(s)) return null;
+    return { r: parseInt(s.slice(0, 2), 16), g: parseInt(s.slice(2, 4), 16), b: parseInt(s.slice(4, 6), 16) };
+  }
+  function rgbToHex(r, g, b) {
+    function h(n) { n = clamp(round(n), 0, 255).toString(16); return n.length === 1 ? '0' + n : n; }
+    return '#' + h(r) + h(g) + h(b);
+  }
+  function rgbToHsl(r, g, b) {
+    r /= 255; g /= 255; b /= 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min;
+    var h = 0, s = 0, l = (max + min) / 2;
+    if (d !== 0) {
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      if (max === r) h = (g - b) / d + (g < b ? 6 : 0);
+      else if (max === g) h = (b - r) / d + 2;
+      else h = (r - g) / d + 4;
+      h *= 60;
+    }
+    return { h: h, s: s * 100, l: l * 100 };
+  }
+  function hslToRgb(h, s, l) {
+    h = ((h % 360) + 360) % 360; s = clamp(s, 0, 100) / 100; l = clamp(l, 0, 100) / 100;
+    var c = (1 - Math.abs(2 * l - 1)) * s;
+    var x = c * (1 - Math.abs((h / 60) % 2 - 1));
+    var m = l - c / 2, r = 0, g = 0, b = 0;
+    if (h < 60) { r = c; g = x; }
+    else if (h < 120) { r = x; g = c; }
+    else if (h < 180) { g = c; b = x; }
+    else if (h < 240) { g = x; b = c; }
+    else if (h < 300) { r = x; b = c; }
+    else { r = c; b = x; }
+    return { r: (r + m) * 255, g: (g + m) * 255, b: (b + m) * 255 };
+  }
+  function rgbToHsv(r, g, b) {
+    r /= 255; g /= 255; b /= 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min;
+    var h = 0, s = max === 0 ? 0 : d / max, v = max;
+    if (d !== 0) {
+      if (max === r) h = (g - b) / d + (g < b ? 6 : 0);
+      else if (max === g) h = (b - r) / d + 2;
+      else h = (r - g) / d + 4;
+      h *= 60;
+    }
+    return { h: h, s: s * 100, v: v * 100 };
+  }
+  // sRGB (0..255) -> OKLCH { L (0..1), C, h (deg) }
+  function rgbToOklch(r, g, b) {
+    function lin(c) { c /= 255; return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+    var R = lin(r), G = lin(g), B = lin(b);
+    var l = 0.4122214708 * R + 0.5363325363 * G + 0.0514459929 * B;
+    var m = 0.2119034982 * R + 0.6806995451 * G + 0.1073969566 * B;
+    var s = 0.0883024619 * R + 0.2817188376 * G + 0.6299787005 * B;
+    var l_ = Math.cbrt(l), m_ = Math.cbrt(m), s_ = Math.cbrt(s);
+    var L = 0.2104542553 * l_ + 0.7936177850 * m_ - 0.0040720468 * s_;
+    var A = 1.9779984951 * l_ - 2.4285922050 * m_ + 0.4505937099 * s_;
+    var Bb = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.8086757660 * s_;
+    var C = Math.sqrt(A * A + Bb * Bb);
+    var h = Math.atan2(Bb, A) * 180 / Math.PI;
+    if (h < 0) h += 360;
+    return { L: L, C: C, h: h };
+  }
+
+  // Parse hex, rgb()/rgba(), hsl()/hsla() -> {r,g,b} or null
+  function parse(str) {
+    if (str == null) return null;
+    var s = String(str).trim().toLowerCase();
+    if (!s) return null;
+    if (s[0] === '#' || /^[0-9a-f]{3}$|^[0-9a-f]{6}$/.test(s)) return hexToRgb(s);
+    var m = s.match(/^rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)/);
+    if (m) {
+      var r = clamp(round(+m[1]), 0, 255), g = clamp(round(+m[2]), 0, 255), b = clamp(round(+m[3]), 0, 255);
+      return { r: r, g: g, b: b };
+    }
+    m = s.match(/^hsla?\(\s*([\d.]+)\s*[\s,]+\s*([\d.]+)%?\s*[\s,]+\s*([\d.]+)%?/);
+    if (m) return roundRgb(hslToRgb(+m[1], +m[2], +m[3]));
+    return null;
+  }
+  function roundRgb(c) { return { r: round(c.r), g: round(c.g), b: round(c.b) }; }
+
+  // Mix rgb toward a target (0..1 amount): amount 0 = original, 1 = target
+  function mix(c, target, amount) {
+    return {
+      r: c.r + (target - c.r) * amount,
+      g: c.g + (target - c.g) * amount,
+      b: c.b + (target - c.b) * amount
+    };
+  }
+
+  return {
+    clamp: clamp, hexToRgb: hexToRgb, rgbToHex: rgbToHex, rgbToHsl: rgbToHsl,
+    hslToRgb: hslToRgb, rgbToHsv: rgbToHsv, rgbToOklch: rgbToOklch,
+    parse: parse, roundRgb: roundRgb, mix: mix
+  };
+})();
+if (typeof module !== 'undefined') module.exports = COLOR;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+  var rgb = { r: 37, g: 99, b: 235 };
+  /* i18n:js:start */
+  var I18N = {
+    "copy": "Kopieren",
+    "copied": "Kopiert",
+    "unrecognized": "Farbe nicht erkannt. Versuche #2563eb, rgb(37,99,235) oder hsl(221,83%,53%).",
+    "base": "Basis",
+    "complement": "Komplementär",
+    "analogous": "Analog",
+    "triadic": "Triadisch"
+  };
+  /* i18n:js:end */
+
+  function fmtHsl(c) { var h = COLOR.rgbToHsl(c.r, c.g, c.b); return 'hsl(' + Math.round(h.h) + ', ' + Math.round(h.s) + '%, ' + Math.round(h.l) + '%)'; }
+  function fmtHsv(c) { var h = COLOR.rgbToHsv(c.r, c.g, c.b); return 'hsv(' + Math.round(h.h) + ', ' + Math.round(h.s) + '%, ' + Math.round(h.v) + '%)'; }
+  function fmtRgb(c) { return 'rgb(' + Math.round(c.r) + ', ' + Math.round(c.g) + ', ' + Math.round(c.b) + ')'; }
+  function fmtOklch(c) { var o = COLOR.rgbToOklch(c.r, c.g, c.b); return 'oklch(' + o.L.toFixed(3) + ' ' + o.C.toFixed(3) + ' ' + Math.round(o.h) + ')'; }
+
+  var FORMATS = [
+    { name: 'HEX', fn: function (c) { return COLOR.rgbToHex(c.r, c.g, c.b).toUpperCase(); } },
+    { name: 'RGB', fn: fmtRgb },
+    { name: 'HSL', fn: fmtHsl },
+    { name: 'HSV', fn: fmtHsv },
+    { name: 'OKLCH', fn: fmtOklch }
+  ];
+
+  // Build format rows
+  var formats = $('formats');
+  FORMATS.forEach(function (f) {
+    var row = document.createElement('div');
+    row.className = 'card frow';
+    row.innerHTML = '<span class="name">' + f.name + '</span><span class="code" id="fmt-' + f.name + '"></span>' +
+      '<button type="button" class="copy" data-fmt="' + f.name + '">' + I18N.copy + '</button>';
+    formats.appendChild(row);
+  });
+
+  function makeChip(c, label) {
+    var hex = COLOR.rgbToHex(c.r, c.g, c.b).toUpperCase();
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'chip'; btn.setAttribute('data-hex', hex);
+    var inner = '<span class="c" style="background:' + hex + '"></span>';
+    if (label) inner += '<span class="lab">' + label + '</span>';
+    inner += '<span class="t">' + hex + '</span>';
+    btn.innerHTML = inner;
+    return btn;
+  }
+
+  function renderPalettes() {
+    var tints = $('tints'), shades = $('shades'), harm = $('harmonies');
+    tints.innerHTML = ''; shades.innerHTML = ''; harm.innerHTML = '';
+    var i;
+    for (i = 0; i <= 10; i++) tints.appendChild(makeChip(COLOR.roundRgb(COLOR.mix(rgb, 255, i / 11)), ''));
+    for (i = 0; i <= 10; i++) shades.appendChild(makeChip(COLOR.roundRgb(COLOR.mix(rgb, 0, i / 11)), ''));
+
+    var base = COLOR.rgbToHsl(rgb.r, rgb.g, rgb.b);
+    function atHue(deltaH) { return COLOR.roundRgb(COLOR.hslToRgb(base.h + deltaH, base.s, base.l)); }
+    var harmonies = [
+      [I18N.base, rgb], [I18N.complement, atHue(180)],
+      [I18N.analogous, atHue(-30)], [I18N.analogous, atHue(30)],
+      [I18N.triadic, atHue(120)], [I18N.triadic, atHue(240)]
+    ];
+    harmonies.forEach(function (h) { harm.appendChild(makeChip(h[1], h[0])); });
+  }
+
+  function render() {
+    var hex = COLOR.rgbToHex(rgb.r, rgb.g, rgb.b);
+    $('swatch').style.background = hex;
+    $('picker').value = hex;
+    $('hex-main').value = hex.toUpperCase();
+    FORMATS.forEach(function (f) { $('fmt-' + f.name).textContent = f.fn(rgb); });
+    renderPalettes();
+  }
+
+  function setRgb(c) { if (!c) return; rgb = COLOR.roundRgb(c); render(); }
+
+  $('picker').addEventListener('input', function () { setRgb(COLOR.hexToRgb($('picker').value)); });
+  $('hex-main').addEventListener('input', function () {
+    var c = COLOR.hexToRgb($('hex-main').value);
+    if (c) setRgb(c);
+  });
+  $('any-in').addEventListener('input', function () {
+    var err = $('any-err'), v = $('any-in').value.trim();
+    if (!v) { err.textContent = ''; return; }
+    var c = COLOR.parse(v);
+    if (c) { err.textContent = ''; setRgb(c); }
+    else err.textContent = I18N.unrecognized;
+  });
+
+  formats.addEventListener('click', function (e) {
+    var btn = e.target.closest('button.copy'); if (!btn) return;
+    var text = $('fmt-' + btn.getAttribute('data-fmt')).textContent;
+    var done = function () { var o = btn.textContent; btn.textContent = I18N.copied; setTimeout(function () { btn.textContent = o; }, 1000); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done); else done();
+  });
+
+  $('palette').addEventListener('click', function (e) {
+    var chip = e.target.closest('button.chip'); if (!chip) return;
+    setRgb(COLOR.hexToRgb(chip.getAttribute('data-hex')));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // EyeDropper API where available
+  if (typeof window.EyeDropper !== 'undefined') {
+    var ed = $('eyedropper'); ed.hidden = false;
+    ed.addEventListener('click', function () {
+      new window.EyeDropper().open().then(function (res) { setRgb(COLOR.hexToRgb(res.sRGBHex)); }, function () {});
+    });
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

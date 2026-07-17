@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest Einheiten-Umrechner: Länge, Gewicht, Temperatur &amp; mehr</title>
+<meta name="description" content="Wandle Länge, Gewicht, Temperatur und mehr beim Tippen um, mit der Formel zu jedem Ergebnis. Kostenlos und 100 % privat.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://unitconverter.wbest.app/de/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://unitconverter.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://unitconverter.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://unitconverter.wbest.app/">
+<!-- i18n:hreflang:end -->
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Einheiten-Umrechner">
+<meta property="og:title" content="WBest Einheiten-Umrechner: Länge, Gewicht, Temperatur &amp; mehr">
+<meta property="og:description" content="Wandle Länge, Gewicht, Temperatur und mehr beim Tippen um, mit der Formel zu jedem Ergebnis. Kostenlos und 100 % privat.">
+<meta property="og:url" content="https://unitconverter.wbest.app/de/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest Einheiten-Umrechner: Länge, Gewicht, Temperatur &amp; mehr">
+<meta name="twitter:description" content="Wandle Länge, Gewicht, Temperatur und mehr beim Tippen um, mit der Formel zu jedem Ergebnis. Kostenlos und 100 % privat.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Einheiten-Umrechner",
+  "url": "https://unitconverter.wbest.app/de/",
+  "description": "Kostenloser Einheiten-Umrechner für Länge, Gewicht und Masse, Temperatur, Fläche, Volumen, Geschwindigkeit, Zeit, digitale Daten, Druck und Energie. Rechnet beim Tippen in beide Richtungen um, zeigt die Umrechnungsformel zu jedem Ergebnis und läuft vollständig in deinem Browser. Kein Server, kein Tracking, funktioniert offline.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Benötigt JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "10 Kategorien: Länge, Gewicht, Temperatur, Fläche, Volumen, Geschwindigkeit, Zeit, Daten, Druck, Energie",
+    "Sofortige Umrechnung in beide Richtungen beim Tippen",
+    "Umrechnungsformel zu jedem Ergebnis",
+    "Beliebte Paare per Klick (cm zu Zoll, kg zu lb, Meilen zu km, °C zu °F)",
+    "Exakte internationale Standarddefinitionen",
+    "100 % private Berechnung auf deinem Gerät",
+    "Funktioniert offline"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie rechne ich Zentimeter in Zoll um?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Teile die Länge in Zentimetern durch 2,54. Ein Zoll ist als genau 2,54 Zentimeter definiert, also 10 cm ÷ 2,54 = 3,937 Zoll. Für die Gegenrichtung multiplizierst du Zoll mit 2,54."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viele Kilogramm sind ein Pfund?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ein Pfund ist als genau 0,45359237 Kilogramm definiert, ein Kilogramm sind also etwa 2,2046 Pfund. Schnelles Kopfrechnen: Verdopple die Kilogramm und addiere 10 %, um Pfund zu erhalten (70 kg → 140 + 14 = 154 lb, exakte Antwort 154,32)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lautet die Formel, um Celsius in Fahrenheit umzurechnen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "°F = °C × 9/5 + 32. Zum Beispiel 20 °C × 9/5 = 36, plus 32 ergibt 68 °F. In die andere Richtung: °C = (°F − 32) × 5/9. Die beiden Skalen treffen sich bei −40°, der einzigen Temperatur, die in beiden gleich ist."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum gibt es keinen Währungsrechner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bewusst nicht. Wechselkurse ändern sich im Minutentakt und würden das Abrufen von Live-Daten von einem Server erfordern, und das Versprechen dieses Tools ist, dass es überhaupt keine Netzwerkanfragen stellt und vollständig offline funktioniert. Physikalische Einheiten ändern sich nie, also ist jede Umrechnung hier exakt und dauerhaft."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist der Unterschied zwischen US- und imperialen Gallonen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eine US-Gallone sind 3,785 Liter; eine imperiale (UK-)Gallone sind 4,546 Liter, rund 20 % mehr. Derselbe Unterschied betrifft Pints, Quarts und Flüssigunzen. Dieser Umrechner kennzeichnet US- und imperiale Einheiten getrennt, damit Rezepte und Verbrauchsangaben nicht stillschweigend falsch umgerechnet werden."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist der Unterschied zwischen einem Kilobyte (kB) und einem Kibibyte (KiB)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ein Kilobyte sind 1.000 Byte (dezimal, genutzt von Laufwerksherstellern und in Netzwerken); ein Kibibyte sind 1.024 Byte (binär, genutzt von Betriebssystemen für Speicher). Die Lücke summiert sich: Ein Terabyte sind 10^12 Byte, ein Tebibyte aber etwa 10 % mehr. Deshalb erscheint ein „1 TB“-Laufwerk in Windows als rund 931 „GB“, weil Windows in Wahrheit Gibibyte anzeigt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie genau sind die Umrechnungen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Exakt, bis zur Fließkomma-Genauigkeit (rund 15 signifikante Stellen). Jeder Faktor nutzt die exakte internationale Definition: Der Zoll ist genau 25,4 mm, das Pfund genau 0,45359237 kg, die Standardatmosphäre genau 101.325 Pa. Die einzigen Näherungen sind von Natur aus gemittelte Einheiten wie Monat und Jahr, die als solche gekennzeichnet sind."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Funktioniert der Einheiten-Umrechner offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Alle Umrechnungstabellen stecken in der Seite, und die Berechnung läuft in deinem Browser. Einmal geladen, funktioniert sie ohne Verbindung, und nichts, was du eingibst, wird je irgendwohin gesendet. Speichere die Seite auf deinem Gerät und sie funktioniert für immer."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 10px}
+.tabs button{
+  font:inherit;font-size:.85rem;padding:6px 14px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.tabs button:hover[aria-pressed="false"]{border-color:var(--accent);color:var(--accent)}
+.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.conv{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;padding:18px 20px;align-items:start}
+@media (max-width:700px){.conv{grid-template-columns:1fr}}
+.side{display:flex;flex-direction:column;gap:8px}
+.side label{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.side input{
+  width:100%;font:600 1.35rem/1.4 inherit;font-variant-numeric:tabular-nums;
+  padding:10px 12px;border:1px solid var(--border);border-radius:10px;
+  background:var(--card);color:var(--text)
+}
+.side select{
+  width:100%;font:inherit;font-size:.95rem;padding:8px 10px;border-radius:10px;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.swap{align-self:center;margin-top:18px}
+@media (max-width:700px){.swap{margin:0 auto}}
+.swap button{
+  font-size:1.2rem;width:44px;height:44px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--accent)
+}
+.swap button:hover{border-color:var(--accent);background:var(--accent-soft)}
+.formula{padding:12px 20px;margin-top:10px;font-size:.92rem;color:var(--muted)}
+.formula strong{color:var(--text);font-variant-numeric:tabular-nums}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chips button{
+  font:inherit;font-size:.82rem;padding:5px 12px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--muted)
+}
+.chips button:hover{border-color:var(--accent);color:var(--accent)}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:300px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td{font-variant-numeric:tabular-nums}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:46rem}
+@media (max-width:700px){.cols2{grid-template-columns:1fr}}
+.faq p{color:var(--text)}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WBest Einheiten-Umrechner</h1>
+  <p class="tagline">Wandle Länge, Gewicht, Temperatur und mehr beim Tippen um, mit der Formel zu jedem Ergebnis. Kostenlos und 100 % privat.</p>
+  <span class="badge">🔒 100 % privat, läuft vollständig in deinem Browser, sogar offline</span>
+  <nav class="toc" aria-label="Auf dieser Seite">
+    <a href="#tool">Umrechner</a>
+    <a href="#cm-to-inches">cm → in</a>
+    <a href="#kg-to-pounds">kg → lb</a>
+    <a href="#miles-to-km">mi → km</a>
+    <a href="#celsius-to-fahrenheit">°C → °F</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Einheiten-Umrechner-Tool">
+    <div class="tabs" role="group" aria-label="Einheitenkategorie" id="cat-tabs"></div>
+
+    <div class="conv card">
+      <div class="side">
+        <label for="val-a" id="label-a">Von</label>
+        <input type="text" id="val-a" value="1" inputmode="decimal" autocomplete="off" spellcheck="false">
+        <select id="unit-a" aria-label="Umrechnen von Einheit"></select>
+      </div>
+      <div class="swap">
+        <button type="button" id="btn-swap" aria-label="Einheiten tauschen" title="Einheiten tauschen">⇄</button>
+      </div>
+      <div class="side">
+        <label for="val-b" id="label-b">Nach</label>
+        <input type="text" id="val-b" inputmode="decimal" autocomplete="off" spellcheck="false">
+        <select id="unit-b" aria-label="Umrechnen in Einheit"></select>
+      </div>
+    </div>
+
+    <div class="formula card" id="formula" aria-live="polite"></div>
+
+    <div class="chips" id="chips" role="group" aria-label="Beliebte Umrechnungen"></div>
+  </section>
+
+  <p class="cross-link">Du rechnest Größe und Gewicht für einen Gesundheitscheck um? Der <a href="https://bmicalculator.wbest.app/de/">BMI-Rechner</a> nimmt beide Maßsysteme direkt an, genauso privat.</p>
+
+  <section class="props" aria-label="Warum dieser Einheiten-Umrechner">
+    <div class="card"><strong>Exakt &amp; sofort</strong><p>Jeder Faktor nutzt die exakte internationale Definition: Der Zoll ist genau 25,4 mm, das Pfund genau 0,45359237 kg. Die Ergebnisse aktualisieren sich beim Tippen in beide Richtungen.</p></div>
+    <div class="card"><strong>Privat von Grund auf</strong><p>Alle Umrechnungstabellen stecken in der Seite. Kein Server, kein Tracking, keine Netzwerkanfragen. Sie funktioniert vollständig offline.</p></div>
+    <div class="card"><strong>Kostenlos, für immer</strong><p>Keine Anmeldung, keine Werbung, keine Premium-Einheiten. Speichere die Seite auf deinem Gerät und sie funktioniert überall, für immer.</p></div>
+  </section>
+
+  <section id="how-it-works" class="prose">
+    <h2>So funktioniert die Einheitenumrechnung</h2>
+    <p>Jede Umrechnung zwischen zwei Einheiten derselben Art ist eine einzige Multiplikation: <strong>Wert × Umrechnungsfaktor</strong>. Um 5 Meilen in Kilometer umzurechnen, multipliziere mit 1,609344 (die exakte Definition einer Meile in Kilometern): 5 × 1,609344 = 8,04672 km. Die Gegenrichtung nutzt den Kehrwert: durch denselben Faktor teilen.</p>
+    <p>Die eine Ausnahme ist die <strong>Temperatur</strong>, weil die Skalen keinen gemeinsamen Nullpunkt haben, sodass die Umrechnung neben einem Faktor auch einen Versatz braucht:</p>
+    <div class="table-wrap">
+      <table>
+        <caption>Die Celsius- und Fahrenheit-Skala kreuzen sich bei −40°, der einzigen Temperatur, bei der beide gleich anzeigen.</caption>
+        <thead><tr><th scope="col">Umrechnung</th><th scope="col">Formel</th></tr></thead>
+        <tbody>
+          <tr><td>Celsius → Fahrenheit</td><td>°F = °C × 9/5 + 32</td></tr>
+          <tr><td>Fahrenheit → Celsius</td><td>°C = (°F − 32) × 5/9</td></tr>
+          <tr><td>Celsius → Kelvin</td><td>K = °C + 273,15</td></tr>
+          <tr><td>Kelvin → Celsius</td><td>°C = K − 273,15</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="prose">
+    <h2>Gängige Umrechnungstabellen</h2>
+    <p>Die am häufigsten nachgeschlagenen Paare, vorberechnet. Für alles andere nutze den Umrechner oben.</p>
+
+    <div class="cols2">
+      <div id="cm-to-inches">
+        <h3>Zentimeter in Zoll</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>1 Zoll = genau 2,54 cm. Teile cm durch 2,54.</caption>
+            <thead><tr><th scope="col">cm</th><th scope="col">Zoll</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>0.3937</td></tr>
+              <tr><td>2</td><td>0.7874</td></tr>
+              <tr><td>5</td><td>1.9685</td></tr>
+              <tr><td>10</td><td>3.9370</td></tr>
+              <tr><td>15</td><td>5.9055</td></tr>
+              <tr><td>20</td><td>7.8740</td></tr>
+              <tr><td>30</td><td>11.8110</td></tr>
+              <tr><td>50</td><td>19.6850</td></tr>
+              <tr><td>100</td><td>39.3701</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="kg-to-pounds">
+        <h3>Kilogramm in Pfund</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>1 kg ≈ 2,20462 lb. Multipliziere kg mit 2,20462.</caption>
+            <thead><tr><th scope="col">kg</th><th scope="col">Pfund</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>2.2046</td></tr>
+              <tr><td>2</td><td>4.4092</td></tr>
+              <tr><td>5</td><td>11.0231</td></tr>
+              <tr><td>10</td><td>22.0462</td></tr>
+              <tr><td>20</td><td>44.0925</td></tr>
+              <tr><td>50</td><td>110.2311</td></tr>
+              <tr><td>75</td><td>165.3467</td></tr>
+              <tr><td>100</td><td>220.4623</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="miles-to-km">
+        <h3>Meilen in Kilometer</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>1 Meile = genau 1,609344 km. Multipliziere Meilen mit 1,609.</caption>
+            <thead><tr><th scope="col">Meilen</th><th scope="col">km</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>1.609</td></tr>
+              <tr><td>3</td><td>4.828</td></tr>
+              <tr><td>5</td><td>8.047</td></tr>
+              <tr><td>10</td><td>16.093</td></tr>
+              <tr><td>13,1 (Halbmarathon)</td><td>21.082</td></tr>
+              <tr><td>26,2 (Marathon)</td><td>42.165</td></tr>
+              <tr><td>50</td><td>80.467</td></tr>
+              <tr><td>100</td><td>160.934</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="celsius-to-fahrenheit">
+        <h3>Celsius in Fahrenheit</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>°F = °C × 9/5 + 32. Körpertemperatur 37 °C = 98,6 °F.</caption>
+            <thead><tr><th scope="col">°C</th><th scope="col">°F</th></tr></thead>
+            <tbody>
+              <tr><td>−40</td><td>−40</td></tr>
+              <tr><td>−10</td><td>14</td></tr>
+              <tr><td>0</td><td>32</td></tr>
+              <tr><td>10</td><td>50</td></tr>
+              <tr><td>20</td><td>68</td></tr>
+              <tr><td>25</td><td>77</td></tr>
+              <tr><td>30</td><td>86</td></tr>
+              <tr><td>37</td><td>98.6</td></tr>
+              <tr><td>100</td><td>212</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Häufig gestellte Fragen</h2>
+
+    <h3>Wie rechne ich Zentimeter in Zoll um?</h3>
+    <p>Teile die Länge in Zentimetern durch 2,54. Ein Zoll ist als genau 2,54 Zentimeter definiert, also 10 cm ÷ 2,54 = 3,937 Zoll. Für die Gegenrichtung multiplizierst du Zoll mit 2,54.</p>
+
+    <h3>Wie viele Kilogramm sind ein Pfund?</h3>
+    <p>Ein Pfund ist als genau 0,45359237 Kilogramm definiert, ein Kilogramm sind also etwa 2,2046 Pfund. Schnelles Kopfrechnen: Verdopple die Kilogramm und addiere 10 %, um Pfund zu erhalten (70 kg → 140 + 14 = 154 lb, exakte Antwort 154,32).</p>
+
+    <h3>Wie lautet die Formel, um Celsius in Fahrenheit umzurechnen?</h3>
+    <p>°F = °C × 9/5 + 32. Zum Beispiel 20 °C × 9/5 = 36, plus 32 ergibt 68 °F. In die andere Richtung: °C = (°F − 32) × 5/9. Die beiden Skalen treffen sich bei −40°, der einzigen Temperatur, die in beiden gleich ist.</p>
+
+    <h3>Warum gibt es keinen Währungsrechner?</h3>
+    <p>Bewusst nicht. Wechselkurse ändern sich im Minutentakt und würden das Abrufen von Live-Daten von einem Server erfordern, und das Versprechen dieses Tools ist, dass es überhaupt keine Netzwerkanfragen stellt und vollständig offline funktioniert. Physikalische Einheiten ändern sich nie, also ist jede Umrechnung hier exakt und dauerhaft.</p>
+
+    <h3>Was ist der Unterschied zwischen US- und imperialen Gallonen?</h3>
+    <p>Eine US-Gallone sind 3,785 Liter; eine imperiale (UK-)Gallone sind 4,546 Liter, rund 20 % mehr. Derselbe Unterschied betrifft Pints, Quarts und Flüssigunzen. Dieser Umrechner kennzeichnet US- und imperiale Einheiten getrennt, damit Rezepte und Verbrauchsangaben nicht stillschweigend falsch umgerechnet werden.</p>
+
+    <h3>Was ist der Unterschied zwischen einem Kilobyte (kB) und einem Kibibyte (KiB)?</h3>
+    <p>Ein Kilobyte sind 1.000 Byte (dezimal, genutzt von Laufwerksherstellern und in Netzwerken); ein Kibibyte sind 1.024 Byte (binär, genutzt von Betriebssystemen für Speicher). Die Lücke summiert sich: Ein Terabyte sind 10¹² Byte, ein Tebibyte aber etwa 10 % mehr. Deshalb erscheint ein „1 TB“-Laufwerk in Windows als rund 931 „GB“, weil Windows in Wahrheit Gibibyte anzeigt.</p>
+
+    <h3>Wie genau sind die Umrechnungen?</h3>
+    <p>Exakt, bis zur Fließkomma-Genauigkeit (rund 15 signifikante Stellen). Jeder Faktor nutzt die exakte internationale Definition: Der Zoll ist genau 25,4 mm, das Pfund genau 0,45359237 kg, die Standardatmosphäre genau 101.325 Pa. Die einzigen Näherungen sind von Natur aus gemittelte Einheiten wie Monat und Jahr, die als solche gekennzeichnet sind.</p>
+
+    <h3>Funktioniert der Einheiten-Umrechner offline?</h3>
+    <p>Ja. Alle Umrechnungstabellen stecken in der Seite, und die Berechnung läuft in deinem Browser. Einmal geladen, funktioniert sie ohne Verbindung, und nichts, was du eingibst, wird je irgendwohin gesendet. Speichere die Seite auf deinem Gerät und sie funktioniert für immer.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 DE</summary>
+    <ul>
+      <li><a href="https://unitconverter.wbest.app/" lang="en" hreflang="en">English</a></li>
+      <li aria-current="page">Deutsch</li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Gemacht für alle, die ein schnelles Tool brauchen, das einfach funktioniert.
+  <br>© 2026 WBest · Kostenlos nutzbar, keine Anmeldung nötig · <a href="https://wbest.app/">Kostenlose WBest-Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+/* Conversion engine. Factors are the exact international definitions,
+   expressed relative to each category's base unit. Temperature uses functions. */
+var UC = (function () {
+  'use strict';
+
+  // Each unit is [id, factor-to-base]; display names are localized in the UI
+  // layer (I18N.unitNames) so translation never touches the physics.
+  var CATS = {
+    length: { units: [
+      ['mm', 0.001], ['cm', 0.01], ['m', 1], ['km', 1000],
+      ['in', 0.0254], ['ft', 0.3048], ['yd', 0.9144], ['mi', 1609.344], ['nmi', 1852]
+    ]},
+    weight: { units: [
+      ['mg', 0.000001], ['g', 0.001], ['kg', 1], ['t', 1000],
+      ['oz', 0.028349523125], ['lb', 0.45359237], ['st', 6.35029318], ['ton', 907.18474]
+    ]},
+    temperature: { temp: true, units: [['C'], ['F'], ['K']] },
+    area: { units: [
+      ['cm2', 0.0001], ['m2', 1], ['ha', 10000], ['km2', 1000000],
+      ['in2', 0.00064516], ['ft2', 0.09290304], ['yd2', 0.83612736],
+      ['ac', 4046.8564224], ['mi2', 2589988.110336]
+    ]},
+    volume: { units: [
+      ['ml', 0.001], ['l', 1], ['m3', 1000],
+      ['tsp', 0.00492892159375], ['tbsp', 0.01478676478125], ['floz', 0.0295735295625],
+      ['cup', 0.2365882365], ['pt', 0.473176473], ['qt', 0.946352946],
+      ['gal', 3.785411784], ['galuk', 4.54609], ['ft3', 28.316846592]
+    ]},
+    speed: { units: [
+      ['ms', 1], ['kmh', 0.2777777777777778], ['mph', 0.44704],
+      ['fts', 0.3048], ['kn', 0.5144444444444445]
+    ]},
+    time: { units: [
+      ['msec', 0.001], ['s', 1], ['min', 60], ['h', 3600],
+      ['d', 86400], ['wk', 604800], ['mo', 2629746], ['yr', 31556952]
+    ]},
+    data: { units: [
+      ['bit', 0.125], ['B', 1], ['kB', 1000], ['MB', 1000000],
+      ['GB', 1000000000], ['TB', 1000000000000], ['KiB', 1024], ['MiB', 1048576],
+      ['GiB', 1073741824], ['TiB', 1099511627776]
+    ]},
+    pressure: { units: [
+      ['Pa', 1], ['kPa', 1000], ['MPa', 1000000], ['bar', 100000],
+      ['psi', 6894.757293168361], ['atm', 101325], ['mmHg', 133.322387415]
+    ]},
+    energy: { units: [
+      ['J', 1], ['kJ', 1000], ['cal', 4.184], ['kcal', 4184],
+      ['Wh', 3600], ['kWh', 3600000], ['BTU', 1055.05585262], ['ftlb', 1.3558179483314004]
+    ]}
+  };
+
+  var TEMP_TO_C = {
+    C: function (v) { return v; },
+    F: function (v) { return (v - 32) * 5 / 9; },
+    K: function (v) { return v - 273.15; }
+  };
+  var TEMP_FROM_C = {
+    C: function (v) { return v; },
+    F: function (v) { return v * 9 / 5 + 32; },
+    K: function (v) { return v + 273.15; }
+  };
+  var TEMP_FORMULA = {
+    'C-F': '°F = °C × 9/5 + 32',
+    'F-C': '°C = (°F − 32) × 5/9',
+    'C-K': 'K = °C + 273.15',
+    'K-C': '°C = K − 273.15',
+    'F-K': 'K = (°F − 32) × 5/9 + 273.15',
+    'K-F': '°F = (K − 273.15) × 9/5 + 32'
+  };
+
+  function unitOf(cat, id) {
+    var us = CATS[cat].units;
+    for (var i = 0; i < us.length; i++) if (us[i][0] === id) return us[i];
+    return null;
+  }
+
+  var LANG = (typeof document !== 'undefined' && document.documentElement.lang) || 'en';
+  // The page's decimal mark, derived from the formatter itself.
+  var DEC = (function () { var s = (1.5).toLocaleString(LANG); return s[s.length - 2]; })();
+  var GRP = (function () { var s = (1234).toLocaleString(LANG); return /\d/.test(s[1]) ? '' : s[1]; })();
+
+  function convert(cat, from, to, v) {
+    if (CATS[cat].temp) return TEMP_FROM_C[to](TEMP_TO_C[from](v));
+    return v * unitOf(cat, from)[1] / unitOf(cat, to)[1];
+  }
+
+  function parseNum(s) {
+    s = String(s).trim();
+    if (!s) return NaN;
+    if (GRP) s = s.split(GRP).join('');
+    if (DEC !== '.') s = s.split(DEC).join('.');
+    return Number(s);
+  }
+
+  // Swap the canonical '.' decimal for the locale's, without grouping (the
+  // result lands in an editable field that parseNum must read straight back).
+  function loc(s) { return DEC === '.' ? s : s.replace('.', DEC); }
+
+  function fmt(n) {
+    if (!isFinite(n)) return '';
+    if (n === 0) return '0';
+    var a = Math.abs(n);
+    if (a >= 1e15 || a < 1e-9) {
+      return loc(n.toExponential(6).replace(/\.?0+e/, 'e'));
+    }
+    var s = n.toPrecision(10);
+    if (s.indexOf('e') !== -1) return loc(fmtExp(n));
+    if (s.indexOf('.') !== -1) s = s.replace(/0+$/, '').replace(/\.$/, '');
+    return loc(s);
+  }
+  function fmtExp(n) {
+    return n.toExponential(6).replace(/\.?0+e/, 'e');
+  }
+
+  // factor formatted for the formula line (6 significant digits, trimmed)
+  function fmtFactor(n) {
+    var s = n.toPrecision(6);
+    if (s.indexOf('e') !== -1) return loc(n.toExponential(4).replace(/\.?0+e/, 'e'));
+    if (s.indexOf('.') !== -1) s = s.replace(/0+$/, '').replace(/\.$/, '');
+    return loc(s);
+  }
+
+  return { CATS: CATS, TEMP_FORMULA: TEMP_FORMULA, convert: convert, parseNum: parseNum, fmt: fmt, fmtFactor: fmtFactor };
+})();
+if (typeof module !== 'undefined') module.exports = UC;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+  var valA = $('val-a'), valB = $('val-b'), unitA = $('unit-a'), unitB = $('unit-b');
+  var cat = 'length', lastEdited = 'a';
+  /* i18n:js:start */
+  var I18N = {
+    "catLabels": {
+      "length": "Länge",
+      "weight": "Gewicht",
+      "temperature": "Temperatur",
+      "area": "Fläche",
+      "volume": "Volumen",
+      "speed": "Geschwindigkeit",
+      "time": "Zeit",
+      "data": "Daten",
+      "pressure": "Druck",
+      "energy": "Energie"
+    },
+    "unitNames": {
+      "length": {
+        "mm": "Millimeter (mm)",
+        "cm": "Zentimeter (cm)",
+        "m": "Meter (m)",
+        "km": "Kilometer (km)",
+        "in": "Zoll (in)",
+        "ft": "Fuß (ft)",
+        "yd": "Yard (yd)",
+        "mi": "Meilen (mi)",
+        "nmi": "Seemeilen (nmi)"
+      },
+      "weight": {
+        "mg": "Milligramm (mg)",
+        "g": "Gramm (g)",
+        "kg": "Kilogramm (kg)",
+        "t": "Tonnen (t)",
+        "oz": "Unzen (oz)",
+        "lb": "Pfund (lb)",
+        "st": "Stones (st)",
+        "ton": "US-Tonnen (ton)"
+      },
+      "temperature": {
+        "C": "Celsius (°C)",
+        "F": "Fahrenheit (°F)",
+        "K": "Kelvin (K)"
+      },
+      "area": {
+        "cm2": "Quadratzentimeter (cm²)",
+        "m2": "Quadratmeter (m²)",
+        "ha": "Hektar (ha)",
+        "km2": "Quadratkilometer (km²)",
+        "in2": "Quadratzoll (in²)",
+        "ft2": "Quadratfuß (ft²)",
+        "yd2": "Quadratyard (yd²)",
+        "ac": "Acre (ac)",
+        "mi2": "Quadratmeilen (mi²)"
+      },
+      "volume": {
+        "ml": "Milliliter (ml)",
+        "l": "Liter (l)",
+        "m3": "Kubikmeter (m³)",
+        "tsp": "Teelöffel, US (tsp)",
+        "tbsp": "Esslöffel, US (tbsp)",
+        "floz": "Flüssigunzen, US (fl oz)",
+        "cup": "Cups, US (cup)",
+        "pt": "Pints, US (pt)",
+        "qt": "Quarts, US (qt)",
+        "gal": "Gallonen, US (gal)",
+        "galuk": "Gallonen, imperial (gal UK)",
+        "ft3": "Kubikfuß (ft³)"
+      },
+      "speed": {
+        "ms": "Meter pro Sekunde (m/s)",
+        "kmh": "Kilometer pro Stunde (km/h)",
+        "mph": "Meilen pro Stunde (mph)",
+        "fts": "Fuß pro Sekunde (ft/s)",
+        "kn": "Knoten (kn)"
+      },
+      "time": {
+        "msec": "Millisekunden (ms)",
+        "s": "Sekunden (s)",
+        "min": "Minuten (min)",
+        "h": "Stunden (h)",
+        "d": "Tage (d)",
+        "wk": "Wochen (wk)",
+        "mo": "Monate, Durchschnitt (mo)",
+        "yr": "Jahre, Durchschnitt (yr)"
+      },
+      "data": {
+        "bit": "Bit (bit)",
+        "B": "Byte (B)",
+        "kB": "Kilobyte (kB, 1000)",
+        "MB": "Megabyte (MB)",
+        "GB": "Gigabyte (GB)",
+        "TB": "Terabyte (TB)",
+        "KiB": "Kibibyte (KiB, 1024)",
+        "MiB": "Mebibyte (MiB)",
+        "GiB": "Gibibyte (GiB)",
+        "TiB": "Tebibyte (TiB)"
+      },
+      "pressure": {
+        "Pa": "Pascal (Pa)",
+        "kPa": "Kilopascal (kPa)",
+        "MPa": "Megapascal (MPa)",
+        "bar": "Bar (bar)",
+        "psi": "Pfund pro Quadratzoll (psi)",
+        "atm": "Atmosphären (atm)",
+        "mmHg": "Millimeter Quecksilbersäule (mmHg)"
+      },
+      "energy": {
+        "J": "Joule (J)",
+        "kJ": "Kilojoule (kJ)",
+        "cal": "Kalorien (cal)",
+        "kcal": "Kilokalorien (kcal)",
+        "Wh": "Wattstunden (Wh)",
+        "kWh": "Kilowattstunden (kWh)",
+        "BTU": "British thermal units (BTU)",
+        "ftlb": "Foot-Pfund (ft⋅lb)"
+      }
+    },
+    "chips": {
+      "cm-in": "cm → Zoll",
+      "m-ft": "m → Fuß",
+      "kg-lb": "kg → Pfund",
+      "mi-km": "Meilen → km",
+      "c-f": "°C → °F",
+      "l-gal": "Liter → Gallonen",
+      "kmh-mph": "km/h → mph",
+      "mb-gb": "MB → GB"
+    },
+    "sameScale": "Gleiche Skala - keine Umrechnung nötig.",
+    "formulaPrefix": "Formel: ",
+    "factorLine": "1 {from} = {f1} {to} · 1 {to} = {f2} {from}",
+    "convertTail": " - um {from} in {to} umzurechnen, multipliziere den Wert mit {f1}."
+  };
+  /* i18n:js:end */
+
+  var DEFAULTS = {
+    length: ['cm', 'in'], weight: ['kg', 'lb'], temperature: ['C', 'F'],
+    area: ['m2', 'ft2'], volume: ['l', 'gal'], speed: ['kmh', 'mph'],
+    time: ['h', 'min'], data: ['MB', 'GB'], pressure: ['bar', 'psi'], energy: ['kcal', 'kJ']
+  };
+  var CHIPS = [
+    ['length', 'cm', 'in', 'cm-in'],
+    ['length', 'm', 'ft', 'm-ft'],
+    ['weight', 'kg', 'lb', 'kg-lb'],
+    ['length', 'mi', 'km', 'mi-km'],
+    ['temperature', 'C', 'F', 'c-f'],
+    ['volume', 'l', 'gal', 'l-gal'],
+    ['speed', 'kmh', 'mph', 'kmh-mph'],
+    ['data', 'MB', 'GB', 'mb-gb']
+  ];
+
+  // build category tabs
+  var tabBox = $('cat-tabs');
+  Object.keys(UC.CATS).forEach(function (key) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = I18N.catLabels[key];
+    b.setAttribute('aria-pressed', String(key === cat));
+    b.addEventListener('click', function () { setCat(key, null, null); });
+    b.dataset.cat = key;
+    tabBox.appendChild(b);
+  });
+
+  // build chips
+  CHIPS.forEach(function (c) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = I18N.chips[c[3]];
+    b.addEventListener('click', function () {
+      setCat(c[0], c[1], c[2]);
+      valA.focus();
+      valA.select();
+    });
+    $('chips').appendChild(b);
+  });
+
+  function fillSelect(sel, catKey) {
+    sel.textContent = '';
+    UC.CATS[catKey].units.forEach(function (u) {
+      var o = document.createElement('option');
+      o.value = u[0];
+      o.textContent = I18N.unitNames[catKey][u[0]];
+      sel.appendChild(o);
+    });
+  }
+
+  function setCat(key, ua, ub) {
+    cat = key;
+    Array.prototype.forEach.call(tabBox.children, function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.cat === key));
+    });
+    fillSelect(unitA, key);
+    fillSelect(unitB, key);
+    unitA.value = ua || DEFAULTS[key][0];
+    unitB.value = ub || DEFAULTS[key][1];
+    if (!UC.parseNum(valA.value) && valA.value !== '0') valA.value = '1';
+    lastEdited = 'a';
+    update();
+  }
+
+  function symbol(id) {
+    var name = I18N.unitNames[cat][id];
+    if (!name) return id;
+    var m = name.match(/\(([^)]+)\)$/);
+    return m ? m[1].replace(/,.*$/, '') : id;
+  }
+
+  function renderFormula() {
+    var box = $('formula');
+    box.textContent = '';
+    var from = unitA.value, to = unitB.value;
+    if (UC.CATS[cat].temp) {
+      var f = from === to ? I18N.sameScale : I18N.formulaPrefix + UC.TEMP_FORMULA[from + '-' + to];
+      var s = document.createElement('strong');
+      s.textContent = f;
+      box.appendChild(s);
+      return;
+    }
+    var factor = UC.convert(cat, from, to, 1);
+    var inverse = UC.convert(cat, to, from, 1);
+    var strong = document.createElement('strong');
+    strong.textContent = I18N.factorLine
+      .replace('{from}', symbol(from)).replace('{f1}', UC.fmtFactor(factor)).replace('{to}', symbol(to))
+      .replace('{to}', symbol(to)).replace('{f2}', UC.fmtFactor(inverse)).replace('{from}', symbol(from));
+    box.appendChild(strong);
+    box.appendChild(document.createTextNode(I18N.convertTail
+      .replace('{from}', symbol(from)).replace('{to}', symbol(to)).replace('{f1}', UC.fmtFactor(factor))));
+  }
+
+  function update() {
+    var src = lastEdited === 'a' ? valA : valB;
+    var dst = lastEdited === 'a' ? valB : valA;
+    var from = lastEdited === 'a' ? unitA.value : unitB.value;
+    var to = lastEdited === 'a' ? unitB.value : unitA.value;
+    var n = UC.parseNum(src.value);
+    dst.value = isNaN(n) ? '' : UC.fmt(UC.convert(cat, from, to, n));
+    renderFormula();
+  }
+
+  valA.addEventListener('input', function () { lastEdited = 'a'; update(); });
+  valB.addEventListener('input', function () { lastEdited = 'b'; update(); });
+  unitA.addEventListener('change', update);
+  unitB.addEventListener('change', update);
+
+  $('btn-swap').addEventListener('click', function () {
+    var u = unitA.value;
+    unitA.value = unitB.value;
+    unitB.value = u;
+    // keep the source value, recompute the other side
+    update();
+  });
+
+  setCat('length', 'cm', 'in');
+})();
+</script>
+</body>
+</html>

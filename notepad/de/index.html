@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest Online-Notizblock: privat, kostenlos, mit Autosave</title>
+<meta name="description" content="Notizen mit Autosave auf deinem eigenen Gerät, Live-Zählung von Wörtern, Zeichen und Zeilen. Kein Konto, nichts verlässt den Browser. Funktioniert offline.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://notepad.wbest.app/de/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://notepad.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://notepad.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://notepad.wbest.app/">
+<!-- i18n:hreflang:end -->
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Online-Notizblock">
+<meta property="og:title" content="WBest Online-Notizblock: privat, kostenlos, mit Autosave">
+<meta property="og:description" content="Notizen mit Autosave auf deinem eigenen Gerät, Live-Zählung von Wörtern, Zeichen und Zeilen. Kein Konto, nichts verlässt den Browser. Funktioniert offline.">
+<meta property="og:url" content="https://notepad.wbest.app/de/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest Online-Notizblock: privat, kostenlos, mit Autosave">
+<meta name="twitter:description" content="Notizen mit Autosave auf deinem eigenen Gerät, Live-Zählung von Wörtern, Zeichen und Zeilen. Kein Konto, nichts verlässt den Browser. Funktioniert offline.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Online-Notizblock",
+  "url": "https://notepad.wbest.app/de/",
+  "description": "Kostenloser Online-Notizblock mit automatischer Speicherung auf deinem eigenen Gerät. Live-Zählung von Wörtern, Zeichen und Zeilen, Download als Textdatei, Kopieren, Drucken und Leeren. Alles wird lokal in deinem Browser gespeichert. Kein Konto, kein Upload, funktioniert offline.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Benötigt JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Automatisches Speichern auf deinem Gerät per localStorage",
+    "Live-Zählung von Wörtern, Zeichen und Zeilen",
+    "Notizen als .txt-Datei herunterladen",
+    "Gesamten Text in die Zwischenablage kopieren",
+    "Notizen drucken",
+    "Monospace-Modus und einstellbare Textgröße",
+    "100 % privater Notizblock auf deinem Gerät, funktioniert offline"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wo werden meine Notizen gespeichert?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Deine Notizen werden automatisch im lokalen Speicher deines Browsers auf diesem Gerät gesichert. Sie werden auf keinen Server hochgeladen, und ein Konto ist nicht nötig. Weil sie in diesem Browser liegen, bleiben sie privat, sind aber auch an diesen Browser gebunden: Wenn du Websitedaten löschst oder ein anderes Gerät oder einen anderen Browser nutzt, erscheinen sie dort nicht."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Verliere ich meine Notizen, wenn ich den Tab schließe oder das Internet ausfällt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Der Notizblock speichert beim Tippen automatisch. Den Tab zu schließen, die Seite neu zu laden oder die Verbindung zu verlieren kostet dich also keine Arbeit. Die Seite macht genau dort weiter, wo du aufgehört hast, und funktioniert einmal geladen auch komplett offline."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist dieser Online-Notizblock wirklich privat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Alles, was du tippst, wird vollständig in deinem Browser verarbeitet und gespeichert. Nichts wird an einen Server gesendet, protokolliert oder getrackt. Du kannst es überprüfen, indem du die Internetverbindung trennst: Der Notizblock funktioniert weiter."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie übertrage ich meine Notizen auf ein anderes Gerät?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Weil Notizen aus Datenschutzgründen lokal gespeichert werden, synchronisieren sie sich nicht automatisch. Nutze zum Übertragen „Als .txt herunterladen“, um eine Textdatei zu speichern, oder „Kopieren“, um den Text in eine E-Mail, ein Dokument oder eine Cloud-Notiz auf dem anderen Gerät einzufügen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Zählt der Notizblock Wörter und Zeichen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Er zeigt beim Tippen live die Zahl der Wörter, Zeichen und Zeilen an. So eignet er sich als schneller Schmierzettel für Entwürfe, Social-Media-Beiträge oder alles andere mit einer Längenvorgabe."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Muss ich etwas installieren oder ein Konto anlegen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Es gibt nichts zu installieren und keine Anmeldung. Öffne die Seite in einem modernen Browser auf Desktop oder Smartphone und beginne zu tippen. Sofort und kostenlos."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+:root{ --good:#16a34a; }
+@media (prefers-color-scheme: dark){ :root{ --good:#4ade80; } }
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:18px 0 10px}
+.toolbar button{
+  font:inherit;font-size:.9rem;padding:8px 16px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.toolbar button:hover{border-color:var(--accent);color:var(--accent)}
+.toolbar button.danger:hover{border-color:var(--over);color:var(--over)}
+.toolbar .spacer{flex:1}
+.status{font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.status.saved{color:var(--good)}
+.editor-card{padding:0;overflow:hidden}
+#pad{
+  display:block;width:100%;min-height:56vh;resize:vertical;border:0;outline:0;
+  padding:18px 20px;background:var(--card);color:var(--text);
+  font:1rem/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif
+}
+#pad.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+.counts{display:flex;flex-wrap:wrap;gap:8px 22px;margin:12px 2px 0;font-size:.88rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.counts strong{color:var(--text)}
+.setrow{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin:14px 2px 0;font-size:.88rem;color:var(--muted)}
+.setrow label{display:flex;align-items:center;gap:8px;cursor:pointer}
+.setrow input[type="checkbox"]{width:16px;height:16px;accent-color:var(--accent);margin:0}
+.setrow input[type="range"]{accent-color:var(--accent)}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.faq p{color:var(--text)}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WBest Online-Notizblock</h1>
+  <p class="tagline">Schreibe Notizen, die automatisch auf deinem eigenen Gerät gespeichert werden, mit Live-Zählung von Wörtern, Zeichen und Zeilen. Kein Konto, und deine Notizen verlassen nie deinen Browser.</p>
+  <span class="badge">🔒 100 % privat, deine Notizen verlassen nie deinen Browser</span>
+  <nav class="toc" aria-label="Auf dieser Seite">
+    <a href="#tool">Notizblock</a>
+    <a href="#how">So funktioniert es</a>
+    <a href="#uses">Einsatzzwecke</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Online-Notizblock">
+    <div class="toolbar">
+      <button type="button" id="copy-btn">Kopieren</button>
+      <button type="button" id="download-btn">Als .txt herunterladen</button>
+      <button type="button" id="print-btn">Drucken</button>
+      <button type="button" id="clear-btn" class="danger">Leeren</button>
+      <span class="spacer"></span>
+      <span class="status" id="status" aria-live="polite">Bereit</span>
+    </div>
+
+    <div class="card editor-card">
+      <label class="sr-only" for="pad">Notizblock</label>
+      <textarea id="pad" spellcheck="true" autocomplete="off" autocapitalize="sentences"
+        placeholder="Einfach lostippen. Deine Notizen werden automatisch auf diesem Gerät gespeichert&#10;&#10;Nichts davon wird hochgeladen. Alles bleibt in deinem Browser."></textarea>
+    </div>
+
+    <div class="counts" aria-live="polite">
+      <span><strong id="c-words">0</strong> Wörter</span>
+      <span><strong id="c-chars">0</strong> Zeichen</span>
+      <span><strong id="c-nospace">0</strong> ohne Leerzeichen</span>
+      <span><strong id="c-lines">0</strong> Zeilen</span>
+    </div>
+
+    <div class="setrow">
+      <label><input type="checkbox" id="mono-toggle"> Monospace-Schrift</label>
+      <label>Textgröße
+        <input type="range" id="size-range" min="14" max="26" step="1" value="16" aria-label="Textgröße">
+      </label>
+    </div>
+  </section>
+
+  <p class="cross-link">Du willst wissen, wie lang der Text wirklich ist? Der <a href="https://wordcounter.wbest.app/de/">Wortzähler</a> zählt Wörter, Zeichen und Lesezeit und lädt ebenfalls nie einen Entwurf hoch.</p>
+
+  <section class="props" aria-label="Warum dieser Notizblock">
+    <div class="card"><strong>Speichert beim Tippen</strong><p>Jeder Tastendruck wird sofort auf diesem Gerät gespeichert. Schließe den Tab, lade neu oder geh offline: Dein Text ist wieder da, wenn du zurückkommst.</p></div>
+    <div class="card"><strong>Privat von Grund auf</strong><p>Notizen werden nur in deinem Browser gespeichert. Nichts wird hochgeladen, protokolliert oder getrackt. Auch sensible Entwürfe bleiben auf deinem Rechner.</p></div>
+    <div class="card"><strong>Kostenlos, für immer</strong><p>Kein Konto, keine Limits, keine Werbung. Eine schnelle, aufgeräumte Seite, die sofort lädt und funktioniert.</p></div>
+  </section>
+
+  <section id="how" class="prose">
+    <h2>So funktioniert der Online-Notizblock</h2>
+    <p>Dieser Notizblock ist eine einzelne Webseite, die vollständig in deinem Browser läuft. Während du tippst, wird der Text in den <strong>lokalen Speicher</strong> deines Browsers geschrieben, einen kleinen privaten Bereich auf deinem eigenen Gerät. Es ist kein Server beteiligt, also wird nichts von dem, was du schreibst, je über das Internet gesendet. Wenn du die Seite im selben Browser wieder öffnest, lädt deine letzte Notiz automatisch.</p>
+    <p>Weil die Notizen in diesem Browser auf diesem Gerät liegen, sind sie so privat wie das Gerät selbst, wandern aber nicht mit. Wenn du die Websitedaten deines Browsers löschst, den Browser wechselst oder an einen anderen Computer oder ein anderes Smartphone gehst, erscheinen die Notizen dort nicht. Um eine Kopie zu behalten oder sie zu übertragen, nutze <strong>Als .txt herunterladen</strong> für eine Datei oder <strong>Kopieren</strong>, um den Text woanders einzufügen.</p>
+    <h3>Die Werkzeugleiste</h3>
+    <p><strong>Kopieren</strong> legt die ganze Notiz in deine Zwischenablage. <strong>Als .txt herunterladen</strong> speichert sie als reine Textdatei. <strong>Drucken</strong> öffnet den Druckdialog deines Browsers (praktisch für ein schnelles PDF). <strong>Leeren</strong> leert den Notizblock nach einer Rückfrage. Die Live-Zähler unter dem Editor verfolgen Wörter, Zeichen und Zeilen beim Schreiben.</p>
+  </section>
+
+  <section id="uses" class="prose">
+    <h2>Wofür Menschen einen Online-Notizblock nutzen</h2>
+    <p>Ein Schmierzettel ohne Hürden ist eines dieser Tools, die still zum Alltag werden. Häufige Einsatzzwecke:</p>
+    <ul>
+      <li><strong>Schnelle Zwischenablage.</strong> Füge etwas ein, um die Formatierung zu entfernen, parke einen Link oder notiere eine Adresse, bevor du sie vergisst.</li>
+      <li><strong>Nachrichten entwerfen.</strong> Schreibe eine E-Mail, Nachricht oder einen Social-Media-Beitrag und sieh die Zeichenzahl, bevor du ihn abschickst.</li>
+      <li><strong>Notizen in Meetings und Vorlesungen.</strong> Halte den Moment fest, ohne eine schwerere App zu öffnen oder dich irgendwo anzumelden.</li>
+      <li><strong>To-do-Listen und Planung.</strong> Eine schlichte Liste, die immer nur einen Tab entfernt ist und dich nie zum Upgrade drängt.</li>
+      <li><strong>Schreiben ohne Ablenkung.</strong> Eine leere Seite ohne Menüs, Formatierungen oder Benachrichtigungen, die im Weg stehen.</li>
+    </ul>
+    <p>Weil es reiner Text ist, lässt sich alles sauber in jede andere App einfügen. Keine fremden Schriften, Farben oder versteckten Auszeichnungen.</p>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Häufig gestellte Fragen</h2>
+
+    <h3>Wo werden meine Notizen gespeichert?</h3>
+    <p>Deine Notizen werden automatisch im lokalen Speicher deines Browsers auf diesem Gerät gesichert. Sie werden auf keinen Server hochgeladen, und ein Konto ist nicht nötig. Weil sie in diesem Browser liegen, bleiben sie privat, sind aber auch an diesen Browser gebunden: Wenn du Websitedaten löschst oder ein anderes Gerät oder einen anderen Browser nutzt, erscheinen sie dort nicht.</p>
+
+    <h3>Verliere ich meine Notizen, wenn ich den Tab schließe oder das Internet ausfällt?</h3>
+    <p>Nein. Der Notizblock speichert beim Tippen automatisch. Den Tab zu schließen, die Seite neu zu laden oder die Verbindung zu verlieren kostet dich also keine Arbeit. Die Seite macht genau dort weiter, wo du aufgehört hast, und funktioniert einmal geladen auch komplett offline.</p>
+
+    <h3>Ist dieser Online-Notizblock wirklich privat?</h3>
+    <p>Ja. Alles, was du tippst, wird vollständig in deinem Browser verarbeitet und gespeichert. Nichts wird an einen Server gesendet, protokolliert oder getrackt. Du kannst es überprüfen, indem du die Internetverbindung trennst: Der Notizblock funktioniert weiter.</p>
+
+    <h3>Wie übertrage ich meine Notizen auf ein anderes Gerät?</h3>
+    <p>Weil Notizen aus Datenschutzgründen lokal gespeichert werden, synchronisieren sie sich nicht automatisch. Nutze zum Übertragen „Als .txt herunterladen“, um eine Textdatei zu speichern, oder „Kopieren“, um den Text in eine E-Mail, ein Dokument oder eine Cloud-Notiz auf dem anderen Gerät einzufügen.</p>
+
+    <h3>Zählt der Notizblock Wörter und Zeichen?</h3>
+    <p>Ja. Er zeigt beim Tippen live die Zahl der Wörter, Zeichen und Zeilen an. So eignet er sich als schneller Schmierzettel für Entwürfe, Social-Media-Beiträge oder alles andere mit einer Längenvorgabe.</p>
+
+    <h3>Muss ich etwas installieren oder ein Konto anlegen?</h3>
+    <p>Nein. Es gibt nichts zu installieren und keine Anmeldung. Öffne die Seite in einem modernen Browser auf Desktop oder Smartphone und beginne zu tippen. Sofort und kostenlos.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 DE</summary>
+    <ul>
+      <li><a href="https://notepad.wbest.app/" lang="en" hreflang="en">English</a></li>
+      <li aria-current="page">Deutsch</li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Gemacht für alle, die ein schnelles Tool brauchen, das einfach funktioniert.
+  <br>© 2026 WBest · Kostenlos nutzbar, keine Anmeldung nötig · <a href="https://wbest.app/">Kostenlose WBest-Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+/* Text metrics for the notepad. Pure functions, returned for testability. */
+var NP = (function () {
+  'use strict';
+  function counts(text) {
+    text = text == null ? '' : String(text);
+    var words = (text.match(/\S+/g) || []).length;
+    var chars = text.length;
+    var noSpace = text.replace(/\s/g, '').length;
+    var lines = text === '' ? 0 : text.split('\n').length;
+    return { words: words, chars: chars, noSpace: noSpace, lines: lines };
+  }
+  return { counts: counts };
+})();
+if (typeof module !== 'undefined') module.exports = NP;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = 'wb-notepad', PREF = 'wb-notepad-prefs';
+  var pad = $('pad'), status = $('status');
+  var saveTimer = null;
+  /* i18n:js:start */
+  var I18N = {
+    "ready": "Bereit",
+    "saved": "Gespeichert",
+    "saving": "Wird gespeichert…",
+    "saveFailed": "Speichern nicht möglich (Speicher voll oder blockiert)",
+    "loaded": "Von diesem Gerät geladen",
+    "nothingToCopy": "Nichts zu kopieren",
+    "copied": "In die Zwischenablage kopiert",
+    "downloaded": "{file} heruntergeladen",
+    "file": "notizen.txt",
+    "confirmClear": "Notizblock leeren? Das kann nicht rückgängig gemacht werden."
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
+
+  function refreshCounts() {
+    var c = NP.counts(pad.value);
+    $('c-words').textContent = c.words.toLocaleString(LANG);
+    $('c-chars').textContent = c.chars.toLocaleString(LANG);
+    $('c-nospace').textContent = c.noSpace.toLocaleString(LANG);
+    $('c-lines').textContent = c.lines.toLocaleString(LANG);
+  }
+
+  function setStatus(text, saved) {
+    status.textContent = text;
+    status.className = 'status' + (saved ? ' saved' : '');
+  }
+
+  function save() {
+    try { localStorage.setItem(KEY, pad.value); setStatus(I18N.saved, true); }
+    catch (e) { setStatus(I18N.saveFailed, false); }
+  }
+
+  function queueSave() {
+    setStatus(I18N.saving, false);
+    if (saveTimer) clearTimeout(saveTimer);
+    saveTimer = setTimeout(save, 400);
+  }
+
+  function onInput() { refreshCounts(); queueSave(); }
+
+  // Restore note + prefs
+  try {
+    var saved = localStorage.getItem(KEY);
+    if (saved != null) pad.value = saved;
+  } catch (e) {}
+  var prefs = {};
+  try { prefs = JSON.parse(localStorage.getItem(PREF) || '{}') || {}; } catch (e) {}
+
+  var mono = $('mono-toggle'), size = $('size-range');
+  if (prefs.mono) { mono.checked = true; pad.classList.add('mono'); }
+  if (prefs.size) { size.value = prefs.size; pad.style.fontSize = prefs.size + 'px'; }
+
+  function savePrefs() {
+    try { localStorage.setItem(PREF, JSON.stringify({ mono: mono.checked, size: size.value })); } catch (e) {}
+  }
+
+  refreshCounts();
+  setStatus(pad.value ? I18N.loaded : I18N.ready, Boolean(pad.value));
+
+  pad.addEventListener('input', onInput);
+  // Save immediately if the page is being hidden/closed mid-edit.
+  window.addEventListener('beforeunload', save);
+  document.addEventListener('visibilitychange', function () { if (document.hidden) save(); });
+
+  mono.addEventListener('change', function () { pad.classList.toggle('mono', mono.checked); savePrefs(); });
+  size.addEventListener('input', function () { pad.style.fontSize = size.value + 'px'; savePrefs(); });
+
+  $('copy-btn').addEventListener('click', function () {
+    if (!pad.value) { setStatus(I18N.nothingToCopy, false); return; }
+    var done = function () { setStatus(I18N.copied, true); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(pad.value).then(done, function () { pad.select(); document.execCommand('copy'); done(); });
+    } else { pad.select(); document.execCommand('copy'); done(); }
+  });
+
+  $('download-btn').addEventListener('click', function () {
+    var blob = new Blob([pad.value], { type: 'text/plain;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = I18N.file;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    setStatus(I18N.downloaded.replace('{file}', I18N.file), true);
+  });
+
+  $('print-btn').addEventListener('click', function () { window.print(); });
+
+  $('clear-btn').addEventListener('click', function () {
+    if (!pad.value) return;
+    if (!window.confirm(I18N.confirmClear)) return;
+    pad.value = '';
+    refreshCounts(); save(); pad.focus();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest Base64-Encoder &amp; -Decoder: kostenlos, sofort, privat</title>
+<meta name="description" content="Base64 online kodieren und dekodieren, mit korrektem UTF-8, URL-sicherer Ausgabe und Dateien. Deine Tokens bleiben im Browser. Kostenlos, ohne Anmeldung.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://base64.wbest.app/de/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://base64.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://base64.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://base64.wbest.app/">
+<!-- i18n:hreflang:end -->
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Base64-Encoder &amp; -Decoder">
+<meta property="og:title" content="WBest Base64-Encoder &amp; -Decoder: kostenlos, sofort, privat">
+<meta property="og:description" content="Base64 online kodieren und dekodieren, mit korrektem UTF-8, URL-sicherer Ausgabe und Dateien. Deine Tokens bleiben im Browser. Kostenlos, ohne Anmeldung.">
+<meta property="og:url" content="https://base64.wbest.app/de/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest Base64-Encoder &amp; -Decoder: kostenlos, sofort, privat">
+<meta name="twitter:description" content="Base64 online kodieren und dekodieren, mit korrektem UTF-8, URL-sicherer Ausgabe und Dateien. Deine Tokens bleiben im Browser. Kostenlos, ohne Anmeldung.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Base64-Encoder & -Decoder",
+  "url": "https://base64.wbest.app/de/",
+  "description": "Kostenloser Online-Base64-Encoder und -Decoder. Wandle Text oder ganze Dateien in Base64 und zurück, mit korrekter UTF-8-Behandlung, dem URL-sicheren Alphabet, optionalem Zeilenumbruch und Data-URL-Ausgabe. Beim Dekodieren erfährst du, wenn das Ergebnis binär statt Text ist, und kannst es als Download erhalten. Läuft vollständig in deinem Browser. Deine Tokens, Schlüssel und Payloads werden nie hochgeladen.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Benötigt JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Base64 beim Tippen kodieren und dekodieren",
+    "Korrektes UTF-8 für Emojis und jedes Alphabet",
+    "URL-sicheres Base64 mit optionalem Padding",
+    "Beliebige Datei kodieren, mit Data-URL-Ausgabe für Bilder",
+    "Base64 zurück in eine herunterladbare Datei dekodieren",
+    "MIME-Zeilenumbruch bei 76 Zeichen"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was ist Base64-Kodierung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Base64 ist eine Art, binäre Daten mit nur 64 reinen Textzeichen zu schreiben: A-Z, a-z, 0-9, Plus und Schrägstrich. Es existiert, weil viele Systeme (E-Mail, URLs, JSON, XML) für Text gebaut wurden und rohe Bytes beschädigen oder ablehnen. Base64 nimmt jeweils drei Bytes und schreibt sie als vier druckbare Zeichen, sodass die Daten jeden Kanal überstehen, der Text transportieren kann."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist Base64 eine Verschlüsselung? Ist es sicher?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Base64 ist keine Verschlüsselung und bietet keinerlei Sicherheit. Es gibt keinen Schlüssel und kein Geheimnis. Jeder kann es sofort dekodieren, genau das tut diese Seite. Es lässt Daten nur für das menschliche Auge verwürfelt aussehen. Nutze Base64 nie, um ein Passwort, einen API-Schlüssel oder persönliche Daten zu verbergen. Brauchst du Geheimhaltung, verschlüssle die Daten; Base64 macht nur einen bereits verschlüsselten Datenblock sicher als Text transportierbar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum macht Base64 meine Daten größer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Weil es für je drei Bytes vier Zeichen aufwendet, ist die Base64-Ausgabe rund 33 % größer als die Eingabe, plus etwas Padding. Das ist der Preis dafür, nur sichere Zeichen zu nutzen. Deshalb solltest du ein großes Bild nicht per Base64 in eine Webseite packen: Die Bytes sind größer und lassen sich, anders als eine echte Bilddatei, nicht separat vom Browser cachen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist URL-sicheres Base64?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standard-Base64 nutzt Plus und Schrägstrich, die beide in einer URL besondere Bedeutungen haben und verstümmelt oder neu kodiert werden. URL-sicheres Base64 (RFC 4648) ersetzt sie durch Minus und Unterstrich und lässt meist auch das Gleichheits-Padding weg. Genau das nutzen JSON Web Tokens für jedes ihrer Segmente. Aktiviere hier die URL-sichere Option und die Ausgabe passt sicher in einen Query-String oder Pfad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum zeigt mein dekodierter Text seltsame Zeichen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Meist, weil das kodierende Tool UTF-8 falsch behandelt hat. Base64 arbeitet mit Bytes, nicht mit Zeichen, Text muss also zuerst in Bytes umgewandelt werden, und die btoa-Funktion des Browsers akzeptiert nur Latin-1, sodass viele Tools alles jenseits von reinem ASCII still beschädigen. Diese Seite kodiert korrekt über UTF-8, sodass Emojis, Akzente, Griechisch, Arabisch und CJK exakt hin und zurück gehen. Wenn ein Dekodieren hier etwas Seltsames erzeugt, lag der Fehler wahrscheinlich beim ursprünglichen Encoder."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Werden meine Daten beim Kodieren oder Dekodieren hochgeladen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Alles wird in deinem Browser mit JavaScript kodiert und dekodiert, auch ganze Dateien, es wird also nichts hochgeladen, protokolliert oder getrackt. Das zählt hier mehr als fast überall: Base64-Strings tragen regelmäßig API-Schlüssel, Tokens und Zugangsdaten, und diese in eine Seite einzufügen, die sie an einen Server sendet, ist ein echtes Leck. Einmal geladen funktioniert diese Seite offline."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+:root{ --ok:#15803d; }
+@media (prefers-color-scheme: dark){ :root{ --ok:#4ade80; } }
+
+.modes{display:flex;gap:6px;margin:0 0 14px}
+.mode{position:relative;flex:1}
+.mode input{position:absolute;opacity:0;width:0;height:0}
+.mode span{
+  display:block;padding:10px 12px;border:1px solid var(--border);border-radius:8px;text-align:center;
+  background:var(--card);color:var(--muted);cursor:pointer;font-size:.95rem;font-weight:600;user-select:none
+}
+.mode input:checked+span{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.mode input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+
+.panes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:900px){.panes{grid-template-columns:1fr}}
+.pane{padding:14px 16px;display:flex;flex-direction:column}
+.pane h2{
+  font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);
+  margin:0 0 8px;display:flex;align-items:center;gap:8px
+}
+.pane h2 .spacer{flex:1}
+textarea{
+  width:100%;min-height:210px;resize:vertical;
+  font:.9rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  padding:11px;border:1px solid var(--border);border-radius:8px;
+  background:var(--card);color:var(--text);overflow-wrap:break-word;word-break:break-all
+}
+textarea[readonly]{background:var(--bg)}
+.meta{font-size:.75rem;color:var(--muted);margin:8px 0 0;min-height:1.2em}
+.meta b{color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.meta .grow{color:var(--accent);font-weight:600}
+.err{color:var(--over);font-size:.85rem;margin:8px 0 0;min-height:1.2em;overflow-wrap:anywhere}
+.note{color:var(--muted);font-size:.85rem;margin:8px 0 0}
+.note b{color:var(--ok)}
+
+button.mini{
+  font:inherit;font-size:.76rem;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+button.mini:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+button.mini:disabled{opacity:.45;cursor:not-allowed}
+
+.opts{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:12px 0 0;padding:12px 16px}
+.check{display:flex;align-items:center;gap:7px;font-size:.85rem;cursor:pointer;white-space:nowrap}
+.check input{width:15px;height:15px;accent-color:var(--accent)}
+.opts .spacer{flex:1}
+.opts .swap{
+  font:inherit;font-size:.82rem;font-weight:600;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.opts .swap:hover{border-color:var(--accent);color:var(--accent)}
+
+.drop{
+  width:100%;padding:18px;border:2px dashed var(--border);border-radius:10px;margin:12px 0 0;
+  background:var(--card);color:var(--text);cursor:pointer;text-align:center;font:inherit
+}
+.drop:hover,.drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.drop strong{display:block;font-size:.95rem}
+.drop span{color:var(--muted);font-size:.8rem}
+.filebar{
+  display:none;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0 0;padding:10px 14px;
+  border:1px solid var(--accent);border-radius:10px;background:var(--accent-soft);font-size:.85rem
+}
+.filebar.on{display:flex}
+.filebar .name{font-weight:600;overflow-wrap:anywhere}
+.filebar .spacer{flex:1}
+.preview-img{max-width:100%;max-height:120px;border-radius:6px;border:1px solid var(--border);display:block;margin:10px 0 0}
+
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.warn-card{border-color:var(--over)!important}
+.warn-card strong{color:var(--over)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:420px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;background:var(--accent-soft);color:var(--accent);padding:1px 5px;border-radius:4px}
+.faq p{color:var(--text)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+/* Mobile: let tables reflow to fit the viewport instead of scrolling.
+   min-width would otherwise hold the table open and overflow the page. */
+@media (max-width:560px){
+  table{min-width:0}
+  th,td{padding-left:8px;padding-right:8px}
+  td{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+  td code{white-space:normal;overflow-wrap:anywhere}
+  thead th{text-transform:none;letter-spacing:normal}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WBest Base64-Encoder &amp; -Decoder</h1>
+  <p class="tagline">Base64 beim Tippen kodieren und dekodieren, mit korrektem UTF-8, URL-sicherer Ausgabe und ganzen Dateien. Nichts hochgeladen, kostenlos, ohne Anmeldung.</p>
+  <span class="badge">🔒 100 % privat, deine Tokens und Schlüssel verlassen nie deinen Browser</span>
+  <nav class="toc" aria-label="Auf dieser Seite">
+    <a href="#tool">Encoder</a>
+    <a href="#what">Was ist Base64</a>
+    <a href="#not-encryption">Keine Verschlüsselung</a>
+    <a href="#uses">Wo es genutzt wird</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Base64-Encoder und -Decoder">
+    <div class="modes" role="radiogroup" aria-label="Modus">
+      <label class="mode">
+        <input type="radio" name="mode" value="encode" checked>
+        <span>Kodieren → Base64</span>
+      </label>
+      <label class="mode">
+        <input type="radio" name="mode" value="decode">
+        <span>Dekodieren → Text</span>
+      </label>
+    </div>
+
+    <div class="panes">
+      <div class="card pane">
+        <h2>
+          <label for="input" id="in-label">Zu kodierender Text</label>
+          <span class="spacer"></span>
+          <button type="button" class="mini" id="clear">Leeren</button>
+        </h2>
+        <textarea id="input" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
+        <p class="meta" id="in-meta"></p>
+        <p class="err" id="err" aria-live="polite"></p>
+      </div>
+
+      <div class="card pane">
+        <h2>
+          <span id="out-label">Base64</span>
+          <span class="spacer"></span>
+          <button type="button" class="mini" id="copy">Kopieren</button>
+          <button type="button" class="mini" id="download">Herunterladen</button>
+        </h2>
+        <textarea id="output" readonly spellcheck="false" aria-labelledby="out-label"></textarea>
+        <p class="meta" id="out-meta"></p>
+        <p class="note" id="note"></p>
+        <img class="preview-img" id="preview" alt="Vorschau des dekodierten Bildes" hidden>
+      </div>
+    </div>
+
+    <div class="card opts">
+      <label class="check"><input type="checkbox" id="urlsafe"> URL-sicheres Alphabet <code>-_</code></label>
+      <label class="check"><input type="checkbox" id="pad" checked> Padding <code>=</code></label>
+      <label class="check"><input type="checkbox" id="wrap"> Zeilen bei 76 umbrechen</label>
+      <span class="spacer"></span>
+      <button type="button" class="swap" id="swap">⇄ Ausgabe als Eingabe nutzen</button>
+    </div>
+
+    <button type="button" class="drop" id="drop">
+      <strong>Datei hierher ziehen, um sie zu kodieren</strong>
+      <span>oder klicken zum Auswählen · Bilder, PDFs, Schlüssel, alles · es verlässt nie dein Gerät</span>
+    </button>
+    <input type="file" id="file" class="sr-only" aria-label="Eine Datei zum Kodieren wählen">
+
+    <div class="filebar" id="filebar">
+      <span class="name" id="file-name"></span>
+      <span id="file-size"></span>
+      <span class="spacer"></span>
+      <label class="check"><input type="checkbox" id="dataurl"> Als Data-URL</label>
+      <button type="button" class="mini" id="file-clear">Datei entfernen</button>
+    </div>
+  </section>
+
+  <p class="cross-link">Du brauchst stattdessen einen einseitigen Fingerabdruck von Daten? Das ist Hashen: siehe den <a href="https://hashgenerator.wbest.app/de/">Hash-Generator</a>. Ein JWT-Segment dekodiert und willst es lesbar? Der <a href="https://jsonformatter.wbest.app/de/">JSON-Formatierer</a> übernimmt ab da.</p>
+
+  <section class="props" aria-label="Warum dieses Base64-Tool">
+    <div class="card"><strong>UTF-8 richtig gemacht</strong><p>Die meisten Tools stützen sich auf <code>btoa</code> des Browsers, das nur Latin-1 akzeptiert und alles andere still beschädigt. Emojis, Akzente und CJK gehen hier exakt hin und zurück.</p></div>
+    <div class="card"><strong>Sicher für Geheimnisse</strong><p>Base64-Strings tragen API-Schlüssel, Tokens und Zugangsdaten. Diese Seite sendet sie nirgendwohin. Sie funktioniert auch mit ausgeschalteter Verbindung.</p></div>
+    <div class="card warn-card"><strong>Keine Verschlüsselung</strong><p>Base64 verbirgt nichts. Jeder kann es in einer Sekunde dekodieren, genau wie diese Seite. Nutze es nie, um ein Passwort oder einen Schlüssel zu schützen.</p></div>
+  </section>
+
+  <section id="what" class="prose">
+    <h2>Was ist Base64?</h2>
+    <p><strong>Base64</strong> ist eine Art, beliebige binäre Daten mit nur 64 Zeichen zu schreiben, die überall überleben: <code>A-Z</code>, <code>a-z</code>, <code>0-9</code>, <code>+</code> und <code>/</code>. Es existiert, weil ein Großteil der Internet-Infrastruktur (E-Mail, URLs, JSON, XML, HTTP-Header) für Text ausgelegt wurde und rohe Bytes bereitwillig beschädigt, entfernt oder ablehnt.</p>
+    <p>Der Mechanismus ist einfache Arithmetik. Drei Bytes sind 24 Bit; teile diese 24 Bit in vier Gruppen zu je sechs; jede 6-Bit-Gruppe ist eine Zahl von 0 bis 63, die das Alphabet indiziert. Also <strong>drei Bytes hinein, vier Zeichen heraus</strong>, und dieses Verhältnis ist die ganze Geschichte von Base64, samt seiner 33 % Größenzunahme.</p>
+    <h3>Wofür das Padding da ist</h3>
+    <p>Ist deine Datenmenge kein sauberes Vielfaches von drei Bytes, ist die letzte Gruppe zu kurz. Base64 füllt die Ausgabe mit <code>=</code> auf, sodass die Länge immer ein Vielfaches von vier ist, was einem Decoder sagt, wie viele echte Bytes die letzte Gruppe hielt. Manche Systeme lassen das Padding weg, weil sie die Länge ohnehin kennen. Deshalb gibt es hier den Padding-Schalter, und deshalb sollte ein Decoder es auch ohne akzeptieren. Dieser tut es.</p>
+    <h3>Bytes, nicht Zeichen</h3>
+    <p>Das ist die Feinheit, an der die meisten Implementierungen scheitern. Base64 kodiert <em>Bytes</em>, Text muss also zuerst zu Bytes werden, und das erfordert die Wahl einer Kodierung, praktisch immer UTF-8. Das eingebaute <code>btoa()</code> des Browsers verweigert alles über Latin-1, sodass darauf gebaute Tools entweder abstürzen oder „café“, „日本語“ oder „🎉“ still verstümmeln. Diese Seite konvertiert mit <code>TextEncoder</code> über UTF-8, sodass jedes Alphabet und Emoji den Hin- und Rückweg unversehrt übersteht. Probier es aus.</p>
+  </section>
+
+  <section id="not-encryption" class="prose">
+    <h2>Base64 ist keine Verschlüsselung</h2>
+    <p>Das verdient einen eigenen Abschnitt, denn es ist das folgenreichste Missverständnis im ganzen Thema, und es taucht in echten Sicherheitsvorfällen auf.</p>
+    <p><strong>Base64 bietet null Sicherheit.</strong> Es gibt keinen Schlüssel, kein Geheimnis und nichts zu knacken. Es ist eine öffentliche, umkehrbare Transformation, die jeder sofort rückgängig machen kann, wie genau diese Seite zeigt. Es macht Daten <em>für einen flüchtigen menschlichen Blick unlesbar</em>, und das ist alles.</p>
+    <p>Also: Base64e nie ein Passwort und nenne es geschützt. „Verschleiere“ nie einen API-Schlüssel durch Kodieren. Nimm nie an, dass Base64 in einer Konfigurationsdatei, einem Cookie oder einer Datenbankspalte bedeutet, dass der Inhalt sicher ist. Wenn jemand den String lesen kann, kann er die Daten lesen.</p>
+    <p>Wofür Base64 wirklich da ist, ist der <strong>Transport</strong>: Bytes einen reinen Textkanal überstehen zu lassen. Verschlüsselung und Kodierung lösen verschiedene Probleme und ergänzen sich gut: zuerst verschlüsseln, dann den Chiffretext base64en, damit er durch E-Mail oder JSON reisen kann. In dieser Reihenfolge fügt die Base64-Schicht der Geheimhaltung nichts und der Kompatibilität alles hinzu.</p>
+    <p>Du willst den Inhalt eines Tokens prüfen? Ein JWT besteht aus drei URL-sicheren Base64-Segmenten, und du kannst jedes davon hier einfügen.</p>
+  </section>
+
+  <section id="uses" class="prose">
+    <h2>Wo Base64 auftaucht</h2>
+    <div class="table-wrap">
+      <table>
+        <caption>Die Orte, an denen du am ehesten einem Base64-String begegnest, und welche Variante jeder nutzt.</caption>
+        <thead><tr><th scope="col">Wo</th><th scope="col">Sieht aus wie</th><th scope="col">Hinweise</th></tr></thead>
+        <tbody>
+          <tr><td>Data-URLs</td><td><code>data:image/png;base64,iVBORw0…</code></td><td>Bettet eine Datei direkt in HTML oder CSS ein. Praktisch für winzige Icons; verschwenderisch für alles Größere, da es nicht separat gecacht werden kann</td></tr>
+          <tr><td>HTTP-Basic-Auth</td><td><code>Authorization: Basic dXNlcjpwYXNz</code></td><td>Nur <code>user:password</code> kodiert, überhaupt nicht geschützt, weshalb es HTTPS braucht</td></tr>
+          <tr><td>JSON Web Tokens</td><td><code>eyJhbGciOi…</code></td><td>Drei URL-sichere Segmente, durch Punkte verbunden. Die Payload ist für jeden lesbar; die Signatur macht es vertrauenswürdig</td></tr>
+          <tr><td>E-Mail-Anhänge</td><td>MIME, umgebrochen bei 76 Zeichen</td><td>Der ursprüngliche Grund, warum Base64 existiert: SMTP war für 7-Bit-Text gebaut</td></tr>
+          <tr><td>Schlüssel und Zertifikate</td><td><code>-----BEGIN CERTIFICATE-----</code></td><td>Das PEM-Format ist Base64 des binären DER, mit Kopfzeilen</td></tr>
+          <tr><td>API-Payloads</td><td>Kodierte Blobs innerhalb von JSON</td><td>JSON hat keinen Binärtyp, also werden Bytes per Base64 in einen String verwandelt</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Standard vs. URL-sicher</h3>
+    <p>Die <code>+</code> und <code>/</code> von Standard-Base64 sind beide innerhalb einer URL bedeutsam: <code>+</code> kann als Leerzeichen gelesen werden und <code>/</code> als Pfadtrenner. <strong>URL-sicheres Base64</strong> (RFC 4648 §5) ersetzt sie durch <code>-</code> und <code>_</code> und lässt typischerweise auch das <code>=</code>-Padding weg, sodass der String unverändert in einem Query-Parameter oder Pfad stehen kann. Genau das nutzen JWTs. Schalte oben den URL-sicheren Schalter um und beobachte, wie sich die Zeichen ändern. Die zugrunde liegenden Bytes sind identisch.</p>
+    <p>Du arbeitest eher mit den URLs selbst als mit ihren Payloads? Die Prozent-Kodierung ist ein anderes Schema mit einer anderen Aufgabe.</p>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Häufig gestellte Fragen</h2>
+
+    <h3>Was ist Base64-Kodierung?</h3>
+    <p>Base64 ist eine Art, binäre Daten mit nur 64 reinen Textzeichen zu schreiben: A-Z, a-z, 0-9, Plus und Schrägstrich. Es existiert, weil viele Systeme (E-Mail, URLs, JSON, XML) für Text gebaut wurden und rohe Bytes beschädigen oder ablehnen. Base64 nimmt jeweils drei Bytes und schreibt sie als vier druckbare Zeichen, sodass die Daten jeden Kanal überstehen, der Text transportieren kann.</p>
+
+    <h3>Ist Base64 eine Verschlüsselung? Ist es sicher?</h3>
+    <p>Nein. Base64 ist keine Verschlüsselung und bietet keinerlei Sicherheit. Es gibt keinen Schlüssel und kein Geheimnis. Jeder kann es sofort dekodieren, genau das tut diese Seite. Es lässt Daten nur für das menschliche Auge verwürfelt aussehen. Nutze Base64 nie, um ein Passwort, einen API-Schlüssel oder persönliche Daten zu verbergen. Brauchst du Geheimhaltung, verschlüssle die Daten; Base64 macht nur einen bereits verschlüsselten Datenblock sicher als Text transportierbar.</p>
+
+    <h3>Warum macht Base64 meine Daten größer?</h3>
+    <p>Weil es für je drei Bytes vier Zeichen aufwendet, ist die Base64-Ausgabe rund 33 % größer als die Eingabe, plus etwas Padding. Das ist der Preis dafür, nur sichere Zeichen zu nutzen. Deshalb solltest du ein großes Bild nicht per Base64 in eine Webseite packen: Die Bytes sind größer und lassen sich, anders als eine echte Bilddatei, nicht separat vom Browser cachen.</p>
+
+    <h3>Was ist URL-sicheres Base64?</h3>
+    <p>Standard-Base64 nutzt Plus und Schrägstrich, die beide in einer URL besondere Bedeutungen haben und verstümmelt oder neu kodiert werden. URL-sicheres Base64 (RFC 4648) ersetzt sie durch Minus und Unterstrich und lässt meist auch das Gleichheits-Padding weg. Genau das nutzen JSON Web Tokens für jedes ihrer Segmente. Aktiviere hier die URL-sichere Option und die Ausgabe passt sicher in einen Query-String oder Pfad.</p>
+
+    <h3>Warum zeigt mein dekodierter Text seltsame Zeichen?</h3>
+    <p>Meist, weil das kodierende Tool UTF-8 falsch behandelt hat. Base64 arbeitet mit Bytes, nicht mit Zeichen, Text muss also zuerst in Bytes umgewandelt werden, und die <code>btoa</code>-Funktion des Browsers akzeptiert nur Latin-1, sodass viele Tools alles jenseits von reinem ASCII still beschädigen. Diese Seite kodiert korrekt über UTF-8, sodass Emojis, Akzente, Griechisch, Arabisch und CJK exakt hin und zurück gehen. Wenn ein Dekodieren hier etwas Seltsames erzeugt, lag der Fehler wahrscheinlich beim ursprünglichen Encoder.</p>
+
+    <h3>Werden meine Daten beim Kodieren oder Dekodieren hochgeladen?</h3>
+    <p>Nein. Alles wird in deinem Browser mit JavaScript kodiert und dekodiert, auch ganze Dateien, es wird also nichts hochgeladen, protokolliert oder getrackt. Das zählt hier mehr als fast überall: Base64-Strings tragen regelmäßig API-Schlüssel, Tokens und Zugangsdaten, und diese in eine Seite einzufügen, die sie an einen Server sendet, ist ein echtes Leck. Einmal geladen funktioniert diese Seite offline.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 DE</summary>
+    <ul>
+      <li><a href="https://base64.wbest.app/" lang="en" hreflang="en">English</a></li>
+      <li aria-current="page">Deutsch</li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Gemacht für alle, die ein schnelles Tool brauchen, das einfach funktioniert.
+  <br>© 2026 WBest · Kostenlos nutzbar, keine Anmeldung nötig · <a href="https://wbest.app/">Kostenlose WBest-Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+/* Base64 codec. Pure functions on bytes, returned for testability.
+   Deliberately not built on btoa/atob: those only handle Latin-1, which is the
+   single most common source of corrupted Base64. Working on bytes directly also
+   makes the URL-safe alphabet, optional padding, and files fall out naturally. */
+var B64 = (function () {
+  'use strict';
+
+  var STD = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+  var URL_SAFE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+
+  // One lookup for both alphabets: decoding accepts either without being told.
+  var LOOKUP = {};
+  for (var i = 0; i < 64; i++) {
+    LOOKUP[STD[i]] = i;
+    LOOKUP[URL_SAFE[i]] = i;
+  }
+
+  function bytesToBase64(bytes, opts) {
+    var alpha = (opts && opts.urlSafe) ? URL_SAFE : STD;
+    var pad = !opts || opts.pad !== false;
+    var out = '';
+    for (var i = 0; i < bytes.length; i += 3) {
+      var b0 = bytes[i];
+      var b1 = i + 1 < bytes.length ? bytes[i + 1] : undefined;
+      var b2 = i + 2 < bytes.length ? bytes[i + 2] : undefined;
+      var n = (b0 << 16) | ((b1 || 0) << 8) | (b2 || 0);
+      out += alpha[(n >> 18) & 63];
+      out += alpha[(n >> 12) & 63];
+      out += (b1 === undefined) ? (pad ? '=' : '') : alpha[(n >> 6) & 63];
+      out += (b2 === undefined) ? (pad ? '=' : '') : alpha[n & 63];
+    }
+    return out;
+  }
+
+  // Accept what the world actually sends: either alphabet, any whitespace or
+  // line wrapping, and padding that may be absent, partial, or excessive.
+  function normalize(str) {
+    return String(str == null ? '' : str).replace(/[\s\r\n]+/g, '').replace(/=+$/, '');
+  }
+
+  // Returns { bytes } | { error }
+  function base64ToBytes(str) {
+    var s = normalize(str);
+    if (!s) return { bytes: new Uint8Array(0) };
+    for (var i = 0; i < s.length; i++) {
+      if (!Object.prototype.hasOwnProperty.call(LOOKUP, s[i])) {
+        return { error: 'char', ch: s[i] };
+      }
+    }
+    // Four characters carry three bytes, so a lone trailing character is
+    // impossible - it encodes only 6 bits, less than one byte.
+    if (s.length % 4 === 1) {
+      return { error: 'length' };
+    }
+    var bytes = new Uint8Array(Math.floor(s.length * 3 / 4));
+    var p = 0;
+    for (var j = 0; j < s.length; j += 4) {
+      var c0 = LOOKUP[s[j]];
+      var c1 = LOOKUP[s[j + 1]];
+      var c2 = j + 2 < s.length ? LOOKUP[s[j + 2]] : undefined;
+      var c3 = j + 3 < s.length ? LOOKUP[s[j + 3]] : undefined;
+      var n = (c0 << 18) | (c1 << 12) | ((c2 || 0) << 6) | (c3 || 0);
+      bytes[p++] = (n >> 16) & 255;
+      if (c2 !== undefined) bytes[p++] = (n >> 8) & 255;
+      if (c3 !== undefined) bytes[p++] = n & 255;
+    }
+    return { bytes: bytes };
+  }
+
+  function encodeText(text, opts) {
+    var bytes = new TextEncoder().encode(String(text == null ? '' : text));
+    var out = bytesToBase64(bytes, opts);
+    return (opts && opts.wrap) ? wrap(out, opts.wrap) : out;
+  }
+
+  // Returns { text } | { error }. Bytes that are not valid UTF-8 are reported
+  // rather than silently rendered as replacement characters - the input is
+  // probably a file, and the caller can offer it as a download instead.
+  function decodeToText(str) {
+    var r = base64ToBytes(str);
+    if (r.error) return r;
+    try {
+      return { text: new TextDecoder('utf-8', { fatal: true }).decode(r.bytes), bytes: r.bytes };
+    } catch (e) {
+      return { binary: true, bytes: r.bytes, error: 'binary' };
+    }
+  }
+
+  // MIME wants 76-character lines; some parsers insist on it.
+  function wrap(str, width) {
+    width = width || 76;
+    if (!str || width < 1) return str;
+    var out = [];
+    for (var i = 0; i < str.length; i += width) out.push(str.slice(i, i + width));
+    return out.join('\n');
+  }
+
+  // How many bytes a Base64 string decodes to, without decoding it.
+  function decodedLength(str) {
+    var s = normalize(str);
+    return Math.floor(s.length * 3 / 4);
+  }
+
+  // The growth Base64 costs: 4 characters per 3 bytes, rounded up, plus padding.
+  function encodedLength(byteLength, pad) {
+    if (pad === false) return Math.ceil(byteLength * 4 / 3);
+    return Math.ceil(byteLength / 3) * 4;
+  }
+
+  function isValid(str) {
+    return !base64ToBytes(str).error;
+  }
+
+  return {
+    STD: STD, URL_SAFE: URL_SAFE,
+    bytesToBase64: bytesToBase64, base64ToBytes: base64ToBytes,
+    encodeText: encodeText, decodeToText: decodeToText,
+    normalize: normalize, wrap: wrap, isValid: isValid,
+    decodedLength: decodedLength, encodedLength: encodedLength
+  };
+})();
+if (typeof module !== 'undefined') module.exports = B64;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+
+  var input = $('input'), output = $('output');
+  /* i18n:js:start */
+  var I18N = {
+    "labelEncode": "Zu kodierender Text",
+    "labelDecode": "Zu dekodierendes Base64",
+    "labelFile": "Datei geladen",
+    "outEncode": "Base64",
+    "outDecode": "Dekodierter Text",
+    "phEncode": "Text tippen oder einfügen - Emojis und jedes Alphabet funktionieren korrekt.",
+    "phDecode": "Base64 einfügen. Zeilenumbrüche, fehlendes Padding und URL-sichere Zeichen sind alle in Ordnung.",
+    "byte": "Byte",
+    "bytes": "Byte",
+    "metaFile": "Datei · <b>{size}</b>",
+    "metaB64": "<b>{size}</b> Base64 · <span class=\"grow\">+{pct}%</span>",
+    "metaChars": "<b>{n}</b> Zeichen · <b>{size}</b> als UTF-8",
+    "metaDecodesTo": "<b>{n}</b> Base64-Zeichen · dekodiert zu <b>{size}</b>",
+    "metaBinary": "<b>{size}</b> binär",
+    "metaDecoded": "<b>{n}</b> Zeichen · <b>{size}</b>",
+    "noteBinary": "<b>Das sind binäre Daten, kein Text.</b> Nutze „Herunterladen“, um sie als Datei zu speichern.",
+    "noteLooks": " Sieht aus wie {type}.",
+    "errChar": "Kein gültiges Base64: unerwartetes Zeichen „{ch}“.",
+    "errLength": "Kein gültiges Base64: die Länge stimmt nicht - ein Zeichen scheint zu fehlen oder zu viel zu sein.",
+    "errFileRead": "Diese Datei konnte nicht gelesen werden.",
+    "copied": "Kopiert",
+    "seed": "Base64 ist keine Verschlüsselung - jeder kann das lesen. 🔓"
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
+  var fileBytes = null, fileName = '', fileType = '';
+  var lastBytes = null; // bytes behind the current output, for Download
+
+  function mode() {
+    return document.querySelector('input[name="mode"]:checked').value;
+  }
+  function opts() {
+    return {
+      urlSafe: $('urlsafe').checked,
+      pad: $('pad').checked,
+      wrap: $('wrap').checked ? 76 : 0
+    };
+  }
+
+  function fmtBytes(n) {
+    if (n < 1024) return n.toLocaleString(LANG) + ' ' + (n === 1 ? I18N.byte : I18N.bytes);
+    if (n < 1048576) return (n / 1024).toLocaleString(LANG, { maximumFractionDigits: 1 }) + ' KB';
+    return (n / 1048576).toLocaleString(LANG, { maximumFractionDigits: 2 }) + ' MB';
+  }
+
+  function setLabels() {
+    var enc = mode() === 'encode';
+    $('in-label').textContent = fileBytes ? I18N.labelFile : (enc ? I18N.labelEncode : I18N.labelDecode);
+    $('out-label').textContent = enc ? I18N.outEncode : I18N.outDecode;
+    input.placeholder = enc ? I18N.phEncode : I18N.phDecode;
+    input.readOnly = !!fileBytes;
+  }
+
+  function clearPreview() {
+    var img = $('preview');
+    if (img.src) { URL.revokeObjectURL(img.src); img.removeAttribute('src'); }
+    img.hidden = true;
+  }
+
+  function update() {
+    var err = $('err'), note = $('note');
+    err.textContent = '';
+    note.textContent = '';
+    clearPreview();
+    lastBytes = null;
+    setLabels();
+
+    // --- file mode: always an encode, from the real bytes ---
+    if (fileBytes) {
+      var b64 = B64.bytesToBase64(fileBytes, opts());
+      if (opts().wrap) b64 = B64.wrap(b64, 76);
+      var text = $('dataurl').checked
+        ? 'data:' + (fileType || 'application/octet-stream') + ';base64,' + b64.replace(/\n/g, '')
+        : b64;
+      output.value = text;
+      $('in-meta').innerHTML = I18N.metaFile.replace('{size}', fmtBytes(fileBytes.length));
+      $('out-meta').innerHTML = I18N.metaB64.replace('{size}', fmtBytes(text.length))
+        .replace('{pct}', Math.round((text.length / Math.max(1, fileBytes.length) - 1) * 100));
+      lastBytes = fileBytes;
+      if (/^image\//.test(fileType)) {
+        var img = $('preview');
+        img.src = URL.createObjectURL(new Blob([fileBytes], { type: fileType }));
+        img.hidden = false;
+      }
+      $('copy').disabled = $('download').disabled = false;
+      return;
+    }
+
+    var value = input.value;
+
+    if (mode() === 'encode') {
+      var out = B64.encodeText(value, opts());
+      output.value = out;
+      var inBytes = new TextEncoder().encode(value).length;
+      $('in-meta').innerHTML = I18N.metaChars.replace('{n}', value.length.toLocaleString(LANG)).replace('{size}', fmtBytes(inBytes));
+      $('out-meta').innerHTML = out
+        ? I18N.metaB64.replace('{size}', fmtBytes(out.length))
+          .replace('{pct}', Math.round((out.replace(/\n/g, '').length / Math.max(1, inBytes) - 1) * 100))
+        : '';
+      lastBytes = new TextEncoder().encode(value);
+      $('copy').disabled = $('download').disabled = !out;
+      return;
+    }
+
+    // --- decode ---
+    var r = B64.decodeToText(value);
+    $('in-meta').innerHTML = value
+      ? I18N.metaDecodesTo.replace('{n}', B64.normalize(value).length.toLocaleString(LANG))
+        .replace('{size}', fmtBytes(B64.decodedLength(value)))
+      : '';
+
+    if (r.error) {
+      output.value = '';
+      if (r.binary) {
+        // Not a mistake - the input is a file. Offer it as one.
+        lastBytes = r.bytes;
+        note.innerHTML = I18N.noteBinary;
+        $('out-meta').innerHTML = I18N.metaBinary.replace('{size}', fmtBytes(r.bytes.length));
+        $('download').disabled = false;
+        $('copy').disabled = true;
+        var type = sniff(r.bytes);
+        if (type) {
+          var im = $('preview');
+          im.src = URL.createObjectURL(new Blob([r.bytes], { type: type }));
+          im.hidden = false;
+          note.innerHTML += I18N.noteLooks.replace('{type}', type);
+        }
+      } else {
+        err.textContent = r.error === 'char' ? I18N.errChar.replace('{ch}', r.ch) : I18N.errLength;
+        $('out-meta').textContent = '';
+        $('copy').disabled = $('download').disabled = true;
+      }
+      return;
+    }
+
+    output.value = r.text;
+    lastBytes = r.bytes;
+    $('out-meta').innerHTML = r.text
+      ? I18N.metaDecoded.replace('{n}', r.text.length.toLocaleString(LANG)).replace('{size}', fmtBytes(r.bytes.length))
+      : '';
+    $('copy').disabled = $('download').disabled = !r.text;
+  }
+
+  // Recognise the common file types from their magic bytes, so a decoded image
+  // can be previewed and downloaded with the right extension.
+  function sniff(b) {
+    if (b.length > 8 && b[0] === 0x89 && b[1] === 0x50 && b[2] === 0x4e && b[3] === 0x47) return 'image/png';
+    if (b.length > 3 && b[0] === 0xff && b[1] === 0xd8 && b[2] === 0xff) return 'image/jpeg';
+    if (b.length > 6 && b[0] === 0x47 && b[1] === 0x49 && b[2] === 0x46) return 'image/gif';
+    if (b.length > 12 && b[0] === 0x52 && b[1] === 0x49 && b[2] === 0x46 && b[3] === 0x46 &&
+        b[8] === 0x57 && b[9] === 0x45 && b[10] === 0x42 && b[11] === 0x50) return 'image/webp';
+    if (b.length > 4 && b[0] === 0x25 && b[1] === 0x50 && b[2] === 0x44 && b[3] === 0x46) return 'application/pdf';
+    return '';
+  }
+
+  function extFor(type) {
+    return ({
+      'image/png': 'png', 'image/jpeg': 'jpg', 'image/gif': 'gif',
+      'image/webp': 'webp', 'application/pdf': 'pdf'
+    })[type] || 'bin';
+  }
+
+  input.addEventListener('input', update);
+  ['urlsafe', 'pad', 'wrap', 'dataurl'].forEach(function (id) {
+    $(id).addEventListener('change', update);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="mode"]'), function (r) {
+    r.addEventListener('change', function () {
+      // Encoding options describe Base64 output; they mean nothing when the
+      // output is plain text, so keep them out of the way while decoding.
+      var enc = mode() === 'encode';
+      $('urlsafe').closest('.check').hidden = !enc;
+      $('pad').closest('.check').hidden = !enc;
+      $('wrap').closest('.check').hidden = !enc;
+      update();
+    });
+  });
+
+  $('clear').addEventListener('click', function () {
+    input.value = '';
+    clearFile();
+    update();
+    input.focus();
+  });
+
+  $('swap').addEventListener('click', function () {
+    var out = output.value;
+    if (!out) return;
+    clearFile();
+    input.value = out;
+    // Round-tripping is the point of the button: flip the mode too.
+    var next = mode() === 'encode' ? 'decode' : 'encode';
+    document.querySelector('input[name="mode"][value="' + next + '"]').checked = true;
+    document.querySelector('input[name="mode"]:checked').dispatchEvent(new Event('change', { bubbles: true }));
+  });
+
+  function copied(btn) {
+    var old = btn.textContent;
+    btn.textContent = I18N.copied;
+    setTimeout(function () { btn.textContent = old; }, 1000);
+  }
+  $('copy').addEventListener('click', function () {
+    var b = $('copy'), t = output.value;
+    var done = function () { copied(b); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, done);
+    else done();
+  });
+
+  $('download').addEventListener('click', function () {
+    if (!lastBytes) return;
+    var name, type;
+    if (mode() === 'encode' || fileBytes) {
+      // The useful artifact when encoding is the Base64 text itself.
+      var blob = new Blob([output.value], { type: 'text/plain' });
+      save(blob, (fileName ? fileName + '.b64.txt' : 'encoded.b64.txt'));
+      return;
+    }
+    type = sniff(lastBytes);
+    name = 'decoded.' + (type ? extFor(type) : 'txt');
+    save(new Blob([lastBytes], { type: type || 'text/plain' }), name);
+  });
+
+  function save(blob, name) {
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  // --- files ---
+
+  function loadFile(f) {
+    if (!f) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      fileBytes = new Uint8Array(reader.result);
+      fileName = f.name;
+      fileType = f.type || '';
+      $('file-name').textContent = f.name;
+      $('file-size').textContent = fmtBytes(fileBytes.length);
+      $('filebar').classList.add('on');
+      $('drop').hidden = true;
+      // A file is always encoded; decoding a file makes no sense here.
+      document.querySelector('input[name="mode"][value="encode"]').checked = true;
+      input.value = '';
+      update();
+    };
+    reader.onerror = function () { $('err').textContent = I18N.errFileRead; };
+    reader.readAsArrayBuffer(f);
+  }
+
+  function clearFile() {
+    fileBytes = null; fileName = ''; fileType = '';
+    $('filebar').classList.remove('on');
+    $('drop').hidden = false;
+    $('file').value = '';
+  }
+
+  $('drop').addEventListener('click', function () { $('file').click(); });
+  $('file').addEventListener('change', function (e) { loadFile(e.target.files[0]); });
+  ['dragover', 'dragenter'].forEach(function (ev) {
+    $('drop').addEventListener(ev, function (e) { e.preventDefault(); $('drop').classList.add('over'); });
+  });
+  ['dragleave', 'drop'].forEach(function (ev) {
+    $('drop').addEventListener(ev, function (e) { e.preventDefault(); $('drop').classList.remove('over'); });
+  });
+  $('drop').addEventListener('drop', function (e) {
+    if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]);
+  });
+  $('file-clear').addEventListener('click', function () { clearFile(); update(); });
+
+  // Seed with a worked example that proves the UTF-8 claim on sight.
+  input.value = I18N.seed;
+  update();
+})();
+</script>
+</body>
+</html>

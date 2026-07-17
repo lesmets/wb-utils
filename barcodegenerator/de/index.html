@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest Barcode-Generator: Code 128 &amp; EAN-13, kostenlos</title>
+<meta name="description" content="Erzeuge Code-128- und EAN-13-Barcodes und lade sie als PNG oder SVG herunter. Prüfziffer inklusive. Ohne Wasserzeichen, 100 % privat.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://barcodegenerator.wbest.app/de/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://barcodegenerator.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://barcodegenerator.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://barcodegenerator.wbest.app/">
+<!-- i18n:hreflang:end -->
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barcode-Generator">
+<meta property="og:title" content="WBest Barcode-Generator: Code 128 &amp; EAN-13, kostenlos">
+<meta property="og:description" content="Erzeuge Code-128- und EAN-13-Barcodes und lade sie als PNG oder SVG herunter. Prüfziffer inklusive. Ohne Wasserzeichen, 100 % privat.">
+<meta property="og:url" content="https://barcodegenerator.wbest.app/de/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest Barcode-Generator: Code 128 &amp; EAN-13, kostenlos">
+<meta name="twitter:description" content="Erzeuge Code-128- und EAN-13-Barcodes und lade sie als PNG oder SVG herunter. Prüfziffer inklusive. Ohne Wasserzeichen, 100 % privat.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Barcode-Generator",
+  "url": "https://barcodegenerator.wbest.app/de/",
+  "description": "Kostenloser Online-Barcode-Generator für Code 128 und EAN-13. Tippe deine Daten, erhalte sofort einen scannbaren Barcode und lade ihn als PNG oder druckfertiges Vektor-SVG herunter. Prüfziffern werden für dich berechnet und geprüft, es gibt keine Wasserzeichen, und nichts läuft je ab. Läuft vollständig in deinem Browser. Kein Tracking, funktioniert offline.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Benötigt JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Code-128-Barcodes für beliebigen druckbaren ASCII-Text",
+    "EAN-13-Handelsbarcodes mit automatischer Prüfziffer",
+    "Prüfziffer-Validierung für bestehende 13-stellige Codes",
+    "Einstellbare Balkenbreite, -höhe und Klartext",
+    "Download als PNG oder druckfertiges Vektor-SVG",
+    "Kein Wasserzeichen, keine Anmeldung, läuft nie ab"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Welchen Barcode-Typ sollte ich nutzen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nutze Code 128 für interne Zwecke wie Inventaretiketten, Asset-Tags, Versandreferenzen und Lagerplätze, denn er kodiert Buchstaben, Ziffern und Satzzeichen in einem kompakten Symbol. Nutze EAN-13 nur für Handelsprodukte, die an einer Kasse gescannt werden, da er genau 13 Ziffern kodiert und diese aus einem von GS1 vergebenen Unternehmenspräfix stammen müssen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist eine Barcode-Prüfziffer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eine Prüfziffer ist eine letzte Ziffer, die aus allen vorangehenden Ziffern berechnet wird. Der Scanner berechnet sie neu und vergleicht, sodass eine falsch gelesene oder falsch getippte Ziffer abgelehnt wird, statt still als anderes Produkt akzeptiert zu werden. Dieser Generator berechnet die EAN-13-Prüfziffer für dich, wenn du 12 Ziffern eingibst, und prüft sie, wenn du alle 13 eingibst. Auch Code 128 trägt eine Prüfsumme, sie ist aber in den Balken kodiert statt aufgedruckt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich diese Barcodes für Produkte nutzen, die ich in Läden verkaufe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nur wenn die Nummer dir gehört. EAN-13-Handelsnummern basieren auf einem von GS1 vergebenen Unternehmenspräfix, der Organisation, die sie weltweit verwaltet. Dieses Tool stellt jede gültige 13-stellige Nummer korrekt dar, kann dir aber keine Nummer zuweisen, und eine erfundene riskiert eine Kollision mit dem Produkt eines anderen Unternehmens. Für Barcodes, die nur im eigenen Betrieb genutzt werden, ist keine Registrierung nötig und Code 128 ist meist die bessere Wahl."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Sollte ich PNG oder SVG herunterladen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wähle SVG für alles Gedruckte. Es ist ein Vektor, bleibt also in jeder Größe perfekt scharf, und die Balkenkanten landen genau dort, wo es die Geometrie vorgibt, was Scanner brauchen. Wähle PNG für Bildschirme, E-Mails oder Tools, die kein SVG einbinden können. Druckst du ein PNG, erzeuge es mit großer Balkenbreite, damit die Balken nicht verschwimmen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum lässt sich mein gedruckter Barcode nicht scannen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die drei üblichen Ursachen sind Größe, Kontrast und Ruhezone. Zu klein gedruckt verschwimmen schmale Balken ineinander, erhöhe also die Balkenbreite und drucke in voller Auflösung. Zu wenig Kontrast bricht es ebenfalls: Halte die Balken dunkel auf schlichtem hellem Grund und drucke nie auf ein unruhiges Bild. Lass schließlich den leeren Rand zu beiden Seiten des Symbols intakt. Diese Ruhezone ist in jedem Download hier enthalten, und sie wegzuschneiden ist der häufigste Grund, warum ein Barcode nicht mehr scannt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Werden meine Barcode-Daten irgendwohin gesendet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Der Barcode wird in deinem Browser mit JavaScript kodiert und gezeichnet, deine Produktnummern und internen Referenzen werden also nie hochgeladen, protokolliert oder getrackt. Es gibt kein Konto, kein Wasserzeichen und kein Ablaufdatum, und einmal geladen funktioniert die Seite offline."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:12px}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+.pane{padding:16px 18px}
+.pane h2{font-size:1.02rem;margin:0 0 12px}
+
+.types{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.type{position:relative;flex:1;min-width:120px}
+.type input{position:absolute;opacity:0;width:0;height:0}
+.type span{
+  display:block;padding:9px 12px;border:1px solid var(--border);border-radius:8px;text-align:center;
+  background:var(--card);color:var(--muted);cursor:pointer;font-size:.9rem;font-weight:600;user-select:none
+}
+.type span small{display:block;font-weight:400;font-size:.75rem;margin-top:1px}
+.type input:checked+span{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.type input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+
+label.lbl{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:0 0 5px}
+#data{
+  width:100%;font:600 1.05rem/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text)
+}
+.hint{font-size:.8rem;color:var(--muted);margin:6px 0 0;min-height:1.2em}
+.hint b{color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.err{color:var(--over);font-size:.85rem;margin:6px 0 0;min-height:1.2em;overflow-wrap:anywhere}
+
+.opts{display:grid;gap:12px;margin:16px 0 0}
+.opt{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center}
+.opt .val{font:600 .85rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--accent)}
+.opt input[type="range"]{grid-column:1/-1;width:100%;accent-color:var(--accent)}
+.check{display:flex;align-items:center;gap:8px;font-size:.9rem;cursor:pointer}
+.check input{width:16px;height:16px;accent-color:var(--accent)}
+
+.preview{
+  padding:18px;display:flex;align-items:center;justify-content:center;min-height:230px;
+  background:#fff;border-radius:12px;overflow-x:auto
+}
+.preview svg{display:block;max-width:100%;height:auto}
+.preview.invalid{opacity:.35}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
+.actions button{
+  font:inherit;font-size:.88rem;font-weight:600;padding:9px 16px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--accent);background:var(--accent);color:#fff
+}
+.actions button.ghost{background:var(--card);color:var(--text);border-color:var(--border)}
+.actions button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.actions button:disabled{opacity:.5;cursor:not-allowed}
+.actions .spacer{flex:1}
+.meta{font-size:.8rem;color:var(--muted);margin:10px 0 0;text-align:center}
+
+.samples{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.samples button{
+  font:inherit;font-size:.8rem;padding:5px 11px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--muted)
+}
+.samples button:hover{border-color:var(--accent);color:var(--accent)}
+
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:420px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;background:var(--accent-soft);color:var(--accent);padding:1px 5px;border-radius:4px}
+.faq p{color:var(--text)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+/* Mobile: let tables reflow to fit the viewport instead of scrolling.
+   min-width would otherwise hold the table open and overflow the page. */
+@media (max-width:560px){
+  table{min-width:0}
+  th,td{padding-left:8px;padding-right:8px}
+  td{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+  thead th{text-transform:none;letter-spacing:normal}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WBest Barcode-Generator</h1>
+  <p class="tagline">Erstelle scannbare Code-128- und EAN-13-Barcodes und lade sie als PNG oder druckfertiges SVG herunter. Kein Wasserzeichen, keine Anmeldung, läuft nie ab.</p>
+  <span class="badge">🔒 100 % privat, im Browser kodiert, nie hochgeladen</span>
+  <nav class="toc" aria-label="Auf dieser Seite">
+    <a href="#tool">Generator</a>
+    <a href="#types">Barcode-Typen</a>
+    <a href="#printing">Drucktipps</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Barcode-Generator">
+    <div class="grid">
+
+      <div class="card pane">
+        <h2>Barcode</h2>
+        <div class="types" role="radiogroup" aria-label="Barcode-Typ">
+          <label class="type">
+            <input type="radio" name="type" value="code128" checked>
+            <span>Code 128<small>Text, Ziffern, Symbole</small></span>
+          </label>
+          <label class="type">
+            <input type="radio" name="type" value="ean13">
+            <span>EAN-13<small>Handelsprodukte</small></span>
+          </label>
+        </div>
+
+        <label class="lbl" for="data">Zu kodierende Daten</label>
+        <input type="text" id="data" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off">
+        <p class="hint" id="hint"></p>
+        <p class="err" id="err" aria-live="polite"></p>
+
+        <div class="samples" aria-label="Beispiele">
+          <button type="button" data-t="code128" data-v="WB-INVENTORY-0042">Asset-Tag</button>
+          <button type="button" data-t="code128" data-v="SHIP 2026-07-15/A9">Versandreferenz</button>
+          <button type="button" data-t="ean13" data-v="590123412345">EAN-13 (12 Ziffern)</button>
+          <button type="button" data-t="ean13" data-v="4006381333931">EAN-13 (13 Ziffern)</button>
+        </div>
+
+        <div class="opts">
+          <div class="opt">
+            <label for="scale">Balkenbreite</label>
+            <span class="val" id="scale-val">2 px</span>
+            <input type="range" id="scale" min="1" max="6" step="1" value="2">
+          </div>
+          <div class="opt">
+            <label for="height">Balkenhöhe</label>
+            <span class="val" id="height-val">80 px</span>
+            <input type="range" id="height" min="30" max="200" step="5" value="80">
+          </div>
+          <label class="check"><input type="checkbox" id="show-text" checked> Klartext anzeigen</label>
+        </div>
+      </div>
+
+      <div>
+        <div class="card preview" id="preview"></div>
+        <div class="actions">
+          <button type="button" id="dl-png">PNG herunterladen</button>
+          <button type="button" class="ghost" id="dl-svg">SVG herunterladen</button>
+          <span class="spacer"></span>
+          <button type="button" class="ghost" id="copy">Wert kopieren</button>
+        </div>
+        <p class="meta" id="meta"></p>
+      </div>
+
+    </div>
+  </section>
+
+  <p class="cross-link">Du brauchst stattdessen einen Code, der eine URL, einen WLAN-Zugang oder eine Kontaktkarte enthält? Das ist ein Fall für den <a href="https://qrcode.wbest.app/de/">QR-Code-Generator</a>. Gleicher Ansatz, genauso privat.</p>
+
+  <section class="props" aria-label="Warum dieser Barcode-Generator">
+    <div class="card"><strong>Echte, scannbare Symbole</strong><p>Korrekte Kodierung, Prüfsummen und Ruhezonen, kein Bild von einem Barcode. Lade das SVG herunter und die Balkenkanten landen genau dort, wo ein Scanner sie erwartet.</p></div>
+    <div class="card"><strong>Kein Wasserzeichen, kein Ablauf</strong><p>Das Bild gehört dir, sobald es erscheint. Nichts wird darauf gestempelt, nichts hinter einem Konto versteckt, und kein Barcode hört je auf zu funktionieren.</p></div>
+    <div class="card"><strong>Deine Nummern bleiben deine</strong><p>Produktcodes und interne Referenzen werden auf deinem Gerät kodiert und nie hochgeladen. Die Seite funktioniert offline weiter.</p></div>
+  </section>
+
+  <section id="types" class="prose">
+    <h2>Code 128 vs. EAN-13: welchen brauchst du?</h2>
+    <p>Fast jede Barcode-Frage läuft auf diese Wahl hinaus, und sie entscheidet sich danach, <em>wer ihn scannt</em>, nicht danach, welcher besser aussieht.</p>
+    <h3>Code 128: für deine eigenen Etiketten</h3>
+    <p><strong>Code 128</strong> kodiert den gesamten druckbaren ASCII-Satz: Buchstaben, Ziffern, Leerzeichen und Satzzeichen. Er ist dicht, wird von Versanddienstleistern und Lagern genutzt, und du kannst hineinschreiben, was du willst: <code>WB-INVENTORY-0042</code>, einen Ort, eine Seriennummer. Niemand muss dir zuerst eine Nummer vergeben. Wird der Barcode im eigenen Betrieb gescannt, ist das die richtige Wahl.</p>
+    <p>Er heißt 128, weil er alle 128 ASCII-Zeichen abdeckt, mit drei Codesätzen (A, B und C), zwischen denen er mitten im Symbol wechselt. Codesatz C packt zwei Ziffern in ein einzelnes Zeichen, sodass lange Zahlenfolgen merklich kürzer werden. Dieser Generator wählt und wechselt die Codesätze für dich und ergänzt die obligatorische Prüfsumme automatisch.</p>
+    <h3>EAN-13: für Handelskassen</h3>
+    <p><strong>EAN-13</strong> kodiert genau 13 Ziffern und sonst nichts. Es ist der Barcode auf der Rückseite von Supermarktprodukten weltweit (die in Nordamerika genutzte 12-stellige UPC-A ist dasselbe System). Die Ziffern sind nicht beliebig: Sie beginnen mit einem <strong>von GS1 vergebenen Unternehmenspräfix</strong>, dann deiner Produktreferenz, dann einer Prüfziffer.</p>
+    <p>Diesen letzten Punkt übersehen viele. Dieses Tool stellt jede 13-stellige Nummer bereitwillig als technisch perfektes EAN-13 dar, aber nur GS1 kann eine Nummer vergeben, die wirklich <em>deine</em> ist. Eine erfundene kann mit einem echten Produkt im Regal eines anderen kollidieren. Für den internen Gebrauch greif stattdessen zu Code 128.</p>
+    <div class="table-wrap">
+      <table>
+        <caption>Die Wahl zwischen den beiden Symbologien, die dieses Tool erzeugt.</caption>
+        <thead><tr><th scope="col"></th><th scope="col">Code 128</th><th scope="col">EAN-13</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Kodiert</th><td>Druckbares ASCII: Buchstaben, Ziffern, Satzzeichen</td><td>Genau 13 Ziffern</td></tr>
+          <tr><th scope="row">Länge</th><td>Beliebig (Symbol wächst mit den Daten)</td><td>Fest</td></tr>
+          <tr><th scope="row">Registrierung</th><td>Keine, heute nutzbar</td><td>GS1-Unternehmenspräfix für den Handel nötig</td></tr>
+          <tr><th scope="row">Prüfziffer</th><td>In den Balken kodiert, nicht aufgedruckt</td><td>13. Ziffer, aufgedruckt und gescannt</td></tr>
+          <tr><th scope="row">Typische Nutzung</th><td>Inventar, Assets, Versand, interne Etiketten</td><td>Produkte, die an einer Handelskasse verkauft werden</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="printing" class="prose">
+    <h2>Barcodes drucken, die wirklich scannen</h2>
+    <p>Ein Barcode, der auf dem Bildschirm gut aussieht, kann am Scanner trotzdem versagen. Drei Dinge entscheiden:</p>
+    <h3>1. Die Ruhezone bewahren</h3>
+    <p>Der leere Rand zu beiden Seiten des Symbols ist kein Abstand. Er ist Teil des Barcodes. Scanner nutzen ihn, um zu finden, wo der Code beginnt und endet. Jeder Download hier enthält ihn, die Lösung lautet also schlicht: nicht wegschneiden und keinen Text oder keine Grafik hineinsetzen.</p>
+    <h3>2. Groß genug drucken, als Vektor</h3>
+    <p>Der schmalste Balken begrenzt alles. Zu klein gedruckt verschwimmen benachbarte Balken zu einem. Nutze für alles auf Papier den <strong>SVG</strong>-Download. Er skaliert, ohne je eine Kante weichzuzeichnen. Musst du PNG nutzen, erhöhe zuerst die Balkenbreite, damit die exportierten Pixel Platz haben.</p>
+    <h3>3. Kontrast, und nichts Trickreiches</h3>
+    <p>Dunkle Balken auf schlichtem hellem Grund. Nicht auf einem Foto, nicht auf einem Verlauf, nicht in einer blassen Farbe, weil sie zur Verpackung passt. Besonders rote Balken können für einen Rotlaser-Scanner ganz verschwinden. Und teste einen gedruckten Musterausdruck immer per Scan. Handy-Scan-Apps sind nachsichtiger als Kassen-Hardware, prüfe also möglichst am echten Gerät.</p>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Häufig gestellte Fragen</h2>
+
+    <h3>Welchen Barcode-Typ sollte ich nutzen?</h3>
+    <p>Nutze Code 128 für interne Zwecke wie Inventaretiketten, Asset-Tags, Versandreferenzen und Lagerplätze, denn er kodiert Buchstaben, Ziffern und Satzzeichen in einem kompakten Symbol. Nutze EAN-13 nur für Handelsprodukte, die an einer Kasse gescannt werden, da er genau 13 Ziffern kodiert und diese aus einem von GS1 vergebenen Unternehmenspräfix stammen müssen.</p>
+
+    <h3>Was ist eine Barcode-Prüfziffer?</h3>
+    <p>Eine Prüfziffer ist eine letzte Ziffer, die aus allen vorangehenden Ziffern berechnet wird. Der Scanner berechnet sie neu und vergleicht, sodass eine falsch gelesene oder falsch getippte Ziffer abgelehnt wird, statt still als anderes Produkt akzeptiert zu werden. Dieser Generator berechnet die EAN-13-Prüfziffer für dich, wenn du 12 Ziffern eingibst, und prüft sie, wenn du alle 13 eingibst. Auch Code 128 trägt eine Prüfsumme, sie ist aber in den Balken kodiert statt aufgedruckt.</p>
+
+    <h3>Kann ich diese Barcodes für Produkte nutzen, die ich in Läden verkaufe?</h3>
+    <p>Nur wenn die Nummer dir gehört. EAN-13-Handelsnummern basieren auf einem von GS1 vergebenen Unternehmenspräfix, der Organisation, die sie weltweit verwaltet. Dieses Tool stellt jede gültige 13-stellige Nummer korrekt dar, kann dir aber keine Nummer zuweisen, und eine erfundene riskiert eine Kollision mit dem Produkt eines anderen Unternehmens. Für Barcodes, die nur im eigenen Betrieb genutzt werden, ist keine Registrierung nötig und Code 128 ist meist die bessere Wahl.</p>
+
+    <h3>Sollte ich PNG oder SVG herunterladen?</h3>
+    <p>Wähle SVG für alles Gedruckte. Es ist ein Vektor, bleibt also in jeder Größe perfekt scharf, und die Balkenkanten landen genau dort, wo es die Geometrie vorgibt, was Scanner brauchen. Wähle PNG für Bildschirme, E-Mails oder Tools, die kein SVG einbinden können. Druckst du ein PNG, erzeuge es mit großer Balkenbreite, damit die Balken nicht verschwimmen.</p>
+
+    <h3>Warum lässt sich mein gedruckter Barcode nicht scannen?</h3>
+    <p>Die drei üblichen Ursachen sind Größe, Kontrast und Ruhezone. Zu klein gedruckt verschwimmen schmale Balken ineinander, erhöhe also die Balkenbreite und drucke in voller Auflösung. Zu wenig Kontrast bricht es ebenfalls: Halte die Balken dunkel auf schlichtem hellem Grund und drucke nie auf ein unruhiges Bild. Lass schließlich den leeren Rand zu beiden Seiten des Symbols intakt. Diese Ruhezone ist in jedem Download hier enthalten, und sie wegzuschneiden ist der häufigste Grund, warum ein Barcode nicht mehr scannt.</p>
+
+    <h3>Werden meine Barcode-Daten irgendwohin gesendet?</h3>
+    <p>Nein. Der Barcode wird in deinem Browser mit JavaScript kodiert und gezeichnet, deine Produktnummern und internen Referenzen werden also nie hochgeladen, protokolliert oder getrackt. Es gibt kein Konto, kein Wasserzeichen und kein Ablaufdatum, und einmal geladen funktioniert die Seite offline.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 DE</summary>
+    <ul>
+      <li><a href="https://barcodegenerator.wbest.app/" lang="en" hreflang="en">English</a></li>
+      <li aria-current="page">Deutsch</li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Gemacht für alle, die ein schnelles Tool brauchen, das einfach funktioniert.
+  <br>© 2026 WBest · Kostenlos nutzbar, keine Anmeldung nötig · <a href="https://wbest.app/">Kostenlose WBest-Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+/* Barcode encoding (Code 128, EAN-13) + geometry. Pure functions, returned for testability. */
+var BC = (function () {
+  'use strict';
+
+  // Code 128 element widths, symbol values 0-106. Each string is the run
+  // lengths of bar,space,bar,space,bar,space (the stop symbol has 7).
+  var C128 = [
+    '212222', '222122', '222221', '121223', '121322', '131222', '122213', '122312', '132212', '221213',
+    '221312', '231212', '112232', '122132', '122231', '113222', '123122', '123221', '223211', '221132',
+    '221231', '213212', '223112', '312131', '311222', '321122', '321221', '312212', '322112', '322211',
+    '212123', '212321', '232121', '111323', '131123', '131321', '112313', '132113', '132311', '211313',
+    '231113', '231311', '112133', '112331', '132131', '113123', '113321', '133121', '313121', '211331',
+    '231131', '213113', '213311', '213131', '311123', '311321', '331121', '312113', '312311', '332111',
+    '314111', '221411', '431111', '111224', '111422', '121124', '121421', '141122', '141221', '112214',
+    '112412', '122114', '122411', '142112', '142211', '241211', '221114', '413111', '241112', '134111',
+    '111242', '121142', '121241', '114212', '124112', '124211', '411212', '421112', '421211', '212141',
+    '214121', '412121', '111143', '111341', '131141', '114113', '114311', '411113', '411311', '113141',
+    '114131', '311141', '411131', '211412', '211214', '211232', '2331112'
+  ];
+  var CODE_C = 99, CODE_B = 100, START_B = 104, START_C = 105, STOP = 106;
+
+  // EAN-13 digit patterns. R is the bitwise complement of L; G is R reversed.
+  var EAN_L = ['0001101', '0011001', '0010011', '0111101', '0100011', '0110001', '0101111', '0111011', '0110111', '0001011'];
+  var EAN_G = ['0100111', '0110011', '0011011', '0100001', '0011101', '0111001', '0000101', '0010001', '0001001', '0010111'];
+  var EAN_R = ['1110010', '1100110', '1101100', '1000010', '1011100', '1001110', '1010000', '1000100', '1001000', '1110100'];
+  // Which parity the 6 left-hand digits use, selected by the first digit.
+  var EAN_PARITY = [
+    'LLLLLL', 'LLGLGG', 'LLGGLG', 'LLGGGL', 'LGLLGG',
+    'LGGLLG', 'LGGGLL', 'LGLGLG', 'LGLGGL', 'LGGLGL'
+  ];
+
+  function isDigit(c) { return c >= '0' && c <= '9'; }
+
+  // --- Code 128 ---
+
+  // Length of the digit run starting at pos.
+  function digitRun(s, pos) {
+    var k = 0;
+    while (pos + k < s.length && isDigit(s[pos + k])) k++;
+    return k;
+  }
+
+  // Encode to symbol values, switching between code set B (text) and C (digit
+  // pairs) wherever C pays for itself. Returns { values } | { error }.
+  function code128Values(data) {
+    var n = data.length;
+    if (!n) return { error: 'empty' };
+    for (var j = 0; j < n; j++) {
+      var cc = data.charCodeAt(j);
+      if (cc < 32 || cc > 126) {
+        return { error: 'ascii' };
+      }
+    }
+    // Start in C if the whole thing is an even run of digits, or it opens with
+    // a run long enough that the switch saves more than it costs.
+    var head = digitRun(data, 0);
+    var startC = (head === n && n >= 2 && n % 2 === 0) || head >= 4;
+    var values = [startC ? START_C : START_B];
+    var mode = startC ? 'C' : 'B';
+    var i = 0;
+    while (i < n) {
+      if (mode === 'C') {
+        var run = digitRun(data, i);
+        if (run >= 2) {
+          var pairs = Math.floor(run / 2);
+          for (var p = 0; p < pairs; p++) {
+            values.push(parseInt(data.substr(i, 2), 10));
+            i += 2;
+          }
+          // An odd digit left over, or text ahead: C cannot encode it.
+          if (i < n) { values.push(CODE_B); mode = 'B'; }
+        } else {
+          values.push(CODE_B); mode = 'B';
+        }
+      } else {
+        var run2 = digitRun(data, i);
+        if (run2 >= 4) { values.push(CODE_C); mode = 'C'; continue; }
+        values.push(data.charCodeAt(i) - 32);
+        i++;
+      }
+    }
+    // Mod-103 checksum: start value plus each symbol weighted by its position.
+    var sum = values[0];
+    for (var k = 1; k < values.length; k++) sum += values[k] * k;
+    values.push(sum % 103);
+    values.push(STOP);
+    return { values: values };
+  }
+
+  function code128(data) {
+    var r = code128Values(data);
+    if (r.error) return { error: r.error };
+    var bits = '';
+    for (var i = 0; i < r.values.length; i++) {
+      var pat = C128[r.values[i]];
+      // Runs alternate bar,space,... always starting with a bar.
+      for (var j = 0; j < pat.length; j++) {
+        bits += (j % 2 ? '0' : '1').repeat(+pat[j]);
+      }
+    }
+    return { type: 'code128', bits: bits, hri: data, values: r.values, quiet: [10, 10] };
+  }
+
+  // --- EAN-13 ---
+
+  // Weights alternate 1,3 across the 12 data digits; check digit completes a
+  // multiple of 10.
+  function ean13Check(body) {
+    var sum = 0;
+    for (var i = 0; i < 12; i++) sum += (+body[i]) * (i % 2 ? 3 : 1);
+    return (10 - (sum % 10)) % 10;
+  }
+
+  function ean13(input) {
+    var s = String(input).replace(/[\s-]/g, '');
+    if (!s) return { error: 'empty' };
+    if (!/^\d+$/.test(s)) return { error: 'digitsOnly' };
+    if (s.length !== 12 && s.length !== 13) {
+      return { error: 'wrongLength', len: s.length };
+    }
+    var body = s.slice(0, 12);
+    var check = ean13Check(body);
+    if (s.length === 13 && +s[12] !== check) {
+      return { error: 'badCheck', body: body, check: check, got: s[12] };
+    }
+    var full = body + check;
+    var parity = EAN_PARITY[+full[0]];
+    var bits = '101';
+    for (var i = 1; i <= 6; i++) {
+      bits += (parity[i - 1] === 'L' ? EAN_L : EAN_G)[+full[i]];
+    }
+    bits += '01010';
+    for (var k = 7; k <= 12; k++) bits += EAN_R[+full[k]];
+    bits += '101';
+    return {
+      type: 'ean13', bits: bits, hri: full, check: check,
+      added: s.length === 12, quiet: [11, 7],
+      // Guard bars run longer than the data bars, framing the printed digits.
+      guards: [[0, 3], [45, 50], [92, 95]]
+    };
+  }
+
+  function encode(type, data) {
+    return type === 'ean13' ? ean13(data) : code128(String(data));
+  }
+
+  // Merge adjacent set bits into bar runs so a renderer draws one rect per bar.
+  function runs(bits) {
+    var out = [], i = 0;
+    while (i < bits.length) {
+      if (bits[i] === '1') {
+        var start = i;
+        while (i < bits.length && bits[i] === '1') i++;
+        out.push({ x: start, w: i - start });
+      } else i++;
+    }
+    return out;
+  }
+
+  function inGuard(sym, run) {
+    if (!sym.guards) return false;
+    for (var i = 0; i < sym.guards.length; i++) {
+      if (run.x >= sym.guards[i][0] && run.x + run.w <= sym.guards[i][1]) return true;
+    }
+    return false;
+  }
+
+  // Geometry in pixels, shared by the SVG and canvas renderers so the two can
+  // never disagree about where a bar goes.
+  function layout(sym, opts) {
+    var s = opts.scale, barH = opts.height;
+    var show = opts.showText !== false;
+    var font = Math.max(9, Math.round(s * 7));
+    var textH = show ? font + Math.round(s * 2) : 0;
+    var ext = (show && sym.type === 'ean13') ? Math.round(s * 5) : 0;
+    var quietL = sym.quiet[0], quietR = sym.quiet[1];
+    var modules = sym.bits.length;
+    var width = (quietL + modules + quietR) * s;
+    var height = barH + textH;
+
+    var bars = runs(sym.bits).map(function (r) {
+      return {
+        x: (quietL + r.x) * s, y: 0, w: r.w * s,
+        h: barH + (inGuard(sym, r) ? ext : 0)
+      };
+    });
+
+    var texts = [];
+    if (show) {
+      var baseline = barH + font;
+      if (sym.type === 'ean13') {
+        // Lead digit sits in the left quiet zone; the two halves sit under
+        // their own 42-module blocks, each digit centred on its 7 modules.
+        texts.push({ x: (quietL - 6) * s, y: baseline, size: font, anchor: 'middle', text: sym.hri[0] });
+        for (var i = 0; i < 6; i++) {
+          texts.push({
+            x: (quietL + 3 + i * 7 + 3.5) * s, y: baseline, size: font,
+            anchor: 'middle', text: sym.hri[1 + i]
+          });
+          texts.push({
+            x: (quietL + 50 + i * 7 + 3.5) * s, y: baseline, size: font,
+            anchor: 'middle', text: sym.hri[7 + i]
+          });
+        }
+      } else {
+        texts.push({ x: width / 2, y: baseline, size: font, anchor: 'middle', text: sym.hri });
+      }
+    }
+    return { width: width, height: height, bars: bars, texts: texts };
+  }
+
+  function svg(sym, opts) {
+    var L = layout(sym, opts);
+    var parts = [
+      '<svg xmlns="http://www.w3.org/2000/svg" width="' + L.width + '" height="' + L.height +
+      '" viewBox="0 0 ' + L.width + ' ' + L.height + '" shape-rendering="crispEdges">',
+      '<rect width="' + L.width + '" height="' + L.height + '" fill="#ffffff"/>'
+    ];
+    L.bars.forEach(function (b) {
+      parts.push('<rect x="' + b.x + '" y="' + b.y + '" width="' + b.w + '" height="' + b.h + '" fill="#000000"/>');
+    });
+    L.texts.forEach(function (t) {
+      parts.push('<text x="' + t.x + '" y="' + t.y + '" font-family="monospace" font-size="' + t.size +
+        '" text-anchor="' + t.anchor + '" fill="#000000">' + escapeXml(t.text) + '</text>');
+    });
+    parts.push('</svg>');
+    return parts.join('');
+  }
+
+  function escapeXml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[c];
+    });
+  }
+
+  return {
+    encode: encode, code128: code128, ean13: ean13, ean13Check: ean13Check,
+    code128Values: code128Values, runs: runs, layout: layout, svg: svg
+  };
+})();
+if (typeof module !== 'undefined') module.exports = BC;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+
+  var dataIn = $('data'), preview = $('preview'), err = $('err'), hint = $('hint'), meta = $('meta');
+  var current = null;
+  /* i18n:js:start */
+  var I18N = {
+    "errAscii": "Code 128 unterstützt hier nur druckbares ASCII (Leerzeichen bis ~).",
+    "errDigitsOnly": "EAN-13 kodiert nur Ziffern.",
+    "errWrongLength": "Gib 12 Ziffern ein (Prüfziffer wird ergänzt) oder 13 Ziffern, nicht {len}.",
+    "errBadCheck": "Ungültige Prüfziffer: {body} sollte auf {check} enden, nicht auf {got}.",
+    "hintAdded": "Prüfziffer ergänzt: <b>{hri}</b>",
+    "hintValid": "Prüfziffer <b>{check}</b> ist gültig.",
+    "hintEan": "12 Ziffern und die Prüfziffer wird für dich ergänzt, oder 13, um eine zu prüfen.",
+    "hintCode128": "Buchstaben, Ziffern, Leerzeichen und Satzzeichen - in beliebiger Länge.",
+    "meta": "{type} · {modules} Module · {w} × {h} px",
+    "copied": "Kopiert",
+    "copyValue": "Wert kopieren"
+  };
+  /* i18n:js:end */
+
+  function errMsg(sym) {
+    if (sym.error === 'ascii') return I18N.errAscii;
+    if (sym.error === 'digitsOnly') return I18N.errDigitsOnly;
+    if (sym.error === 'wrongLength') return I18N.errWrongLength.replace('{len}', sym.len);
+    if (sym.error === 'badCheck') return I18N.errBadCheck.replace('{body}', sym.body).replace('{check}', sym.check).replace('{got}', sym.got);
+    return sym.error;
+  }
+
+  var DEFAULTS = { code128: 'WB-INVENTORY-0042', ean13: '590123412345' };
+  var last = { code128: DEFAULTS.code128, ean13: DEFAULTS.ean13 };
+
+  function type() {
+    return document.querySelector('input[name="type"]:checked').value;
+  }
+  function opts() {
+    return { scale: +$('scale').value, height: +$('height').value, showText: $('show-text').checked };
+  }
+
+  function setHint(sym) {
+    var t = type();
+    if (t === 'ean13') {
+      if (sym && !sym.error) {
+        hint.innerHTML = sym.added
+          ? I18N.hintAdded.replace('{hri}', sym.hri)
+          : I18N.hintValid.replace('{check}', sym.check);
+      } else {
+        hint.textContent = I18N.hintEan;
+      }
+    } else {
+      hint.textContent = I18N.hintCode128;
+    }
+  }
+
+  function update() {
+    var t = type();
+    last[t] = dataIn.value;
+    var sym = BC.encode(t, dataIn.value);
+    setHint(sym);
+
+    if (sym.error) {
+      // Nothing typed yet is the start state, not a mistake.
+      err.textContent = sym.error === 'empty' ? '' : errMsg(sym);
+      preview.classList.add('invalid');
+      meta.textContent = '';
+      $('dl-png').disabled = $('dl-svg').disabled = $('copy').disabled = true;
+      current = null;
+      return;
+    }
+    err.textContent = '';
+    preview.classList.remove('invalid');
+    $('dl-png').disabled = $('dl-svg').disabled = $('copy').disabled = false;
+    current = sym;
+
+    preview.innerHTML = BC.svg(sym, opts());
+    var L = BC.layout(sym, opts());
+    meta.textContent = I18N.meta
+      .replace('{type}', t === 'ean13' ? 'EAN-13' : 'Code 128')
+      .replace('{modules}', sym.bits.length)
+      .replace('{w}', Math.round(L.width)).replace('{h}', Math.round(L.height));
+  }
+
+  function filename(ext) {
+    var base = (current.hri || 'barcode').replace(/[^\w.-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40);
+    return (base || 'barcode') + '.' + ext;
+  }
+
+  function download(blob, name) {
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  $('dl-svg').addEventListener('click', function () {
+    if (!current) return;
+    download(new Blob([BC.svg(current, opts())], { type: 'image/svg+xml' }), filename('svg'));
+  });
+
+  $('dl-png').addEventListener('click', function () {
+    if (!current) return;
+    var o = opts();
+    var L = BC.layout(current, o);
+    var canvas = document.createElement('canvas');
+    canvas.width = L.width; canvas.height = L.height;
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, L.width, L.height);
+    ctx.fillStyle = '#000000';
+    L.bars.forEach(function (b) { ctx.fillRect(b.x, b.y, b.w, b.h); });
+    L.texts.forEach(function (t) {
+      ctx.font = t.size + 'px monospace';
+      ctx.textAlign = t.anchor === 'middle' ? 'center' : 'left';
+      ctx.fillText(t.text, t.x, t.y);
+    });
+    canvas.toBlob(function (blob) { download(blob, filename('png')); }, 'image/png');
+  });
+
+  $('copy').addEventListener('click', function () {
+    if (!current) return;
+    var b = $('copy');
+    var done = function () {
+      b.textContent = I18N.copied;
+      setTimeout(function () { b.textContent = I18N.copyValue; }, 1000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(current.hri).then(done, done);
+    else done();
+  });
+
+  dataIn.addEventListener('input', update);
+  ['scale', 'height', 'show-text'].forEach(function (id) {
+    $(id).addEventListener('input', function () {
+      $('scale-val').textContent = $('scale').value + ' px';
+      $('height-val').textContent = $('height').value + ' px';
+      update();
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="type"]'), function (r) {
+    r.addEventListener('change', function () {
+      // Keep each type's own data so switching back and forth is lossless.
+      dataIn.value = last[type()] || DEFAULTS[type()];
+      dataIn.inputMode = type() === 'ean13' ? 'numeric' : 'text';
+      update();
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.samples button'), function (b) {
+    b.addEventListener('click', function () {
+      var t = b.getAttribute('data-t');
+      document.querySelector('input[name="type"][value="' + t + '"]').checked = true;
+      dataIn.value = b.getAttribute('data-v');
+      update();
+    });
+  });
+
+  dataIn.value = DEFAULTS.code128;
+  update();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest Altersrechner: Alter in Jahren, Monaten &amp; Tagen</title>
+<meta name="description" content="Genaues Alter in Jahren, Monaten und Tagen, dazu gelebte Tage, Geburtswochentag und Geburtstags-Countdown. Kostenlos und 100 % privat.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://agecalculator.wbest.app/de/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://agecalculator.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://agecalculator.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://agecalculator.wbest.app/">
+<!-- i18n:hreflang:end -->
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Altersrechner">
+<meta property="og:title" content="WBest Altersrechner: Alter in Jahren, Monaten &amp; Tagen">
+<meta property="og:description" content="Genaues Alter in Jahren, Monaten und Tagen, dazu gelebte Tage, Geburtswochentag und Geburtstags-Countdown. Kostenlos und 100 % privat.">
+<meta property="og:url" content="https://agecalculator.wbest.app/de/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest Altersrechner: Alter in Jahren, Monaten &amp; Tagen">
+<meta name="twitter:description" content="Genaues Alter in Jahren, Monaten und Tagen, dazu gelebte Tage, Geburtswochentag und Geburtstags-Countdown. Kostenlos und 100 % privat.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Altersrechner",
+  "url": "https://agecalculator.wbest.app/de/",
+  "description": "Kostenloser Altersrechner, der aus einem Geburtsdatum das genaue Alter in Jahren, Monaten und Tagen ermittelt, dazu die gesamte Zahl gelebter Monate, Wochen, Tage, Stunden und Minuten, den Wochentag deiner Geburt und einen Countdown zum nächsten Geburtstag. Mit allgemeinem Modus für die Dauer zwischen zwei Daten. Läuft vollständig in deinem Browser. Keine Anmeldung, und deine Daten verlassen nie dein Gerät.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Benötigt JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Genaues Alter in Jahren, Monaten und Tagen",
+    "Gesamt gelebte Monate, Wochen, Tage, Stunden und Minuten",
+    "Wochentag deiner Geburt",
+    "Countdown zu deinem nächsten Geburtstag",
+    "Dauerrechner zwischen zwei Daten",
+    "Kopierbarer Ergebnissatz",
+    "Korrekte Behandlung von Schaltjahren und dem 29. Februar",
+    "100 % private Berechnung auf deinem Gerät, funktioniert offline"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie berechne ich mein genaues Alter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zähle die vollen Jahre von deinem Geburtsdatum bis heute, dann die vollen Monate seit deinem letzten Geburtstag und schließlich die Tage seit deinem letzten Monatsjubiläum. Das Knifflige ist, dass Monate unterschiedlich lang sind, und genau das erledigt dieser Rechner. Gib dein Geburtsdatum ein und du erhältst dein Alter auf den Tag genau, dazu die Summen in Tagen, Stunden und Minuten."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie behandelt der Rechner Schaltjahre und Geburtstage am 29. Februar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Schaltjahre werden exakt berücksichtigt: jedes 4. Jahr, außer Jahrhundertjahren, die nicht durch 400 teilbar sind (2000 war ein Schaltjahr; 1900 und 2100 sind es nicht). Wer am 29. Februar geboren ist, für den zählt dieser Rechner den Geburtstag in gewöhnlichen Jahren am 1. März, dem Moment, in dem das Jahr voll vollendet ist. Manche Rechtsordnungen nehmen stattdessen den 28. Februar, was das Ergebnis um einen Tag verschiebt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum liefern verschiedene Altersrechner leicht abweichende Ergebnisse?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Weil „ein Monat“ mehrdeutig ist, wenn der Starttag im Zielmonat nicht existiert. Ist der 31. Januar plus ein Monat der 28. Februar oder der 1. März? Verschiedene Tools wählen für diese Grenzfälle unterschiedliche Konventionen, sodass der Tageswert um ein bis zwei Tage abweichen kann. Dieser Rechner nutzt die verbreitetste Konvention: Ein Monatsjubiläum, das über das Monatsende hinausschießt, wird auf den letzten Tag des Monats begrenzt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "An welchem Wochentag wurde ich geboren?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gib oben dein Geburtsdatum ein und das Ergebnis zeigt sofort deinen Geburtswochentag. Er wird aus dem Kalender selbst berechnet (der gregorianische Kalender wiederholt sich in einem 400-Jahres-Zyklus) und ist daher für jedes Datum exakt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viele Tage sind es bis zu meinem Geburtstag?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Ergebnisbereich enthält einen Live-Countdown: das Datum deines nächsten Geburtstags, auf welchen Wochentag er fällt, wie viele Tage noch bleiben und welches Alter du erreichst. Ist heute dein Geburtstag, wird das angezeigt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viele Tage alt bin ich?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gib dein Geburtsdatum ein und der Rechner zeigt die genaue Zahl deiner gelebten Tage (samt Wochen, Stunden und Minuten). Nette Meilensteine: 10.000 Tage erreichst du mit etwa 27,4 Jahren und 20.000 Tage mit etwa 54,8 Jahren."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wird mein Geburtsdatum irgendwo hochgeladen oder gespeichert?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Alle Berechnungen laufen als JavaScript in deinem Browser. Dein Geburtsdatum wird nie übertragen, protokolliert oder gespeichert. Diese Seite stellt nach dem Laden überhaupt keine Netzwerkanfragen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Funktioniert der Altersrechner offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Das gesamte Tool ist eine einzige eigenständige Seite ohne Server-Anfragen. Einmal geladen, funktioniert es auch ohne Verbindung weiter. Speichere es auf deinem Gerät und nutze es überall."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 10px}
+.tabs button{
+  font:inherit;font-size:.85rem;padding:6px 14px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.tabs button:hover[aria-pressed="false"]{border-color:var(--accent);color:var(--accent)}
+.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.inputs{display:flex;flex-wrap:wrap;gap:16px;padding:16px 20px;align-items:flex-end}
+.inputs .field{flex:1;min-width:180px}
+.field label{display:block;font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:0 0 6px}
+.field input[type="date"]{
+  width:100%;font:600 1.05rem/1.4 inherit;padding:9px 12px;border:1px solid var(--border);
+  border-radius:10px;background:var(--card);color:var(--text)
+}
+.chk{display:flex;align-items:center;gap:9px;font-size:.9rem;cursor:pointer;padding-bottom:10px}
+.chk input{width:17px;height:17px;accent-color:var(--accent);margin:0}
+.err{display:none;color:var(--over);font-weight:600;font-size:.9rem;margin:10px 2px 0}
+.err.show{display:block}
+.result{margin-top:12px}
+.age-line{padding:20px;text-align:center}
+.age-line .big{font-size:1.9rem;font-weight:700;letter-spacing:-.02em;line-height:1.3}
+.age-line .sub{color:var(--muted);font-size:.9rem;margin-top:4px}
+.stats{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;padding:0;margin:12px 0 0}
+.stats li{padding:10px 12px;text-align:center}
+.stats .v{display:block;font-size:1.25rem;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.stats .l{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.next{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 18px;margin-top:12px}
+.next .cake{font-size:1.6rem}
+.next p{margin:0}
+.sentence{display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:14px 18px;margin-top:12px}
+.sentence p{margin:0;flex:1;min-width:220px}
+.sentence button{
+  font:inherit;font-size:.85rem;padding:6px 14px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.sentence button:hover{border-color:var(--accent);color:var(--accent)}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:300px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td{font-variant-numeric:tabular-nums}
+.faq p{color:var(--text)}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WBest Altersrechner</h1>
+  <p class="tagline">Genaues Alter in Jahren, Monaten und Tagen, dazu gelebte Tage, Geburtswochentag und Geburtstags-Countdown. Kostenlos und 100 % privat.</p>
+  <span class="badge">🔒 100 % privat, deine Daten verlassen nie deinen Browser</span>
+  <nav class="toc" aria-label="Auf dieser Seite">
+    <a href="#tool">Rechner</a>
+    <a href="#how-age-works">So wird das Alter berechnet</a>
+    <a href="#age-by-year">Alter nach Geburtsjahr</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Altersrechner-Tool">
+    <div class="tabs" role="group" aria-label="Rechnermodus">
+      <button type="button" id="tab-age" aria-pressed="true">Altersrechner</button>
+      <button type="button" id="tab-d2d" aria-pressed="false">Datum bis Datum</button>
+    </div>
+
+    <div class="inputs card">
+      <div class="field">
+        <label for="date-start" id="label-start">Geburtsdatum</label>
+        <input type="date" id="date-start" min="1900-01-01" max="2100-12-31">
+      </div>
+      <div class="field">
+        <label for="date-end" id="label-end">Alter an diesem Datum</label>
+        <input type="date" id="date-end" min="1900-01-01" max="2100-12-31">
+      </div>
+      <label class="chk" id="row-include" hidden><input type="checkbox" id="include-end">Endtag einschließen</label>
+    </div>
+    <p class="err" id="err" role="alert"></p>
+    <p class="sr-only" id="live" role="status" aria-live="polite"></p>
+
+    <div class="result" id="result" hidden>
+      <div class="age-line card">
+        <div class="big" id="big-line"></div>
+        <div class="sub" id="sub-line"></div>
+      </div>
+
+      <ul class="stats">
+        <li class="card"><span class="v" id="st-months">–</span><span class="l">Monate gesamt</span></li>
+        <li class="card"><span class="v" id="st-weeks">–</span><span class="l">Wochen gesamt</span></li>
+        <li class="card"><span class="v" id="st-days">–</span><span class="l">Tage gesamt</span></li>
+        <li class="card"><span class="v" id="st-hours">–</span><span class="l">Stunden gesamt</span></li>
+        <li class="card"><span class="v" id="st-mins">–</span><span class="l">Minuten gesamt</span></li>
+      </ul>
+
+      <div class="next card" id="next-box">
+        <span class="cake" aria-hidden="true">🎂</span>
+        <p id="next-line"></p>
+      </div>
+
+      <div class="sentence card">
+        <p id="sentence"></p>
+        <button type="button" id="btn-copy">Kopieren</button>
+      </div>
+    </div>
+    <p class="muted" id="placeholder" style="margin-top:14px">Wähle oben ein Geburtsdatum. Das Ergebnis erscheint sofort und verlässt nie diese Seite.</p>
+  </section>
+
+  <p class="cross-link">Du arbeitest über mehrere Städte hinweg oder mit Epoch-Sekunden statt mit Daten? Der <a href="https://timezoneconverter.wbest.app/de/">Zeitzonen-Umrechner</a> und der <a href="https://timestampconverter.wbest.app/de/">Unix-Timestamp-Konverter</a> decken das ab, genauso privat.</p>
+
+  <section class="props" aria-label="Warum dieser Altersrechner">
+    <div class="card"><strong>Auf den Tag genau</strong><p>Kalendergenaue Berechnung mit echten Monatslängen und vollständigen Schaltjahresregeln, inklusive Geburtstagen am 29. Februar und Jahrhundertjahren wie 1900 und 2000.</p></div>
+    <div class="card"><strong>Privat von Grund auf</strong><p>Dein Geburtsdatum ist ein personenbezogenes Datum. Hier verlässt es nie deinen Browser: kein Server, keine Analyse, kein Speichern. Die Seite funktioniert offline.</p></div>
+    <div class="card"><strong>Kostenlos, für immer</strong><p>Keine Anmeldung, keine Werbung, keine Limits. Nutze es für Alter, Fristen, Jubiläen oder jeden Abstand zwischen zwei Daten.</p></div>
+  </section>
+
+  <section id="how-age-works" class="prose">
+    <h2>So wird das Alter berechnet</h2>
+    <p>Dein genaues Alter ist die Antwort auf drei Fragen, der Reihe nach gestellt: wie viele <strong>volle Jahre</strong> seit deinem Geburtsdatum, dann wie viele <strong>volle Monate</strong> seit deinem letzten Geburtstag und schließlich wie viele <strong>Tage</strong> seit deinem letzten Monatsjubiläum. Dass es dafür überhaupt einen Rechner braucht, liegt an den unterschiedlichen Monatslängen von 28 bis 31 Tagen, sodass sich „vor 3 Monaten und 5 Tagen“ nicht durch einfaches Subtrahieren ermitteln lässt.</p>
+    <p>Schaltjahre bringen den bekannten Haken: Ein Jahr ist ein Schaltjahr, wenn es durch 4 teilbar ist, <em>außer</em> Jahrhundertjahren, die durch 400 teilbar sein müssen. 2000 und 2024 sind also Schaltjahre, 1900 und 2100 nicht. Über den 400-Jahres-Zyklus des gregorianischen Kalenders mittelt sich das Jahr auf 365,2425 Tage, weshalb auch „Durchschnittsmonat“-Werte (wie die in den Summen oben) auf 30,44 Tage kommen.</p>
+    <p>Grenzfälle erklären, warum zwei Rechner um einen Tag abweichen können: Wer am 31. geboren ist, für den haben die meisten Monate keinen 31., und wer am 29. Februar geboren ist, für den haben die meisten Jahre keinen 29. Februar. Dieses Tool begrenzt übersteigende Monatsjubiläen auf den letzten Tag des Monats und zählt einen Geburtstag am 29. Februar in gewöhnlichen Jahren am 1. März als vollendet, die am weitesten verbreiteten Konventionen.</p>
+  </section>
+
+  <section id="age-by-year" class="prose">
+    <h2>Welches Alter erreichst du 2026?</h2>
+    <p>Ziehe dein Geburtsjahr vom aktuellen Jahr ab, um das Alter zu erhalten, das du an deinem Geburtstag in diesem Jahr erreichst. Ob du dieses Alter heute schon hast, hängt davon ab, ob dein Geburtstag bereits vorbei ist:</p>
+    <div class="table-wrap">
+      <table>
+        <caption>Alter im Jahr 2026 = 2026 − Geburtsjahr. Vor deinem Geburtstag 2026 bist du ein Jahr jünger.</caption>
+        <thead><tr><th scope="col">Geboren</th><th scope="col">Alter 2026</th></tr></thead>
+        <tbody>
+          <tr><td>1940</td><td>86</td></tr>
+          <tr><td>1950</td><td>76</td></tr>
+          <tr><td>1960</td><td>66</td></tr>
+          <tr><td>1970</td><td>56</td></tr>
+          <tr><td>1980</td><td>46</td></tr>
+          <tr><td>1990</td><td>36</td></tr>
+          <tr><td>1995</td><td>31</td></tr>
+          <tr><td>2000</td><td>26</td></tr>
+          <tr><td>2005</td><td>21</td></tr>
+          <tr><td>2008</td><td>18</td></tr>
+          <tr><td>2010</td><td>16</td></tr>
+          <tr><td>2015</td><td>11</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Nicht jede Kultur zählt so: Das traditionelle ostasiatische System zählte Neugeborene als ein Jahr alt und fügte an jedem Neujahr ein Jahr hinzu. Südkorea, das letzte Land, das es offiziell nutzte, wechselte 2023 zum internationalen System.</p>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Häufig gestellte Fragen</h2>
+
+    <h3>Wie berechne ich mein genaues Alter?</h3>
+    <p>Zähle die vollen Jahre von deinem Geburtsdatum bis heute, dann die vollen Monate seit deinem letzten Geburtstag und schließlich die Tage seit deinem letzten Monatsjubiläum. Das Knifflige ist, dass Monate unterschiedlich lang sind, und genau das erledigt dieser Rechner. Gib dein Geburtsdatum ein und du erhältst dein Alter auf den Tag genau, dazu die Summen in Tagen, Stunden und Minuten.</p>
+
+    <h3>Wie behandelt der Rechner Schaltjahre und Geburtstage am 29. Februar?</h3>
+    <p>Schaltjahre werden exakt berücksichtigt: jedes 4. Jahr, außer Jahrhundertjahren, die nicht durch 400 teilbar sind (2000 war ein Schaltjahr; 1900 und 2100 sind es nicht). Wer am 29. Februar geboren ist, für den zählt dieser Rechner den Geburtstag in gewöhnlichen Jahren am 1. März, dem Moment, in dem das Jahr voll vollendet ist. Manche Rechtsordnungen nehmen stattdessen den 28. Februar, was das Ergebnis um einen Tag verschiebt.</p>
+
+    <h3>Warum liefern verschiedene Altersrechner leicht abweichende Ergebnisse?</h3>
+    <p>Weil „ein Monat“ mehrdeutig ist, wenn der Starttag im Zielmonat nicht existiert. Ist der 31. Januar plus ein Monat der 28. Februar oder der 1. März? Verschiedene Tools wählen für diese Grenzfälle unterschiedliche Konventionen, sodass der Tageswert um ein bis zwei Tage abweichen kann. Dieser Rechner nutzt die verbreitetste Konvention: Ein Monatsjubiläum, das über das Monatsende hinausschießt, wird auf den letzten Tag des Monats begrenzt.</p>
+
+    <h3>An welchem Wochentag wurde ich geboren?</h3>
+    <p>Gib oben dein Geburtsdatum ein und das Ergebnis zeigt sofort deinen Geburtswochentag. Er wird aus dem Kalender selbst berechnet (der gregorianische Kalender wiederholt sich in einem 400-Jahres-Zyklus) und ist daher für jedes Datum exakt.</p>
+
+    <h3>Wie viele Tage sind es bis zu meinem Geburtstag?</h3>
+    <p>Der Ergebnisbereich enthält einen Live-Countdown: das Datum deines nächsten Geburtstags, auf welchen Wochentag er fällt, wie viele Tage noch bleiben und welches Alter du erreichst. Ist heute dein Geburtstag, wird das angezeigt.</p>
+
+    <h3>Wie viele Tage alt bin ich?</h3>
+    <p>Gib dein Geburtsdatum ein und der Rechner zeigt die genaue Zahl deiner gelebten Tage (samt Wochen, Stunden und Minuten). Nette Meilensteine: 10.000 Tage erreichst du mit etwa 27,4 Jahren und 20.000 Tage mit etwa 54,8 Jahren.</p>
+
+    <h3>Wird mein Geburtsdatum irgendwo hochgeladen oder gespeichert?</h3>
+    <p>Nein. Alle Berechnungen laufen als JavaScript in deinem Browser. Dein Geburtsdatum wird nie übertragen, protokolliert oder gespeichert. Diese Seite stellt nach dem Laden überhaupt keine Netzwerkanfragen.</p>
+
+    <h3>Funktioniert der Altersrechner offline?</h3>
+    <p>Ja. Das gesamte Tool ist eine einzige eigenständige Seite ohne Server-Anfragen. Einmal geladen, funktioniert es auch ohne Verbindung weiter. Speichere es auf deinem Gerät und nutze es überall.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 DE</summary>
+    <ul>
+      <li><a href="https://agecalculator.wbest.app/" lang="en" hreflang="en">English</a></li>
+      <li aria-current="page">Deutsch</li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Gemacht für alle, die ein schnelles Tool brauchen, das einfach funktioniert.
+  <br>© 2026 WBest · Kostenlos nutzbar, keine Anmeldung nötig · <a href="https://wbest.app/">Kostenlose WBest-Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+/* Calendar math. Dates are {y, m, d} with m 1-12. All arithmetic uses UTC
+   timestamps of date-only values, so results are immune to DST and timezones. */
+var AC = (function () {
+  'use strict';
+
+  function isLeap(y) { return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0; }
+  function daysInMonth(y, m) {
+    return [31, isLeap(y) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][m - 1];
+  }
+  function ts(a) { return Date.UTC(a.y, a.m - 1, a.d); }
+  function daysBetween(a, b) { return Math.round((ts(b) - ts(a)) / 86400000); }
+  // Returns the weekday index (0 = Sunday); the UI maps it to a localized name.
+  function weekday(a) { return new Date(ts(a)).getUTCDay(); }
+
+  /* Exact difference in years/months/days, clamping overshooting month
+     anniversaries to the last day of the month (the common convention:
+     Jan 31 -> Mar 1 is "1 month, 1 day"). Requires a <= b. */
+  function diffYMD(a, b) {
+    var years = b.y - a.y, months = b.m - a.m, days = b.d - a.d;
+    if (days < 0) {
+      months--;
+      var py = b.y, pm = b.m - 1;
+      if (pm < 1) { pm = 12; py--; }
+      var anchor = Math.min(a.d, daysInMonth(py, pm));
+      days = daysBetween({ y: py, m: pm, d: anchor }, b);
+    }
+    if (months < 0) { years--; months += 12; }
+    return { years: years, months: months, days: days };
+  }
+
+  /* Next occurrence of the birthday month/day strictly after "from".
+     Feb 29 birthdays roll to Mar 1 in common years (Date.UTC handles the roll). */
+  function nextBirthday(dob, from) {
+    var cand = new Date(Date.UTC(from.y, dob.m - 1, dob.d));
+    var c = { y: cand.getUTCFullYear(), m: cand.getUTCMonth() + 1, d: cand.getUTCDate() };
+    if (ts(c) <= ts(from)) {
+      cand = new Date(Date.UTC(from.y + 1, dob.m - 1, dob.d));
+      c = { y: cand.getUTCFullYear(), m: cand.getUTCMonth() + 1, d: cand.getUTCDate() };
+    }
+    return { date: c, daysUntil: daysBetween(from, c), turning: c.y - dob.y };
+  }
+
+  function isBirthdayToday(dob, today) {
+    var cand = new Date(Date.UTC(today.y, dob.m - 1, dob.d));
+    return cand.getUTCMonth() + 1 === today.m && cand.getUTCDate() === today.d;
+  }
+
+  return {
+    isLeap: isLeap, daysInMonth: daysInMonth, daysBetween: daysBetween,
+    weekday: weekday, diffYMD: diffYMD, nextBirthday: nextBirthday,
+    isBirthdayToday: isBirthdayToday
+  };
+})();
+if (typeof module !== 'undefined') module.exports = AC;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+  var startEl = $('date-start'), endEl = $('date-end'), live = $('live');
+  var mode = 'age';
+  /* i18n:js:start */
+  var I18N = {
+    "weekdays": [
+      "Sonntag",
+      "Montag",
+      "Dienstag",
+      "Mittwoch",
+      "Donnerstag",
+      "Freitag",
+      "Samstag"
+    ],
+    "monthNames": [
+      "Januar",
+      "Februar",
+      "März",
+      "April",
+      "Mai",
+      "Juni",
+      "Juli",
+      "August",
+      "September",
+      "Oktober",
+      "November",
+      "Dezember"
+    ],
+    "dateFmt": "{d}. {month} {y}",
+    "units": {
+      "year": [
+        "Jahr",
+        "Jahre"
+      ],
+      "month": [
+        "Monat",
+        "Monate"
+      ],
+      "day": [
+        "Tag",
+        "Tage"
+      ]
+    },
+    "list3": "{a}, {b} und {c}",
+    "oldOn": "alt am {date} · geboren an einem {weekday}",
+    "fromTo": "von {a} bis {b}",
+    "incTotals": " (Endtag in den Summen enthalten)",
+    "birthdayToday": "Heute ist der Geburtstag - {n} wird erreicht. Herzlichen Glückwunsch!",
+    "nextBirthday": "Nächster Geburtstag: {date} (ein {weekday}) - noch {n} {away}, dann {age}.",
+    "away": [
+      "Tag entfernt",
+      "Tage entfernt"
+    ],
+    "sentenceAge": "Ich bin {ymd} alt - das sind {days} Tage oder etwa {hours} Stunden, bisher gelebt.",
+    "sentenceD2d": "Von {a} bis {b} sind es {ymd} - insgesamt {days} Tage{inc}.",
+    "incEnd": " (inklusive Endtag)",
+    "errAge": "Das Geburtsdatum liegt nach dem Zieldatum - tausche sie oder wähle ein anderes Datum.",
+    "errD2d": "Das Enddatum liegt vor dem Startdatum - tausche sie.",
+    "labelDob": "Geburtsdatum",
+    "labelAgeOn": "Alter an diesem Datum",
+    "labelStart": "Startdatum",
+    "labelEnd": "Enddatum",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "copiedLive": "Ergebnis in die Zwischenablage kopiert."
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
+  var MONTHS = I18N.monthNames;
+  function wd(a) { return I18N.weekdays[AC.weekday(a)]; }
+
+  function todayParts() {
+    var n = new Date();
+    return { y: n.getFullYear(), m: n.getMonth() + 1, d: n.getDate() };
+  }
+  function parseDate(el) {
+    var v = el.value;
+    if (!v) return null;
+    var p = v.split('-');
+    return { y: +p[0], m: +p[1], d: +p[2] };
+  }
+  function iso(a) {
+    var mm = a.m < 10 ? '0' + a.m : a.m, dd = a.d < 10 ? '0' + a.d : a.d;
+    return a.y + '-' + mm + '-' + dd;
+  }
+  function human(a) {
+    return I18N.dateFmt.replace('{month}', MONTHS[a.m - 1]).replace('{d}', a.d).replace('{y}', a.y);
+  }
+  function fmtInt(n) { return n.toLocaleString(LANG); }
+  function plural(n, unit) { return fmtInt(n) + ' ' + unit[n === 1 ? 0 : 1]; }
+  function ymdText(r) {
+    return I18N.list3
+      .replace('{a}', plural(r.years, I18N.units.year))
+      .replace('{b}', plural(r.months, I18N.units.month))
+      .replace('{c}', plural(r.days, I18N.units.day));
+  }
+  function announce(msg) { live.textContent = msg; }
+  function showErr(msg) {
+    $('err').textContent = msg || '';
+    $('err').classList.toggle('show', !!msg);
+  }
+
+  function update() {
+    var a = parseDate(startEl), b = parseDate(endEl);
+    var res = $('result'), ph = $('placeholder');
+    showErr('');
+    if (!a || !b) { res.hidden = true; ph.hidden = false; return; }
+    if (AC.daysBetween(a, b) < 0) {
+      res.hidden = true;
+      ph.hidden = true;
+      showErr(mode === 'age' ? I18N.errAge : I18N.errD2d);
+      return;
+    }
+    res.hidden = false;
+    ph.hidden = true;
+
+    var extraDay = mode === 'd2d' && $('include-end').checked ? 1 : 0;
+    var diff = AC.diffYMD(a, b);
+    var days = AC.daysBetween(a, b) + extraDay;
+    var totalMonths = diff.years * 12 + diff.months;
+
+    if (mode === 'age') {
+      $('big-line').textContent = ymdText(diff);
+      $('sub-line').textContent = I18N.oldOn.replace('{date}', human(b)).replace('{weekday}', wd(a));
+    } else {
+      $('big-line').textContent = ymdText(diff);
+      $('sub-line').textContent = I18N.fromTo.replace('{a}', human(a)).replace('{b}', human(b)) +
+        (extraDay ? I18N.incTotals : '');
+    }
+
+    $('st-months').textContent = fmtInt(totalMonths);
+    $('st-weeks').textContent = fmtInt(Math.floor(days / 7));
+    $('st-days').textContent = fmtInt(days);
+    $('st-hours').textContent = fmtInt(days * 24);
+    $('st-mins').textContent = fmtInt(days * 1440);
+
+    var sentence;
+    if (mode === 'age') {
+      var today = parseDate(endEl);
+      var nb = AC.nextBirthday(a, b);
+      if (AC.isBirthdayToday(a, b)) {
+        $('next-line').textContent = I18N.birthdayToday.replace('{n}', fmtInt(diff.years));
+      } else {
+        $('next-line').textContent = I18N.nextBirthday
+          .replace('{date}', human(nb.date)).replace('{weekday}', wd(nb.date))
+          .replace('{n}', fmtInt(nb.daysUntil)).replace('{away}', I18N.away[nb.daysUntil === 1 ? 0 : 1])
+          .replace('{age}', nb.turning);
+      }
+      $('next-box').hidden = false;
+      sentence = I18N.sentenceAge.replace('{ymd}', ymdText(diff))
+        .replace('{days}', fmtInt(days)).replace('{hours}', fmtInt(days * 24));
+    } else {
+      $('next-box').hidden = true;
+      sentence = I18N.sentenceD2d.replace('{a}', human(a)).replace('{b}', human(b))
+        .replace('{ymd}', ymdText(diff)).replace('{days}', fmtInt(days))
+        .replace('{inc}', extraDay ? I18N.incEnd : '');
+    }
+    $('sentence').textContent = sentence;
+  }
+
+  function setMode(m) {
+    mode = m;
+    $('tab-age').setAttribute('aria-pressed', String(m === 'age'));
+    $('tab-d2d').setAttribute('aria-pressed', String(m === 'd2d'));
+    $('label-start').textContent = m === 'age' ? I18N.labelDob : I18N.labelStart;
+    $('label-end').textContent = m === 'age' ? I18N.labelAgeOn : I18N.labelEnd;
+    $('row-include').hidden = m === 'age';
+    update();
+  }
+
+  $('tab-age').addEventListener('click', function () { setMode('age'); });
+  $('tab-d2d').addEventListener('click', function () { setMode('d2d'); });
+  startEl.addEventListener('change', update);
+  startEl.addEventListener('input', update);
+  endEl.addEventListener('change', update);
+  endEl.addEventListener('input', update);
+  $('include-end').addEventListener('change', update);
+
+  $('btn-copy').addEventListener('click', function () {
+    var btn = this, t = $('sentence').textContent;
+    var done = function () {
+      btn.textContent = I18N.copied;
+      announce(I18N.copiedLive);
+      setTimeout(function () { btn.textContent = I18N.copy; }, 1200);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(done, done);
+    } else { done(); }
+  });
+
+  endEl.value = iso(todayParts());
+  update();
+})();
+</script>
+</body>
+</html>
