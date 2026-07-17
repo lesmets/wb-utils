@@ -2,7 +2,6 @@
   "Test your webcam in seconds: live preview, resolution and frame rate readout, mirror, and snapshot. Nothing is recorded or uploaded. Free, no sign-up.": "Teste deine Webcam in Sekunden: Live-Vorschau, Auflösung und Bildrate, Spiegeln und Schnappschuss. Nichts wird aufgezeichnet. Kostenlos, ohne Anmeldung.",
   "Webcam Test": "Webcam-Test",
   "WBest Webcam Test: Test Your Camera Online, Free &amp; Private": "WBest Webcam-Test: Kamera online testen, kostenlos &amp; privat",
-  "Test your webcam in seconds: live preview, resolution and frame rate readout, mirror, and snapshot. Nothing is recorded or uploaded. Free, no sign-up.": "Teste deine Webcam in Sekunden: Live-Vorschau, Auflösung und Bildrate, Spiegeln und Schnappschuss. Nichts wird aufgezeichnet. Kostenlos, ohne Anmeldung.",
   "Free online webcam test. Check that your camera works with a live preview, see the exact resolution, frame rate, and aspect ratio it is actually delivering, switch between connected cameras, mirror the image, and take a snapshot. Everything happens inside your browser. No video is ever recorded, uploaded, or sent anywhere.": "Kostenloser Online-Webcam-Test. Prüfe mit einer Live-Vorschau, ob deine Kamera funktioniert, sieh die genaue Auflösung, Bildrate und das Seitenverhältnis, die sie tatsächlich liefert, wechsle zwischen angeschlossenen Kameras, spiegle das Bild und mach einen Schnappschuss. Alles passiert in deinem Browser. Kein Video wird je aufgezeichnet, hochgeladen oder irgendwohin gesendet.",
   "Requires JavaScript and a camera": "Benötigt JavaScript und eine Kamera",
   "Live camera preview with one click": "Live-Kameravorschau mit einem Klick",
@@ -105,5 +104,6 @@
   "Frequently asked questions": "Häufig gestellte Fragen",
   "Made for anyone who needs a quick tool that just works.": "Gemacht für alle, die ein schnelles Tool brauchen, das einfach funktioniert.",
   "© 2026 WBest · Free to use, no sign-up required ·": "© 2026 WBest · Kostenlos nutzbar, keine Anmeldung nötig ·",
-  "WBest Free Tools": "Kostenlose WBest-Tools"
+  "WBest Free Tools": "Kostenlose WBest-Tools",
+  "View source on GitHub": "Quellcode auf GitHub ansehen"
 }

@@ -199,5 +199,6 @@
   "Use the 10:1 rule: the code should be at least one tenth of the expected scanning distance. Scanned from 30 cm (a hand-held phone), it should be at least 3 cm wide; a poster scanned from 3 meters needs a 30 cm code. Never print smaller than about 2 × 2 cm (0.8 × 0.8 in), and keep a white margin around it.": "Nutze die 10:1-Regel: Der Code sollte mindestens ein Zehntel der erwarteten Scan-Entfernung groß sein. Aus 30 cm gescannt (ein Handy in der Hand), sollte er mindestens 3 cm breit sein; ein aus 3 Metern gescanntes Poster braucht einen 30-cm-Code. Drucke nie kleiner als etwa 2 × 2 cm (0,8 × 0,8 Zoll) und lass einen weißen Rand darum.",
   "Made for anyone who needs a quick tool that just works.": "Gemacht für alle, die ein schnelles Tool brauchen, das einfach funktioniert.",
   "© 2026 WBest · Free to use, no sign-up required ·": "© 2026 WBest · Kostenlos nutzbar, keine Anmeldung nötig ·",
-  "WBest Free Tools": "Kostenlose WBest-Tools"
+  "WBest Free Tools": "Kostenlose WBest-Tools",
+  "View source on GitHub": "Quellcode auf GitHub ansehen"
 }

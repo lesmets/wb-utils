@@ -2,7 +2,6 @@
   "Crop any image online with pixel-exact control, aspect ratio presets, and rotate or flip. Your photos never leave your device. Free, instant, no sign-up.": "Schneide Bilder online mit pixelgenauer Kontrolle, Seitenverhältnissen, Drehen und Spiegeln. Deine Fotos bleiben auf dem Gerät. Ohne Anmeldung.",
   "Image Cropper": "Bild-Zuschneider",
   "WBest Image Cropper: Crop Photos Online, Free &amp; Private": "WBest Bild-Zuschneider: Fotos online zuschneiden, privat",
-  "Crop any image online with pixel-exact control, aspect ratio presets, and rotate or flip. Your photos never leave your device. Free, instant, no sign-up.": "Schneide Bilder online mit pixelgenauer Kontrolle, Seitenverhältnissen, Drehen und Spiegeln. Deine Fotos bleiben auf dem Gerät. Ohne Anmeldung.",
   "Free online image cropper. Drag a crop box or type exact pixel values, lock it to a preset aspect ratio, rotate and flip, then export as JPEG, PNG, or WebP. Your photos are processed on your device and never uploaded. It even works offline.": "Kostenloser Online-Bild-Zuschneider. Ziehe einen Zuschnittrahmen oder tippe exakte Pixelwerte, sperre ihn auf ein voreingestelltes Seitenverhältnis, drehe und spiegle, und exportiere dann als JPEG, PNG oder WebP. Deine Fotos werden auf deinem Gerät verarbeitet und nie hochgeladen. Es funktioniert sogar offline.",
   "Requires JavaScript": "Benötigt JavaScript",
   "Drag and resize a crop box, or type exact pixel dimensions": "Zuschnittrahmen ziehen und skalieren oder exakte Pixelmaße tippen",
@@ -100,5 +99,6 @@
   "Frequently asked questions": "Häufig gestellte Fragen",
   "Made for anyone who needs a quick tool that just works.": "Gemacht für alle, die ein schnelles Tool brauchen, das einfach funktioniert.",
   "© 2026 WBest · Free to use, no sign-up required ·": "© 2026 WBest · Kostenlos nutzbar, keine Anmeldung nötig ·",
-  "WBest Free Tools": "Kostenlose WBest-Tools"
+  "WBest Free Tools": "Kostenlose WBest-Tools",
+  "View source on GitHub": "Quellcode auf GitHub ansehen"
 }

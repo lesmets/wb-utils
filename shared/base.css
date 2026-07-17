@@ -30,6 +30,9 @@ h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
   border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
   color:var(--accent);background:var(--accent-soft)
 }
+.repo-link{display:block;margin-top:10px;font-size:.82rem;color:var(--muted);text-decoration:none}
+.repo-link:hover{color:var(--accent);text-decoration:underline}
+.repo-link svg{vertical-align:-2px;margin-right:5px}
 nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
 nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
 nav.toc a:hover{text-decoration:underline}

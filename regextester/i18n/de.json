@@ -144,5 +144,6 @@
   "It uses your browser's own JavaScript (ECMAScript) engine, so results match exactly what Node.js and browser code will do. JavaScript syntax overlaps heavily with PCRE, Python, and Java, but a few things differ: JavaScript has no free-spacing <code>x</code> flag, no atomic groups, and no recursion. Lookbehind, named groups, and <code>\\p{...}</code> property escapes are all supported in modern browsers.": "Er nutzt die JavaScript-Engine (ECMAScript) deines eigenen Browsers, also stimmen die Ergebnisse exakt mit dem überein, was Node.js und Browser-Code tun. Die JavaScript-Syntax überschneidet sich stark mit PCRE, Python und Java, ein paar Dinge unterscheiden sich aber: JavaScript hat kein <code>x</code>-Flag für freies Spacing, keine atomaren Gruppen und keine Rekursion. Lookbehind, benannte Gruppen und <code>\\p{...}</code>-Eigenschafts-Escapes werden in modernen Browsern alle unterstützt.",
   "Made for anyone who needs a quick tool that just works.": "Gemacht für alle, die ein schnelles Tool brauchen, das einfach funktioniert.",
   "© 2026 WBest · Free to use, no sign-up required ·": "© 2026 WBest · Kostenlos nutzbar, keine Anmeldung nötig ·",
-  "WBest Free Tools": "Kostenlose WBest-Tools"
+  "WBest Free Tools": "Kostenlose WBest-Tools",
+  "View source on GitHub": "Quellcode auf GitHub ansehen"
 }

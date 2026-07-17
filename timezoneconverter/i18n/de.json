@@ -2,7 +2,6 @@
   "Convert a time between any time zones and compare cities side by side with a meeting planner. Daylight saving handled automatically. Free, instant, private.": "Rechne eine Zeit zwischen beliebigen Zeitzonen um und vergleiche Städte mit einem Meetingplaner. Sommerzeit automatisch. Kostenlos, sofort, privat.",
   "Time Zone Converter": "Zeitzonen-Umrechner",
   "WBest Time Zone Converter: Compare Times Across Cities": "WBest Zeitzonen-Umrechner: Zeiten über Städte vergleichen",
-  "Convert a time between any time zones and compare cities side by side with a meeting planner. Daylight saving handled automatically. Free, instant, private.": "Rechne eine Zeit zwischen beliebigen Zeitzonen um und vergleiche Städte mit einem Meetingplaner. Sommerzeit automatisch. Kostenlos, sofort, privat.",
   "Free online time zone converter and meeting planner. Pick a date and time in one zone and see it instantly in as many other zones as you like, with daylight saving handled automatically from your browser's own IANA time zone database. The hour strip shows every city's working hours at a glance so you can find a slot that suits everyone. Runs entirely in your browser. No tracking, works offline.": "Kostenloser Online-Zeitzonen-Umrechner und Meetingplaner. Wähle Datum und Uhrzeit in einer Zone und sieh sie sofort in beliebig vielen anderen Zonen, wobei die Sommerzeit automatisch aus der IANA-Zeitzonendatenbank deines Browsers berücksichtigt wird. Die Stundenleiste zeigt die Arbeitszeiten jeder Stadt auf einen Blick, sodass du einen Termin findest, der allen passt. Läuft vollständig in deinem Browser. Kein Tracking, funktioniert offline.",
   "Requires JavaScript": "Benötigt JavaScript",
   "Convert any time between any IANA time zones": "Beliebige Zeit zwischen beliebigen IANA-Zeitzonen umrechnen",
@@ -124,5 +123,6 @@
   "Frequently asked questions": "Häufig gestellte Fragen",
   "Made for anyone who needs a quick tool that just works.": "Gemacht für alle, die ein schnelles Tool brauchen, das einfach funktioniert.",
   "© 2026 WBest · Free to use, no sign-up required ·": "© 2026 WBest · Kostenlos nutzbar, keine Anmeldung nötig ·",
-  "WBest Free Tools": "Kostenlose WBest-Tools"
+  "WBest Free Tools": "Kostenlose WBest-Tools",
+  "View source on GitHub": "Quellcode auf GitHub ansehen"
 }

@@ -2,7 +2,6 @@
   "Generate Code 128 and EAN-13 barcodes and download them as PNG or SVG. The check digit is calculated for you. No sign-up, no watermark, 100% private.": "Erzeuge Code-128- und EAN-13-Barcodes und lade sie als PNG oder SVG herunter. Prüfziffer inklusive. Ohne Wasserzeichen, 100 % privat.",
   "Barcode Generator": "Barcode-Generator",
   "WBest Barcode Generator: Free Code 128 &amp; EAN-13 Barcodes": "WBest Barcode-Generator: Code 128 &amp; EAN-13, kostenlos",
-  "Generate Code 128 and EAN-13 barcodes and download them as PNG or SVG. The check digit is calculated for you. No sign-up, no watermark, 100% private.": "Erzeuge Code-128- und EAN-13-Barcodes und lade sie als PNG oder SVG herunter. Prüfziffer inklusive. Ohne Wasserzeichen, 100 % privat.",
   "Free online barcode generator for Code 128 and EAN-13. Type your data, get a scannable barcode instantly, and download it as a PNG or a print-ready vector SVG. Check digits are calculated and verified for you, there are no watermarks, and nothing ever expires. Runs entirely in your browser. No tracking, works offline.": "Kostenloser Online-Barcode-Generator für Code 128 und EAN-13. Tippe deine Daten, erhalte sofort einen scannbaren Barcode und lade ihn als PNG oder druckfertiges Vektor-SVG herunter. Prüfziffern werden für dich berechnet und geprüft, es gibt keine Wasserzeichen, und nichts läuft je ab. Läuft vollständig in deinem Browser. Kein Tracking, funktioniert offline.",
   "Requires JavaScript": "Benötigt JavaScript",
   "Code 128 barcodes for any printable ASCII text": "Code-128-Barcodes für beliebigen druckbaren ASCII-Text",
@@ -105,5 +104,6 @@
   "Frequently asked questions": "Häufig gestellte Fragen",
   "Made for anyone who needs a quick tool that just works.": "Gemacht für alle, die ein schnelles Tool brauchen, das einfach funktioniert.",
   "© 2026 WBest · Free to use, no sign-up required ·": "© 2026 WBest · Kostenlos nutzbar, keine Anmeldung nötig ·",
-  "WBest Free Tools": "Kostenlose WBest-Tools"
+  "WBest Free Tools": "Kostenlose WBest-Tools",
+  "View source on GitHub": "Quellcode auf GitHub ansehen"
 }

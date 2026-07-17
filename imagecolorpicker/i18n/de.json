@@ -83,5 +83,6 @@
   "They are three ways of writing the same color. HEX (<code>#2563eb</code>) is a compact six-digit form used throughout CSS and design tools. RGB (37, 99, 235) states how much red, green, and blue light is mixed, from 0 to 255 each. HSL (221, 83%, 53%) describes hue, saturation, and lightness, which is far easier to adjust by hand: to lighten a color in HSL you simply raise the L.": "Es sind drei Arten, dieselbe Farbe zu schreiben. HEX (<code>#2563eb</code>) ist eine kompakte sechsstellige Form, die in CSS und Design-Tools durchgängig genutzt wird. RGB (37, 99, 235) gibt an, wie viel rotes, grünes und blaues Licht gemischt wird, jeweils von 0 bis 255. HSL (221, 83%, 53%) beschreibt Farbton, Sättigung und Helligkeit und lässt sich weit leichter von Hand anpassen: Um eine Farbe in HSL aufzuhellen, erhöhst du einfach das L.",
   "Made for anyone who needs a quick tool that just works.": "Gemacht für alle, die ein schnelles Tool brauchen, das einfach funktioniert.",
   "© 2026 WBest · Free to use, no sign-up required ·": "© 2026 WBest · Kostenlos nutzbar, keine Anmeldung nötig ·",
-  "WBest Free Tools": "Kostenlose WBest-Tools"
+  "WBest Free Tools": "Kostenlose WBest-Tools",
+  "View source on GitHub": "Quellcode auf GitHub ansehen"
 }
