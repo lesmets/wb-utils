@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{BRAND_NAME}} Auto-Wertverlust-Rechner</title>
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:{{ACCENT}}; --accent-soft:{{ACCENT_SOFT}}; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:{{ACCENT_DARK}}; --accent-soft:{{ACCENT_SOFT_DARK}}; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+.repo-link{display:block;margin-top:10px;font-size:.82rem;color:var(--muted);text-decoration:none}
+.repo-link:hover{color:var(--accent);text-decoration:underline}
+.repo-link svg{vertical-align:-2px;margin-right:5px}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:root{
+  --dep:{{ACCENT}}; --fuel:#f59e0b; --ins:#8b5cf6; --maint:#ef4444; --tax:#14b8a6;
+  --grid:#e3e7ee;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --dep:{{ACCENT_DARK}}; --fuel:#fbbf24; --ins:#a78bfa; --maint:#f87171; --tax:#2dd4bf;
+    --grid:#26303f;
+  }
+}
+.layout{display:grid;grid-template-columns:320px minmax(0,1fr);gap:12px;align-items:start}
+@media (max-width:900px){.layout{grid-template-columns:1fr}}
+.panel{padding:16px 18px;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.panel h2{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:0 0 12px}
+.panel + .panel{margin-top:12px}
+
+.f{margin:0 0 11px}
+.f label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:4px}
+.f .in{display:flex;align-items:center;border:1px solid var(--border);border-radius:8px;background:var(--card);overflow:hidden}
+.f .in:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.f .in .pre,.f .in .post{
+  padding:0 9px;color:var(--muted);font-size:.85rem;white-space:nowrap;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace
+}
+/* The number is what matters. Give it a floor so a long affix can never eat
+   into the digits, and let the suffix truncate instead - the old order starved
+   the input, which cut "1.60" to "1.6". */
+/* basis 0, not auto: an <input> has an intrinsic ~20-character basis, which
+   would overflow the row and force the affixes to shrink instead. */
+.f input[type="text"],.f input[type="number"]{
+  flex:1 1 0;min-width:4ch;border:0;background:transparent;color:var(--text);
+  font:600 .95rem/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:9px 4px
+}
+.f input:focus-visible{outline:none}
+.f .in .post{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.f .in .pre{flex:none}
+/* A native select paints its arrow inside the padding box, so the text needs
+   reserved room on the right or it runs underneath the chevron. */
+.f select{
+  width:100%;font:inherit;font-size:.9rem;padding:9px 30px 9px 10px;border-radius:8px;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+/* minmax(0,1fr), not 1fr: a bare 1fr track will not shrink below its content's
+   min-content width, and an <input> carries an intrinsic ~20-character width -
+   so the second column would push straight out of the panel. */
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.seg{display:flex;gap:5px;margin:0 0 11px}
+.seg label{flex:1;position:relative}
+.seg input{position:absolute;opacity:0;width:0;height:0}
+.seg span{
+  display:block;padding:7px 6px;border:1px solid var(--border);border-radius:7px;text-align:center;
+  background:var(--card);color:var(--muted);cursor:pointer;font-size:.82rem;user-select:none
+}
+.seg input:checked+span{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:600}
+.seg input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.err{color:var(--over);font-size:.82rem;margin:6px 0 0;min-height:1.1em}
+
+.headline{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:640px){.headline{grid-template-columns:1fr}}
+.big{padding:16px 18px;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.big .k{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.big .v{
+  font:700 1.5rem/1.15 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-variant-numeric:tabular-nums;margin-top:3px;overflow-wrap:anywhere
+}
+.big .v.loss{color:var(--over)}
+.big .v.keep{color:var(--accent)}
+.big .s{font-size:.75rem;color:var(--muted);margin-top:2px}
+
+.chart{width:100%;height:210px;display:block;margin-top:6px}
+.chart .grid{stroke:var(--grid);stroke-width:1}
+.chart .axis{fill:var(--muted);font-size:9px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.chart .line{fill:none;stroke:var(--dep);stroke-width:2.5;stroke-linejoin:round}
+.chart .area{fill:var(--dep);opacity:.1}
+.chart .dot{fill:var(--dep)}
+
+.bars{display:grid;gap:7px;margin:2px 0 0}
+.bar{display:grid;grid-template-columns:96px 1fr auto;gap:10px;align-items:center;font-size:.83rem}
+.bar .lab{color:var(--muted);display:flex;align-items:center;gap:6px;white-space:nowrap}
+.bar .lab i{width:9px;height:9px;border-radius:2px;flex:none}
+.bar .track{height:14px;border-radius:4px;background:var(--bg);overflow:hidden}
+.bar .fill{height:100%;border-radius:4px}
+.bar .amt{
+  font:600 .82rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap
+}
+.bar .pct{color:var(--muted);font-size:.72rem}
+
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:420px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:8px 14px;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.76rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td{font-variant-numeric:tabular-nums;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+td:first-child{font-family:inherit}
+td.loss{color:var(--over)}
+
+.disclaimer{
+  padding:14px 16px;border:1px solid var(--border);border-radius:12px;background:var(--card);
+  font-size:.85rem;color:var(--muted);margin-top:12px
+}
+.disclaimer strong{color:var(--text)}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.faq p{color:var(--text)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+/* Mobile: let tables reflow to fit the viewport instead of scrolling.
+   min-width would otherwise hold the table open and overflow the page. */
+@media (max-width:560px){
+  table{min-width:0}
+  th,td{padding-left:8px;padding-right:8px}
+  td{overflow-wrap:break-word}
+  thead th{text-transform:none;letter-spacing:normal}
+  .bar{grid-template-columns:80px 1fr auto}
+}
+.brand-logo{height:56px;max-width:220px;object-fit:contain;display:block;margin:0 auto}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  {{LOGO}}
+  <h1>{{BRAND_NAME}} Auto-Wertverlust-Rechner</h1>
+</header>
+
+<main class="wrap">
+
+<section id="tool" aria-label="Rechner für Auto-Wertverlust und Gesamtkosten">
+    <div class="layout">
+
+      <div>
+        <div class="panel">
+          <h2>Das Auto</h2>
+          <div class="seg" role="radiogroup" aria-label="Neu oder gebraucht gekauft">
+            <label><input type="radio" name="cond" value="new" checked><span>Neu gekauft</span></label>
+            <label><input type="radio" name="cond" value="used"><span>Gebraucht gekauft</span></label>
+          </div>
+
+          <div class="f">
+            <label for="price">Gezahlter Preis</label>
+            <div class="in">
+              <span class="pre cur-sym">$</span>
+              <input type="text" id="price" inputmode="decimal" autocomplete="off" value="32000">
+            </div>
+          </div>
+
+          <div class="f" id="age-field" hidden>
+            <label for="age">Wie alt es beim Kauf war</label>
+            <div class="in">
+              <input type="text" id="age" inputmode="numeric" autocomplete="off" value="3">
+              <span class="post">Jahre</span>
+            </div>
+          </div>
+
+          <div class="f">
+            <label for="years">Jahre, die du es behältst</label>
+            <div class="in">
+              <input type="text" id="years" inputmode="numeric" autocomplete="off" value="5">
+              <span class="post">Jahre</span>
+            </div>
+          </div>
+
+          <div class="two">
+            <div class="f">
+              <label for="cur">Währung</label>
+              <select id="cur">
+                <option value="$" selected>$ Dollar</option>
+                <option value="£">£ Pfund</option>
+                <option value="€">€ Euro</option>
+                <option value="₹">₹ Rupie</option>
+                <option value="A$">A$ Aus</option>
+                <option value="C$">C$ Kan</option>
+                <option value="R">R Rand</option>
+                <option value="">Ohne</option>
+              </select>
+            </div>
+            <div class="f">
+              <label for="units">Strecke</label>
+              <!-- Short labels on purpose: the economy and fuel fields below
+                   already show the unit (mpg / L per 100km), so spelling it out
+                   here only pushed the text under the dropdown arrow. -->
+              <select id="units">
+                <option value="mi" selected>Meilen</option>
+                <option value="km">Kilometer</option>
+              </select>
+            </div>
+          </div>
+          <p class="err" id="err" aria-live="polite"></p>
+        </div>
+
+        <div class="panel">
+          <h2>Wertverlustraten</h2>
+          <div class="seg" role="radiogroup" aria-label="Methode">
+            <label><input type="radio" name="method" value="declining" checked><span>Degressiv</span></label>
+            <label><input type="radio" name="method" value="straight"><span>Linear</span></label>
+          </div>
+          <div class="two" id="rate-fields">
+            <div class="f" id="r1-field">
+              <label for="r1">Erstes Jahr</label>
+              <div class="in">
+                <input type="text" id="r1" inputmode="decimal" autocomplete="off" value="20">
+                <span class="post">%</span>
+              </div>
+            </div>
+            <div class="f">
+              <label for="r2" id="r2-label">Jedes Jahr danach</label>
+              <div class="in">
+                <input type="text" id="r2" inputmode="decimal" autocomplete="off" value="15">
+                <span class="post">%</span>
+              </div>
+            </div>
+          </div>
+          <p class="err" id="rate-note" style="color:var(--muted)">Die Voreinstellungen sind Markt-Faustregeln, keine Daten für dein Modell. Passe sie an, wenn du es besser weißt.</p>
+        </div>
+
+        <div class="panel">
+          <h2>Laufende Kosten (optional)</h2>
+          <div class="f">
+            <label for="dist" id="dist-label">Strecke pro Jahr</label>
+            <div class="in">
+              <input type="text" id="dist" inputmode="numeric" autocomplete="off" value="10000">
+              <span class="post" id="dist-unit">Meilen</span>
+            </div>
+          </div>
+          <div class="f">
+            <label for="eff" id="eff-label">Verbrauch</label>
+            <div class="in">
+              <input type="text" id="eff" inputmode="decimal" autocomplete="off" value="32">
+              <span class="post" id="eff-unit">mpg</span>
+            </div>
+          </div>
+          <div class="f">
+            <label for="fuelprice" id="fuel-label">Kraftstoffpreis</label>
+            <div class="in">
+              <span class="pre cur-sym">$</span>
+              <input type="text" id="fuelprice" inputmode="decimal" autocomplete="off" value="3.50">
+              <span class="post" id="fuel-unit">/gal</span>
+            </div>
+          </div>
+          <div class="two">
+            <div class="f">
+              <label for="ins">Versicherung pro Jahr</label>
+              <div class="in">
+                <span class="pre cur-sym">$</span>
+                <input type="text" id="ins" inputmode="decimal" autocomplete="off" value="1400">
+              </div>
+            </div>
+            <div class="f">
+              <label for="maint">Wartung pro Jahr</label>
+              <div class="in">
+                <span class="pre cur-sym">$</span>
+                <input type="text" id="maint" inputmode="decimal" autocomplete="off" value="800">
+              </div>
+            </div>
+          </div>
+          <div class="f">
+            <label for="tax">Steuer, Zulassung &amp; Sonstiges, pro Jahr</label>
+            <div class="in">
+              <span class="pre cur-sym">$</span>
+              <input type="text" id="tax" inputmode="decimal" autocomplete="off" value="200">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="headline">
+          <div class="big">
+            <div class="k">Wert nach <span id="hl-years">5</span> Jahre</div>
+            <div class="v keep" id="hl-value">-</div>
+            <div class="s" id="hl-retained"></div>
+          </div>
+          <div class="big">
+            <div class="k">Durch Wertverlust verloren</div>
+            <div class="v loss" id="hl-dep">-</div>
+            <div class="s" id="hl-deppc"></div>
+          </div>
+          <div class="big">
+            <div class="k">Echte Kosten pro Monat</div>
+            <div class="v" id="hl-month">-</div>
+            <div class="s" id="hl-permile"></div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:12px">
+          <h2>Wert im Zeitverlauf</h2>
+          <svg class="chart" id="chart" role="img" aria-labelledby="chart-desc"></svg>
+          <p class="sr-only" id="chart-desc"></p>
+        </div>
+
+        <div class="panel">
+          <h2>Was es dich kostet, über <span id="bd-years">5</span> Jahre</h2>
+          <div class="bars" id="bars"></div>
+          <p class="s" id="bd-total" style="font-size:.82rem;color:var(--muted);margin:10px 0 0"></p>
+        </div>
+
+        <div class="panel">
+          <h2>Jahr für Jahr</h2>
+          <div class="table-wrap">
+            <table>
+              <caption id="tbl-caption">Geschätzter Wert am Ende jedes Jahres und der darin verlorene Wert.</caption>
+              <thead><tr>
+                <th scope="col">Jahr</th><th scope="col">Alter</th>
+                <th scope="col">Wert</th><th scope="col">In dem Jahr verloren</th><th scope="col">Erhalten</th>
+              </tr></thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          <strong>Eine Schätzung, keine Bewertung.</strong> Der echte Wertverlust hängt von der genauen Marke, dem Modell, der Ausstattung, der Laufleistung, dem Zustand, der Wartungshistorie und dem ab, was der Gebrauchtmarkt am Verkaufstag will, und diese Dinge schwanken weit stärker, als eine einzelne Rate erfassen kann. Nutze das, um Szenarien zu vergleichen und ehrlich zu budgetieren, nicht als Preis. Es sind allgemeine Informationen, keine Finanzberatung.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+{{LANG_SWITCH}}
+<div class="wrap">{{FOOTER_ATTRIBUTION}}</div>
+</footer>
+
+<script>
+/* Depreciation + cost-of-ownership maths. Pure functions, returned for testability.
+   Money is kept in floats and only rounded for display; every rate is a fraction. */
+var CAR = (function () {
+  'use strict';
+
+  var LANG = (typeof document !== 'undefined' && document.documentElement.lang) || 'en';
+  var SEP = (function () { var s = (1234.5).toLocaleString(LANG); return { group: s[1], decimal: s[s.length - 2] }; })();
+  var GRP_RE = new RegExp('\\' + SEP.group, 'g');
+
+  function num(v) {
+    // Accept what people paste in their locale: "32.000", "€32000", "3,50".
+    var s = String(v == null ? '' : v).replace(new RegExp('[^0-9\\-\\' + SEP.group + '\\' + SEP.decimal + ']', 'g'), '');
+    s = s.replace(GRP_RE, '');
+    if (SEP.decimal !== '.') s = s.split(SEP.decimal).join('.');
+    var n = parseFloat(s);
+    return isFinite(n) ? n : NaN;
+  }
+
+  // Declining balance. The first-year cliff only applies to a car bought new:
+  // a used car already took it, so it depreciates at the steady rate from day one.
+  function valueAfter(price, years, o) {
+    var r1 = o.firstYearRate, r2 = o.annualRate;
+    if (years <= 0) return price;
+    if (!o.isNew) return price * Math.pow(1 - r2, years);
+    return price * (1 - r1) * Math.pow(1 - r2, years - 1);
+  }
+
+  // Straight line: the same total loss spread evenly. Never below zero.
+  function straightLineValue(price, years, o) {
+    var total = price * (o.totalRate == null ? 1 : o.totalRate);
+    var life = o.life || 1;
+    var v = price - (total * years / life);
+    return v < 0 ? 0 : v;
+  }
+
+  // Year-by-year rows. Returns [{ year, age, value, lost, retained }]
+  function schedule(o) {
+    var rows = [];
+    var price = o.price, years = Math.round(o.years);
+    var startAge = o.isNew ? 0 : (o.age || 0);
+    var prev = price;
+    for (var y = 1; y <= years; y++) {
+      var v;
+      if (o.method === 'straight') {
+        // Spread the same total loss the declining model would produce, so the
+        // two methods are comparable over the period rather than arbitrary.
+        var endTotal = price - valueAfter(price, years, o);
+        v = price - (endTotal * y / years);
+        if (v < 0) v = 0;
+      } else {
+        v = valueAfter(price, y, o);
+      }
+      rows.push({
+        year: y,
+        age: startAge + y,
+        value: v,
+        lost: prev - v,
+        retained: price > 0 ? v / price : 0
+      });
+      prev = v;
+    }
+    return rows;
+  }
+
+  // Fuel for one year. Imperial: miles + mpg + price/gallon.
+  // Metric: km + litres per 100km + price/litre.
+  function fuelPerYear(distance, efficiency, price, units) {
+    if (!isFinite(distance) || !isFinite(efficiency) || !isFinite(price)) return 0;
+    if (efficiency <= 0 || distance <= 0 || price <= 0) return 0;
+    var qty = units === 'km'
+      ? (distance / 100) * efficiency   // litres
+      : distance / efficiency;          // gallons
+    return qty * price;
+  }
+
+  // The whole picture. Depreciation is a cost like any other - that is the point.
+  function ownership(o) {
+    var rows = schedule(o);
+    var years = Math.round(o.years);
+    var endValue = rows.length ? rows[rows.length - 1].value : o.price;
+    var depreciation = o.price - endValue;
+
+    var fuel = fuelPerYear(o.distance, o.efficiency, o.fuelPrice, o.units) * years;
+    var insurance = (o.insurance || 0) * years;
+    var maintenance = (o.maintenance || 0) * years;
+    var tax = (o.tax || 0) * years;
+    var running = fuel + insurance + maintenance + tax;
+    var total = depreciation + running;
+
+    var totalDistance = (o.distance || 0) * years;
+    return {
+      rows: rows,
+      endValue: endValue,
+      depreciation: depreciation,
+      retained: o.price > 0 ? endValue / o.price : 0,
+      fuel: fuel, insurance: insurance, maintenance: maintenance, tax: tax,
+      running: running,
+      total: total,
+      perYear: years > 0 ? total / years : 0,
+      perMonth: years > 0 ? total / (years * 12) : 0,
+      perDistance: totalDistance > 0 ? total / totalDistance : 0,
+      depreciationShare: total > 0 ? depreciation / total : 0
+    };
+  }
+
+  // Validate before calculating, so the UI can say what is wrong rather than
+  // render NaN. Returns an error string, or '' when the inputs are usable.
+  function validate(o) {
+    if (!isFinite(o.price) || o.price <= 0) return 'priceEmpty';
+    if (o.price > 1e9) return 'priceBig';
+    if (!isFinite(o.years) || o.years < 1) return 'yearsMin';
+    if (o.years > 30) return 'yearsMax';
+    if (!o.isNew && (!isFinite(o.age) || o.age < 0)) return 'age';
+    if (!o.isNew && o.age > 40) return 'ageBig';
+    if (!isFinite(o.firstYearRate) || o.firstYearRate < 0 || o.firstYearRate >= 1) return 'r1';
+    if (!isFinite(o.annualRate) || o.annualRate < 0 || o.annualRate >= 1) return 'r2';
+    return '';
+  }
+
+  function money(n, symbol) {
+    var neg = n < 0;
+    var v = Math.abs(Math.round(n));
+    return (neg ? '-' : '') + (symbol || '') + v.toLocaleString(LANG);
+  }
+  function money2(n, symbol) {
+    return (symbol || '') + n.toLocaleString(LANG, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function pct(f, dp) {
+    return (f * 100).toLocaleString(LANG, { maximumFractionDigits: dp == null ? 0 : dp }) + '%';
+  }
+
+  return {
+    num: num, valueAfter: valueAfter, straightLineValue: straightLineValue,
+    schedule: schedule, fuelPerYear: fuelPerYear, ownership: ownership,
+    validate: validate, money: money, money2: money2, pct: pct
+  };
+})();
+if (typeof module !== 'undefined') module.exports = CAR;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+
+  var I18N = {
+    "labels": {
+      "depreciation": "Wertverlust",
+      "fuel": "Kraftstoff",
+      "insurance": "Versicherung",
+      "maintenance": "Wartung",
+      "tax": "Steuer & Sonstiges"
+    },
+    "err": {
+      "priceEmpty": "Gib den gezahlten Preis ein.",
+      "priceBig": "Dieser Preis ist nicht realistisch.",
+      "yearsMin": "Gib mindestens 1 Jahr ein.",
+      "yearsMax": "Halte die Projektion bei 30 Jahren oder weniger.",
+      "age": "Gib ein, wie alt das Auto beim Kauf war.",
+      "ageBig": "Dieses Alter ist nicht realistisch.",
+      "r1": "Die Rate im ersten Jahr muss zwischen 0 und 99 % liegen.",
+      "r2": "Die jährliche Rate muss zwischen 0 und 99 % liegen."
+    },
+    "unitMiles": "Meilen",
+    "unitKm": "km",
+    "unitMpg": "mpg",
+    "unitL100": "L/100km",
+    "perGal": "/gal",
+    "perLitre": "/Liter",
+    "rateEachAfter": "Jedes Jahr danach",
+    "rateEach": "Jedes Jahr",
+    "rateTotal": "Basis Gesamtverlust",
+    "retainedOf": "{pct} des gezahlten Preises",
+    "retainedOfAge": "{pct} des gezahlten Preises, mit {n} Jahren",
+    "depOfPrice": "{pct} des Preises, {amt} pro Jahr",
+    "perYearDist": "{year} pro Jahr · {per} pro {unit}",
+    "perYearOnly": "{year} pro Jahr",
+    "distKm": "km",
+    "distMile": "Meile",
+    "chartDesc": "Der Wert fällt von {from} beim Kauf auf {to} nach {n} Jahren.",
+    "barsTotal": "Gesamt {total} · {perYear} pro Jahr · {pct} davon ist Wertverlust.",
+    "rowYear": "Jahr {n}",
+    "ageYr": "{n} J.",
+    "ageYrs": "{n} J."
+  };
+  var LANG = document.documentElement.lang || 'en';
+  // Locale defaults: German-speaking users start on the euro and metric
+  // distance. syncUnits() below then swaps the economy and fuel-price
+  // placeholders to their metric equivalents.
+  if (/^de\b/.test(LANG)) { $('cur').value = '€'; $('units').value = 'km'; }
+
+  var COLORS = {
+    depreciation: 'var(--dep)', fuel: 'var(--fuel)', insurance: 'var(--ins)',
+    maintenance: 'var(--maint)', tax: 'var(--tax)'
+  };
+  var LABELS = I18N.labels;
+
+  function isNew() { return document.querySelector('input[name="cond"]:checked').value === 'new'; }
+  function method() { return document.querySelector('input[name="method"]:checked').value; }
+  function sym() { return $('cur').value; }
+
+  function read() {
+    return {
+      price: CAR.num($('price').value),
+      years: CAR.num($('years').value),
+      age: CAR.num($('age').value),
+      isNew: isNew(),
+      method: method(),
+      firstYearRate: CAR.num($('r1').value) / 100,
+      annualRate: CAR.num($('r2').value) / 100,
+      distance: CAR.num($('dist').value),
+      efficiency: CAR.num($('eff').value),
+      fuelPrice: CAR.num($('fuelprice').value),
+      insurance: CAR.num($('ins').value) || 0,
+      maintenance: CAR.num($('maint').value) || 0,
+      tax: CAR.num($('tax').value) || 0,
+      units: $('units').value
+    };
+  }
+
+  function syncUnits() {
+    var km = $('units').value === 'km';
+    $('dist-unit').textContent = km ? I18N.unitKm : I18N.unitMiles;
+    $('eff-unit').textContent = km ? I18N.unitL100 : I18N.unitMpg;
+    $('fuel-unit').textContent = km ? I18N.perLitre : I18N.perGal;
+    // A sensible default in the other system, if the user has not edited it.
+    var eff = CAR.num($('eff').value);
+    if (km && eff === 32) $('eff').value = (7.4).toLocaleString(LANG, { maximumFractionDigits: 1 });
+    if (!km && eff === 7.4) $('eff').value = '32';
+    var fp = CAR.num($('fuelprice').value);
+    if (km && fp === 3.50) $('fuelprice').value = (1.6).toLocaleString(LANG, { minimumFractionDigits: 2 });
+    if (!km && fp === 1.60) $('fuelprice').value = (3.5).toLocaleString(LANG, { minimumFractionDigits: 2 });
+  }
+
+  function syncCurrency() {
+    var s = sym();
+    // Every money field carries the symbol, not just the price - a bare dot
+    // beside "Insurance a year" told the reader nothing.
+    Array.prototype.forEach.call(document.querySelectorAll('.cur-sym'), function (el) {
+      el.textContent = s || '·';
+    });
+  }
+
+  function syncMethod() {
+    // The first-year rate is a declining-balance idea; straight line has no cliff.
+    var declining = method() === 'declining';
+    $('r1-field').hidden = !declining || !isNew();
+    $('r2-label').textContent = declining ? (isNew() ? I18N.rateEachAfter : I18N.rateEach) : I18N.rateTotal;
+  }
+
+  function syncCondition() {
+    $('age-field').hidden = isNew();
+    syncMethod();
+  }
+
+  function chart(rows, price, s) {
+    var svg = $('chart');
+    svg.textContent = '';
+    if (!rows.length) return;
+    var W = 600, H = 210, padL = 46, padR = 10, padT = 10, padB = 22;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('preserveAspectRatio', 'none');
+
+    var pts = [{ year: 0, value: price }].concat(rows);
+    var maxV = price, n = pts.length - 1;
+    var x = function (i) { return padL + (i / Math.max(1, n)) * (W - padL - padR); };
+    var y = function (v) { return padT + (1 - (maxV ? v / maxV : 0)) * (H - padT - padB); };
+
+    var ns = 'http://www.w3.org/2000/svg';
+    function el(name, attrs) {
+      var e = document.createElementNS(ns, name);
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+    // horizontal gridlines + value axis
+    for (var g = 0; g <= 4; g++) {
+      var v = maxV * g / 4;
+      var yy = y(v);
+      svg.appendChild(el('line', { class: 'grid', x1: padL, x2: W - padR, y1: yy, y2: yy }));
+      var t = el('text', { class: 'axis', x: 4, y: yy + 3 });
+      t.textContent = CAR.money(v, s);
+      svg.appendChild(t);
+    }
+    // year axis
+    for (var i = 0; i <= n; i++) {
+      if (n > 10 && i % 2) continue;
+      var tx = el('text', { class: 'axis', x: x(i), y: H - 6, 'text-anchor': 'middle' });
+      tx.textContent = i;
+      svg.appendChild(tx);
+    }
+    var d = pts.map(function (p, i) { return (i ? 'L' : 'M') + x(i) + ' ' + y(p.value); }).join(' ');
+    svg.appendChild(el('path', { class: 'area', d: d + ' L' + x(n) + ' ' + y(0) + ' L' + x(0) + ' ' + y(0) + ' Z' }));
+    svg.appendChild(el('path', { class: 'line', d: d }));
+    pts.forEach(function (p, i) {
+      svg.appendChild(el('circle', { class: 'dot', cx: x(i), cy: y(p.value), r: 2.5 }));
+    });
+
+    $('chart-desc').textContent = I18N.chartDesc.replace('{from}', CAR.money(price, s))
+      .replace('{to}', CAR.money(rows[rows.length - 1].value, s)).replace('{n}', rows.length);
+  }
+
+  function bars(r, s) {
+    var wrap = $('bars');
+    wrap.textContent = '';
+    var items = [
+      ['depreciation', r.depreciation], ['fuel', r.fuel], ['insurance', r.insurance],
+      ['maintenance', r.maintenance], ['tax', r.tax]
+    ].filter(function (i) { return i[1] > 0; });
+    var max = Math.max.apply(null, items.map(function (i) { return i[1]; }).concat([1]));
+
+    items.forEach(function (item) {
+      var key = item[0], val = item[1];
+      var row = document.createElement('div');
+      row.className = 'bar';
+
+      var lab = document.createElement('span');
+      lab.className = 'lab';
+      var dot = document.createElement('i');
+      dot.style.background = COLORS[key];
+      lab.appendChild(dot);
+      lab.appendChild(document.createTextNode(LABELS[key]));
+
+      var track = document.createElement('div');
+      track.className = 'track';
+      var fill = document.createElement('div');
+      fill.className = 'fill';
+      fill.style.width = (val / max * 100) + '%';
+      fill.style.background = COLORS[key];
+      track.appendChild(fill);
+
+      var amt = document.createElement('span');
+      amt.className = 'amt';
+      amt.appendChild(document.createTextNode(CAR.money(val, s)));
+      var p = document.createElement('span');
+      p.className = 'pct';
+      p.textContent = ' ' + CAR.pct(r.total ? val / r.total : 0);
+      amt.appendChild(p);
+
+      row.appendChild(lab); row.appendChild(track); row.appendChild(amt);
+      wrap.appendChild(row);
+    });
+
+    $('bd-total').textContent = items.length
+      ? I18N.barsTotal.replace('{total}', CAR.money(r.total, s))
+        .replace('{perYear}', CAR.money(r.perYear, s)).replace('{pct}', CAR.pct(r.depreciationShare))
+      : '';
+  }
+
+  function table(rows, s) {
+    var tb = $('tbody');
+    tb.textContent = '';
+    rows.forEach(function (row) {
+      var tr = document.createElement('tr');
+      function td(text, cls) {
+        var e = document.createElement('td');
+        if (cls) e.className = cls;
+        e.textContent = text;
+        return e;
+      }
+      tr.appendChild(td(I18N.rowYear.replace('{n}', row.year)));
+      tr.appendChild(td((row.age === 1 ? I18N.ageYr : I18N.ageYrs).replace('{n}', row.age)));
+      tr.appendChild(td(CAR.money(row.value, s)));
+      tr.appendChild(td('-' + CAR.money(row.lost, s), 'loss'));
+      tr.appendChild(td(CAR.pct(row.retained)));
+      tb.appendChild(tr);
+    });
+  }
+
+  function update() {
+    syncCurrency();
+    var o = read();
+    var s = sym();
+    var msg = CAR.validate(o);
+    $('err').textContent = msg ? I18N.err[msg] : '';
+    if (msg) return;
+
+    var r = CAR.ownership(o);
+    var years = Math.round(o.years);
+
+    $('hl-years').textContent = years;
+    $('bd-years').textContent = years;
+    $('hl-value').textContent = CAR.money(r.endValue, s);
+    $('hl-retained').textContent = o.isNew
+      ? I18N.retainedOf.replace('{pct}', CAR.pct(r.retained))
+      : I18N.retainedOfAge.replace('{pct}', CAR.pct(r.retained)).replace('{n}', o.age + years);
+    $('hl-dep').textContent = '-' + CAR.money(r.depreciation, s);
+    $('hl-deppc').textContent = I18N.depOfPrice.replace('{pct}', CAR.pct(1 - r.retained))
+      .replace('{amt}', CAR.money(r.depreciation / years, s));
+    $('hl-month').textContent = CAR.money(r.perMonth, s);
+    $('hl-permile').textContent = r.perDistance > 0
+      ? I18N.perYearDist.replace('{year}', CAR.money(r.perYear, s))
+        .replace('{per}', CAR.money2(r.perDistance, s)).replace('{unit}', o.units === 'km' ? I18N.distKm : I18N.distMile)
+      : I18N.perYearOnly.replace('{year}', CAR.money(r.perYear, s));
+
+    chart(r.rows, o.price, s);
+    bars(r, s);
+    table(r.rows, s);
+  }
+
+  ['price', 'years', 'age', 'r1', 'r2', 'dist', 'eff', 'fuelprice', 'ins', 'maint', 'tax']
+    .forEach(function (id) { $(id).addEventListener('input', update); });
+  $('cur').addEventListener('change', update);
+  $('units').addEventListener('change', function () { syncUnits(); update(); });
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="cond"]'), function (r) {
+    r.addEventListener('change', function () { syncCondition(); update(); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="method"]'), function (r) {
+    r.addEventListener('change', function () { syncMethod(); update(); });
+  });
+
+  // The HTML default "3.50" is English-formatted; restate it in the page locale
+  // so num() reads it as 3.5 rather than 350 where the decimal mark differs.
+  $('fuelprice').value = (3.5).toLocaleString(LANG, { minimumFractionDigits: 2 });
+  syncCondition();
+  syncUnits();
+  update();
+})();
+</script>
+</body>
+</html>

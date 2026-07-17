@@ -118,21 +118,33 @@ const offSite = roots.filter(dir => !sameSite(base.get(dir), new URL(base.get(DI
 // The directory page groups tools into category sections; read them back so
 // llms.txt inherits the same categories, one-line descriptions, and order the
 // directory shows.
+function card(body, category) {
+  const link = body.match(/<h3><a href="([^"]+)">([\s\S]*?)<\/a><\/h3>/);
+  const desc = body.match(/<p class="desc">([\s\S]*?)<\/p>/);
+  if (!link || !desc) fail(`Unparsable tool card under "${category}" in index.html`);
+  return {
+    category,
+    url: link[1].replace(/\/?$/, '/'),
+    desc: decode(desc[1].trim().replace(/\s+/g, ' ')),
+  };
+}
+
 function cards() {
-  const sections = html(DIRECTORY).split(/<h3 class="cat-title"[^>]*>/).slice(1);
-  if (!sections.length) fail('No <h3 class="cat-title"> sections in index.html');
+  const src = html(DIRECTORY);
   const entries = [];
+  // The featured banner sits above the category sections rather than inside
+  // one; its kicker line doubles as its category so page and brief agree.
+  for (const [, body] of src.matchAll(/<article class="tool card featured">([\s\S]*?)<\/article>/g)) {
+    const kicker = body.match(/<p class="kicker">([\s\S]*?)<\/p>/);
+    if (!kicker) fail('Featured card in index.html has no <p class="kicker">');
+    entries.push(card(body, decode(kicker[1].trim())));
+  }
+  const sections = src.split(/<h3 class="cat-title"[^>]*>/).slice(1);
+  if (!sections.length) fail('No <h3 class="cat-title"> sections in index.html');
   for (const section of sections) {
     const category = decode(section.slice(0, section.indexOf('</h3>')).trim());
-    for (const [, card] of section.matchAll(/<article class="tool card">([\s\S]*?)<\/article>/g)) {
-      const link = card.match(/<h3><a href="([^"]+)">([\s\S]*?)<\/a><\/h3>/);
-      const desc = card.match(/<p class="desc">([\s\S]*?)<\/p>/);
-      if (!link || !desc) fail(`Unparsable tool card under "${category}" in index.html`);
-      entries.push({
-        category,
-        url: link[1].replace(/\/?$/, '/'),
-        desc: decode(desc[1].trim().replace(/\s+/g, ' ')),
-      });
+    for (const [, body] of section.matchAll(/<article class="tool card">([\s\S]*?)<\/article>/g)) {
+      entries.push(card(body, category));
     }
   }
   return entries;

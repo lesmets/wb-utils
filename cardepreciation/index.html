@@ -764,6 +764,10 @@ if (typeof module !== 'undefined') module.exports = CAR;
   };
   /* i18n:js:end */
   var LANG = document.documentElement.lang || 'en';
+  // Locale defaults: German-speaking users start on the euro and metric
+  // distance. syncUnits() below then swaps the economy and fuel-price
+  // placeholders to their metric equivalents.
+  if (/^de\b/.test(LANG)) { $('cur').value = '€'; $('units').value = 'km'; }
 
   var COLORS = {
     depreciation: 'var(--dep)', fuel: 'var(--fuel)', insurance: 'var(--ins)',

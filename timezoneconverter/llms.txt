@@ -48,4 +48,4 @@ No. Every conversion runs in JavaScript in your browser using its own time zone 
 
 - [Age Calculator](https://agecalculator.wbest.app/): Exact age in years, months, and days, plus a countdown to your next birthday.
 - [Timer](https://timer.wbest.app/): Countdown timer and stopwatch with presets, laps, and an alarm.
-- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 26 free WB tools, private, no sign-up, no uploads.

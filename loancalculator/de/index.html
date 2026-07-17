@@ -488,6 +488,8 @@ if (typeof module !== 'undefined') module.exports = LOAN;
   };
   /* i18n:js:end */
   var LANG = document.documentElement.lang || 'en';
+  // Locale defaults: German-speaking users start on the euro.
+  if (/^de\b/.test(LANG)) { cur = '€'; $('currency').value = '€'; }
   // Derive the locale's separators from the formatter itself.
   var SEP = (function () {
     var s = (1234.5).toLocaleString(LANG);

@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{BRAND_NAME}} JSON Formatter</title>
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:{{ACCENT}}; --accent-soft:{{ACCENT_SOFT}}; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:{{ACCENT_DARK}}; --accent-soft:{{ACCENT_SOFT_DARK}}; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+.repo-link{display:block;margin-top:10px;font-size:.82rem;color:var(--muted);text-decoration:none}
+.repo-link:hover{color:var(--accent);text-decoration:underline}
+.repo-link svg{vertical-align:-2px;margin-right:5px}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:root{
+  --good:#16a34a;
+  --j-str:#16803c;
+  --j-num:#1d4ed8;
+  --j-kw:#9333ea;
+  --j-key:#1a2233;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --good:#4ade80;
+    --j-str:#6ee7a0;
+    --j-num:#93c5fd;
+    --j-kw:#d8b4fe;
+    --j-key:#e8ecf3;
+  }
+}
+.wrap{max-width:1160px;margin:0 auto;padding:0 16px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 10px;align-items:center}
+.toolbar button{
+  font:inherit;font-size:.85rem;padding:6px 14px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.toolbar button:hover{border-color:var(--accent);color:var(--accent)}
+.toolbar button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.toolbar button.primary:hover{filter:brightness(1.08);color:#fff}
+.toolbar .sep{width:1px;align-self:stretch;background:var(--border);margin:2px 4px}
+.toolbar select{
+  font:inherit;font-size:.85rem;padding:5px 8px;border-radius:8px;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.toolbar label.chk{display:flex;align-items:center;gap:7px;font-size:.85rem;cursor:pointer}
+.toolbar label.chk input{width:16px;height:16px;accent-color:var(--accent);margin:0}
+.status{
+  display:none;padding:10px 14px;border-radius:10px;font-size:.9rem;margin:0 0 10px;
+  border:1px solid var(--border);background:var(--card)
+}
+.status.ok{display:block;border-color:var(--good);color:var(--good);font-weight:600}
+.status.bad{display:block;border-color:var(--over)}
+.status.bad strong{color:var(--over)}
+.err-snip{
+  margin:8px 0 0;padding:8px 10px;border-radius:8px;background:var(--bg);overflow-x:auto;
+  font:.82rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre
+}
+.panes{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+@media (max-width:900px){.panes{grid-template-columns:1fr}}
+.pane-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--muted)}
+.pane-head .name{font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.pane-head .spacer{flex:1}
+.pane-head button{
+  font:inherit;font-size:.78rem;padding:3px 10px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--muted)
+}
+.pane-head button:hover{border-color:var(--accent);color:var(--accent)}
+.pane-head button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+textarea{
+  display:block;width:100%;min-height:380px;resize:vertical;padding:12px 14px;border:0;
+  font:.86rem/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color:var(--text);background:transparent;border-radius:0 0 12px 12px
+}
+textarea::placeholder{color:var(--muted)}
+.tree{
+  display:none;min-height:380px;max-height:640px;overflow:auto;padding:10px 14px;
+  font:.86rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace
+}
+.tree.show{display:block}
+.tree details{margin-left:0;padding-left:18px}
+.tree details details{padding-left:22px}
+.tree summary{cursor:pointer;list-style-position:outside;margin-left:-18px;user-select:none}
+.tree summary:hover{color:var(--accent)}
+.tree .row{display:block}
+.k{color:var(--j-key);font-weight:600}
+.s{color:var(--j-str)}
+.n{color:var(--j-num)}
+.kw{color:var(--j-kw)}
+.meta-dim{color:var(--muted)}
+.more-btn{
+  font:inherit;font-size:.8rem;margin:4px 0;padding:3px 10px;border-radius:7px;cursor:pointer;
+  border:1px dashed var(--border);background:transparent;color:var(--accent)
+}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:520px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td code{font:.82rem ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--bg);padding:1px 5px;border-radius:5px}
+pre.example{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);
+  padding:14px 16px;overflow-x:auto;font:.84rem/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace
+}
+.faq p{color:var(--text)}
+
+/* Mobile: let tables reflow to fit the viewport instead of scrolling.
+   min-width would otherwise hold the table open and overflow the page.
+   Headers drop uppercase so hyphens:auto can break long words like "Compression". */
+@media (max-width:560px){
+  table{min-width:0}
+  th,td{padding-left:8px;padding-right:8px}
+  td{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+  thead th{text-transform:none;letter-spacing:normal}
+}
+.brand-logo{height:56px;max-width:220px;object-fit:contain;display:block;margin:0 auto}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  {{LOGO}}
+  <h1>{{BRAND_NAME}} JSON Formatter</h1>
+</header>
+
+<main class="wrap">
+
+<section id="tool" aria-label="JSON formatter tool">
+    <div class="toolbar">
+      <button type="button" class="primary" id="btn-format" title="Ctrl/Cmd+Enter">Format</button>
+      <button type="button" id="btn-minify">Minify</button>
+      <button type="button" id="btn-validate">Validate</button>
+      <span class="sep" aria-hidden="true"></span>
+      <label for="opt-indent" class="sr-only">Indentation</label>
+      <select id="opt-indent">
+        <option value="2" selected>2 spaces</option>
+        <option value="4">4 spaces</option>
+        <option value="tab">Tabs</option>
+      </select>
+      <label class="chk"><input type="checkbox" id="opt-sort">Sort keys</label>
+      <span class="sep" aria-hidden="true"></span>
+      <button type="button" id="btn-escape" title="Turn the input into a quoted, escaped JSON string">Escape</button>
+      <button type="button" id="btn-unescape" title="Parse a quoted JSON string back to raw text">Unescape</button>
+    </div>
+
+    <div class="status" id="status" role="status"></div>
+
+    <div class="panes">
+      <div class="card">
+        <div class="pane-head">
+          <span class="name">Input</span>
+          <span class="spacer"></span>
+          <button type="button" id="btn-load">Open file…</button>
+          <input type="file" id="file-input" accept=".json,application/json,.txt,text/plain" class="sr-only" aria-label="Open a JSON file">
+          <button type="button" id="btn-sample">Sample</button>
+          <button type="button" id="btn-clear">Clear</button>
+        </div>
+        <label class="sr-only" for="input">JSON input</label>
+        <textarea id="input" spellcheck="false" autocapitalize="off" autocomplete="off"
+          placeholder='Paste JSON here, drop a file, or press Sample, then Format (Ctrl/Cmd+Enter).&#10;&#10;Nothing you paste leaves this page.'></textarea>
+      </div>
+
+      <div class="card">
+        <div class="pane-head">
+          <span class="name">Output</span>
+          <button type="button" id="view-text" aria-pressed="true">Text</button>
+          <button type="button" id="view-tree" aria-pressed="false">Tree</button>
+          <span class="spacer"></span>
+          <button type="button" id="btn-copy">Copy</button>
+          <button type="button" id="btn-download">Download</button>
+        </div>
+        <label class="sr-only" for="output">Formatted output</label>
+        <textarea id="output" readonly spellcheck="false" placeholder="Output appears here."></textarea>
+        <div class="tree" id="tree" hidden></div>
+      </div>
+    </div>
+    <p class="sr-only" id="live" role="status" aria-live="polite"></p>
+  </section>
+
+</main>
+
+<footer>
+{{LANG_SWITCH}}
+<div class="wrap">{{FOOTER_ATTRIBUTION}}</div>
+</footer>
+
+<script>
+/* JSON engine: native-speed parse/stringify plus a precise scanner that turns
+   parse failures into line/column positions and plain-language messages. */
+var JV = (function () {
+  'use strict';
+
+  // Recursive-descent scanner used only when native JSON.parse fails.
+  // Returns { line, col, pos, message } for the first error.
+  function locate(text) {
+    var i = 0, line = 1, col = 1, n = text.length;
+
+    function fail(code, param) {
+      return { line: line, col: col, pos: i, code: code, param: param };
+    }
+    function step() {
+      if (text.charCodeAt(i) === 10) { line++; col = 1; } else { col++; }
+      i++;
+    }
+    function ws() {
+      for (;;) {
+        var c = text[i];
+        if (c === ' ' || c === '\t' || c === '\n' || c === '\r') { step(); continue; }
+        if (c === '/' && (text[i + 1] === '/' || text[i + 1] === '*')) {
+          throw fail('comments');
+        }
+        return;
+      }
+    }
+    function string() {
+      step(); // opening quote
+      for (;;) {
+        if (i >= n) throw fail('unterminated');
+        var c = text[i], code = text.charCodeAt(i);
+        if (code < 0x20) {
+          throw fail(code === 10 ? 'lineBreak' : 'ctrlChar');
+        }
+        if (c === '"') { step(); return; }
+        if (c === '\\') {
+          step();
+          var e = text[i];
+          if (e === 'u') {
+            step();
+            for (var h = 0; h < 4; h++) {
+              if (!/[0-9a-fA-F]/.test(text[i] || '')) throw fail('badUesc');
+              step();
+            }
+          } else if ('"\\/bfnrt'.indexOf(e) !== -1) {
+            step();
+          } else {
+            throw fail('badEscape', e || '');
+          }
+        } else {
+          step();
+        }
+      }
+    }
+    function number() {
+      var start = i;
+      if (text[i] === '-') step();
+      if (!/[0-9]/.test(text[i] || '')) throw fail('minusDigits');
+      if (text[i] === '0' && /[0-9]/.test(text[i + 1] || '')) {
+        throw fail('leadingZero');
+      }
+      while (/[0-9]/.test(text[i] || '')) step();
+      if (text[i] === '.') {
+        step();
+        if (!/[0-9]/.test(text[i] || '')) throw fail('decimalDigits');
+        while (/[0-9]/.test(text[i] || '')) step();
+      }
+      if (text[i] === 'e' || text[i] === 'E') {
+        step();
+        if (text[i] === '+' || text[i] === '-') step();
+        if (!/[0-9]/.test(text[i] || '')) throw fail('exponentDigits');
+        while (/[0-9]/.test(text[i] || '')) step();
+      }
+      void start;
+    }
+    function word(w, message) {
+      for (var k = 0; k < w.length; k++) {
+        if (text[i] !== w[k]) throw fail(message);
+        step();
+      }
+    }
+    function value() {
+      ws();
+      var c = text[i];
+      if (c === undefined) throw fail('eoiValue');
+      if (c === '{') { object(); return; }
+      if (c === '[') { array(); return; }
+      if (c === '"') { string(); return; }
+      if (c === '-' || /[0-9]/.test(c)) { number(); return; }
+      if (c === 't') { word('true', 'kwTrue'); return; }
+      if (c === 'f') { word('false', 'kwFalse'); return; }
+      if (c === 'n') { word('null', 'kwNull'); return; }
+      if (c === "'") throw fail('singleQuotes');
+      if (c === 'N') throw fail('nan');
+      if (c === 'I') throw fail('infinity');
+      if (c === 'u') throw fail('undefinedKw');
+      if (c === '+') throw fail('plus');
+      if (c === '}' || c === ']') throw fail('unexpectedBracket', c);
+      throw fail('unexpectedChar', c);
+    }
+    function object() {
+      step(); ws();
+      if (text[i] === '}') { step(); return; }
+      for (;;) {
+        ws();
+        if (text[i] === '}') throw fail('trailingCommaObj');
+        if (text[i] === undefined) throw fail('eoiObj');
+        if (text[i] !== '"') {
+          if (text[i] === "'") throw fail('keySingleQuotes');
+          throw fail('keyDoubleQuoted');
+        }
+        string();
+        ws();
+        if (text[i] !== ':') throw fail('colonAfterKey');
+        step();
+        value();
+        ws();
+        if (text[i] === ',') { step(); continue; }
+        if (text[i] === '}') { step(); return; }
+        if (text[i] === undefined) throw fail('eoiObj');
+        throw fail('commaOrBraceObj');
+      }
+    }
+    function array() {
+      step(); ws();
+      if (text[i] === ']') { step(); return; }
+      for (;;) {
+        ws();
+        if (text[i] === ']') throw fail('trailingCommaArr');
+        value();
+        ws();
+        if (text[i] === ',') { step(); continue; }
+        if (text[i] === ']') { step(); return; }
+        if (text[i] === undefined) throw fail('eoiArr');
+        throw fail('commaOrBracketArr');
+      }
+    }
+
+    try {
+      value();
+      ws();
+      if (i < n) throw fail('extraContent');
+      return null; // scanner found no error (shouldn't happen when native parse failed)
+    } catch (e) {
+      if (e && typeof e.line === 'number') return e;
+      throw e;
+    }
+  }
+
+  function stripBom(text) {
+    return text.charCodeAt(0) === 0xFEFF ? text.slice(1) : text;
+  }
+
+  // -> { ok: true, value } | { ok: false, line, col, message }
+  function parse(text) {
+    text = stripBom(text);
+    try {
+      return { ok: true, value: JSON.parse(text) };
+    } catch (e) {
+      var loc = locate(text);
+      if (loc) return { ok: false, line: loc.line, col: loc.col, pos: loc.pos, code: loc.code, param: loc.param };
+      return { ok: false, line: 1, col: 1, pos: 0, message: String(e.message || e) };
+    }
+  }
+
+  function sortKeysDeep(v) {
+    if (Array.isArray(v)) return v.map(sortKeysDeep);
+    if (v && typeof v === 'object') {
+      var out = {};
+      Object.keys(v).sort().forEach(function (k) { out[k] = sortKeysDeep(v[k]); });
+      return out;
+    }
+    return v;
+  }
+
+  function stringify(value, indent, sort) {
+    var v = sort ? sortKeysDeep(value) : value;
+    return JSON.stringify(v, null, indent === 'tab' ? '\t' : +indent);
+  }
+
+  // one-line context snippet with a caret under the error column
+  function snippet(text, pos, col) {
+    var lineStart = text.lastIndexOf('\n', pos - 1) + 1;
+    var lineEnd = text.indexOf('\n', pos);
+    if (lineEnd === -1) lineEnd = text.length;
+    var lineText = text.slice(lineStart, lineEnd).replace(/\t/g, ' ');
+    var caret = col - 1;
+    var from = Math.max(0, caret - 60);
+    var clipped = lineText.slice(from, from + 120);
+    return clipped + '\n' + new Array(caret - from + 1).join(' ') + '^';
+  }
+
+  return { parse: parse, stringify: stringify, sortKeysDeep: sortKeysDeep,
+           snippet: snippet, stripBom: stripBom };
+})();
+if (typeof module !== 'undefined') module.exports = JV;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+  var input = $('input'), output = $('output'), tree = $('tree'), status = $('status'), live = $('live');
+  var lastValue = null, hasValue = false;
+  var I18N = {
+    "parseErr": {
+      "comments": "JSON does not allow comments - remove \"//\" and \"/* */\"",
+      "unterminated": "unterminated string - missing closing double quote",
+      "lineBreak": "real line break inside a string - escape it as \\n",
+      "ctrlChar": "unescaped control character inside a string",
+      "badUesc": "invalid \\u escape - needs exactly 4 hex digits",
+      "badEscape": "invalid escape sequence \"\\{c}\"",
+      "minusDigits": "a minus sign must be followed by digits",
+      "leadingZero": "numbers cannot have leading zeros - write 0.5, not 05",
+      "decimalDigits": "a decimal point must be followed by digits",
+      "exponentDigits": "an exponent must have digits",
+      "eoiValue": "unexpected end of input - expected a value",
+      "kwTrue": "invalid keyword - did you mean true?",
+      "kwFalse": "invalid keyword - did you mean false?",
+      "kwNull": "invalid keyword - did you mean null?",
+      "singleQuotes": "strings must use double quotes, not single quotes",
+      "nan": "NaN is not valid JSON - use null or a number",
+      "infinity": "Infinity is not valid JSON - use null or a number",
+      "undefinedKw": "undefined is not valid JSON - use null",
+      "plus": "numbers cannot start with a plus sign",
+      "unexpectedBracket": "unexpected \"{c}\" - expected a value",
+      "unexpectedChar": "unexpected character \"{c}\" - expected a value",
+      "trailingCommaObj": "trailing comma before \"}\" - remove the last comma",
+      "eoiObj": "unexpected end of input inside an object",
+      "keySingleQuotes": "object keys must use double quotes, not single quotes",
+      "keyDoubleQuoted": "object keys must be double-quoted strings",
+      "colonAfterKey": "expected \":\" after the object key",
+      "commaOrBraceObj": "expected \",\" or \"}\" in object - is a comma missing?",
+      "trailingCommaArr": "trailing comma before \"]\" - remove the last comma",
+      "eoiArr": "unexpected end of input inside an array",
+      "commaOrBracketArr": "expected \",\" or \"]\" in array - is a comma missing?",
+      "extraContent": "unexpected content after the JSON value - only one top-level value is allowed"
+    },
+    "lineCol": "✗ Line {line}, column {col}: ",
+    "invalidAnnounce": "Invalid JSON: line {line}, column {col}, {msg}",
+    "nothingProcess": "Nothing to process - paste some JSON first.",
+    "nothingEscape": "Nothing to escape - paste text or JSON first.",
+    "nothingUnescape": "Nothing to unescape - paste a quoted JSON string first.",
+    "unescapeExpects": "Unescape expects a double-quoted JSON string literal, like \"line one\\nline two\".",
+    "validFmt": "Valid JSON · {mode} to {size} · {ms} ms",
+    "modeMinified": "minified",
+    "modeFormatted": "formatted",
+    "validParsed": "Valid JSON · {size} · parsed in {ms} ms",
+    "doneOutput": "Done. Output is {size}.",
+    "validAnnounce": "Valid JSON.",
+    "escapedOk": "Escaped to a JSON string literal ({size})",
+    "unescapedOk": "Unescaped string ({size})",
+    "copied": "Copied!",
+    "copy": "Copy",
+    "copiedAnnounce": "Output copied to clipboard.",
+    "downloadedAnnounce": "Output downloaded as formatted.json.",
+    "treeEmpty": "Format or validate some JSON first - the tree appears here.",
+    "items": " items",
+    "keys": " keys",
+    "showMore": "Show {n} more of {m} remaining…"
+  };
+  var LANG = document.documentElement.lang || 'en';
+  function formatErr(res) {
+    if (res.code) {
+      var m = I18N.parseErr[res.code] || res.code;
+      return res.param != null ? m.replace('{c}', res.param) : m;
+    }
+    return res.message;
+  }
+  var CHUNK = 500, SAMPLE = {
+    name: 'WB JSON Formatter',
+    version: 2,
+    private: true,
+    uploadsData: null,
+    features: ['format', 'minify', 'validate', 'tree view', 'sort keys'],
+    limits: { maxFileMB: 'memory-bound', cost: 0 },
+    nested: { a: [1, 2, { b: [true, false] }], unicode: 'õäöü - 你好 🎉' }
+  };
+
+  function announce(msg) { live.textContent = msg; }
+  function fmtInt(n) { return n.toLocaleString(LANG); }
+  function fmtBytes(n) {
+    if (n < 1024) return n + ' B';
+    if (n < 1048576) return (n / 1024).toLocaleString(LANG, { maximumFractionDigits: 1 }) + ' KB';
+    return (n / 1048576).toLocaleString(LANG, { maximumFractionDigits: 2 }) + ' MB';
+  }
+
+  function setOk(msg) {
+    status.className = 'status ok';
+    status.textContent = '✓ ' + msg;
+  }
+  function setBad(res, raw) {
+    status.className = 'status bad';
+    status.textContent = '';
+    var head = document.createElement('div');
+    var b = document.createElement('strong');
+    var msg = formatErr(res);
+    b.textContent = I18N.lineCol.replace('{line}', fmtInt(res.line)).replace('{col}', fmtInt(res.col));
+    head.appendChild(b);
+    head.appendChild(document.createTextNode(msg));
+    status.appendChild(head);
+    var pre = document.createElement('pre');
+    pre.className = 'err-snip';
+    pre.textContent = JV.snippet(raw, res.pos, res.col);
+    status.appendChild(pre);
+    announce(I18N.invalidAnnounce.replace('{line}', res.line).replace('{col}', res.col).replace('{msg}', msg));
+  }
+  function clearStatus() {
+    status.className = 'status';
+    status.textContent = '';
+  }
+
+  function getParsed() {
+    var raw = input.value;
+    if (!raw.trim()) {
+      clearStatus();
+      setBadPlain(I18N.nothingProcess);
+      return null;
+    }
+    var t0 = performance.now();
+    var res = JV.parse(raw);
+    res.ms = performance.now() - t0;
+    if (!res.ok) { setBad(res, JV.stripBom(raw)); return null; }
+    return res;
+  }
+  function setBadPlain(msg) {
+    status.className = 'status bad';
+    status.textContent = '';
+    var b = document.createElement('strong');
+    b.textContent = '✗ ' + msg;
+    status.appendChild(b);
+  }
+
+  function run(mode) {
+    var res = getParsed();
+    if (!res) return;
+    var t0 = performance.now();
+    var text = mode === 'minify'
+      ? JSON.stringify($('opt-sort').checked ? JV.sortKeysDeep(res.value) : res.value)
+      : JV.stringify(res.value, $('opt-indent').value, $('opt-sort').checked);
+    var ms = Math.round(res.ms + performance.now() - t0);
+    output.value = text;
+    lastValue = res.value;
+    hasValue = true;
+    renderTreeIfVisible();
+    setOk(I18N.validFmt.replace('{mode}', mode === 'minify' ? I18N.modeMinified : I18N.modeFormatted)
+      .replace('{size}', fmtBytes(text.length)).replace('{ms}', fmtInt(ms)));
+    announce(I18N.doneOutput.replace('{size}', fmtBytes(text.length)));
+  }
+
+  function validateOnly() {
+    var res = getParsed();
+    if (!res) return;
+    lastValue = res.value;
+    hasValue = true;
+    renderTreeIfVisible();
+    setOk(I18N.validParsed.replace('{size}', fmtBytes(input.value.length)).replace('{ms}', fmtInt(Math.round(res.ms))));
+    announce(I18N.validAnnounce);
+  }
+
+  // ---------- tree view ----------
+  function typeOf(v) {
+    if (v === null) return 'null';
+    if (Array.isArray(v)) return 'array';
+    return typeof v;
+  }
+  function leafSpan(v) {
+    var s = document.createElement('span');
+    var t = typeOf(v);
+    if (t === 'string') { s.className = 's'; s.textContent = JSON.stringify(v.length > 120 ? v.slice(0, 120) + '…' : v); }
+    else if (t === 'number') { s.className = 'n'; s.textContent = String(v); }
+    else { s.className = 'kw'; s.textContent = String(v); }
+    return s;
+  }
+  function keySpan(k) {
+    var s = document.createElement('span');
+    s.className = 'k';
+    s.textContent = JSON.stringify(k) + ': ';
+    return s;
+  }
+  function containerSummary(k, v) {
+    var sum = document.createElement('summary');
+    if (k !== null) sum.appendChild(keySpan(k));
+    var t = Array.isArray(v);
+    var count = t ? v.length : Object.keys(v).length;
+    var dim = document.createElement('span');
+    dim.className = 'meta-dim';
+    dim.textContent = (t ? '[…] ' : '{…} ') + fmtInt(count) + (t ? I18N.items : I18N.keys);
+    sum.appendChild(dim);
+    return sum;
+  }
+  function buildNode(k, v, depth) {
+    var t = typeOf(v);
+    if (t !== 'object' && t !== 'array') {
+      var row = document.createElement('span');
+      row.className = 'row';
+      if (k !== null) row.appendChild(keySpan(k));
+      row.appendChild(leafSpan(v));
+      return row;
+    }
+    var det = document.createElement('details');
+    if (depth < 1) det.open = true;
+    det.appendChild(containerSummary(k, v));
+    var built = false;
+    var build = function () {
+      if (built) return;
+      built = true;
+      appendChildren(det, v, 0, depth);
+    };
+    if (det.open) build();
+    det.addEventListener('toggle', build, { once: false });
+    return det;
+  }
+  function appendChildren(det, v, from, depth) {
+    var keys = Array.isArray(v) ? null : Object.keys(v);
+    var len = keys ? keys.length : v.length;
+    var to = Math.min(len, from + CHUNK);
+    var frag = document.createDocumentFragment();
+    for (var i = from; i < to; i++) {
+      var k = keys ? keys[i] : i;
+      frag.appendChild(buildNode(keys ? k : null, keys ? v[k] : v[i], depth + 1));
+    }
+    if (to < len) {
+      var more = document.createElement('button');
+      more.type = 'button';
+      more.className = 'more-btn';
+      more.textContent = I18N.showMore.replace('{n}', fmtInt(Math.min(CHUNK, len - to))).replace('{m}', fmtInt(len - to));
+      more.addEventListener('click', function () {
+        det.removeChild(more);
+        appendChildren(det, v, to, depth);
+      });
+      frag.appendChild(more);
+    }
+    det.appendChild(frag);
+  }
+  function renderTree() {
+    tree.textContent = '';
+    if (!hasValue) {
+      var p = document.createElement('p');
+      p.className = 'muted';
+      p.textContent = I18N.treeEmpty;
+      tree.appendChild(p);
+      return;
+    }
+    tree.appendChild(buildNode(null, lastValue, 0));
+  }
+  var treeVisible = false;
+  function renderTreeIfVisible() { if (treeVisible) renderTree(); }
+  function setView(showTree) {
+    treeVisible = showTree;
+    $('view-text').setAttribute('aria-pressed', String(!showTree));
+    $('view-tree').setAttribute('aria-pressed', String(showTree));
+    output.style.display = showTree ? 'none' : '';
+    tree.hidden = !showTree;
+    tree.classList.toggle('show', showTree);
+    if (showTree) renderTree();
+  }
+
+  // ---------- string tools ----------
+  function doEscape() {
+    var raw = input.value;
+    if (!raw) { setBadPlain(I18N.nothingEscape); return; }
+    output.value = JSON.stringify(raw);
+    hasValue = false;
+    clearStatus();
+    setOk(I18N.escapedOk.replace('{size}', fmtBytes(output.value.length)));
+    if (treeVisible) setView(false);
+  }
+  function doUnescape() {
+    var raw = input.value.trim();
+    if (!raw) { setBadPlain(I18N.nothingUnescape); return; }
+    var res = JV.parse(raw);
+    if (!res.ok) { setBad(res, JV.stripBom(input.value)); return; }
+    if (typeof res.value !== 'string') {
+      setBadPlain(I18N.unescapeExpects);
+      return;
+    }
+    output.value = res.value;
+    hasValue = false;
+    setOk(I18N.unescapedOk.replace('{size}', fmtBytes(output.value.length)));
+    if (treeVisible) setView(false);
+  }
+
+  // ---------- wiring ----------
+  $('btn-format').addEventListener('click', function () { run('format'); });
+  $('btn-minify').addEventListener('click', function () { run('minify'); });
+  $('btn-validate').addEventListener('click', validateOnly);
+  $('btn-escape').addEventListener('click', doEscape);
+  $('btn-unescape').addEventListener('click', doUnescape);
+  $('view-text').addEventListener('click', function () { setView(false); });
+  $('view-tree').addEventListener('click', function () { setView(true); });
+  $('opt-indent').addEventListener('change', function () { if (output.value && hasValue) run('format'); });
+  $('opt-sort').addEventListener('change', function () { if (output.value && hasValue) run('format'); });
+
+  $('btn-copy').addEventListener('click', function () {
+    var btn = this;
+    if (!output.value) return;
+    var done = function () {
+      btn.textContent = I18N.copied;
+      announce(I18N.copiedAnnounce);
+      setTimeout(function () { btn.textContent = I18N.copy; }, 1200);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(output.value).then(done, done);
+    } else {
+      output.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      done();
+    }
+  });
+
+  $('btn-download').addEventListener('click', function () {
+    if (!output.value) return;
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([output.value], { type: 'application/json' }));
+    a.download = 'formatted.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 5000);
+    announce(I18N.downloadedAnnounce);
+  });
+
+  $('btn-load').addEventListener('click', function () { $('file-input').click(); });
+  $('file-input').addEventListener('change', function () {
+    var f = this.files && this.files[0];
+    if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      input.value = String(r.result);
+      run('format');
+    };
+    r.readAsText(f);
+    this.value = '';
+  });
+
+  input.addEventListener('dragover', function (e) { e.preventDefault(); });
+  input.addEventListener('drop', function (e) {
+    var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if (!f) return;
+    e.preventDefault();
+    var r = new FileReader();
+    r.onload = function () {
+      input.value = String(r.result);
+      run('format');
+    };
+    r.readAsText(f);
+  });
+
+  $('btn-sample').addEventListener('click', function () {
+    input.value = JSON.stringify(SAMPLE);
+    run('format');
+  });
+  $('btn-clear').addEventListener('click', function () {
+    input.value = '';
+    output.value = '';
+    lastValue = null;
+    hasValue = false;
+    clearStatus();
+    if (treeVisible) renderTree();
+    input.focus();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+      e.preventDefault();
+      run('format');
+    }
+  });
+})();
+</script>
+</body>
+</html>

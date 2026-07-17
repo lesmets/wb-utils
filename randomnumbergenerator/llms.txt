@@ -49,4 +49,4 @@ No. All randomness and every result is generated in your browser. Your ranges an
 - [Password Generator](https://passwordgenerator.wbest.app/): Strong random passwords, passphrases, and PINs with time-to-crack estimates.
 - [QR Code Generator](https://qrcode.wbest.app/): QR codes for links, Wi-Fi, vCards, and more. No watermark, never expire.
 - [Barcode Generator](https://barcodegenerator.wbest.app/): Code 128 and EAN-13 barcodes with check digits, as PNG or print-ready SVG.
-- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 26 free WB tools, private, no sign-up, no uploads.

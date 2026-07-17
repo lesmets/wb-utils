@@ -1,0 +1,47 @@
+# WBest Self-Host Packager
+
+> Free packager that bundles selected WBest tools into a self-hostable ZIP, rebranded with your team's name, logo, and brand color. Pick tools and languages, click create, and get plain static files you can host on any server, intranet, or file share. The whole package is assembled in your browser. Nothing is uploaded.
+
+Use it at https://selfhost.wbest.app/. It is a single page, and the tool is the page.
+
+- Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
+- Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
+- Works offline once the page has loaded, and needs no install.
+- One self-contained page: no cookies, no tracking, no consent popups.
+
+## Features
+
+- Pick any of the 25 WBest tools
+- Your team or company name on every page
+- Your brand color, with matching dark-mode shades derived automatically
+- Optional logo in every page header
+- Every available language, or just the ones you need
+- A ready-made landing page linking the included tools
+- One ZIP of plain static files, no build step, hostable anywhere
+- Built 100% in your browser, nothing is uploaded
+
+## Frequently asked questions
+
+### What does the package contain?
+
+A folder per tool with a single self-contained index.html (plus its translations and favicons), a landing page linking the tools you picked, and your logo if you added one. The pages are the same tools that run on wbest.app, stripped of everything except the tool itself and rebranded with your name and color.
+
+### How do I host the package?
+
+Unzip it anywhere a browser can reach: any static web server, an intranet host, a company file share, or even a USB stick. There is no build step, no database, and no configuration. Opening index.html directly from disk works too.
+
+### Is my logo or company name uploaded anywhere?
+
+No. The packager runs entirely in your browser: it fetches the neutral tool templates, applies your branding locally, and assembles the ZIP on your device. Your name, color, and logo never leave your browser.
+
+### Do the packaged tools need an internet connection?
+
+No. Every packaged page is fully self-contained, makes no network requests, and keeps working offline. That is what makes them safe for sensitive data on an internal network.
+
+### Am I allowed to self-host these tools with my own branding?
+
+Yes, that is exactly what this packager is for. Each generated page keeps a small "Thank you for using WBest Tools" line in the footer linking back to wbest.app. Please leave that attribution in place.
+
+## More WB tools
+
+- [WBest](https://wbest.app/): all 26 free WB tools, private, no sign-up, no uploads.

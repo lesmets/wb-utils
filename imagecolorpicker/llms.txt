@@ -49,4 +49,4 @@ No. The image is decoded and read pixel by pixel in your browser using canvas, s
 - [Image Compressor](https://imagecompressor.wbest.app/): Compress, resize, and convert JPEG, PNG, and WebP to an exact target size.
 - [Color Converter & Picker](https://colorconverter.wbest.app/): Convert HEX, RGB, HSL, and OKLCH, with tints, shades, and color harmonies.
 - [Image Cropper](https://imagecropper.wbest.app/): Crop to any aspect ratio or exact pixel size, then rotate, flip, and export.
-- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 26 free WB tools, private, no sign-up, no uploads.

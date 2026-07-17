@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{BRAND_NAME}} Bild-Farbwähler</title>
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:{{ACCENT}}; --accent-soft:{{ACCENT_SOFT}}; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:{{ACCENT_DARK}}; --accent-soft:{{ACCENT_SOFT_DARK}}; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+.repo-link{display:block;margin-top:10px;font-size:.82rem;color:var(--muted);text-decoration:none}
+.repo-link:hover{color:var(--accent);text-decoration:underline}
+.repo-link svg{vertical-align:-2px;margin-right:5px}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:root{ --grid:#c9ced8; }
+@media (prefers-color-scheme: dark){ :root{ --grid:#3a4658; } }
+
+.drop{
+  width:100%;padding:44px 20px;border:2px dashed var(--border);border-radius:12px;
+  background:var(--card);color:var(--text);cursor:pointer;text-align:center;font:inherit
+}
+.drop:hover,.drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.drop strong{display:block;font-size:1.1rem;margin-bottom:4px}
+.drop span{color:var(--muted);font-size:.9rem}
+
+.editor{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:12px;align-items:start}
+@media (max-width:900px){.editor{grid-template-columns:1fr}}
+.stage-card{padding:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.stage{
+  position:relative;margin:0 auto;line-height:0;touch-action:none;cursor:crosshair;
+  background-image:
+    linear-gradient(45deg,var(--grid) 25%,transparent 25%,transparent 75%,var(--grid) 75%),
+    linear-gradient(45deg,var(--grid) 25%,transparent 25%,transparent 75%,var(--grid) 75%);
+  background-size:16px 16px;background-position:0 0,8px 8px
+}
+.stage canvas#canvas{display:block;width:100%;height:auto}
+.loupe{
+  position:absolute;width:104px;height:104px;border-radius:50%;overflow:hidden;pointer-events:none;
+  border:3px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.45);transform:translate(-50%,-50%);display:none;z-index:5
+}
+.loupe canvas{display:block;width:100%;height:100%;image-rendering:pixelated}
+.loupe::after{
+  content:"";position:absolute;left:50%;top:50%;width:13px;height:13px;transform:translate(-50%,-50%);
+  border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.6),inset 0 0 0 1px rgba(0,0,0,.6);border-radius:2px
+}
+.stage.picking .loupe{display:block}
+
+.side{display:grid;gap:12px}
+.panel{padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.panel h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:0 0 10px}
+.chip{height:74px;border-radius:9px;border:1px solid var(--border);margin:0 0 10px}
+.vals{display:grid;gap:6px}
+.v{display:grid;grid-template-columns:38px 1fr auto;gap:8px;align-items:center;font-size:.85rem}
+.v .k{font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.v .val{
+  font:600 .85rem/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  overflow-wrap:anywhere;color:var(--text)
+}
+.v button{
+  font:inherit;font-size:.72rem;padding:4px 9px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.v button:hover{border-color:var(--accent);color:var(--accent)}
+.swatches{display:flex;flex-wrap:wrap;gap:6px}
+.swatches button{
+  width:34px;height:34px;border-radius:7px;border:1px solid var(--border);cursor:pointer;padding:0
+}
+.swatches button:hover{transform:scale(1.08)}
+.pal-row{display:flex;flex-wrap:wrap;gap:6px}
+.pal-row button{
+  flex:1 1 60px;height:46px;border-radius:7px;border:1px solid var(--border);cursor:pointer;
+  padding:0;position:relative;font:600 .62rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace
+}
+.pal-row button span{
+  position:absolute;left:0;right:0;bottom:3px;text-align:center;
+  text-shadow:0 1px 2px rgba(0,0,0,.5)
+}
+.ghost{
+  width:100%;font:inherit;font-size:.85rem;padding:8px 16px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text);margin-top:8px
+}
+.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.hint{font-size:.78rem;color:var(--muted);margin:8px 0 0}
+.err{color:var(--over);font-size:.85rem;margin:8px 0 0;min-height:1.2em}
+
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:420px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;background:var(--accent-soft);color:var(--accent);padding:1px 5px;border-radius:4px}
+.faq p{color:var(--text)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+/* Mobile: let tables reflow to fit the viewport instead of scrolling.
+   min-width would otherwise hold the table open and overflow the page. */
+@media (max-width:560px){
+  table{min-width:0}
+  th,td{padding-left:8px;padding-right:8px}
+  td{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+  td code{white-space:normal}
+  thead th{text-transform:none;letter-spacing:normal}
+}
+.brand-logo{height:56px;max-width:220px;object-fit:contain;display:block;margin:0 auto}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  {{LOGO}}
+  <h1>{{BRAND_NAME}} Bild-Farbwähler</h1>
+</header>
+
+<main class="wrap">
+
+<section id="tool" aria-label="Bild-Farbwähler">
+    <button type="button" class="drop" id="drop">
+      <strong>Bild hierher ziehen</strong>
+      <span>oder klicken zum Auswählen · aus Zwischenablage einfügen · JPEG, PNG, WebP, GIF, AVIF</span>
+    </button>
+    <input type="file" id="file" accept="image/*" class="sr-only" aria-label="Ein Bild wählen, aus dem du Farben nimmst">
+
+    <div class="editor" id="editor" hidden>
+      <div class="stage-card">
+        <div class="stage" id="stage">
+          <canvas id="canvas"></canvas>
+          <div class="loupe" id="loupe"><canvas id="loupe-canvas" width="13" height="13"></canvas></div>
+        </div>
+        <p class="hint">Über das Bild bewegen für die Vorschau, klicken, um eine Farbe festzuhalten. Die Lupe zeigt einzelne Pixel.</p>
+      </div>
+
+      <div class="side">
+        <div class="panel">
+          <h2 id="picked-heading">Gewählte Farbe</h2>
+          <div class="chip" id="chip" aria-labelledby="picked-heading"></div>
+          <div class="vals">
+            <div class="v"><span class="k">HEX</span><span class="val" id="v-hex">-</span><button type="button" data-c="hex">Kopieren</button></div>
+            <div class="v"><span class="k">RGB</span><span class="val" id="v-rgb">-</span><button type="button" data-c="rgb">Kopieren</button></div>
+            <div class="v"><span class="k">HSL</span><span class="val" id="v-hsl">-</span><button type="button" data-c="hsl">Kopieren</button></div>
+          </div>
+          <button type="button" class="ghost" id="screen" hidden>Vom Bildschirm wählen</button>
+          <p class="err" id="err" aria-live="polite"></p>
+        </div>
+
+        <div class="panel">
+          <h2 id="palette-heading">Bildpalette</h2>
+          <div class="pal-row" id="palette" aria-labelledby="palette-heading"></div>
+          <button type="button" class="ghost" id="copy-palette">Alle als CSS kopieren</button>
+        </div>
+
+        <div class="panel">
+          <h2 id="history-heading">Verlauf</h2>
+          <div class="swatches" id="history" aria-labelledby="history-heading"></div>
+          <p class="hint" id="history-empty">Farben, die du anklickst, werden hier aufbewahrt.</p>
+          <button type="button" class="ghost" id="new">Anderes Bild wählen</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+{{LANG_SWITCH}}
+<div class="wrap">{{FOOTER_ATTRIBUTION}}</div>
+</footer>
+
+<script>
+/* Color conversion + palette extraction. Pure functions, returned for testability. */
+var CP = (function () {
+  'use strict';
+
+  function clamp255(v) { return v < 0 ? 0 : (v > 255 ? 255 : Math.round(v)); }
+
+  function toHex(r, g, b) {
+    return '#' + [r, g, b].map(function (v) {
+      var h = clamp255(v).toString(16);
+      return h.length < 2 ? '0' + h : h;
+    }).join('');
+  }
+
+  function rgbString(r, g, b) {
+    return 'rgb(' + clamp255(r) + ', ' + clamp255(g) + ', ' + clamp255(b) + ')';
+  }
+
+  // Standard RGB -> HSL. Hue in degrees, s and l as percentages.
+  function toHsl(r, g, b) {
+    r = clamp255(r) / 255; g = clamp255(g) / 255; b = clamp255(b) / 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var l = (max + min) / 2, h = 0, s = 0;
+    if (max !== min) {
+      var d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      if (max === r) h = (g - b) / d + (g < b ? 6 : 0);
+      else if (max === g) h = (b - r) / d + 2;
+      else h = (r - g) / d + 4;
+      h /= 6;
+    }
+    return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+  }
+
+  function hslString(r, g, b) {
+    var c = toHsl(r, g, b);
+    return 'hsl(' + c.h + ', ' + c.s + '%, ' + c.l + '%)';
+  }
+
+  // Relative luminance (WCAG), used only to decide black or white label text.
+  function luminance(r, g, b) {
+    var a = [r, g, b].map(function (v) {
+      v = clamp255(v) / 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
+  }
+  function readableOn(r, g, b) { return luminance(r, g, b) > 0.45 ? '#000000' : '#ffffff'; }
+
+  // Pull RGB triples out of canvas image data, skipping transparent pixels and
+  // stepping so a huge photo does not mean a million-element sort.
+  function samples(data, maxSamples) {
+    maxSamples = maxSamples || 20000;
+    var total = data.length / 4;
+    var step = Math.max(1, Math.floor(total / maxSamples));
+    var out = [];
+    for (var i = 0; i < total; i += step) {
+      var o = i * 4;
+      if (data[o + 3] < 128) continue; // effectively transparent
+      out.push([data[o], data[o + 1], data[o + 2]]);
+    }
+    return out;
+  }
+
+  function average(box) {
+    var s = [0, 0, 0];
+    for (var i = 0; i < box.length; i++) {
+      s[0] += box[i][0]; s[1] += box[i][1]; s[2] += box[i][2];
+    }
+    return [Math.round(s[0] / box.length), Math.round(s[1] / box.length), Math.round(s[2] / box.length)];
+  }
+
+  function distance2(a, b) {
+    var dr = a[0] - b[0], dg = a[1] - b[1], db = a[2] - b[2];
+    return dr * dr + dg * dg + db * db;
+  }
+
+  var BUCKET_BITS = 5;      // 8 levels per channel -> 512 buckets
+  var MIN_DISTANCE = 60;    // how far apart two swatches must be, in RGB space
+
+  // Group pixels into a coarse RGB histogram, then take the most populous
+  // groups, skipping any that sit too close to a color already chosen.
+  //
+  // Popularity alone would return six near-identical shades of whatever
+  // dominates; median cut avoids that but splits at the population median, so
+  // an image that is mostly one color comes back as muddy averages of that
+  // color blended with its neighbours. Frequency plus a minimum separation
+  // keeps the "dominant" promise honest and still returns distinct swatches.
+  // Each swatch is the true average of its bucket's pixels, not the bucket's
+  // midpoint, so a flat color reproduces exactly.
+  function palette(pixels, count, opts) {
+    count = count || 6;
+    var minDist = (opts && opts.minDistance != null) ? opts.minDistance : MIN_DISTANCE;
+    if (!pixels.length) return [];
+
+    var shift = 8 - BUCKET_BITS;
+    var map = {};
+    for (var i = 0; i < pixels.length; i++) {
+      var p = pixels[i];
+      var key = ((p[0] >> shift) << (BUCKET_BITS * 2)) | ((p[1] >> shift) << BUCKET_BITS) | (p[2] >> shift);
+      var e = map[key];
+      if (e) { e.n++; e.r += p[0]; e.g += p[1]; e.b += p[2]; }
+      else map[key] = { n: 1, r: p[0], g: p[1], b: p[2] };
+    }
+
+    var buckets = [];
+    for (var k in map) {
+      if (!Object.prototype.hasOwnProperty.call(map, k)) continue;
+      var v = map[k];
+      buckets.push({
+        rgb: [Math.round(v.r / v.n), Math.round(v.g / v.n), Math.round(v.b / v.n)],
+        count: v.n
+      });
+    }
+    buckets.sort(function (a, b) { return b.count - a.count; });
+
+    var out = [];
+    for (var j = 0; j < buckets.length && out.length < count; j++) {
+      var rgb = buckets[j].rgb, ok = true;
+      for (var q = 0; q < out.length; q++) {
+        if (distance2(out[q], rgb) < minDist * minDist) { ok = false; break; }
+      }
+      if (ok) out.push(rgb);
+    }
+    return out;
+  }
+
+  return {
+    toHex: toHex, toHsl: toHsl, rgbString: rgbString, hslString: hslString,
+    luminance: luminance, readableOn: readableOn,
+    samples: samples, palette: palette, average: average, distance2: distance2
+  };
+})();
+if (typeof module !== 'undefined') module.exports = CP;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+  var I18N = {
+    "copied": "Kopiert",
+    "use": "{hex} verwenden",
+    "notImage": "Diese Datei ist kein Bild.",
+    "notDecoded": "Dieses Bild konnte nicht dekodiert werden."
+  };
+
+  var canvas = $('canvas'), ctx = canvas.getContext('2d', { willReadFrequently: true });
+  var stage = $('stage'), loupe = $('loupe'), loupeCanvas = $('loupe-canvas');
+  var lctx = loupeCanvas.getContext('2d');
+  var current = null, history = [], locked = false;
+
+  var LOUPE_PX = 13; // pixels across the magnifier
+
+  function show(rgb) {
+    current = rgb;
+    var hex = CP.toHex(rgb[0], rgb[1], rgb[2]);
+    $('chip').style.background = hex;
+    $('v-hex').textContent = hex;
+    $('v-rgb').textContent = CP.rgbString(rgb[0], rgb[1], rgb[2]);
+    $('v-hsl').textContent = CP.hslString(rgb[0], rgb[1], rgb[2]);
+  }
+
+  function pixelAt(x, y) {
+    var d = ctx.getImageData(x, y, 1, 1).data;
+    return [d[0], d[1], d[2]];
+  }
+
+  // Map a pointer position to a source-image pixel.
+  function toImage(e) {
+    var r = canvas.getBoundingClientRect();
+    var x = Math.floor((e.clientX - r.left) / r.width * canvas.width);
+    var y = Math.floor((e.clientY - r.top) / r.height * canvas.height);
+    return [
+      Math.max(0, Math.min(canvas.width - 1, x)),
+      Math.max(0, Math.min(canvas.height - 1, y))
+    ];
+  }
+
+  function drawLoupe(ix, iy, e) {
+    var r = stage.getBoundingClientRect();
+    loupe.style.left = (e.clientX - r.left) + 'px';
+    loupe.style.top = (e.clientY - r.top) + 'px';
+    var half = LOUPE_PX >> 1;
+    lctx.imageSmoothingEnabled = false;
+    lctx.clearRect(0, 0, LOUPE_PX, LOUPE_PX);
+    lctx.drawImage(canvas, ix - half, iy - half, LOUPE_PX, LOUPE_PX, 0, 0, LOUPE_PX, LOUPE_PX);
+  }
+
+  stage.addEventListener('pointermove', function (e) {
+    if (!canvas.width) return;
+    stage.classList.add('picking');
+    var p = toImage(e);
+    drawLoupe(p[0], p[1], e);
+    if (!locked) show(pixelAt(p[0], p[1]));
+  });
+  stage.addEventListener('pointerleave', function () {
+    stage.classList.remove('picking');
+    if (!locked && history.length) show(history[0]);
+  });
+  stage.addEventListener('pointerdown', function (e) {
+    if (!canvas.width) return;
+    var p = toImage(e);
+    var rgb = pixelAt(p[0], p[1]);
+    locked = true;
+    show(rgb);
+    addHistory(rgb);
+  });
+
+  function addHistory(rgb) {
+    var hex = CP.toHex(rgb[0], rgb[1], rgb[2]);
+    history = history.filter(function (h) { return CP.toHex(h[0], h[1], h[2]) !== hex; });
+    history.unshift(rgb);
+    history = history.slice(0, 18);
+    renderHistory();
+  }
+
+  function swatchButton(rgb, label) {
+    var hex = CP.toHex(rgb[0], rgb[1], rgb[2]);
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.style.background = hex;
+    b.title = hex;
+    b.setAttribute('aria-label', I18N.use.replace('{hex}', hex));
+    if (label) {
+      var s = document.createElement('span');
+      s.textContent = hex;
+      s.style.color = CP.readableOn(rgb[0], rgb[1], rgb[2]);
+      b.appendChild(s);
+    }
+    b.addEventListener('click', function () { locked = true; show(rgb); });
+    return b;
+  }
+
+  function renderHistory() {
+    var wrap = $('history');
+    wrap.textContent = '';
+    history.forEach(function (rgb) { wrap.appendChild(swatchButton(rgb, false)); });
+    $('history-empty').hidden = history.length > 0;
+  }
+
+  function renderPalette() {
+    var data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+    var cols = CP.palette(CP.samples(data), 6);
+    var wrap = $('palette');
+    wrap.textContent = '';
+    cols.forEach(function (rgb) { wrap.appendChild(swatchButton(rgb, true)); });
+    $('copy-palette').hidden = cols.length === 0;
+    return cols;
+  }
+
+  function copy(text, btn) {
+    var old = btn.textContent;
+    var done = function () {
+      btn.textContent = I18N.copied;
+      setTimeout(function () { btn.textContent = old; }, 1000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done);
+    else done();
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.v button'), function (b) {
+    b.addEventListener('click', function () {
+      if (!current) return;
+      copy($('v-' + b.getAttribute('data-c')).textContent, b);
+    });
+  });
+
+  $('copy-palette').addEventListener('click', function () {
+    var hexes = Array.prototype.map.call($('palette').querySelectorAll('button'), function (b) { return b.title; });
+    var css = hexes.map(function (h, i) { return '  --color-' + (i + 1) + ': ' + h + ';'; }).join('\n');
+    copy(':root {\n' + css + '\n}', $('copy-palette'));
+  });
+
+  // --- loading ---
+
+  function load(file) {
+    if (!file || !/^image\//.test(file.type)) {
+      $('err').textContent = I18N.notImage;
+      return;
+    }
+    var url = URL.createObjectURL(file);
+    var im = new Image();
+    im.onload = function () {
+      URL.revokeObjectURL(url);
+      canvas.width = im.naturalWidth;
+      canvas.height = im.naturalHeight;
+      ctx.drawImage(im, 0, 0);
+      stage.style.maxWidth = Math.min(im.naturalWidth, 900) + 'px';
+      $('editor').hidden = false;
+      $('drop').hidden = true;
+      $('err').textContent = '';
+      history = [];
+      locked = false;
+      renderHistory();
+      var cols = renderPalette();
+      if (cols.length) show(cols[0]);
+    };
+    im.onerror = function () {
+      URL.revokeObjectURL(url);
+      $('err').textContent = I18N.notDecoded;
+    };
+    im.src = url;
+  }
+
+  $('drop').addEventListener('click', function () { $('file').click(); });
+  $('file').addEventListener('change', function (e) { if (e.target.files[0]) load(e.target.files[0]); });
+  ['dragover', 'dragenter'].forEach(function (ev) {
+    $('drop').addEventListener(ev, function (e) { e.preventDefault(); $('drop').classList.add('over'); });
+  });
+  ['dragleave', 'drop'].forEach(function (ev) {
+    $('drop').addEventListener(ev, function (e) { e.preventDefault(); $('drop').classList.remove('over'); });
+  });
+  $('drop').addEventListener('drop', function (e) {
+    if (e.dataTransfer.files[0]) load(e.dataTransfer.files[0]);
+  });
+  document.addEventListener('paste', function (e) {
+    var items = (e.clipboardData || {}).items || [];
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].type.indexOf('image/') === 0) { load(items[i].getAsFile()); return; }
+    }
+  });
+  $('new').addEventListener('click', function () {
+    $('editor').hidden = true; $('drop').hidden = false; $('file').value = '';
+  });
+
+  // Screen-wide picking, where the browser offers it.
+  if (typeof window !== 'undefined' && 'EyeDropper' in window) {
+    var btn = $('screen');
+    btn.hidden = false;
+    btn.addEventListener('click', function () {
+      new window.EyeDropper().open().then(function (res) {
+        var m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(res.sRGBHex);
+        if (!m) return;
+        var rgb = [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)];
+        locked = true;
+        show(rgb);
+        addHistory(rgb);
+      }).catch(function () { /* the user dismissed the picker */ });
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -49,4 +49,4 @@ No. The barcode is encoded and drawn in your browser with JavaScript, so your pr
 - [Password Generator](https://passwordgenerator.wbest.app/): Strong random passwords, passphrases, and PINs with time-to-crack estimates.
 - [QR Code Generator](https://qrcode.wbest.app/): QR codes for links, Wi-Fi, vCards, and more. No watermark, never expire.
 - [Random Number Generator](https://randomnumbergenerator.wbest.app/): Secure random numbers, dice, coin flips, and pick-from-a-list draws.
-- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 26 free WB tools, private, no sign-up, no uploads.

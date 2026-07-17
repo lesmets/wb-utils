@@ -58,4 +58,4 @@ No. Your measurements are processed by JavaScript in your browser and never tran
 - [Percentage Calculator](https://percentagecalculator.wbest.app/): Percent of a number, increase/decrease, discounts, and tips. Formula included.
 - [Loan Calculator](https://loancalculator.wbest.app/): Monthly payment, total interest, and a full amortization schedule for any loan.
 - [Car Depreciation Calculator](https://cardepreciation.wbest.app/): What your car will be worth, and what owning it really costs per year and distance driven.
-- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 26 free WB tools, private, no sign-up, no uploads.

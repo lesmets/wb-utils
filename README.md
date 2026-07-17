@@ -16,6 +16,7 @@ WBest is a suite of single-purpose web tools that run entirely in the browser. S
 
 | Category | Tool | Description |
 | :--- | :--- | :--- |
+| **For teams** | [Self-Host Packager](https://selfhost.wbest.app/) | Bundle the tools your team needs into a rebranded package you host yourself. |
 | **Text & Writing** | [Word Counter](https://wbwordcounter.com/) | Words, characters, sentences, reading time, and keyword density as you type. |
 | | [Online Notepad](https://notepad.wbest.app/) | A private notepad that autosaves to your device, with live word and line counts. |
 | **Calculators** | [Percentage Calculator](https://percentagecalculator.wbest.app/) | Percent of a number, increase/decrease, discounts, and tips (formula included). |

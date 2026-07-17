@@ -47,4 +47,4 @@ That is normal and not a fault with your microphone. When you speak, you hear yo
 ## More WB tools
 
 - [Webcam Test](https://webcamtest.wbest.app/): Check your camera with a live preview, real resolution and frame rate, and a snapshot.
-- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 26 free WB tools, private, no sign-up, no uploads.

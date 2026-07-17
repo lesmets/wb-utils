@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{BRAND_NAME}} Unix-Timestamp-Konverter</title>
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:{{ACCENT}}; --accent-soft:{{ACCENT_SOFT}}; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:{{ACCENT_DARK}}; --accent-soft:{{ACCENT_SOFT_DARK}}; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+.repo-link{display:block;margin-top:10px;font-size:.82rem;color:var(--muted);text-decoration:none}
+.repo-link:hover{color:var(--accent);text-decoration:underline}
+.repo-link svg{vertical-align:-2px;margin-right:5px}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.now{padding:16px 18px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
+.now .label{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.now .val{font:700 1.5rem/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;color:var(--accent)}
+.now .spacer{flex:1}
+.now button{
+  font:inherit;font-size:.85rem;padding:7px 14px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.now button:hover{border-color:var(--accent);color:var(--accent)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+@media (max-width:820px){.grid{grid-template-columns:1fr}}
+.conv{padding:16px 18px}
+.conv h2{font-size:1.02rem;margin:0 0 12px}
+.field{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.field input[type="text"],.field input[type="datetime-local"]{
+  font:600 1rem/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;
+  flex:1;min-width:150px;padding:9px 11px;border:1px solid var(--border);border-radius:8px;
+  background:var(--card);color:var(--text)
+}
+.field select{
+  font:inherit;font-size:.88rem;padding:8px 8px;border-radius:8px;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.out{margin:14px 0 0;display:grid;gap:8px}
+.out .line{display:grid;grid-template-columns:104px 1fr auto;gap:10px;align-items:baseline;font-size:.9rem}
+@media (max-width:520px){.out .line{grid-template-columns:1fr}}
+.out .k{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.out .v{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-wrap:anywhere;color:var(--text);font-variant-numeric:tabular-nums}
+.out button.copy{
+  font:inherit;font-size:.78rem;padding:4px 10px;border-radius:6px;cursor:pointer;justify-self:start;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.out button.copy:hover{border-color:var(--accent);color:var(--accent)}
+.err{color:var(--over);font-size:.88rem;margin:10px 0 0;min-height:1.2em}
+.detected{font-size:.8rem;color:var(--muted);margin:8px 0 0}
+.detected b{color:var(--text)}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:420px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td{font-variant-numeric:tabular-nums}
+.faq p{color:var(--text)}
+
+/* Mobile: let tables reflow to fit the viewport instead of scrolling.
+   min-width would otherwise hold the table open and overflow the page.
+   Headers drop uppercase so hyphens:auto can break long words like "Compression". */
+@media (max-width:560px){
+  table{min-width:0}
+  th,td{padding-left:8px;padding-right:8px}
+  td{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+  thead th{text-transform:none;letter-spacing:normal}
+}
+.brand-logo{height:56px;max-width:220px;object-fit:contain;display:block;margin:0 auto}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  {{LOGO}}
+  <h1>{{BRAND_NAME}} Unix-Timestamp-Konverter</h1>
+</header>
+
+<main class="wrap">
+
+<section id="tool" aria-label="Unix-Timestamp-Konverter">
+    <div class="card now">
+      <div>
+        <div class="label">Aktuelle Unix-Zeit</div>
+        <div class="val" id="now-val">0</div>
+      </div>
+      <span class="spacer"></span>
+      <button type="button" id="now-copy">Kopieren</button>
+      <button type="button" id="now-ms">ms anzeigen</button>
+    </div>
+
+    <div class="grid">
+      <div class="card conv" id="conv-ts">
+        <h2>Timestamp → Datum</h2>
+        <div class="field">
+          <label class="sr-only" for="ts-in">Unix-Timestamp</label>
+          <input type="text" id="ts-in" inputmode="numeric" autocomplete="off" placeholder="z. B. 1700000000">
+          <label class="sr-only" for="ts-unit">Einheit</label>
+          <select id="ts-unit">
+            <option value="auto" selected>Automatisch</option>
+            <option value="s">Sekunden</option>
+            <option value="ms">Millisekunden</option>
+          </select>
+        </div>
+        <p class="detected" id="ts-detected"></p>
+        <div class="out" id="ts-out"></div>
+        <p class="err" id="ts-err" aria-live="polite"></p>
+      </div>
+
+      <div class="card conv" id="conv-date">
+        <h2>Datum → Timestamp</h2>
+        <div class="field">
+          <label class="sr-only" for="date-in">Datum und Uhrzeit</label>
+          <input type="datetime-local" id="date-in" step="1">
+          <label class="sr-only" for="date-zone">Interpretieren als</label>
+          <select id="date-zone">
+            <option value="local" selected>Lokale Zeit</option>
+            <option value="utc">UTC</option>
+          </select>
+        </div>
+        <div class="out" id="date-out"></div>
+        <p class="err" id="date-err" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+{{LANG_SWITCH}}
+<div class="wrap">{{FOOTER_ATTRIBUTION}}</div>
+</footer>
+
+<script>
+/* Timestamp parsing + formatting. Pure functions, returned for testability. */
+var TS = (function () {
+  'use strict';
+
+  // Decide whether a numeric string is seconds or milliseconds (or micro/nano).
+  // Heuristic by digit count of the integer part; forced overrides win.
+  function detectUnit(intDigits) {
+    if (intDigits <= 11) return 's';        // up to ~year 5138 in seconds
+    if (intDigits <= 14) return 'ms';
+    if (intDigits <= 17) return 'us';
+    return 'ns';
+  }
+
+  // Returns { ms, unit } or { error }
+  function parseTimestamp(raw, force) {
+    var s = String(raw == null ? '' : raw).trim();
+    if (!s) return { error: 'empty' };
+    if (!/^[+-]?\d+$/.test(s)) return { error: 'notNumber' };
+    var neg = s[0] === '-';
+    var digits = s.replace(/^[+-]/, '');
+    var unit = (force && force !== 'auto') ? force : detectUnit(digits.length);
+    var n = Number(s);
+    if (!isFinite(n)) return { error: 'tooLarge' };
+    var ms;
+    if (unit === 's') ms = n * 1000;
+    else if (unit === 'ms') ms = n;
+    else if (unit === 'us') ms = n / 1000;
+    else ms = n / 1e6;
+    if (!isFinite(ms) || Math.abs(ms) > 8.64e15) return { error: 'outOfRange' };
+    return { ms: ms, unit: unit, neg: neg };
+  }
+
+  function pad(n, w) { n = String(Math.abs(n)); while (n.length < w) n = '0' + n; return n; }
+
+  // Format a Date in UTC as "YYYY-MM-DD HH:MM:SS"
+  function fmtUTC(d) {
+    return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1, 2) + '-' + pad(d.getUTCDate(), 2) +
+      ' ' + pad(d.getUTCHours(), 2) + ':' + pad(d.getUTCMinutes(), 2) + ':' + pad(d.getUTCSeconds(), 2);
+  }
+  // Format a Date in local time as "YYYY-MM-DD HH:MM:SS"
+  function fmtLocal(d) {
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1, 2) + '-' + pad(d.getDate(), 2) +
+      ' ' + pad(d.getHours(), 2) + ':' + pad(d.getMinutes(), 2) + ':' + pad(d.getSeconds(), 2);
+  }
+
+  var UNITS = [
+    ['year', 31536000], ['month', 2592000], ['day', 86400],
+    ['hour', 3600], ['minute', 60], ['second', 1]
+  ];
+  // Relative time from nowMs (defaults to Date.now at call time).
+  // Returns { now: true } or { future, n, unit } for the caller to format.
+  function relative(ms, nowMs) {
+    var now = nowMs == null ? Date.now() : nowMs;
+    var diff = Math.round((ms - now) / 1000); // seconds, future positive
+    var future = diff >= 0;
+    var abs = Math.abs(diff);
+    if (abs < 1) return { now: true };
+    for (var i = 0; i < UNITS.length; i++) {
+      var name = UNITS[i][0], size = UNITS[i][1];
+      if (abs >= size || name === 'second') {
+        return { future: future, n: Math.floor(abs / size), unit: name };
+      }
+    }
+    return { now: true };
+  }
+
+  // Build a timestamp (seconds) from Y/M/D H:M:S components, in UTC or local.
+  function fromParts(p, zone) {
+    var ms = zone === 'utc'
+      ? Date.UTC(p.y, p.mo - 1, p.d, p.h, p.mi, p.s)
+      : new Date(p.y, p.mo - 1, p.d, p.h, p.mi, p.s).getTime();
+    return ms;
+  }
+
+  return {
+    detectUnit: detectUnit, parseTimestamp: parseTimestamp,
+    fmtUTC: fmtUTC, fmtLocal: fmtLocal, relative: relative, fromParts: fromParts
+  };
+})();
+if (typeof module !== 'undefined') module.exports = TS;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+
+  var I18N = {
+    "justNow": "gerade eben",
+    "inFuture": "in {t}",
+    "agoPast": "vor {t}",
+    "units": {
+      "year": [
+        "Jahr",
+        "Jahren"
+      ],
+      "month": [
+        "Monat",
+        "Monaten"
+      ],
+      "day": [
+        "Tag",
+        "Tagen"
+      ],
+      "hour": [
+        "Stunde",
+        "Stunden"
+      ],
+      "minute": [
+        "Minute",
+        "Minuten"
+      ],
+      "second": [
+        "Sekunde",
+        "Sekunden"
+      ]
+    },
+    "unitNames": {
+      "s": "Sekunden",
+      "ms": "Millisekunden",
+      "us": "Mikrosekunden",
+      "ns": "Nanosekunden"
+    },
+    "readAs": "Interpretiert als <b>{unit}</b>.",
+    "copy": "Kopieren",
+    "copied": "Kopiert",
+    "showS": "s anzeigen",
+    "showMs": "ms anzeigen",
+    "labelUtc": "UTC",
+    "labelLocal": "Lokal",
+    "labelIso": "ISO 8601",
+    "labelRelative": "Relativ",
+    "labelWeekday": "Wochentag",
+    "labelSeconds": "Sekunden",
+    "labelMilliseconds": "Millisekunden",
+    "errNotNumber": "Gib eine ganze Zahl ein (nur Ziffern).",
+    "errTooLarge": "Die Zahl ist zu groß.",
+    "errOutOfRange": "Außerhalb des darstellbaren Datumsbereichs.",
+    "errBadDate": "Wähle ein gültiges Datum mit Uhrzeit.",
+    "errNoConvert": "Dieses Datum konnte nicht umgerechnet werden."
+  };
+  var LANG = document.documentElement.lang || 'en';
+  var ERRS = { notNumber: I18N.errNotNumber, tooLarge: I18N.errTooLarge, outOfRange: I18N.errOutOfRange };
+
+  function relText(r) {
+    if (r.now) return I18N.justNow;
+    var label = r.n + ' ' + I18N.units[r.unit][r.n === 1 ? 0 : 1];
+    return (r.future ? I18N.inFuture : I18N.agoPast).replace('{t}', label);
+  }
+
+  var localZone = '';
+  try { localZone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+
+  function copyBtn(text) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'copy'; b.textContent = I18N.copy;
+    b.addEventListener('click', function () {
+      var done = function () { b.textContent = I18N.copied; setTimeout(function () { b.textContent = I18N.copy; }, 1000); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done);
+      else done();
+    });
+    return b;
+  }
+  function lineEl(k, v, copyText) {
+    var line = document.createElement('div'); line.className = 'line';
+    var ke = document.createElement('span'); ke.className = 'k'; ke.textContent = k;
+    var ve = document.createElement('span'); ve.className = 'v'; ve.textContent = v;
+    line.appendChild(ke); line.appendChild(ve);
+    if (copyText != null) line.appendChild(copyBtn(copyText));
+    return line;
+  }
+
+  // --- Live current timestamp ---
+  var nowMs = false;
+  function tickNow() {
+    var n = Date.now();
+    $('now-val').textContent = nowMs ? String(n) : String(Math.floor(n / 1000));
+  }
+  $('now-ms').addEventListener('click', function () {
+    nowMs = !nowMs;
+    $('now-ms').textContent = nowMs ? I18N.showS : I18N.showMs;
+    tickNow();
+  });
+  $('now-copy').addEventListener('click', function () {
+    var t = $('now-val').textContent;
+    var b = $('now-copy'); var done = function () { b.textContent = I18N.copied; setTimeout(function () { b.textContent = I18N.copy; }, 1000); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, done);
+    else done();
+  });
+  tickNow(); setInterval(tickNow, 1000);
+
+  // --- Timestamp -> date ---
+  function updateTs() {
+    var out = $('ts-out'), err = $('ts-err'), det = $('ts-detected');
+    out.textContent = ''; err.textContent = ''; det.textContent = '';
+    var raw = $('ts-in').value.trim();
+    if (!raw) return;
+    var r = TS.parseTimestamp(raw, $('ts-unit').value);
+    if (r.error) { if (r.error !== 'empty') err.textContent = ERRS[r.error] || r.error; return; }
+    det.innerHTML = I18N.readAs.replace('{unit}', I18N.unitNames[r.unit]);
+    var d = new Date(r.ms);
+    out.appendChild(lineEl(I18N.labelUtc, TS.fmtUTC(d) + ' UTC', TS.fmtUTC(d)));
+    out.appendChild(lineEl(I18N.labelLocal + (localZone ? ' (' + localZone + ')' : ''), TS.fmtLocal(d), TS.fmtLocal(d)));
+    out.appendChild(lineEl(I18N.labelIso, d.toISOString(), d.toISOString()));
+    out.appendChild(lineEl(I18N.labelRelative, relText(TS.relative(r.ms))));
+    out.appendChild(lineEl(I18N.labelWeekday, d.toLocaleDateString(LANG, { weekday: 'long' })));
+  }
+  $('ts-in').addEventListener('input', updateTs);
+  $('ts-unit').addEventListener('change', updateTs);
+
+  // --- Date -> timestamp ---
+  function updateDate() {
+    var out = $('date-out'), err = $('date-err');
+    out.textContent = ''; err.textContent = '';
+    var v = $('date-in').value;
+    if (!v) return;
+    var m = v.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2}))?$/);
+    if (!m) { err.textContent = I18N.errBadDate; return; }
+    var parts = { y: +m[1], mo: +m[2], d: +m[3], h: +m[4], mi: +m[5], s: m[6] ? +m[6] : 0 };
+    var ms = TS.fromParts(parts, $('date-zone').value);
+    if (isNaN(ms)) { err.textContent = I18N.errNoConvert; return; }
+    var secs = Math.floor(ms / 1000);
+    out.appendChild(lineEl(I18N.labelSeconds, String(secs), String(secs)));
+    out.appendChild(lineEl(I18N.labelMilliseconds, String(ms), String(ms)));
+    out.appendChild(lineEl(I18N.labelIso, new Date(ms).toISOString(), new Date(ms).toISOString()));
+    out.appendChild(lineEl(I18N.labelRelative, relText(TS.relative(ms))));
+  }
+  $('date-in').addEventListener('input', updateDate);
+  $('date-zone').addEventListener('change', updateDate);
+
+  // Seed with the current time as an example.
+  $('ts-in').value = String(Math.floor(Date.now() / 1000));
+  updateTs();
+  (function seedDate() {
+    var d = new Date();
+    var p = function (n) { return (n < 10 ? '0' : '') + n; };
+    $('date-in').value = d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
+      'T' + p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
+    updateDate();
+  })();
+})();
+</script>
+</body>
+</html>

@@ -143,5 +143,10 @@
   "Made for anyone who needs a quick tool that just works.": "Gemacht für alle, die ein schnelles Tool brauchen, das einfach funktioniert.",
   "© 2026 WBest · Free to use, no sign-up required ·": "© 2026 WBest · Kostenlos nutzbar, keine Anmeldung nötig ·",
   "WBest Free Tools": "Kostenlose WBest-Tools",
-  "View source on GitHub": "Quellcode auf GitHub ansehen"
+  "View source on GitHub": "Quellcode auf GitHub ansehen",
+  "Self-Host Packager": "Self-Host-Packager",
+  "For teams": "Für Teams",
+  "Free packager that bundles selected WBest tools into a rebranded, self-hostable ZIP with your team's name, logo, and brand color. Plain static files, assembled entirely in your browser.": "Kostenloser Packager, der ausgewählte WBest-Tools zu einem umbenannten, selbst hostbaren ZIP mit Name, Logo und Markenfarbe deines Teams bündelt. Einfache statische Dateien, komplett in deinem Browser erstellt.",
+  "<a href=\"https://selfhost.wbest.app/\">Self-Host Packager</a>": "<a href=\"https://selfhost.wbest.app/\">Self-Host-Packager</a>",
+  "Bundle the tools your team needs into a rebranded package you host yourself.": "Bündle die Tools, die dein Team braucht, zu einem umbenannten Paket, das du selbst hostest."
 }

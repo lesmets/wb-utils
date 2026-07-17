@@ -59,4 +59,4 @@ Yes. The entire tool is one self-contained page with no server calls, and the ra
 - [QR Code Generator](https://qrcode.wbest.app/): QR codes for links, Wi-Fi, vCards, and more. No watermark, never expire.
 - [Random Number Generator](https://randomnumbergenerator.wbest.app/): Secure random numbers, dice, coin flips, and pick-from-a-list draws.
 - [Barcode Generator](https://barcodegenerator.wbest.app/): Code 128 and EAN-13 barcodes with check digits, as PNG or print-ready SVG.
-- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 26 free WB tools, private, no sign-up, no uploads.

@@ -47,4 +47,4 @@ Almost always lighting, not resolution. Webcam sensors are tiny, so in dim rooms
 ## More WB tools
 
 - [Mic Test](https://mictest.wbest.app/): Check your microphone with a live level meter, waveform, and playback.
-- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 26 free WB tools, private, no sign-up, no uploads.

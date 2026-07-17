@@ -2,12 +2,16 @@
 
 > Fast & free online tools. No sign-up, no uploads, no tracking.
 
-WBest is a suite of 25 single-purpose online tools, each on its own page and its own domain.
+WBest is a suite of 26 single-purpose online tools, each on its own page and its own domain.
 
 - Free to use: no sign-up, no account, no usage limits, no watermarks, no ads.
 - Private by construction: everything is computed in your browser, so your data is never uploaded, logged, or shared.
 - Works offline once the page has loaded, and needs no install.
 - One self-contained page: no cookies, no tracking, no consent popups.
+
+## For teams
+
+- [Self-Host Packager](https://selfhost.wbest.app/): Bundle the tools your team needs into a rebranded package you host yourself.
 
 ## Text & Writing
 

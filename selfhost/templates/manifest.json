@@ -1,0 +1,499 @@
+{
+  "languages": [
+    "en",
+    "de"
+  ],
+  "langNames": {
+    "en": "English",
+    "de": "Deutsch"
+  },
+  "attribution": {
+    "en": "Thank you for using <a href=\"https://wbest.app/\">WBest Tools</a>.",
+    "de": "Vielen Dank für die Nutzung von <a href=\"https://wbest.app/\">WBest Tools</a>."
+  },
+  "categories": [
+    {
+      "id": "text",
+      "label": {
+        "en": "Text &amp; Writing",
+        "de": "Text &amp; Schreiben"
+      }
+    },
+    {
+      "id": "calc",
+      "label": {
+        "en": "Calculators",
+        "de": "Rechner"
+      }
+    },
+    {
+      "id": "convert",
+      "label": {
+        "en": "Converters",
+        "de": "Umrechner"
+      }
+    },
+    {
+      "id": "generate",
+      "label": {
+        "en": "Generators",
+        "de": "Generatoren"
+      }
+    },
+    {
+      "id": "dev",
+      "label": {
+        "en": "Developer",
+        "de": "Entwickler"
+      }
+    },
+    {
+      "id": "image",
+      "label": {
+        "en": "Image &amp; Media",
+        "de": "Bild &amp; Medien"
+      }
+    },
+    {
+      "id": "time",
+      "label": {
+        "en": "Time &amp; Date",
+        "de": "Zeit &amp; Datum"
+      }
+    },
+    {
+      "id": "device",
+      "label": {
+        "en": "Device Tests",
+        "de": "Gerätetests"
+      }
+    }
+  ],
+  "tools": [
+    {
+      "id": "wordcounter",
+      "category": "text",
+      "name": {
+        "en": "Word Counter",
+        "de": "Wortzähler"
+      },
+      "desc": {
+        "en": "Words, characters, sentences, reading time, and keyword density as you type.",
+        "de": "Wörter, Zeichen, Sätze, Lesezeit und Keyword-Dichte während du tippst."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><g stroke=\"#fff\" stroke-width=\"8\" stroke-linecap=\"round\"><path d=\"M26 32 H74\"/><path d=\"M26 47 H74\"/><path d=\"M26 62 H50\"/><path d=\"M64 56 V68\"/></g></svg>",
+      "bytes": {
+        "en": 18243,
+        "de": 19160
+      }
+    },
+    {
+      "id": "notepad",
+      "category": "text",
+      "name": {
+        "en": "Online Notepad",
+        "de": "Online-Notizblock"
+      },
+      "desc": {
+        "en": "A private notepad that autosaves to your device, with live word and line counts.",
+        "de": "Ein privater Notizblock, der automatisch auf deinem Gerät speichert, mit Live-Wort- und Zeilenzählung."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><path d=\"M28 20 H58 L74 36 V80 H28 Z\" fill=\"#fff\"/><path d=\"M58 20 V36 H74\" fill=\"none\" stroke=\"{{ACCENT}}\" stroke-width=\"4\" stroke-linejoin=\"round\"/><g stroke=\"{{ACCENT}}\" stroke-width=\"5\" stroke-linecap=\"round\"><path d=\"M37 50 H64\"/><path d=\"M37 60 H64\"/><path d=\"M37 70 H54\"/></g></svg>",
+      "bytes": {
+        "en": 12110,
+        "de": 12258
+      }
+    },
+    {
+      "id": "percentagecalculator",
+      "category": "calc",
+      "name": {
+        "en": "Percentage Calculator",
+        "de": "Prozentrechner"
+      },
+      "desc": {
+        "en": "Percent of a number, increase/decrease, discounts, and tips. Formula included.",
+        "de": "Prozent einer Zahl, Zunahme/Abnahme, Rabatte und Trinkgeld. Formel inklusive."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><g fill=\"none\" stroke=\"#fff\"><circle cx=\"34\" cy=\"34\" r=\"8.5\" stroke-width=\"7\"/><circle cx=\"66\" cy=\"66\" r=\"8.5\" stroke-width=\"7\"/><path d=\"M67 29 L33 71\" stroke-width=\"8\" stroke-linecap=\"round\"/></g></svg>",
+      "bytes": {
+        "en": 16856,
+        "de": 16961
+      }
+    },
+    {
+      "id": "bmicalculator",
+      "category": "calc",
+      "name": {
+        "en": "BMI Calculator",
+        "de": "BMI-Rechner"
+      },
+      "desc": {
+        "en": "Body mass index in metric or imperial, with your WHO category and healthy range.",
+        "de": "Body-Mass-Index in metrischen oder imperialen Einheiten, mit deiner WHO-Kategorie und dem gesunden Bereich."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><rect x=\"28\" y=\"26\" width=\"44\" height=\"48\" rx=\"9\" fill=\"#fff\"/><path d=\"M38 46 a12 12 0 0 1 24 0\" fill=\"none\" stroke=\"{{ACCENT}}\" stroke-width=\"6\" stroke-linecap=\"round\"/><path d=\"M50 46 L57 38\" stroke=\"{{ACCENT}}\" stroke-width=\"5\" stroke-linecap=\"round\"/></svg>",
+      "bytes": {
+        "en": 15869,
+        "de": 15967
+      }
+    },
+    {
+      "id": "loancalculator",
+      "category": "calc",
+      "name": {
+        "en": "Loan Calculator",
+        "de": "Kreditrechner"
+      },
+      "desc": {
+        "en": "Monthly payment, total interest, and a full amortization schedule for any loan.",
+        "de": "Monatliche Rate, Gesamtzinsen und ein vollständiger Tilgungsplan für jeden Kredit."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><g fill=\"none\" stroke=\"#fff\" stroke-width=\"6\" stroke-linejoin=\"round\"><ellipse cx=\"50\" cy=\"32\" rx=\"22\" ry=\"8\"/><path d=\"M28 32 v14 c0 4.4 9.85 8 22 8 s22 -3.6 22 -8 v-14\"/><path d=\"M28 46 v14 c0 4.4 9.85 8 22 8 s22 -3.6 22 -8 v-14\"/></g></svg>",
+      "bytes": {
+        "en": 19851,
+        "de": 19917
+      }
+    },
+    {
+      "id": "cardepreciation",
+      "category": "calc",
+      "name": {
+        "en": "Car Depreciation Calculator",
+        "de": "Auto-Wertverlust-Rechner"
+      },
+      "desc": {
+        "en": "What your car will be worth, and what owning it really costs per year and distance driven.",
+        "de": "Was dein Auto wert sein wird und was der Besitz wirklich kostet, pro Jahr und gefahrener Strecke."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><path d=\"M22 56 L29 40 a5 5 0 0 1 5 -3 h22 a5 5 0 0 1 5 3 l7 16\" fill=\"none\" stroke=\"#fff\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"20\" y=\"55\" width=\"50\" height=\"13\" rx=\"4\" fill=\"#fff\"/><circle cx=\"31\" cy=\"72\" r=\"5\" fill=\"#fff\"/><circle cx=\"59\" cy=\"72\" r=\"5\" fill=\"#fff\"/><path d=\"M80 30 V58\" stroke=\"#fff\" stroke-width=\"5\" stroke-linecap=\"round\"/><path d=\"M72 50 L80 60 L88 50\" fill=\"none\" stroke=\"#fff\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+      "bytes": {
+        "en": 35423,
+        "de": 35711
+      }
+    },
+    {
+      "id": "unitconverter",
+      "category": "convert",
+      "name": {
+        "en": "Unit Converter",
+        "de": "Einheiten-Umrechner"
+      },
+      "desc": {
+        "en": "Convert length, weight, temperature, and 7 more categories, with the formula shown.",
+        "de": "Rechne Länge, Gewicht, Temperatur und 7 weitere Kategorien um, mit angezeigter Formel."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><g fill=\"none\" stroke=\"#fff\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M28 38 H66\"/><path d=\"M56 28 L70 38 L56 48\"/><path d=\"M72 62 H34\"/><path d=\"M44 52 L30 62 L44 72\"/></g></svg>",
+      "bytes": {
+        "en": 20571,
+        "de": 21412
+      }
+    },
+    {
+      "id": "passwordgenerator",
+      "category": "generate",
+      "name": {
+        "en": "Password Generator",
+        "de": "Passwort-Generator"
+      },
+      "desc": {
+        "en": "Strong random passwords, passphrases, and PINs with time-to-crack estimates.",
+        "de": "Starke Zufallspasswörter, Passphrasen und PINs mit Knackzeit-Schätzungen."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><path d=\"M38 48 V38 a12 12 0 0 1 24 0 V48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"8\"/><rect x=\"30\" y=\"48\" width=\"40\" height=\"30\" rx=\"6\" fill=\"#fff\"/><circle cx=\"50\" cy=\"60\" r=\"5\" fill=\"{{ACCENT}}\"/><rect x=\"47.5\" y=\"61\" width=\"5\" height=\"9\" rx=\"2\" fill=\"{{ACCENT}}\"/></svg>",
+      "bytes": {
+        "en": 28866,
+        "de": 29343
+      }
+    },
+    {
+      "id": "qrcode",
+      "category": "generate",
+      "name": {
+        "en": "QR Code Generator",
+        "de": "QR-Code-Generator"
+      },
+      "desc": {
+        "en": "QR codes for links, Wi-Fi, vCards, and more. No watermark, never expire.",
+        "de": "QR-Codes für Links, WLAN, vCards und mehr. Kein Wasserzeichen, laufen nie ab."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><g fill=\"#fff\"><rect x=\"22\" y=\"22\" width=\"24\" height=\"24\"/><rect x=\"54\" y=\"22\" width=\"24\" height=\"24\"/><rect x=\"22\" y=\"54\" width=\"24\" height=\"24\"/><rect x=\"54\" y=\"54\" width=\"10\" height=\"10\"/><rect x=\"68\" y=\"54\" width=\"10\" height=\"10\"/><rect x=\"54\" y=\"68\" width=\"10\" height=\"10\"/><rect x=\"68\" y=\"68\" width=\"10\" height=\"10\"/></g><g fill=\"{{ACCENT}}\"><rect x=\"28\" y=\"28\" width=\"12\" height=\"12\"/><rect x=\"60\" y=\"28\" width=\"12\" height=\"12\"/><rect x=\"28\" y=\"60\" width=\"12\" height=\"12\"/></g></svg>",
+      "bytes": {
+        "en": 41018,
+        "de": 41287
+      }
+    },
+    {
+      "id": "randomnumbergenerator",
+      "category": "generate",
+      "name": {
+        "en": "Random Number Generator",
+        "de": "Zufallszahlen-Generator"
+      },
+      "desc": {
+        "en": "Secure random numbers, dice, coin flips, and pick-from-a-list draws.",
+        "de": "Sichere Zufallszahlen, Würfel, Münzwürfe und Ziehungen aus einer Liste."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><rect x=\"26\" y=\"26\" width=\"48\" height=\"48\" rx=\"11\" fill=\"#fff\"/><g fill=\"{{ACCENT}}\"><circle cx=\"40\" cy=\"40\" r=\"5\"/><circle cx=\"60\" cy=\"40\" r=\"5\"/><circle cx=\"50\" cy=\"50\" r=\"5\"/><circle cx=\"40\" cy=\"60\" r=\"5\"/><circle cx=\"60\" cy=\"60\" r=\"5\"/></g></svg>",
+      "bytes": {
+        "en": 19748,
+        "de": 19995
+      }
+    },
+    {
+      "id": "barcodegenerator",
+      "category": "generate",
+      "name": {
+        "en": "Barcode Generator",
+        "de": "Barcode-Generator"
+      },
+      "desc": {
+        "en": "Code 128 and EAN-13 barcodes with check digits, as PNG or print-ready SVG.",
+        "de": "Code-128- und EAN-13-Barcodes mit Prüfziffern, als PNG oder druckfertiges SVG."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><g fill=\"#fff\"><rect x=\"24\" y=\"28\" width=\"5\" height=\"44\"/><rect x=\"33\" y=\"28\" width=\"3\" height=\"44\"/><rect x=\"40\" y=\"28\" width=\"7\" height=\"44\"/><rect x=\"51\" y=\"28\" width=\"3\" height=\"44\"/><rect x=\"58\" y=\"28\" width=\"5\" height=\"44\"/><rect x=\"67\" y=\"28\" width=\"3\" height=\"44\"/><rect x=\"74\" y=\"28\" width=\"5\" height=\"44\"/></g></svg>",
+      "bytes": {
+        "en": 26739,
+        "de": 26840
+      }
+    },
+    {
+      "id": "jsonformatter",
+      "category": "dev",
+      "name": {
+        "en": "JSON Formatter",
+        "de": "JSON-Formatierer"
+      },
+      "desc": {
+        "en": "Format, minify, and validate JSON with exact error locations and a tree view.",
+        "de": "Formatiere, minifiziere und prüfe JSON mit genauen Fehlerpositionen und einer Baumansicht."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><g fill=\"none\" stroke=\"#fff\" stroke-width=\"7\" stroke-linecap=\"round\"><path d=\"M42 24 c-10 0 -10 8 -10 14 v6 c0 8 -8 8 -8 8 c0 0 8 0 8 8 v6 c0 6 0 14 10 14\"/><path d=\"M58 24 c10 0 10 8 10 14 v6 c0 8 8 8 8 8 c0 0 -8 0 -8 8 v6 c0 6 0 14 -10 14\"/></g></svg>",
+      "bytes": {
+        "en": 33235,
+        "de": 33849
+      }
+    },
+    {
+      "id": "hashgenerator",
+      "category": "dev",
+      "name": {
+        "en": "Hash Generator",
+        "de": "Hash-Generator"
+      },
+      "desc": {
+        "en": "MD5, SHA-1, and SHA-256/512 for text or files, hashed locally and never uploaded.",
+        "de": "MD5, SHA-1 und SHA-256/512 für Text oder Dateien, lokal gehasht und nie hochgeladen."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><g stroke=\"#fff\" stroke-width=\"8\" stroke-linecap=\"round\"><path d=\"M42 26 L34 74\"/><path d=\"M68 26 L60 74\"/><path d=\"M26 44 H74\"/><path d=\"M24 58 H72\"/></g></svg>",
+      "bytes": {
+        "en": 21774,
+        "de": 21930
+      }
+    },
+    {
+      "id": "timestampconverter",
+      "category": "dev",
+      "name": {
+        "en": "Unix Timestamp Converter",
+        "de": "Unix-Timestamp-Konverter"
+      },
+      "desc": {
+        "en": "Convert epoch timestamps to dates and back, in UTC and your local time zone.",
+        "de": "Wandle Epochen-Timestamps in Daten um und zurück, in UTC und deiner lokalen Zeitzone."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><circle cx=\"50\" cy=\"50\" r=\"26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"7\"/><path d=\"M50 50 V33\" stroke=\"#fff\" stroke-width=\"7\" stroke-linecap=\"round\"/><path d=\"M50 50 L64 58\" stroke=\"#fff\" stroke-width=\"7\" stroke-linecap=\"round\"/></svg>",
+      "bytes": {
+        "en": 18828,
+        "de": 19094
+      }
+    },
+    {
+      "id": "regextester",
+      "category": "dev",
+      "name": {
+        "en": "Regex Tester",
+        "de": "Regex-Tester"
+      },
+      "desc": {
+        "en": "Test regular expressions live with match highlighting, groups, and replace.",
+        "de": "Teste reguläre Ausdrücke live mit Treffer-Hervorhebung, Gruppen und Ersetzen."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><g fill=\"none\" stroke=\"#fff\" stroke-width=\"7\" stroke-linecap=\"round\"><path d=\"M50 26 V50\"/><path d=\"M50 50 L72 37\"/><path d=\"M50 50 L72 63\"/><path d=\"M50 50 L28 63\"/><path d=\"M50 50 L28 37\"/></g><circle cx=\"50\" cy=\"50\" r=\"7\" fill=\"#fff\"/></svg>",
+      "bytes": {
+        "en": 23403,
+        "de": 23485
+      }
+    },
+    {
+      "id": "base64",
+      "category": "dev",
+      "name": {
+        "en": "Base64 Encoder &amp; Decoder",
+        "de": "Base64-Encoder &amp; -Decoder"
+      },
+      "desc": {
+        "en": "Encode and decode Base64 with correct UTF-8, URL-safe output, and files.",
+        "de": "Kodiere und dekodiere Base64 mit korrektem UTF-8, URL-sicherer Ausgabe und Dateien."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><g fill=\"none\" stroke=\"#fff\" stroke-width=\"6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M38 30 L24 50 L38 70\"/><path d=\"M62 30 L76 50 L62 70\"/></g><rect x=\"46\" y=\"44\" width=\"8\" height=\"8\" rx=\"2\" fill=\"#fff\"/><rect x=\"46\" y=\"58\" width=\"8\" height=\"8\" rx=\"2\" fill=\"#fff\"/></svg>",
+      "bytes": {
+        "en": 27724,
+        "de": 27939
+      }
+    },
+    {
+      "id": "imagecompressor",
+      "category": "image",
+      "name": {
+        "en": "Image Compressor",
+        "de": "Bildkompressor"
+      },
+      "desc": {
+        "en": "Compress, resize, and convert JPEG, PNG, and WebP to an exact target size.",
+        "de": "Komprimiere, skaliere und konvertiere JPEG, PNG und WebP auf eine genaue Zielgröße."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><rect x=\"24\" y=\"30\" width=\"52\" height=\"40\" rx=\"6\" fill=\"none\" stroke=\"#fff\" stroke-width=\"6\"/><circle cx=\"62\" cy=\"41\" r=\"4.5\" fill=\"#fff\"/><path d=\"M29 67 L42 51 L52 61 L60 53 L71 67 Z\" fill=\"#fff\"/></svg>",
+      "bytes": {
+        "en": 33237,
+        "de": 33490
+      }
+    },
+    {
+      "id": "colorconverter",
+      "category": "image",
+      "name": {
+        "en": "Color Converter &amp; Picker",
+        "de": "Farb-Konverter &amp; Farbwähler"
+      },
+      "desc": {
+        "en": "Convert HEX, RGB, HSL, and OKLCH, with tints, shades, and color harmonies.",
+        "de": "Rechne HEX, RGB, HSL und OKLCH um, mit Aufhellungen, Abdunklungen und Farbharmonien."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><path d=\"M50 22 C50 22 30 46 30 60 a20 20 0 0 0 40 0 C70 46 50 22 50 22 Z\" fill=\"#fff\"/></svg>",
+      "bytes": {
+        "en": 19842,
+        "de": 19927
+      }
+    },
+    {
+      "id": "imagecropper",
+      "category": "image",
+      "name": {
+        "en": "Image Cropper",
+        "de": "Bild-Zuschneider"
+      },
+      "desc": {
+        "en": "Crop to any aspect ratio or exact pixel size, then rotate, flip, and export.",
+        "de": "Schneide auf jedes Seitenverhältnis oder eine exakte Pixelgröße zu, dann drehe, spiegle und exportiere."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><g stroke=\"#fff\" stroke-width=\"7\" stroke-linecap=\"round\" fill=\"none\"><path d=\"M32 20 V68 H80\"/><path d=\"M20 32 H68 V80\"/></g></svg>",
+      "bytes": {
+        "en": 27996,
+        "de": 28132
+      }
+    },
+    {
+      "id": "imagecolorpicker",
+      "category": "image",
+      "name": {
+        "en": "Image Color Picker",
+        "de": "Bild-Farbwähler"
+      },
+      "desc": {
+        "en": "Pick exact HEX, RGB, and HSL from any photo, with a magnifier and palette.",
+        "de": "Lies exakte HEX-, RGB- und HSL-Werte aus jedem Foto ab, mit Lupe und Palette."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><path d=\"M66 22 L78 34 L46 66 L30 70 L34 54 Z\" fill=\"#fff\"/><circle cx=\"36\" cy=\"64\" r=\"3\" fill=\"{{ACCENT}}\"/><rect x=\"24\" y=\"76\" width=\"52\" height=\"6\" rx=\"3\" fill=\"#fff\"/></svg>",
+      "bytes": {
+        "en": 24012,
+        "de": 24113
+      }
+    },
+    {
+      "id": "agecalculator",
+      "category": "time",
+      "name": {
+        "en": "Age Calculator",
+        "de": "Altersrechner"
+      },
+      "desc": {
+        "en": "Exact age in years, months, and days, plus a countdown to your next birthday.",
+        "de": "Exaktes Alter in Jahren, Monaten und Tagen, plus Countdown zu deinem nächsten Geburtstag."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><rect x=\"26\" y=\"52\" width=\"48\" height=\"26\" rx=\"6\" fill=\"#fff\"/><rect x=\"39\" y=\"36\" width=\"6\" height=\"14\" rx=\"2\" fill=\"#fff\"/><rect x=\"55\" y=\"36\" width=\"6\" height=\"14\" rx=\"2\" fill=\"#fff\"/><circle cx=\"42\" cy=\"29\" r=\"4\" fill=\"#fff\"/><circle cx=\"58\" cy=\"29\" r=\"4\" fill=\"#fff\"/></svg>",
+      "bytes": {
+        "en": 18597,
+        "de": 18930
+      }
+    },
+    {
+      "id": "timer",
+      "category": "time",
+      "name": {
+        "en": "Timer",
+        "de": "Timer"
+      },
+      "desc": {
+        "en": "Countdown timer and stopwatch with presets, laps, and an alarm.",
+        "de": "Countdown-Timer und Stoppuhr mit Voreinstellungen, Runden und Alarm."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><rect x=\"43\" y=\"18\" width=\"14\" height=\"8\" rx=\"3\" fill=\"#fff\"/><rect x=\"47\" y=\"25\" width=\"6\" height=\"7\" fill=\"#fff\"/><circle cx=\"50\" cy=\"58\" r=\"22\" fill=\"none\" stroke=\"#fff\" stroke-width=\"7\"/><path d=\"M50 58 V44\" stroke=\"#fff\" stroke-width=\"7\" stroke-linecap=\"round\"/></svg>",
+      "bytes": {
+        "en": 25788,
+        "de": 25926
+      }
+    },
+    {
+      "id": "timezoneconverter",
+      "category": "time",
+      "name": {
+        "en": "Time Zone Converter",
+        "de": "Zeitzonen-Umrechner"
+      },
+      "desc": {
+        "en": "Compare times across cities with a meeting planner and automatic daylight saving.",
+        "de": "Vergleiche Zeiten über Städte hinweg mit einem Meeting-Planer und automatischer Sommerzeit."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><circle cx=\"50\" cy=\"50\" r=\"26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"6\"/><ellipse cx=\"50\" cy=\"50\" rx=\"12\" ry=\"26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"5\"/><path d=\"M26 40 H74\" stroke=\"#fff\" stroke-width=\"5\"/><path d=\"M26 60 H74\" stroke=\"#fff\" stroke-width=\"5\"/></svg>",
+      "bytes": {
+        "en": 25127,
+        "de": 25220
+      }
+    },
+    {
+      "id": "mictest",
+      "category": "device",
+      "name": {
+        "en": "Mic Test",
+        "de": "Mikrofon-Test"
+      },
+      "desc": {
+        "en": "Check your microphone with a live level meter, waveform, and playback.",
+        "de": "Prüfe dein Mikrofon mit Live-Pegelanzeige, Wellenform und Wiedergabe."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><rect x=\"41\" y=\"20\" width=\"18\" height=\"34\" rx=\"9\" fill=\"#fff\"/><path d=\"M32 48 a18 18 0 0 0 36 0\" fill=\"none\" stroke=\"#fff\" stroke-width=\"6\" stroke-linecap=\"round\"/><path d=\"M50 66 V78\" stroke=\"#fff\" stroke-width=\"6\" stroke-linecap=\"round\"/><path d=\"M38 78 H62\" stroke=\"#fff\" stroke-width=\"6\" stroke-linecap=\"round\"/></svg>",
+      "bytes": {
+        "en": 23989,
+        "de": 24188
+      }
+    },
+    {
+      "id": "webcamtest",
+      "category": "device",
+      "name": {
+        "en": "Webcam Test",
+        "de": "Webcam-Test"
+      },
+      "desc": {
+        "en": "Check your camera with a live preview, real resolution and frame rate, and a snapshot.",
+        "de": "Prüfe deine Kamera mit Live-Vorschau, echter Auflösung und Bildrate sowie einem Schnappschuss."
+      },
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"20\" fill=\"{{ACCENT}}\"/><circle cx=\"44\" cy=\"50\" r=\"24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"6\"/><circle cx=\"44\" cy=\"50\" r=\"9\" fill=\"#fff\"/><path d=\"M70 42 L82 34 V66 L70 58 Z\" fill=\"#fff\"/></svg>",
+      "bytes": {
+        "en": 24515,
+        "de": 24717
+      }
+    }
+  ]
+}

@@ -55,4 +55,4 @@ Yes. All conversion tables are built into the page and the math runs in your bro
 
 ## More WB tools
 
-- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 26 free WB tools, private, no sign-up, no uploads.

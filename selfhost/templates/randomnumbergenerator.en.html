@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{BRAND_NAME}} Random Number Generator</title>
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:{{ACCENT}}; --accent-soft:{{ACCENT_SOFT}}; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:{{ACCENT_DARK}}; --accent-soft:{{ACCENT_SOFT_DARK}}; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+.repo-link{display:block;margin-top:10px;font-size:.82rem;color:var(--muted);text-decoration:none}
+.repo-link:hover{color:var(--accent);text-decoration:underline}
+.repo-link svg{vertical-align:-2px;margin-right:5px}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 12px}
+.tabs button{
+  font:inherit;font-size:.9rem;padding:7px 16px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.tabs button:hover[aria-pressed="false"]{border-color:var(--accent);color:var(--accent)}
+.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.panel{padding:18px 20px}
+.controls{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:flex-end}
+.ctl{display:flex;flex-direction:column;gap:5px}
+.ctl label{font-size:.8rem;color:var(--muted)}
+.ctl input[type="text"],.ctl input[type="number"]{
+  font-weight:600;font-size:1rem;line-height:1.4;font-variant-numeric:tabular-nums;width:120px;
+  padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text)
+}
+.ctl input.narrow{width:84px}
+.opts{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0 0;font-size:.9rem}
+.opts label{display:flex;align-items:center;gap:8px;cursor:pointer;color:var(--muted)}
+.opts input[type="checkbox"]{width:16px;height:16px;accent-color:var(--accent);margin:0}
+#list-in{
+  display:block;width:100%;min-height:120px;resize:vertical;margin-top:4px;
+  padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);
+  font-size:.95rem;line-height:1.5;
+}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.actions button{
+  font:inherit;font-size:.95rem;padding:9px 20px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.actions button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.actions button.primary:hover{filter:brightness(1.08)}
+.actions button:hover{border-color:var(--accent);color:var(--accent)}
+.actions button.primary:hover{color:#fff}
+.result{margin-top:16px;padding:22px 20px;text-align:center}
+.result .big{
+  font-weight: 800;font-size: clamp(2.4rem, 10vw, 4.4rem);line-height: 1;letter-spacing:-.02em;color:var(--accent);
+  font-variant-numeric:tabular-nums;word-break:break-word
+}
+.result .list{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px
+}
+.result .list span{
+  font-weight:700;font-size:1.4rem;line-height:1;font-variant-numeric:tabular-nums;padding:8px 12px;
+  border-radius:8px;background:var(--accent-soft);color:var(--accent)
+}
+.result .note{margin:14px 0 0;font-size:.9rem;color:var(--muted)}
+.result .err{color:var(--over);font-weight:600}
+.dice-faces{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;font-size:clamp(3.4rem,14vw,6rem);line-height:1}
+.dice-faces.many{font-size:clamp(2rem,7vw,3rem);gap:6px}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.faq p{color:var(--text)}
+.brand-logo{height:56px;max-width:220px;object-fit:contain;display:block;margin:0 auto}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  {{LOGO}}
+  <h1>{{BRAND_NAME}} Random Number Generator</h1>
+</header>
+
+<main class="wrap">
+
+<section id="tool" aria-label="Random number generator">
+    <div class="tabs" role="tablist" aria-label="Mode">
+      <button type="button" id="tab-number" role="tab" aria-pressed="true">Numbers</button>
+      <button type="button" id="tab-dice" role="tab" aria-pressed="false">Dice</button>
+      <button type="button" id="tab-coin" role="tab" aria-pressed="false">Coin flip</button>
+      <button type="button" id="tab-list" role="tab" aria-pressed="false">List picker</button>
+    </div>
+
+    <div class="card panel" id="pane-number">
+      <div class="controls">
+        <div class="ctl"><label for="min">Minimum</label><input type="number" id="min" value="1" autocomplete="off"></div>
+        <div class="ctl"><label for="max">Maximum</label><input type="number" id="max" value="100" autocomplete="off"></div>
+        <div class="ctl"><label for="count">How many</label><input type="number" id="count" class="narrow" value="1" min="1" max="1000" autocomplete="off"></div>
+      </div>
+      <div class="opts">
+        <label><input type="checkbox" id="unique"> No repeats (unique)</label>
+        <label><input type="checkbox" id="sorted"> Sort ascending</label>
+      </div>
+    </div>
+
+    <div class="card panel" id="pane-dice" hidden>
+      <div class="controls">
+        <div class="ctl"><label for="dice-count">Number of dice</label><input type="number" id="dice-count" class="narrow" value="2" min="1" max="100" autocomplete="off"></div>
+        <div class="ctl"><label for="dice-sides">Sides each</label><input type="number" id="dice-sides" class="narrow" value="6" min="2" max="1000" autocomplete="off"></div>
+      </div>
+    </div>
+
+    <div class="card panel" id="pane-coin" hidden>
+      <div class="controls">
+        <div class="ctl"><label for="coin-count">Number of coins</label><input type="number" id="coin-count" class="narrow" value="1" min="1" max="1000" autocomplete="off"></div>
+      </div>
+    </div>
+
+    <div class="card panel" id="pane-list" hidden>
+      <label class="sr-only" for="list-in">List of items, one per line</label>
+      <textarea id="list-in" spellcheck="false" placeholder="One item per line&#10;Alice&#10;Bob&#10;Carol&#10;Dave"></textarea>
+      <div class="opts">
+        <label>Pick <input type="number" id="list-count" class="narrow" value="1" min="1" style="margin-left:6px" autocomplete="off"></label>
+        <label><input type="checkbox" id="list-unique" checked> No repeats</label>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="primary" id="generate">Generate</button>
+      <button type="button" id="copy">Copy result</button>
+    </div>
+
+    <div class="card result" id="result" aria-live="polite">
+      <div class="big" id="result-main">-</div>
+      <p class="note" id="result-note">Press Generate to begin.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+{{LANG_SWITCH}}
+<div class="wrap">{{FOOTER_ATTRIBUTION}}</div>
+</footer>
+
+<script>
+/* Random generation. Unbiased integer sampling with an injectable byte source
+   for testability. Pure/returnable helpers. */
+var RNG = (function () {
+  'use strict';
+
+  // Default secure source: fills a Uint32Array with random values.
+  function secureRand() {
+    var a = new Uint32Array(1);
+    (typeof crypto !== 'undefined' ? crypto : require('crypto').webcrypto).getRandomValues(a);
+    return a[0]; // 0 .. 2^32-1
+  }
+
+  // Unbiased integer in [min, max] inclusive using rejection sampling.
+  // rand() must return an integer in [0, 2^32).
+  function intInRange(min, max, rand) {
+    rand = rand || secureRand;
+    min = Math.ceil(min); max = Math.floor(max);
+    if (min > max) { var t = min; min = max; max = t; }
+    var range = max - min + 1;
+    if (range <= 0) return min;
+    if (range === 1) return min;
+    var maxU = 4294967296; // 2^32
+    var limit = maxU - (maxU % range); // largest multiple of range <= 2^32
+    var x;
+    do { x = rand(); } while (x >= limit);
+    return min + (x % range);
+  }
+
+  // Batch of integers; unique = draw without replacement.
+  function batch(min, max, count, unique, rand) {
+    min = Math.ceil(min); max = Math.floor(max);
+    if (min > max) { var t = min; min = max; max = t; }
+    count = Math.max(1, Math.floor(count));
+    var range = max - min + 1;
+    var out = [], i;
+    if (unique) {
+      if (count > range) return { error: 'needDistinct', count: count, range: range };
+      // Partial Fisher-Yates over a virtual [min..max]
+      var pool = {};
+      function get(idx) { return pool[idx] === undefined ? idx : pool[idx]; }
+      for (i = 0; i < count; i++) {
+        var j = intInRange(i, range - 1, rand);
+        var vi = get(i), vj = get(j);
+        pool[i] = vj; pool[j] = vi;
+        out.push(min + vj);
+      }
+      return { values: out };
+    }
+    for (i = 0; i < count; i++) out.push(intInRange(min, max, rand));
+    return { values: out };
+  }
+
+  // Pick `count` items from array; unique = without replacement.
+  function pick(items, count, unique, rand) {
+    var n = items.length;
+    if (n === 0) return { error: 'emptyList' };
+    count = Math.max(1, Math.floor(count));
+    if (unique) {
+      if (count > n) return { error: 'tooFew', n: n };
+      var idx = batch(0, n - 1, count, true, rand);
+      return { values: idx.values.map(function (i) { return items[i]; }) };
+    }
+    var out = [];
+    for (var k = 0; k < count; k++) out.push(items[intInRange(0, n - 1, rand)]);
+    return { values: out };
+  }
+
+  return { secureRand: secureRand, intInRange: intInRange, batch: batch, pick: pick };
+})();
+if (typeof module !== 'undefined') module.exports = RNG;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+  var mode = 'number', lastText = '';
+  var DICE = ['', '⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+  var I18N = {
+    "pressGenerate": "Press Generate to begin.",
+    "enterMinMax": "Enter a minimum and maximum.",
+    "between": "Between {min} and {max}, inclusive.",
+    "numbersNote": "{count} numbers.",
+    "numbersUniqueNote": "{count} numbers, all unique.",
+    "rollsNote": "Rolls: {rolls} · total {total}",
+    "rolledA": "You rolled a {n}",
+    "sidedDie": "A {sides}-sided die.",
+    "diceTotal": "{count} × d{sides} · total {total}",
+    "copyTotal": "{rolls} (total {total})",
+    "heads": "Heads",
+    "tails": "Tails",
+    "headsAbbr": "H",
+    "tailsAbbr": "T",
+    "singleFlip": "A single coin flip.",
+    "headsTails": "Heads: {h} · Tails: {t}",
+    "pickedFromOne": "Picked from 1 item.",
+    "pickedFrom": "Picked from {n} items.",
+    "pickedOf": "Picked {count} of {n}.",
+    "copied": "Copied",
+    "copyResult": "Copy result",
+    "errNeedDistinct": "Need at least {count} distinct values, but the range only has {range}.",
+    "errEmptyList": "Add at least one item to the list.",
+    "errTooFewOne": "Only 1 item to pick from - reduce how many you draw.",
+    "errTooFew": "Only {n} items to pick from - reduce how many you draw."
+  };
+
+  function num(id) { return parseInt($(id).value, 10); }
+
+  function errMsg(r) {
+    if (r.error === 'needDistinct') return I18N.errNeedDistinct.replace('{count}', r.count).replace('{range}', r.range);
+    if (r.error === 'emptyList') return I18N.errEmptyList;
+    if (r.error === 'tooFew') return (r.n === 1 ? I18N.errTooFewOne : I18N.errTooFew).replace('{n}', r.n);
+    return r.error;
+  }
+
+  function setResult(mainHTML, note, isErr) {
+    $('result-main').innerHTML = mainHTML;
+    var n = $('result-note');
+    n.textContent = note || '';
+    n.className = 'note' + (isErr ? ' err' : '');
+  }
+  function listHTML(values) {
+    return '<div class="list">' + values.map(function (v) { return '<span>' + v + '</span>'; }).join('') + '</div>';
+  }
+  function esc(s) { return String(s).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); }
+
+  function genNumber() {
+    var min = num('min'), max = num('max'), count = num('count');
+    if (isNaN(min) || isNaN(max)) { setResult('-', I18N.enterMinMax, true); lastText = ''; return; }
+    if (isNaN(count) || count < 1) count = 1;
+    count = Math.min(count, 1000);
+    var r = RNG.batch(min, max, count, $('unique').checked);
+    if (r.error) { setResult('-', errMsg(r), true); lastText = ''; return; }
+    var vals = r.values.slice();
+    if ($('sorted').checked) vals.sort(function (a, b) { return a - b; });
+    lastText = vals.join(', ');
+    if (vals.length === 1) setResult(esc(String(vals[0])), I18N.between.replace('{min}', Math.min(min, max)).replace('{max}', Math.max(min, max)));
+    else setResult(listHTML(vals.map(esc)), ($('unique').checked ? I18N.numbersUniqueNote : I18N.numbersNote).replace('{count}', vals.length));
+  }
+
+  function genDice() {
+    var count = num('dice-count'), sides = num('dice-sides');
+    if (isNaN(count) || count < 1) count = 1; if (isNaN(sides) || sides < 2) sides = 6;
+    count = Math.min(count, 100);
+    var rolls = RNG.batch(1, sides, count, false).values;
+    var total = rolls.reduce(function (a, b) { return a + b; }, 0);
+    lastText = I18N.copyTotal.replace('{rolls}', rolls.join(', ')).replace('{total}', total);
+    if (sides === 6) {
+      setResult('<div class="dice-faces' + (count > 10 ? ' many' : '') + '">' + rolls.map(function (r) { return DICE[r]; }).join('') + '</div>',
+        (count > 1 ? I18N.rollsNote.replace('{rolls}', rolls.join(', ')).replace('{total}', total) : I18N.rolledA.replace('{n}', rolls[0])));
+    } else if (count === 1) {
+      setResult(String(rolls[0]), I18N.sidedDie.replace('{sides}', sides));
+    } else {
+      setResult(listHTML(rolls), I18N.diceTotal.replace('{count}', count).replace('{sides}', sides).replace('{total}', total));
+    }
+  }
+
+  function genCoin() {
+    var count = num('coin-count');
+    if (isNaN(count) || count < 1) count = 1; count = Math.min(count, 1000);
+    var flips = RNG.batch(0, 1, count, false).values; // 0=T,1=H
+    var heads = flips.reduce(function (a, b) { return a + b; }, 0), tails = count - heads;
+    lastText = flips.map(function (f) { return f ? I18N.heads : I18N.tails; }).join(', ');
+    if (count === 1) setResult(flips[0] ? I18N.heads : I18N.tails, I18N.singleFlip);
+    else setResult(listHTML(flips.map(function (f) { return f ? I18N.headsAbbr : I18N.tailsAbbr; })), I18N.headsTails.replace('{h}', heads).replace('{t}', tails));
+  }
+
+  function genList() {
+    var items = $('list-in').value.split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
+    var count = num('list-count');
+    if (isNaN(count) || count < 1) count = 1;
+    var r = RNG.pick(items, count, $('list-unique').checked);
+    if (r.error) { setResult('-', errMsg(r), true); lastText = ''; return; }
+    lastText = r.values.join(', ');
+    if (r.values.length === 1) setResult(esc(r.values[0]), (items.length === 1 ? I18N.pickedFromOne : I18N.pickedFrom).replace('{n}', items.length));
+    else setResult(listHTML(r.values.map(esc)), I18N.pickedOf.replace('{count}', r.values.length).replace('{n}', items.length));
+  }
+
+  function generate() {
+    if (mode === 'number') genNumber();
+    else if (mode === 'dice') genDice();
+    else if (mode === 'coin') genCoin();
+    else genList();
+  }
+
+  function selectTab(which) {
+    mode = which;
+    ['number', 'dice', 'coin', 'list'].forEach(function (m) {
+      $('tab-' + m).setAttribute('aria-pressed', String(m === which));
+      $('pane-' + m).hidden = m !== which;
+    });
+    setResult('-', I18N.pressGenerate);
+    lastText = '';
+  }
+
+  ['number', 'dice', 'coin', 'list'].forEach(function (m) {
+    $('tab-' + m).addEventListener('click', function () { selectTab(m); });
+  });
+  $('generate').addEventListener('click', generate);
+  $('copy').addEventListener('click', function () {
+    if (!lastText) return;
+    var b = $('copy'), done = function () { b.textContent = I18N.copied; setTimeout(function () { b.textContent = I18N.copyResult; }, 1000); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(lastText).then(done, done); else done();
+  });
+  // Enter in a number field regenerates.
+  document.querySelectorAll('#tool input[type="number"]').forEach(function (el) {
+    el.addEventListener('keydown', function (e) { if (e.key === 'Enter') generate(); });
+  });
+
+  generate();
+})();
+</script>
+</body>
+</html>

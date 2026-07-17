@@ -1,15 +1,17 @@
 #!/usr/bin/env node
 // Ship gate: every mechanical check a page must pass before it deploys.
 //
-// The suite has three generators, each with a --check mode that fails on drift:
+// The suite has four generators, each with a --check mode that fails on drift:
 //   sync.js       shared partials stamped into every page's wb: markers
 //   translate.js  locale pages generated from each root's i18n/<locale>.json
+//   selfhost.js   bare rebrandable templates for the self-host packager
 //   seo.js        robots.txt, sitemap.xml, llms.txt projected from each page
 //
 // They exist as separate scripts because they own separate things, but they are
 // not independent: each reads what the previous one writes, so the order is
-// fixed at sync.js -> translate.js -> seo.js and a failure early on can cascade
-// into noisy failures later. This runs all three anyway rather than stopping at
+// fixed at sync.js -> translate.js -> selfhost.js -> seo.js and a failure
+// early on can cascade into noisy failures later.
+// This runs them all anyway rather than stopping at
 // the first, so one pass shows the whole picture; fix them in order and re-run.
 //
 // This script exists because the checks are individually easy to run and
@@ -28,7 +30,7 @@ const { spawnSync } = require('child_process');
 const path = require('path');
 
 const FIX = process.argv.includes('--fix');
-const STEPS = ['sync', 'translate', 'seo'];
+const STEPS = ['sync', 'translate', 'selfhost', 'seo'];
 
 function run(name, args) {
   const res = spawnSync(process.execPath, [path.join(__dirname, `${name}.js`), ...args], { encoding: 'utf8' });
@@ -41,7 +43,7 @@ function indent(text) {
 }
 
 if (FIX) {
-  console.log('Regenerating (sync -> translate -> seo)\n');
+  console.log('Regenerating (sync -> translate -> selfhost -> seo)\n');
   for (const name of STEPS) {
     const { ok, out } = run(name, []);
     if (out) console.log(indent(out));
@@ -66,7 +68,7 @@ for (const name of STEPS) {
 if (failed.length) {
   console.error(
     `\n${failed.length} of ${STEPS.length} checks failed: ${failed.join(', ')}.` +
-    '\nFix in order (sync -> translate -> seo); an earlier failure can cause a later one.' +
+    '\nFix in order (sync -> translate -> selfhost -> seo); an earlier failure can cause a later one.' +
     '\nTo regenerate everything: node scripts/ship.js --fix'
   );
   process.exit(1);

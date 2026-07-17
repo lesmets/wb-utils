@@ -69,7 +69,7 @@
       "@type": "ItemList",
       "@id": "https://wbest.app/#tools",
       "name": "Kostenlose Online-Tools von WBest",
-      "numberOfItems": 25,
+      "numberOfItems": 26,
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -495,6 +495,23 @@
               "priceCurrency": "USD"
             }
           }
+        },
+        {
+          "@type": "ListItem",
+          "position": 26,
+          "item": {
+            "@type": "WebApplication",
+            "name": "Self-Host-Packager",
+            "url": "https://selfhost.wbest.app/",
+            "description": "Kostenloser Packager, der ausgewählte WBest-Tools zu einem umbenannten, selbst hostbaren ZIP mit Name, Logo und Markenfarbe deines Teams bündelt. Einfache statische Dateien, komplett in deinem Browser erstellt.",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
         }
       ]
     }
@@ -621,6 +638,9 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
 .tool .desc{margin:2px 0 0;font-size:.9rem;color:var(--muted)}
 .tool .go{color:var(--muted);font-size:1.15rem;flex:none}
 .tool:hover .go{color:var(--accent)}
+.featured{max-width:52rem;margin:18px auto 0;padding:16px 18px;border-color:var(--accent);background:linear-gradient(115deg,var(--accent-soft),var(--card) 70%)}
+.featured .tool-icon{width:48px;height:48px;border-radius:11px}
+.featured .kicker{margin:0 0 2px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
 #props-heading{max-width:52rem;margin:16px auto 0;}
 .props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:52rem;margin:16px auto 0;}
 @media (max-width:760px){.props{grid-template-columns:1fr}}
@@ -659,6 +679,16 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
       <a href="#cat-time">Zeit &amp; Datum</a>
       <a href="#cat-device">Gerätetests</a>
     </nav>
+
+    <article class="tool card featured">
+      <svg class="tool-icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="#2563eb"/><path d="M50 18 L80 31 V63 L50 76 20 63 V31 Z" fill="#fff"/><path d="M50 44 L80 31 M50 44 L20 31 M50 44 V76" fill="none" stroke="#2563eb" stroke-width="5" stroke-linejoin="round"/><path d="M35 24.5 L65 37.5 V48 L59 45.5 V41 L29 28.5 Z" fill="#2563eb"/></svg>
+      <div class="tool-body">
+        <p class="kicker">Für Teams</p>
+        <h3><a href="https://selfhost.wbest.app/">Self-Host-Packager</a></h3>
+        <p class="desc">Bündle die Tools, die dein Team braucht, zu einem umbenannten Paket, das du selbst hostest.</p>
+      </div>
+      <span class="go" aria-hidden="true">→</span>
+    </article>
 
     <h3 class="cat-title" id="cat-text">Text &amp; Schreiben</h3>
     <div class="tools">

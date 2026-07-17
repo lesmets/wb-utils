@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{BRAND_NAME}} Percentage Calculator</title>
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:{{ACCENT}}; --accent-soft:{{ACCENT_SOFT}}; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:{{ACCENT_DARK}}; --accent-soft:{{ACCENT_SOFT_DARK}}; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+.repo-link{display:block;margin-top:10px;font-size:.82rem;color:var(--muted);text-decoration:none}
+.repo-link:hover{color:var(--accent);text-decoration:underline}
+.repo-link svg{vertical-align:-2px;margin-right:5px}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:root{
+  --good:#16a34a;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --good:#4ade80;
+  }
+}
+.calcs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+@media (max-width:820px){.calcs{grid-template-columns:1fr}}
+.calc{padding:16px 18px}
+.calc h2{font-size:1.02rem;margin:0 0 12px}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:.95rem}
+.row input{
+  font:600 1rem/1.4 inherit;font-variant-numeric:tabular-nums;width:96px;
+  padding:7px 10px;border:1px solid var(--border);border-radius:8px;
+  background:var(--card);color:var(--text)
+}
+.row input.small{width:74px}
+.row select{
+  font:inherit;font-size:.9rem;padding:7px 8px;border-radius:8px;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.answer{margin:12px 0 0;font-size:1.28rem;font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.answer .up{color:var(--good)}
+.answer .down{color:var(--over)}
+.working{margin:4px 0 0;font-size:.83rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:300px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td{font-variant-numeric:tabular-nums}
+.faq p{color:var(--text)}
+.brand-logo{height:56px;max-width:220px;object-fit:contain;display:block;margin:0 auto}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  {{LOGO}}
+  <h1>{{BRAND_NAME}} Percentage Calculator</h1>
+</header>
+
+<main class="wrap">
+
+<section id="tool" aria-label="Percentage calculators">
+    <div class="calcs">
+
+      <div class="calc card" id="calc-of">
+        <h2>What is X% of Y?</h2>
+        <div class="row">
+          <label class="sr-only" for="of-x">Percentage</label>
+          <input type="text" id="of-x" inputmode="decimal" value="20" autocomplete="off">
+          <span>% of</span>
+          <label class="sr-only" for="of-y">Number</label>
+          <input type="text" id="of-y" inputmode="decimal" value="150" autocomplete="off">
+        </div>
+        <p class="answer" aria-live="polite" id="of-answer"></p>
+        <p class="working" id="of-working"></p>
+      </div>
+
+      <div class="calc card" id="calc-what">
+        <h2>X is what percent of Y?</h2>
+        <div class="row">
+          <label class="sr-only" for="what-x">Part</label>
+          <input type="text" id="what-x" inputmode="decimal" value="30" autocomplete="off">
+          <span>is what % of</span>
+          <label class="sr-only" for="what-y">Whole</label>
+          <input type="text" id="what-y" inputmode="decimal" value="150" autocomplete="off">
+        </div>
+        <p class="answer" aria-live="polite" id="what-answer"></p>
+        <p class="working" id="what-working"></p>
+      </div>
+
+      <div class="calc card" id="calc-whole">
+        <h2>X is Y% of what?</h2>
+        <div class="row">
+          <label class="sr-only" for="whole-x">Known part</label>
+          <input type="text" id="whole-x" inputmode="decimal" value="30" autocomplete="off">
+          <span>is</span>
+          <label class="sr-only" for="whole-y">Percentage</label>
+          <input type="text" id="whole-y" inputmode="decimal" value="25" class="small" autocomplete="off">
+          <span>% of</span>
+        </div>
+        <p class="answer" aria-live="polite" id="whole-answer"></p>
+        <p class="working" id="whole-working"></p>
+      </div>
+
+      <div class="calc card" id="calc-change">
+        <h2>Percentage increase / decrease</h2>
+        <div class="row">
+          <span>From</span>
+          <label class="sr-only" for="chg-a">Starting value</label>
+          <input type="text" id="chg-a" inputmode="decimal" value="80" autocomplete="off">
+          <span>to</span>
+          <label class="sr-only" for="chg-b">Ending value</label>
+          <input type="text" id="chg-b" inputmode="decimal" value="100" autocomplete="off">
+        </div>
+        <p class="answer" aria-live="polite" id="chg-answer"></p>
+        <p class="working" id="chg-working"></p>
+      </div>
+
+      <div class="calc card" id="calc-discount">
+        <h2>Discount calculator</h2>
+        <div class="row">
+          <span>Price</span>
+          <label class="sr-only" for="disc-p">Original price</label>
+          <input type="text" id="disc-p" inputmode="decimal" value="80" autocomplete="off">
+          <span>at</span>
+          <label class="sr-only" for="disc-d">Discount percent</label>
+          <input type="text" id="disc-d" inputmode="decimal" value="25" class="small" autocomplete="off">
+          <span>% off</span>
+        </div>
+        <p class="answer" aria-live="polite" id="disc-answer"></p>
+        <p class="working" id="disc-working"></p>
+      </div>
+
+      <div class="calc card" id="calc-tip">
+        <h2>Tip calculator</h2>
+        <div class="row">
+          <span>Bill</span>
+          <label class="sr-only" for="tip-b">Bill amount</label>
+          <input type="text" id="tip-b" inputmode="decimal" value="64" autocomplete="off">
+          <span>+</span>
+          <label class="sr-only" for="tip-p">Tip percent</label>
+          <input type="text" id="tip-p" inputmode="decimal" value="18" class="small" autocomplete="off">
+          <span>% tip, split</span>
+          <label class="sr-only" for="tip-n">Number of people</label>
+          <select id="tip-n">
+            <option value="1" selected>1 way</option>
+            <option value="2">2 ways</option>
+            <option value="3">3 ways</option>
+            <option value="4">4 ways</option>
+            <option value="5">5 ways</option>
+            <option value="6">6 ways</option>
+            <option value="8">8 ways</option>
+          </select>
+        </div>
+        <p class="answer" aria-live="polite" id="tip-answer"></p>
+        <p class="working" id="tip-working"></p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+{{LANG_SWITCH}}
+<div class="wrap">{{FOOTER_ATTRIBUTION}}</div>
+</footer>
+
+<script>
+/* Percentage math + formatting. Pure functions, returned for testability. */
+var PC = (function () {
+  'use strict';
+
+  var LANG = (typeof document !== 'undefined' && document.documentElement.lang) || 'en';
+  // Derive the locale's separators from the formatter itself, so a German page
+  // reads "1.234,5" as 1234.5 while an English page reads "1,234.5" as the same.
+  var SEP = (function () {
+    var s = (1234.5).toLocaleString(LANG);
+    return { group: s[1], decimal: s[s.length - 2] };
+  })();
+
+  function parseNum(s) {
+    s = String(s).trim();
+    if (!s) return NaN;
+    if (SEP.group !== '.' && SEP.group !== ',') s = s.replace(/[\s ]/g, '');
+    s = s.split(SEP.group).join('');
+    if (SEP.decimal !== '.') s = s.split(SEP.decimal).join('.');
+    return Number(s);
+  }
+
+  // up to 6 significant digits, trailing zeros trimmed
+  function fmt(n) {
+    if (!isFinite(n)) return '';
+    if (n === 0) return '0';
+    var a = Math.abs(n);
+    if (a >= 1e12 || a < 1e-6) return n.toExponential(4).replace(/\.?0+e/, 'e');
+    var s;
+    if (a >= 1e6) s = n.toFixed(0);
+    else {
+      s = n.toPrecision(6);
+      if (s.indexOf('.') !== -1) s = s.replace(/0+$/, '').replace(/\.$/, '');
+    }
+    return Number(s).toLocaleString(LANG, { maximumFractionDigits: 10 });
+  }
+  function money(n) {
+    return n.toLocaleString(LANG, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  return {
+    parseNum: parseNum, fmt: fmt, money: money,
+    percentOf: function (x, y) { return x / 100 * y; },
+    whatPercent: function (x, y) { return x / y * 100; },
+    wholeFrom: function (x, y) { return x / (y / 100); },
+    change: function (a, b) { return (b - a) / Math.abs(a) * 100; },
+    discount: function (p, d) { return { final: p * (1 - d / 100), saved: p * d / 100 }; },
+    tip: function (b, p, n) {
+      var t = b * p / 100;
+      return { tip: t, total: b + t, perPerson: (b + t) / n };
+    }
+  };
+})();
+if (typeof module !== 'undefined') module.exports = PC;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+  var I18N = {
+    "fillBoth": "Fill in both numbers.",
+    "fillPriceDiscount": "Fill in price and discount.",
+    "fillBillTip": "Fill in bill and tip percent.",
+    "undefinedVal": "undefined",
+    "noPercentZero": "Nothing can be a percentage of zero.",
+    "noWholeZero": "0% of anything is 0, so no whole can be recovered.",
+    "noChangeZero": "Change from zero cannot be expressed as a percentage.",
+    "increase": "▲ increase",
+    "decrease": "▼ decrease",
+    "discountAnswer": "Pay {final} · save {saved}",
+    "tipAnswer": "Tip {tip} · total {total}",
+    "tipEach": " · {per} each",
+    "tipWorkingSuffix": " tip",
+    "tipWorkingSplit": " · total ÷ {n} = {per}"
+  };
+
+  function val(id) { return PC.parseNum($(id).value); }
+  function setOut(id, answer, working) {
+    $(id + '-answer').innerHTML = '';
+    if (typeof answer === 'string') $(id + '-answer').textContent = answer;
+    else $(id + '-answer').appendChild(answer);
+    $(id + '-working').textContent = working || '';
+  }
+
+  function upDownSpan(n, text) {
+    var s = document.createElement('span');
+    s.appendChild(document.createTextNode(text + ' '));
+    var mark = document.createElement('span');
+    mark.className = n >= 0 ? 'up' : 'down';
+    mark.textContent = (n >= 0 ? I18N.increase : I18N.decrease);
+    s.appendChild(mark);
+    return s;
+  }
+
+  function update() {
+    var x, y, a, b, r;
+
+    x = val('of-x'); y = val('of-y');
+    if (isNaN(x) || isNaN(y)) setOut('of', '…', I18N.fillBoth);
+    else {
+      r = PC.percentOf(x, y);
+      setOut('of', '= ' + PC.fmt(r),
+        '(' + PC.fmt(x) + ' ÷ 100) × ' + PC.fmt(y) + ' = ' + PC.fmt(r));
+    }
+
+    x = val('what-x'); y = val('what-y');
+    if (isNaN(x) || isNaN(y)) setOut('what', '…', I18N.fillBoth);
+    else if (y === 0) setOut('what', I18N.undefinedVal, I18N.noPercentZero);
+    else {
+      r = PC.whatPercent(x, y);
+      setOut('what', '= ' + PC.fmt(r) + '%',
+        PC.fmt(x) + ' ÷ ' + PC.fmt(y) + ' × 100 = ' + PC.fmt(r) + '%');
+    }
+
+    x = val('whole-x'); y = val('whole-y');
+    if (isNaN(x) || isNaN(y)) setOut('whole', '…', I18N.fillBoth);
+    else if (y === 0) setOut('whole', I18N.undefinedVal, I18N.noWholeZero);
+    else {
+      r = PC.wholeFrom(x, y);
+      setOut('whole', '= ' + PC.fmt(r),
+        PC.fmt(x) + ' ÷ (' + PC.fmt(y) + ' ÷ 100) = ' + PC.fmt(r));
+    }
+
+    a = val('chg-a'); b = val('chg-b');
+    if (isNaN(a) || isNaN(b)) setOut('chg', '…', I18N.fillBoth);
+    else if (a === 0) setOut('chg', I18N.undefinedVal, I18N.noChangeZero);
+    else {
+      r = PC.change(a, b);
+      setOut('chg', upDownSpan(r, (r >= 0 ? '+' : '−') + PC.fmt(Math.abs(r)) + '%'),
+        '(' + PC.fmt(b) + ' − ' + PC.fmt(a) + ') ÷ ' + PC.fmt(Math.abs(a)) + ' × 100 = ' + PC.fmt(r) + '%');
+    }
+
+    a = val('disc-p'); b = val('disc-d');
+    if (isNaN(a) || isNaN(b)) setOut('disc', '…', I18N.fillPriceDiscount);
+    else {
+      r = PC.discount(a, b);
+      setOut('disc', I18N.discountAnswer.replace('{final}', PC.money(r.final)).replace('{saved}', PC.money(r.saved)),
+        PC.fmt(a) + ' × (100 − ' + PC.fmt(b) + ') ÷ 100 = ' + PC.money(r.final));
+    }
+
+    a = val('tip-b'); b = val('tip-p');
+    var n = +$('tip-n').value;
+    if (isNaN(a) || isNaN(b)) setOut('tip', '…', I18N.fillBillTip);
+    else {
+      r = PC.tip(a, b, n);
+      setOut('tip', I18N.tipAnswer.replace('{tip}', PC.money(r.tip)).replace('{total}', PC.money(r.total)) +
+        (n > 1 ? I18N.tipEach.replace('{per}', PC.money(r.perPerson)) : ''),
+        PC.fmt(a) + ' × ' + PC.fmt(b) + '% = ' + PC.money(r.tip) + I18N.tipWorkingSuffix +
+        (n > 1 ? I18N.tipWorkingSplit.replace('{n}', n).replace('{per}', PC.money(r.perPerson)) : ''));
+    }
+  }
+
+  ['of-x', 'of-y', 'what-x', 'what-y', 'whole-x', 'whole-y', 'chg-a', 'chg-b',
+   'disc-p', 'disc-d', 'tip-b', 'tip-p'].forEach(function (id) {
+    $(id).addEventListener('input', update);
+  });
+  $('tip-n').addEventListener('change', update);
+
+  update();
+})();
+</script>
+</body>
+</html>

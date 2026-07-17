@@ -58,4 +58,4 @@ Yes. The entire tool is one self-contained page with no server calls, so once it
 
 - [Timer](https://timer.wbest.app/): Countdown timer and stopwatch with presets, laps, and an alarm.
 - [Time Zone Converter](https://timezoneconverter.wbest.app/): Compare times across cities with a meeting planner and automatic daylight saving.
-- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 26 free WB tools, private, no sign-up, no uploads.

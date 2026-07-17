@@ -49,4 +49,4 @@ Yes. All conversion and palette generation happens in your browser with plain Ja
 - [Image Compressor](https://imagecompressor.wbest.app/): Compress, resize, and convert JPEG, PNG, and WebP to an exact target size.
 - [Image Cropper](https://imagecropper.wbest.app/): Crop to any aspect ratio or exact pixel size, then rotate, flip, and export.
 - [Image Color Picker](https://imagecolorpicker.wbest.app/): Pick exact HEX, RGB, and HSL from any photo, with a magnifier and palette.
-- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 26 free WB tools, private, no sign-up, no uploads.

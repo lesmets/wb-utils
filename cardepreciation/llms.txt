@@ -49,4 +49,4 @@ No. Every calculation runs in JavaScript in your browser, so the price you paid,
 - [Percentage Calculator](https://percentagecalculator.wbest.app/): Percent of a number, increase/decrease, discounts, and tips. Formula included.
 - [BMI Calculator](https://bmicalculator.wbest.app/): Body mass index in metric or imperial, with your WHO category and healthy range.
 - [Loan Calculator](https://loancalculator.wbest.app/): Monthly payment, total interest, and a full amortization schedule for any loan.
-- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 26 free WB tools, private, no sign-up, no uploads.

@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBest Self-Host Packager: Rebranded Tools for Your Team</title>
+<meta name="description" content="Bundle selected WBest tools into a rebranded, self-hostable package with your team's name, logo, and brand color. Built entirely in your browser.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://selfhost.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://selfhost.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://selfhost.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://selfhost.wbest.app/">
+<!-- i18n:hreflang:end -->
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Self-Host Packager">
+<meta property="og:title" content="WBest Self-Host Packager: Rebranded Tools for Your Team">
+<meta property="og:description" content="Bundle selected WBest tools into a rebranded, self-hostable package with your team's name, logo, and brand color. Built entirely in your browser.">
+<meta property="og:url" content="https://selfhost.wbest.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WBest Self-Host Packager: Rebranded Tools for Your Team">
+<meta name="twitter:description" content="Bundle selected WBest tools into a rebranded, self-hostable package with your team's name, logo, and brand color. Built entirely in your browser.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Self-Host Packager",
+  "url": "https://selfhost.wbest.app/",
+  "description": "Free packager that bundles selected WBest tools into a self-hostable ZIP, rebranded with your team's name, logo, and brand color. Pick tools and languages, click create, and get plain static files you can host on any server, intranet, or file share. The whole package is assembled in your browser. Nothing is uploaded.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Pick any of the 25 WBest tools",
+    "Your team or company name on every page",
+    "Your brand color, with matching dark-mode shades derived automatically",
+    "Optional logo in every page header",
+    "Every available language, or just the ones you need",
+    "A ready-made landing page linking the included tools",
+    "One ZIP of plain static files, no build step, hostable anywhere",
+    "Built 100% in your browser, nothing is uploaded"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does the package contain?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A folder per tool with a single self-contained index.html (plus its translations and favicons), a landing page linking the tools you picked, and your logo if you added one. The pages are the same tools that run on wbest.app, stripped of everything except the tool itself and rebranded with your name and color."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I host the package?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Unzip it anywhere a browser can reach: any static web server, an intranet host, a company file share, or even a USB stick. There is no build step, no database, and no configuration. Opening index.html directly from disk works too."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my logo or company name uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The packager runs entirely in your browser: it fetches the neutral tool templates, applies your branding locally, and assembles the ZIP on your device. Your name, color, and logo never leave your browser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do the packaged tools need an internet connection?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Every packaged page is fully self-contained, makes no network requests, and keeps working offline. That is what makes them safe for sensitive data on an internal network."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Am I allowed to self-host these tools with my own branding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, that is exactly what this packager is for. Each generated page keeps a small \"Thank you for using WBest Tools\" line in the footer linking back to wbest.app. Please leave that attribution in place."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* wb:base:start */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:#2563eb; --accent-soft:#e8effd; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:#60a5fa; --accent-soft:#1c2a44; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+.repo-link{display:block;margin-top:10px;font-size:.82rem;color:var(--muted);text-decoration:none}
+.repo-link:hover{color:var(--accent);text-decoration:underline}
+.repo-link svg{vertical-align:-2px;margin-right:5px}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* wb:base:end */
+.panel{padding:18px 20px;margin:14px 0}
+.panel h2{font-size:1.05rem;margin:0 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.panel h2 .muted{font-weight:400;font-size:.85rem}
+.brandgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.field label{display:block;font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:0 0 6px}
+.field input[type="text"]{
+  width:100%;font:inherit;font-weight:600;font-size:1.05rem;padding:9px 12px;
+  border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text)
+}
+.colorrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.colorrow input[type="color"]{width:52px;height:36px;padding:2px;border:1px solid var(--border);border-radius:8px;background:var(--card);cursor:pointer}
+.swatches{display:flex;gap:6px}
+.swatches span{width:22px;height:22px;border-radius:6px;border:1px solid var(--border)}
+.logorow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.logorow input{font:inherit;font-size:.85rem;color:var(--muted);max-width:100%}
+.logorow img{height:40px;max-width:120px;object-fit:contain;border:1px solid var(--border);border-radius:8px;padding:3px;background:#fff}
+.logorow button{
+  font:inherit;font-size:.85rem;padding:5px 12px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.logorow button:hover{border-color:var(--accent);color:var(--accent)}
+.chk-all{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:400;cursor:pointer;margin-left:auto}
+.chk-all input{width:16px;height:16px;accent-color:var(--accent);margin:0}
+.cat{margin:16px 0 0}
+.cat:first-of-type{margin-top:0}
+.cat-label{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:0 0 8px}
+.cat-label input{width:15px;height:15px;accent-color:var(--accent);margin:0}
+.picks{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.pick{
+  display:flex;align-items:center;gap:9px;font-size:.92rem;cursor:pointer;padding:8px 10px;
+  border:1px solid var(--border);border-radius:10px;background:var(--card)
+}
+.pick:hover{border-color:var(--accent)}
+.pick:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.pick input{width:16px;height:16px;accent-color:var(--accent);margin:0;flex:none}
+.pick svg{width:22px;height:22px;border-radius:5px;flex:none}
+.pick span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#preview-head select{
+  font:inherit;font-size:.85rem;padding:5px 8px;border:1px solid var(--border);
+  border-radius:8px;background:var(--card);color:var(--text);max-width:100%
+}
+#preview{width:100%;height:430px;border:1px solid var(--border);border-radius:12px;background:#fff}
+.actions{margin:18px 0;text-align:center}
+#btn-create{
+  font:inherit;font-weight:600;font-size:1rem;padding:12px 26px;border-radius:10px;cursor:pointer;
+  border:1px solid var(--accent);background:var(--accent);color:#fff
+}
+#btn-create:hover{filter:brightness(1.08)}
+#btn-create[disabled]{opacity:.6;cursor:default;filter:none}
+#progress{width:100%;max-width:420px;display:block;margin:12px auto 0;accent-color:var(--accent)}
+.est{margin-top:10px}
+.err{display:none;color:var(--over);font-weight:600;font-size:.9rem;margin:10px 2px 0}
+.err.show{display:block}
+.actions .err{text-align:center}
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>WBest Self-Host Packager</h1>
+  <p class="tagline">Bundle the tools your team needs into a rebranded, self-hostable package: your name, your color, your logo. Built entirely in your browser.</p>
+  <span class="badge">🔒 100% private, your branding never leaves your browser</span>
+  <a class="repo-link" href="https://github.com/lesmets/wbest-tools" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View source on GitHub</a>
+  <nav class="toc" aria-label="On this page">
+    <a href="#tool">Packager</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="tool" aria-label="Self-host package builder">
+
+    <div class="panel card">
+      <h2>Branding</h2>
+      <div class="brandgrid">
+        <div class="field">
+          <label for="brand-name">Team or company name</label>
+          <input type="text" id="brand-name" placeholder="Acme Inc." autocomplete="organization" maxlength="60">
+        </div>
+        <div class="field">
+          <label for="brand-color">Brand color</label>
+          <div class="colorrow">
+            <input type="color" id="brand-color" value="#2563eb">
+            <div class="swatches" id="swatches" title="Derived shades: accent and soft tint, light and dark mode"></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="logo-input">Logo (optional)</label>
+          <div class="logorow">
+            <input type="file" id="logo-input" accept="image/png,image/jpeg,image/svg+xml,image/webp">
+            <img id="logo-preview" alt="" hidden>
+            <button type="button" id="logo-clear" hidden>Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel card">
+      <h2>Tools <span class="muted" id="tool-count"></span><label class="chk-all"><input type="checkbox" id="all-tools">Select all</label></h2>
+      <p class="err" id="load-err" role="alert"></p>
+      <div id="tool-list"></div>
+    </div>
+
+    <div class="panel card">
+      <h2>Languages</h2>
+      <div class="picks" id="lang-list"></div>
+    </div>
+
+    <div class="panel card" id="preview-panel" hidden>
+      <h2 id="preview-head"><label for="preview-tool">Preview</label> <select id="preview-tool"></select></h2>
+      <iframe id="preview" sandbox="allow-scripts" title="Preview of a packaged tool"></iframe>
+    </div>
+
+    <div class="actions">
+      <button type="button" id="btn-create">Create self-host package</button>
+      <progress id="progress" max="100" value="0" hidden></progress>
+      <p class="muted est" id="estimate"></p>
+      <p class="err" id="err" role="alert"></p>
+      <p class="sr-only" id="live" role="status" aria-live="polite"></p>
+    </div>
+
+  </section>
+
+  <p class="cross-link">Prefer the hosted versions? Every tool here is free to use online, no download needed, in the <a href="https://wbest.app/">WBest directory</a>.</p>
+
+  <section class="props" aria-label="Why use this packager">
+    <div class="card"><strong>Built in your browser</strong><p>The package is assembled entirely on your device. Your company name, brand color, and logo are never uploaded, logged, or stored anywhere.</p></div>
+    <div class="card"><strong>Truly self-contained</strong><p>Each tool is one plain HTML file with no dependencies, no build step, and no network requests. Host the folder anywhere a browser can reach.</p></div>
+    <div class="card"><strong>Your brand, one click</strong><p>Every page carries your name in the title and header, your color in light and dark mode, and your logo, so the tools feel like your own.</p></div>
+  </section>
+
+  <section id="how-it-works" class="prose">
+    <h2>How it works</h2>
+    <p>Enter your team or company name, pick a brand color, and optionally add a logo. Then select the tools your team actually uses and the languages you want to ship. The preview shows exactly what a packaged page will look like. When you click create, the packager fetches a neutral, stripped-down template of each selected tool, applies your branding, and assembles everything into a single ZIP, all locally in your browser.</p>
+    <p>The ZIP contains one folder per tool, each holding a self-contained <code>index.html</code> plus its translations and favicons, and a landing page at the top that links the tools you included. There is nothing to install and nothing to configure: unzip it onto any static web server, intranet host, or file share and it works. Because every page runs entirely in the browser and makes no network requests, the package is a good fit for environments where data must not leave the building.</p>
+    <p>The packaged pages are the same tools that run on wbest.app, minus everything that only makes sense online: no analytics, no search-engine markup, no article text, just the tool. Each page keeps a one-line attribution to WBest Tools in the footer.</p>
+  </section>
+
+  <section id="faq" class="prose faq">
+    <h2>Frequently asked questions</h2>
+
+    <h3>What does the package contain?</h3>
+    <p>A folder per tool with a single self-contained index.html (plus its translations and favicons), a landing page linking the tools you picked, and your logo if you added one. The pages are the same tools that run on wbest.app, stripped of everything except the tool itself and rebranded with your name and color.</p>
+
+    <h3>How do I host the package?</h3>
+    <p>Unzip it anywhere a browser can reach: any static web server, an intranet host, a company file share, or even a USB stick. There is no build step, no database, and no configuration. Opening index.html directly from disk works too.</p>
+
+    <h3>Is my logo or company name uploaded anywhere?</h3>
+    <p>No. The packager runs entirely in your browser: it fetches the neutral tool templates, applies your branding locally, and assembles the ZIP on your device. Your name, color, and logo never leave your browser.</p>
+
+    <h3>Do the packaged tools need an internet connection?</h3>
+    <p>No. Every packaged page is fully self-contained, makes no network requests, and keeps working offline. That is what makes them safe for sensitive data on an internal network.</p>
+
+    <h3>Am I allowed to self-host these tools with my own branding?</h3>
+    <p>Yes, that is exactly what this packager is for. Each generated page keeps a small "Thank you for using WBest Tools" line in the footer linking back to wbest.app. Please leave that attribution in place.</p>
+  </section>
+
+</main>
+
+<footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://selfhost.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
+  <!-- wb:footer:start -->
+<div class="wrap">
+  Made for anyone who needs a quick tool that just works.
+  <br>© 2026 WBest · Free to use, no sign-up required · <a href="https://wbest.app/">WBest Free Tools</a>
+</div>
+<!-- wb:footer:end -->
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+  /* i18n:js:start */
+  var I18N = {
+    "count": "{sel} of {total} selected",
+    "selectAllIn": "Select all in {category}",
+    "estimate": "About {raw} of pages, roughly {zip} zipped.",
+    "building": "Building package: {done} of {total} files",
+    "done": "Package downloaded. Unzip it and open index.html.",
+    "errLoad": "Could not load the tool catalog. Reload the page to try again.",
+    "errName": "Enter a team or company name first.",
+    "errTools": "Select at least one tool.",
+    "errLangs": "Select at least one language.",
+    "errLogo": "That logo could not be read. Try a PNG, JPEG, WebP, or SVG file.",
+    "errBuild": "Building the package failed: {msg}"
+  };
+  /* i18n:js:end */
+  var UI_LANG = document.documentElement.lang || 'en';
+  var TPL = UI_LANG === 'en' ? 'templates/' : '../templates/';
+
+  var MANIFEST = null;
+  var logo = null; // { bytes: Uint8Array, dataUrl, ext }
+  var templates = {}; // '<id>.<lang>' -> html
+  var building = false;
+
+  function fmt(tpl, vars) {
+    return tpl.replace(/\{(\w+)\}/g, function (m, k) { return k in vars ? vars[k] : m; });
+  }
+  function escapeHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function showErr(msg) {
+    $('err').textContent = msg || '';
+    $('err').classList.toggle('show', !!msg);
+  }
+  function announce(msg) { $('live').textContent = msg; }
+
+  /* --- brand color math -------------------------------------------------
+     One picked color; the other three wb:base accents are derived with the
+     same relationships the stock blue set has: a lighter accent for dark
+     backgrounds, and pale/deep soft tints for hover and badge fills. */
+  function hexToHsl(hex) {
+    var r = parseInt(hex.slice(1, 3), 16) / 255;
+    var g = parseInt(hex.slice(3, 5), 16) / 255;
+    var b = parseInt(hex.slice(5, 7), 16) / 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min;
+    var h = 0, s = 0, l = (max + min) / 2;
+    if (d) {
+      s = d / (1 - Math.abs(2 * l - 1));
+      if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) * 60;
+      else if (max === g) h = ((b - r) / d + 2) * 60;
+      else h = ((r - g) / d + 4) * 60;
+    }
+    return { h: h, s: s * 100, l: l * 100 };
+  }
+  function hslToHex(h, s, l) {
+    s /= 100; l /= 100;
+    var c = (1 - Math.abs(2 * l - 1)) * s;
+    var x = c * (1 - Math.abs((h / 60) % 2 - 1));
+    var m = l - c / 2, rgb;
+    if (h < 60) rgb = [c, x, 0]; else if (h < 120) rgb = [x, c, 0];
+    else if (h < 180) rgb = [0, c, x]; else if (h < 240) rgb = [0, x, c];
+    else if (h < 300) rgb = [x, 0, c]; else rgb = [c, 0, x];
+    return '#' + rgb.map(function (v) {
+      return Math.round((v + m) * 255).toString(16).padStart(2, '0');
+    }).join('');
+  }
+  function deriveColors(accent) {
+    var c = hexToHsl(accent);
+    return {
+      accent: accent,
+      accentDark: hslToHex(c.h, Math.min(c.s, 92), Math.max(c.l, 68)),
+      accentSoft: hslToHex(c.h, Math.min(c.s, 84), 95),
+      accentSoftDark: hslToHex(c.h, Math.min(c.s, 42), 19)
+    };
+  }
+  function colors() { return deriveColors($('brand-color').value); }
+
+  /* --- selections ------------------------------------------------------- */
+  function selectedTools() {
+    return [].slice.call(document.querySelectorAll('#tool-list input[data-id]:checked'))
+      .map(function (el) { return el.getAttribute('data-id'); });
+  }
+  function selectedLangs() {
+    return MANIFEST.languages.filter(function (l) {
+      var el = $('lang-' + l);
+      return el && el.checked;
+    });
+  }
+  function toolById(id) {
+    for (var i = 0; i < MANIFEST.tools.length; i++) {
+      if (MANIFEST.tools[i].id === id) return MANIFEST.tools[i];
+    }
+    return null;
+  }
+  function localized(obj) { return obj[UI_LANG] || obj.en; }
+
+  /* --- substitution ------------------------------------------------------
+     Templates carry {{...}} placeholders (see scripts/selfhost.js); this is
+     the one place they get filled in. */
+  function langSwitch(cur, langs) {
+    if (langs.length < 2) return '';
+    var items = langs.map(function (l) {
+      var name = MANIFEST.langNames[l] || l;
+      if (l === cur) return '      <li aria-current="page">' + name + '</li>';
+      var href = cur === 'en' ? l + '/index.html' : (l === 'en' ? '../index.html' : '../' + l + '/index.html');
+      return '      <li><a href="' + href + '" lang="' + l + '" hreflang="' + l + '">' + name + '</a></li>';
+    });
+    return '  <details class="lang">\n    <summary>🌐 ' + cur.toUpperCase() + '</summary>\n    <ul>\n' +
+      items.join('\n') + '\n    </ul>\n  </details>';
+  }
+  function substitute(tpl, opts) {
+    var c = opts.colors;
+    return tpl
+      .split('{{BRAND_NAME}}').join(escapeHtml(opts.name))
+      .split('{{ACCENT}}').join(c.accent)
+      .split('{{ACCENT_SOFT}}').join(c.accentSoft)
+      .split('{{ACCENT_DARK}}').join(c.accentDark)
+      .split('{{ACCENT_SOFT_DARK}}').join(c.accentSoftDark)
+      .split('{{LOGO}}').join(opts.logo || '')
+      .split('{{LANG_SWITCH}}').join(opts.langSwitch || '')
+      .split('{{FOOTER_ATTRIBUTION}}').join(MANIFEST.attribution[opts.lang] || MANIFEST.attribution.en);
+  }
+  function logoImg(prefix) {
+    return logo ? '<img class="brand-logo" src="' + prefix + 'assets/logo.' + logo.ext + '" alt="">' : '';
+  }
+  function getTemplate(id, lang) {
+    var key = id + '.' + lang;
+    if (templates[key]) return Promise.resolve(templates[key]);
+    return fetch(TPL + key + '.html').then(function (res) {
+      if (!res.ok) throw new Error(res.status + ' ' + TPL + key + '.html');
+      return res.text();
+    }).then(function (text) {
+      templates[key] = text;
+      return text;
+    });
+  }
+
+  /* --- rendering --------------------------------------------------------- */
+  function renderTools() {
+    var html = '';
+    MANIFEST.categories.forEach(function (cat) {
+      var tools = MANIFEST.tools.filter(function (t) { return t.category === cat.id; });
+      if (!tools.length) return;
+      html += '<div class="cat"><div class="cat-label">' +
+        '<input type="checkbox" data-cat="' + cat.id + '" aria-label="' +
+        escapeHtml(fmt(I18N.selectAllIn, { category: localized(cat.label).replace(/&amp;/g, '&') })) + '">' +
+        '<span>' + localized(cat.label) + '</span></div><div class="picks">';
+      tools.forEach(function (t) {
+        var icon = t.icon.split('{{ACCENT}}').join('var(--pick-accent)')
+          .replace('<svg ', '<svg aria-hidden="true" focusable="false" ');
+        html += '<label class="pick"><input type="checkbox" data-id="' + t.id + '" checked>' +
+          icon + '<span title="' + localized(t.desc) + '">' + localized(t.name) + '</span></label>';
+      });
+      html += '</div></div>';
+    });
+    $('tool-list').innerHTML = html;
+    $('tool-list').style.setProperty('--pick-accent', $('brand-color').value);
+    $('all-tools').checked = true;
+    $('tool-list').addEventListener('change', function (e) {
+      var cat = e.target.getAttribute('data-cat');
+      if (cat) {
+        MANIFEST.tools.filter(function (t) { return t.category === cat; }).forEach(function (t) {
+          document.querySelector('#tool-list input[data-id="' + t.id + '"]').checked = e.target.checked;
+        });
+      }
+      refresh();
+    });
+  }
+  function renderLangs() {
+    var html = '';
+    MANIFEST.languages.forEach(function (l) {
+      html += '<label class="pick"><input type="checkbox" id="lang-' + l + '"' +
+        (l === UI_LANG ? ' checked' : '') + '><span>' + (MANIFEST.langNames[l] || l) + '</span></label>';
+    });
+    $('lang-list').innerHTML = html;
+    $('lang-list').addEventListener('change', refresh);
+  }
+  function renderPreviewSelect() {
+    var sel = $('preview-tool'), tools = selectedTools();
+    var current = sel.value;
+    sel.innerHTML = tools.map(function (id) {
+      return '<option value="' + id + '">' + localized(toolById(id).name) + '</option>';
+    }).join('');
+    if (tools.indexOf(current) !== -1) sel.value = current;
+    $('preview-panel').hidden = !tools.length;
+  }
+  function renderSwatches() {
+    var c = colors();
+    $('swatches').innerHTML = [c.accent, c.accentSoft, c.accentDark, c.accentSoftDark]
+      .map(function (v) { return '<span style="background:' + v + '"></span>'; }).join('');
+    $('tool-list').style.setProperty('--pick-accent', c.accent);
+  }
+  function renderEstimate() {
+    var tools = selectedTools(), langs = selectedLangs(), bytes = 0;
+    tools.forEach(function (id) {
+      var t = toolById(id);
+      langs.forEach(function (l) { bytes += t.bytes[l] || 0; });
+      bytes += 4096; // favicons
+    });
+    if (logo) bytes += logo.bytes.length;
+    var kb = function (n) { return n < 1048576 ? Math.round(n / 1024) + ' KB' : (n / 1048576).toFixed(1) + ' MB'; };
+    $('estimate').textContent = tools.length && langs.length
+      ? fmt(I18N.estimate, { raw: kb(bytes), zip: kb(Math.round(bytes * 0.35)) }) : '';
+    $('tool-count').textContent = fmt(I18N.count, { sel: tools.length, total: MANIFEST.tools.length });
+    MANIFEST.categories.forEach(function (cat) {
+      var box = document.querySelector('#tool-list input[data-cat="' + cat.id + '"]');
+      if (box) {
+        box.checked = MANIFEST.tools.filter(function (t) { return t.category === cat.id; })
+          .every(function (t) {
+            return document.querySelector('#tool-list input[data-id="' + t.id + '"]').checked;
+          });
+      }
+    });
+    $('all-tools').checked = tools.length === MANIFEST.tools.length;
+  }
+
+  var previewTimer = null;
+  function renderPreview() {
+    var id = $('preview-tool').value;
+    if (!id) { $('preview').srcdoc = ''; return; }
+    var langs = selectedLangs();
+    var lang = langs.indexOf(UI_LANG) !== -1 ? UI_LANG : (langs[0] || UI_LANG);
+    getTemplate(id, lang).then(function (tpl) {
+      $('preview').srcdoc = substitute(tpl, {
+        name: $('brand-name').value.trim() || $('brand-name').placeholder,
+        colors: colors(),
+        lang: lang,
+        logo: logo ? '<img class="brand-logo" src="' + logo.dataUrl + '" alt="">' : '',
+        langSwitch: ''
+      });
+    }, function () { /* preview is best-effort */ });
+  }
+  function refresh() {
+    renderSwatches();
+    renderEstimate();
+    renderPreviewSelect();
+    clearTimeout(previewTimer);
+    previewTimer = setTimeout(renderPreview, 250);
+  }
+
+  /* --- logo -------------------------------------------------------------- */
+  var LOGO_EXT = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/svg+xml': 'svg', 'image/webp': 'webp' };
+  $('logo-input').addEventListener('change', function () {
+    var file = this.files && this.files[0];
+    if (!file) return;
+    var ext = LOGO_EXT[file.type];
+    if (!ext) { showErr(I18N.errLogo); return; }
+    var reader = new FileReader();
+    reader.onload = function () {
+      var buf = new Uint8Array(reader.result);
+      var r2 = new FileReader();
+      r2.onload = function () {
+        logo = { bytes: buf, dataUrl: r2.result, ext: ext };
+        $('logo-preview').src = logo.dataUrl;
+        $('logo-preview').hidden = false;
+        $('logo-clear').hidden = false;
+        showErr('');
+        refresh();
+      };
+      r2.readAsDataURL(file);
+    };
+    reader.onerror = function () { showErr(I18N.errLogo); };
+    reader.readAsArrayBuffer(file);
+  });
+  $('logo-clear').addEventListener('click', function () {
+    logo = null;
+    $('logo-input').value = '';
+    $('logo-preview').hidden = true;
+    $('logo-clear').hidden = true;
+    refresh();
+  });
+
+  /* --- favicons -----------------------------------------------------------
+     Each packaged tool keeps its own icon, recolored to the brand accent,
+     as favicon.svg plus canvas-rasterized 48px and 180px PNGs. */
+  function rasterize(svgText, size) {
+    return new Promise(function (resolve, reject) {
+      var sized = svgText.replace('<svg ', '<svg width="' + size + '" height="' + size + '" ');
+      var url = URL.createObjectURL(new Blob([sized], { type: 'image/svg+xml' }));
+      var img = new Image();
+      img.onload = function () {
+        URL.revokeObjectURL(url);
+        var c = document.createElement('canvas');
+        c.width = c.height = size;
+        c.getContext('2d').drawImage(img, 0, 0, size, size);
+        c.toBlob(function (blob) {
+          if (!blob) { reject(new Error('canvas toBlob failed')); return; }
+          blob.arrayBuffer().then(function (ab) { resolve(new Uint8Array(ab)); }, reject);
+        }, 'image/png');
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error('icon rasterization failed')); };
+      img.src = url;
+    });
+  }
+
+  /* --- zip writer ---------------------------------------------------------
+     Minimal ZIP: deflate-raw via the native CompressionStream where available
+     (HTML compresses ~3x), stored uncompressed otherwise; CRC-32 by table.
+     Sizes stay far below any ZIP64 threshold. */
+  var CRC_TABLE = (function () {
+    var t = new Uint32Array(256);
+    for (var n = 0; n < 256; n++) {
+      var c = n;
+      for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1;
+      t[n] = c;
+    }
+    return t;
+  })();
+  function crc32(u8) {
+    var c = 0xFFFFFFFF;
+    for (var i = 0; i < u8.length; i++) c = CRC_TABLE[(c ^ u8[i]) & 0xFF] ^ (c >>> 8);
+    return (c ^ 0xFFFFFFFF) >>> 0;
+  }
+  function deflate(u8) {
+    if (typeof CompressionStream === 'undefined') return Promise.resolve(null);
+    return new Response(
+      new Blob([u8]).stream().pipeThrough(new CompressionStream('deflate-raw'))
+    ).arrayBuffer().then(function (ab) { return new Uint8Array(ab); });
+  }
+  function makeZip(entries) { // [{ name, data: Uint8Array }]
+    var now = new Date();
+    var dosTime = (now.getHours() << 11) | (now.getMinutes() << 5) | (now.getSeconds() >> 1);
+    var dosDate = ((now.getFullYear() - 1980) << 9) | ((now.getMonth() + 1) << 5) | now.getDate();
+    var encoder = new TextEncoder();
+    var parts = [], centrals = [], offset = 0;
+
+    return entries.reduce(function (chain, e) {
+      return chain.then(function () {
+        return deflate(e.data).then(function (comp) {
+          var method = comp && comp.length < e.data.length ? 8 : 0;
+          var data = method === 8 ? comp : e.data;
+          var nameB = encoder.encode(e.name);
+          var crc = crc32(e.data);
+          var local = new DataView(new ArrayBuffer(30));
+          local.setUint32(0, 0x04034b50, true);
+          local.setUint16(4, 20, true);          // version needed
+          local.setUint16(6, 0x0800, true);      // UTF-8 names
+          local.setUint16(8, method, true);
+          local.setUint16(10, dosTime, true);
+          local.setUint16(12, dosDate, true);
+          local.setUint32(14, crc, true);
+          local.setUint32(18, data.length, true);
+          local.setUint32(22, e.data.length, true);
+          local.setUint16(26, nameB.length, true);
+          local.setUint16(28, 0, true);
+          parts.push(local.buffer, nameB, data);
+          centrals.push({ nameB: nameB, crc: crc, csize: data.length, usize: e.data.length, method: method, offset: offset });
+          offset += 30 + nameB.length + data.length;
+        });
+      });
+    }, Promise.resolve()).then(function () {
+      var cdStart = offset, cdSize = 0;
+      centrals.forEach(function (c) {
+        var h = new DataView(new ArrayBuffer(46));
+        h.setUint32(0, 0x02014b50, true);
+        h.setUint16(4, 20, true);
+        h.setUint16(6, 20, true);
+        h.setUint16(8, 0x0800, true);
+        h.setUint16(10, c.method, true);
+        h.setUint16(12, dosTime, true);
+        h.setUint16(14, dosDate, true);
+        h.setUint32(16, c.crc, true);
+        h.setUint32(20, c.csize, true);
+        h.setUint32(24, c.usize, true);
+        h.setUint16(28, c.nameB.length, true);
+        h.setUint32(42, c.offset, true);
+        parts.push(h.buffer, c.nameB);
+        cdSize += 46 + c.nameB.length;
+      });
+      var end = new DataView(new ArrayBuffer(22));
+      end.setUint32(0, 0x06054b50, true);
+      end.setUint16(8, centrals.length, true);
+      end.setUint16(10, centrals.length, true);
+      end.setUint32(12, cdSize, true);
+      end.setUint32(16, cdStart, true);
+      parts.push(end.buffer);
+      return new Blob(parts, { type: 'application/zip' });
+    });
+  }
+
+  /* --- create ------------------------------------------------------------ */
+  function slugify(s) {
+    var slug = s.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    return slug || 'selfhost';
+  }
+  function landingHtml(rootTpl, name, cs, tools, lang) {
+    var cards = tools.map(function (id) {
+      var t = toolById(id);
+      var icon = t.icon.replace('<svg ', '<svg class="tool-icon" aria-hidden="true" focusable="false" ');
+      return '    <article class="tool card">\n      ' + icon + '\n      <div class="tool-body">\n' +
+        '        <h3><a href="' + id + '/index.html">' + (t.name[lang] || t.name.en) + '</a></h3>\n' +
+        '        <p class="desc">' + (t.desc[lang] || t.desc.en) + '</p>\n' +
+        '      </div>\n      <span class="go" aria-hidden="true">→</span>\n    </article>';
+    }).join('\n');
+    return substitute(rootTpl.split('{{TOOL_LIST}}').join(cards), {
+      name: name, colors: cs, lang: lang, logo: logoImg(''), langSwitch: ''
+    });
+  }
+  $('btn-create').addEventListener('click', function () {
+    if (building || !MANIFEST) return;
+    var name = $('brand-name').value.trim();
+    var tools = selectedTools();
+    var langs = selectedLangs();
+    if (!name) { showErr(I18N.errName); $('brand-name').focus(); return; }
+    if (!tools.length) { showErr(I18N.errTools); return; }
+    if (!langs.length) { showErr(I18N.errLangs); return; }
+    showErr('');
+    building = true;
+    $('btn-create').disabled = true;
+    var progress = $('progress');
+    var total = tools.length * (langs.length + 2) + 1;
+    var done = 0;
+    var tick = function () {
+      done++;
+      progress.value = Math.round(done / total * 100);
+      announce(fmt(I18N.building, { done: done, total: total }));
+    };
+    progress.value = 0;
+    progress.hidden = false;
+
+    var cs = colors();
+    var encoder = new TextEncoder();
+    var entries = [];
+    var landingLang = langs.indexOf(UI_LANG) !== -1 ? UI_LANG : langs[0];
+
+    var work = tools.map(function (id) {
+      var t = toolById(id);
+      var favSvg = t.icon.split('{{ACCENT}}').join(cs.accent);
+      var pages = Promise.all(langs.map(function (lang) {
+        return getTemplate(id, lang).then(function (tpl) {
+          var path = lang === 'en' ? id + '/index.html' : id + '/' + lang + '/index.html';
+          var html = substitute(tpl, {
+            name: name, colors: cs, lang: lang,
+            logo: logoImg(lang === 'en' ? '../' : '../../'),
+            langSwitch: langSwitch(lang, langs)
+          });
+          entries.push({ name: path, data: encoder.encode(html) });
+          tick();
+        });
+      }));
+      var icons = Promise.all([rasterize(favSvg, 48), rasterize(favSvg, 180)]).then(function (pngs) {
+        entries.push({ name: id + '/favicon.svg', data: encoder.encode(favSvg) });
+        tick();
+        entries.push({ name: id + '/favicon-48.png', data: pngs[0] });
+        entries.push({ name: id + '/apple-touch-icon.png', data: pngs[1] });
+        tick();
+      });
+      return Promise.all([pages, icons]);
+    });
+
+    Promise.all(work).then(function () {
+      return getTemplate('root', landingLang).then(function (rootTpl) {
+        entries.push({ name: 'index.html', data: encoder.encode(landingHtml(rootTpl, name, cs, tools, landingLang)) });
+        if (logo) entries.push({ name: 'assets/logo.' + logo.ext, data: logo.bytes });
+        tick();
+        // Stable order: landing first, then tools alphabetically.
+        entries.sort(function (a, b) { return a.name < b.name ? -1 : 1; });
+        return makeZip(entries);
+      });
+    }).then(function (blob) {
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = slugify(name) + '-tools.zip';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 60000);
+      announce(I18N.done);
+    }, function (err) {
+      showErr(fmt(I18N.errBuild, { msg: err && err.message ? err.message : String(err) }));
+    }).then(function () {
+      building = false;
+      $('btn-create').disabled = false;
+      $('progress').hidden = true;
+    });
+  });
+
+  /* --- init --------------------------------------------------------------- */
+  $('brand-name').addEventListener('input', refresh);
+  $('brand-color').addEventListener('input', refresh);
+  $('preview-tool').addEventListener('change', renderPreview);
+
+  fetch(TPL + 'manifest.json').then(function (res) {
+    if (!res.ok) throw new Error(String(res.status));
+    return res.json();
+  }).then(function (m) {
+    MANIFEST = m;
+    renderTools();
+    renderLangs();
+    refresh();
+  }, function () {
+    $('load-err').textContent = I18N.errLoad;
+    $('load-err').classList.add('show');
+    $('btn-create').disabled = true;
+  });
+})();
+</script>
+</body>
+</html>

@@ -50,4 +50,4 @@ No. Matching runs in JavaScript in your browser using your device's own regex en
 - [Hash Generator](https://hashgenerator.wbest.app/): MD5, SHA-1, and SHA-256/512 for text or files, hashed locally and never uploaded.
 - [Unix Timestamp Converter](https://timestampconverter.wbest.app/): Convert epoch timestamps to dates and back, in UTC and your local time zone.
 - [Base64 Encoder & Decoder](https://base64.wbest.app/): Encode and decode Base64 with correct UTF-8, URL-safe output, and files.
-- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 26 free WB tools, private, no sign-up, no uploads.

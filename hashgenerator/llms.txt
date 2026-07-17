@@ -50,4 +50,4 @@ No. Plain MD5 or SHA-256 is far too fast and unsalted for password storage. Use 
 - [Unix Timestamp Converter](https://timestampconverter.wbest.app/): Convert epoch timestamps to dates and back, in UTC and your local time zone.
 - [Regex Tester](https://regextester.wbest.app/): Test regular expressions live with match highlighting, groups, and replace.
 - [Base64 Encoder & Decoder](https://base64.wbest.app/): Encode and decode Base64 with correct UTF-8, URL-safe output, and files.
-- [WBest](https://wbest.app/): all 25 free WB tools, private, no sign-up, no uploads.
+- [WBest](https://wbest.app/): all 26 free WB tools, private, no sign-up, no uploads.

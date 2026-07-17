@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{BRAND_NAME}} Webcam-Test</title>
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1a2233; --muted:#5c6675;
+  --accent:{{ACCENT}}; --accent-soft:{{ACCENT_SOFT}}; --border:#e3e7ee; --over:#dc2626;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f141c; --card:#171e29; --text:#e8ecf3; --muted:#98a2b3;
+    --accent:{{ACCENT_DARK}}; --accent-soft:{{ACCENT_SOFT_DARK}}; --border:#26303f; --over:#f87171;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+/* The UA rule for [hidden] is display:none at the lowest possible specificity,
+   so any class rule that sets display silently defeats it and the element stays
+   on screen. Anything hidden must actually be hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header{position:relative;padding:36px 0 8px;text-align:center}
+h1{font-size:2rem;margin:24px 0 12px;letter-spacing:-.02em}
+.tagline{color:var(--muted);margin:0 auto;max-width:46rem}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;
+  border:1px solid var(--accent);border-radius:999px;font-size:0.9rem;font-weight:600;
+  color:var(--accent);background:var(--accent-soft)
+}
+.repo-link{display:block;margin-top:10px;font-size:.82rem;color:var(--muted);text-decoration:none}
+.repo-link:hover{color:var(--accent);text-decoration:underline}
+.repo-link svg{vertical-align:-2px;margin-right:5px}
+nav.toc{margin:14px 0 0;font-size:.85rem;text-align:center}
+nav.toc a{margin:0 8px;white-space:nowrap;text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+main{padding-bottom:24px}
+section{margin:34px auto}
+.prose{max-width:46rem}
+h2{font-size:1.35rem;margin:0 0 10px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+.cross-link{text-align:center;margin:24px auto 0;font-size:.95rem;color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;font-size:.85rem;color:var(--muted)}
+.lang{position:relative;display:inline-block;margin:0 0 14px;text-align:left;font-size:.85rem}
+.lang summary{list-style:none;display:inline-block;cursor:pointer;padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--muted);user-select:none}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary:hover,.lang[open] summary{color:var(--accent);border-color:var(--accent)}
+.lang ul{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 6px;padding:6px;list-style:none;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);min-width:9em;z-index:10}
+.lang li a,.lang li[aria-current]{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.lang li[aria-current]{color:var(--muted);font-weight:600}
+.lang li a:hover{background:var(--accent-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:root{ --good:#16a34a; --warn:#d97706; --shell:#0b1017; }
+@media (prefers-color-scheme: dark){ :root{ --good:#4ade80; --warn:#fbbf24; --shell:#05080d; } }
+
+.pane{padding:18px 20px}
+.start{
+  display:block;margin:0 auto;font:inherit;font-size:1.05rem;font-weight:600;
+  padding:14px 30px;border-radius:10px;cursor:pointer;
+  border:1px solid var(--accent);background:var(--accent);color:#fff
+}
+.start:hover{opacity:.92}
+.intro{text-align:center;padding:32px 20px}
+.intro p{color:var(--muted);font-size:.9rem;margin:12px 0 0}
+
+.editor{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:12px;align-items:start}
+@media (max-width:900px){.editor{grid-template-columns:1fr}}
+
+.stage{
+  position:relative;background:var(--shell);border-radius:12px;overflow:hidden;
+  aspect-ratio:16/9;display:flex;align-items:center;justify-content:center
+}
+.stage video{width:100%;height:100%;object-fit:contain;display:block;background:var(--shell)}
+.stage video.mirror{transform:scaleX(-1)}
+.stage .waiting{position:absolute;color:#8a94a6;font-size:.9rem}
+.badge-live{
+  position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:6px;
+  padding:4px 10px;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;
+  font-size:.72rem;font-weight:600;letter-spacing:.03em
+}
+.badge-live i{width:7px;height:7px;border-radius:50%;background:#ef4444;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@media (prefers-reduced-motion: reduce){.badge-live i{animation:none}}
+
+.side{display:grid;gap:12px}
+.panel{padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.panel h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:0 0 10px}
+.stats{display:grid;gap:7px;margin:0}
+.stat{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline;font-size:.85rem}
+.stat dt{color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap}
+.stat dd{
+  margin:0;text-align:right;font:600 .9rem/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-variant-numeric:tabular-nums;overflow-wrap:anywhere
+}
+.stat dd small{display:block;font-weight:400;font-size:.72rem;color:var(--muted);font-family:inherit}
+.stat dd.good{color:var(--good)}
+.stat dd.warn{color:var(--warn)}
+
+.device select{
+  font:inherit;font-size:.9rem;padding:9px 10px;border-radius:8px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);width:100%
+}
+.check{display:flex;align-items:center;gap:8px;font-size:.9rem;cursor:pointer;margin-top:10px}
+.check input{width:16px;height:16px;accent-color:var(--accent)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.85rem;margin-top:10px}
+.row select{
+  font:inherit;font-size:.85rem;padding:6px 8px;border-radius:7px;
+  border:1px solid var(--border);background:var(--card);color:var(--text)
+}
+.go{
+  width:100%;font:inherit;font-size:.92rem;font-weight:600;padding:11px 16px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--accent);background:var(--accent);color:#fff;margin-top:12px
+}
+.go:hover{opacity:.92}
+.ghost{
+  width:100%;font:inherit;font-size:.85rem;padding:8px 16px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border);background:var(--card);color:var(--text);margin-top:6px
+}
+.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.shot{margin:10px 0 0;display:none}
+.shot.on{display:block}
+.shot img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.err{
+  color:var(--over);font-size:.88rem;margin:14px 0 0;text-align:center;
+  min-height:1.2em;overflow-wrap:anywhere
+}
+
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.props{grid-template-columns:1fr}}
+.props div{padding:16px}
+.props strong{display:block;margin-bottom:4px}
+.props p{margin:0;font-size:.9rem;color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:420px}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:10px 14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td{font-variant-numeric:tabular-nums}
+.faq p{color:var(--text)}
+ol.steps{max-width:46rem;padding-left:1.2rem}
+ol.steps li{margin-bottom:8px}
+
+/* Mobile: let tables reflow to fit the viewport instead of scrolling.
+   min-width would otherwise hold the table open and overflow the page. */
+@media (max-width:560px){
+  table{min-width:0}
+  th,td{padding-left:8px;padding-right:8px}
+  td{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+  thead th{text-transform:none;letter-spacing:normal}
+}
+.brand-logo{height:56px;max-width:220px;object-fit:contain;display:block;margin:0 auto}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  {{LOGO}}
+  <h1>{{BRAND_NAME}} Webcam-Test</h1>
+</header>
+
+<main class="wrap">
+
+<section id="tool" aria-label="Webcam-Test">
+    <div class="card pane">
+
+      <div class="intro" id="intro">
+        <button type="button" class="start" id="start">Kamera starten</button>
+        <p>Dein Browser wird um Erlaubnis fragen. Das Video wird nur dir gezeigt. Nichts wird aufgezeichnet, und nichts wird hochgeladen.</p>
+      </div>
+
+      <div class="editor" id="editor" hidden>
+        <div>
+          <div class="stage" id="stage">
+            <video id="video" playsinline autoplay muted></video>
+            <span class="badge-live" id="live-badge"><i aria-hidden="true"></i> LIVE · NUR AUF DEINEM GERÄT</span>
+          </div>
+        </div>
+
+        <div class="side">
+          <div class="panel">
+            <h2 id="stats-heading">Was deine Kamera meldet</h2>
+            <dl class="stats" aria-labelledby="stats-heading">
+              <div class="stat"><dt>Auflösung</dt><dd id="s-res">-</dd></div>
+              <div class="stat"><dt>Bildrate</dt><dd id="s-fps">-</dd></div>
+              <div class="stat"><dt>Seitenverhältnis</dt><dd id="s-aspect">-</dd></div>
+              <div class="stat"><dt>Kamera</dt><dd id="s-name">-</dd></div>
+            </dl>
+          </div>
+
+          <div class="panel device">
+            <h2><label for="devices">Kamera</label></h2>
+            <select id="devices"></select>
+            <label class="check"><input type="checkbox" id="mirror" checked> Bild spiegeln</label>
+            <div class="row">
+              <label for="quality">Anfordern</label>
+              <select id="quality">
+                <option value="auto" selected>Standard</option>
+                <option value="1280">720p</option>
+                <option value="1920">1080p</option>
+                <option value="3840">4K</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h2>Schnappschuss</h2>
+            <div class="row">
+              <label for="fmt">Format</label>
+              <select id="fmt">
+                <option value="image/png">PNG</option>
+                <option value="image/jpeg">JPEG</option>
+              </select>
+            </div>
+            <button type="button" class="go" id="snap">Schnappschuss machen</button>
+            <div class="shot" id="shot">
+              <img id="shot-img" alt="Schnappschuss von deiner Kamera">
+              <button type="button" class="ghost" id="download">Herunterladen</button>
+              <button type="button" class="ghost" id="discard">Verwerfen</button>
+            </div>
+            <button type="button" class="ghost" id="stop">Kamera stoppen</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="err" id="err" aria-live="assertive"></p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+{{LANG_SWITCH}}
+<div class="wrap">{{FOOTER_ATTRIBUTION}}</div>
+</footer>
+
+<script>
+/* Camera reporting maths + labelling. Pure functions, returned for testability. */
+var CAM = (function () {
+  'use strict';
+
+  function gcd(a, b) { return b ? gcd(b, a % b) : a; }
+
+  // Aspect ratio in lowest terms, e.g. 1920x1080 -> "16:9".
+  function aspect(w, h) {
+    if (!w || !h) return '';
+    var g = gcd(w, h);
+    var a = w / g, b = h / g;
+    // Sensors like 1366x768 reduce to ugly ratios; name the intent instead.
+    var r = w / h;
+    var known = [[16, 9], [4, 3], [3, 2], [16, 10], [5, 4], [1, 1], [9, 16]];
+    for (var i = 0; i < known.length; i++) {
+      if (Math.abs(r - known[i][0] / known[i][1]) < 0.02) return known[i][0] + ':' + known[i][1];
+    }
+    return a + ':' + b;
+  }
+
+  var STANDARDS = [
+    { h: 2160, name: '4K UHD' },
+    { h: 1440, name: '1440p (QHD)' },
+    { h: 1080, name: '1080p (Full HD)' },
+    { h: 720, name: '720p (HD)' },
+    { h: 480, name: '480p (VGA)' },
+    { h: 360, name: '360p' },
+    { h: 240, name: '240p (QVGA)' }
+  ];
+
+  // The familiar name for a resolution, by height. Only an exact height earns
+  // the label: calling 1920x800 "1080p" would be a lie.
+  function standardName(w, h) {
+    for (var i = 0; i < STANDARDS.length; i++) {
+      if (STANDARDS[i].h === h) return STANDARDS[i].name;
+    }
+    return '';
+  }
+
+  function megapixels(w, h) {
+    if (!w || !h) return 0;
+    return Math.round(w * h / 1e6 * 10) / 10;
+  }
+
+  function fmtResolution(w, h) {
+    if (!w || !h) return '-';
+    return w + ' × ' + h;
+  }
+
+  // Frames per second from a list of frame timestamps (ms), using the span
+  // between the first and last rather than averaging deltas.
+  function fps(times) {
+    if (!times || times.length < 2) return 0;
+    var span = times[times.length - 1] - times[0];
+    if (span <= 0) return 0;
+    return (times.length - 1) / (span / 1000);
+  }
+
+  // Keep only the timestamps inside the trailing window, so the readout
+  // reflects now rather than the whole session.
+  function trim(times, now, windowMs) {
+    windowMs = windowMs || 1000;
+    var out = [];
+    for (var i = 0; i < times.length; i++) {
+      if (now - times[i] <= windowMs) out.push(times[i]);
+    }
+    return out;
+  }
+
+  // How to feel about a measured frame rate.
+  // Returns { key, level }; the UI maps key to a localized quality label.
+  function fpsQuality(n) {
+    if (!n) return { key: 'unknown', level: '' };
+    if (n >= 24) return { key: 'smooth', level: 'good' };
+    if (n >= 15) return { key: 'ok', level: 'warn' };
+    return { key: 'low', level: 'warn' };
+  }
+
+  function resQuality(h) {
+    if (!h) return { key: 'unknown', level: '' };
+    if (h >= 1080) return { key: 'high', level: 'good' };
+    if (h >= 720) return { key: 'fine', level: 'good' };
+    return { key: 'low', level: 'warn' };
+  }
+
+  // Browsers hide device labels until permission is granted; give the empty
+  // ones a stable, honest name rather than showing a blank option.
+  function deviceLabel(device, index) {
+    if (device && device.label) return device.label;
+    return 'Camera ' + (index + 1);
+  }
+
+  // Constraints for a requested width; 'auto' lets the browser decide.
+  function constraints(deviceId, want) {
+    var video = {};
+    if (deviceId) video.deviceId = { exact: deviceId };
+    if (want && want !== 'auto') {
+      // ideal, not exact: a camera that cannot do 4K should fall back rather
+      // than fail outright with OverconstrainedError.
+      video.width = { ideal: +want };
+      video.height = { ideal: Math.round(+want * 9 / 16) };
+    }
+    return { audio: false, video: Object.keys(video).length ? video : true };
+  }
+
+  return {
+    aspect: aspect, standardName: standardName, megapixels: megapixels,
+    fmtResolution: fmtResolution, fps: fps, trim: trim,
+    fpsQuality: fpsQuality, resQuality: resQuality,
+    deviceLabel: deviceLabel, constraints: constraints
+  };
+})();
+if (typeof module !== 'undefined') module.exports = CAM;
+
+(function () {
+  'use strict';
+  if (typeof document === 'undefined') return;
+  var $ = function (id) { return document.getElementById(id); };
+  var I18N = {
+    "cameraN": "Kamera {n}",
+    "fps": {
+      "smooth": "flüssig",
+      "ok": "etwas ruckelig",
+      "low": "ruckelig - versuch mehr Licht"
+    },
+    "errNoSupport": "Dieser Browser unterstützt keinen Kamerazugriff.",
+    "errBlocked": "Der Kamerazugriff wurde blockiert. Klicke auf das Kamera- oder Schloss-Symbol in deiner Adressleiste, erlaube die Kamera und lade diese Seite neu.",
+    "errNotFound": "Es wurde keine Kamera gefunden. Schließe eine an und lade neu.",
+    "errInUse": "Deine Kamera wird von einer anderen App genutzt oder durch die Datenschutzeinstellungen deines Systems blockiert. Schließe andere Apps und versuche es erneut.",
+    "errOverconstrained": "Diese Kamera kann diese Auflösung nicht liefern. Wähle eine niedrigere.",
+    "errStart": "Die Kamera konnte nicht gestartet werden{name}.",
+    "errSnapshot": "Dieser Browser konnte den Schnappschuss nicht erstellen."
+  };
+
+  var stream = null, raf = null, shotBlob = null;
+  var frames = [], lastPaint = 0;
+  var video = $('video');
+
+  function fail(msg) {
+    $('err').textContent = msg;
+  }
+
+  function stopAll() {
+    if (raf) { cancelAnimationFrame(raf); raf = null; }
+    if (stream) {
+      stream.getTracks().forEach(function (t) { t.stop(); });
+      stream = null;
+    }
+    video.srcObject = null;
+    frames = [];
+  }
+
+  function setStat(id, value, sub, level) {
+    var el = $(id);
+    el.textContent = '';
+    el.className = level || '';
+    el.appendChild(document.createTextNode(value));
+    if (sub) {
+      var s = document.createElement('small');
+      s.textContent = sub;
+      el.appendChild(s);
+    }
+  }
+
+  function report() {
+    var w = video.videoWidth, h = video.videoHeight;
+    var name = CAM.standardName(w, h);
+    var mp = CAM.megapixels(w, h);
+    var rq = CAM.resQuality(h);
+    setStat('s-res', CAM.fmtResolution(w, h), [name, mp ? mp + ' MP' : ''].filter(Boolean).join(' · '), rq.level);
+    setStat('s-aspect', CAM.aspect(w, h) || '-');
+
+    var now = performance.now();
+    frames = CAM.trim(frames, now, 1000);
+    var rate = CAM.fps(frames);
+    if (rate) {
+      var q = CAM.fpsQuality(rate);
+      setStat('s-fps', Math.round(rate) + ' fps', I18N.fps[q.key] || '', q.level);
+    }
+  }
+
+  // Count real painted frames where the browser offers it; fall back to rAF,
+  // which tracks the display rather than the camera but is close enough to
+  // show a stall.
+  function useFrameCallback() {
+    return typeof video.requestVideoFrameCallback === 'function';
+  }
+
+  function onFrame() {
+    frames.push(performance.now());
+    var now = performance.now();
+    if (now - lastPaint > 250) { lastPaint = now; report(); }
+    if (useFrameCallback()) video.requestVideoFrameCallback(onFrame);
+    else raf = requestAnimationFrame(onFrame);
+  }
+
+  function listDevices() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) return;
+    navigator.mediaDevices.enumerateDevices().then(function (list) {
+      var cams = list.filter(function (d) { return d.kind === 'videoinput'; });
+      var sel = $('devices');
+      var current = sel.value;
+      sel.textContent = '';
+      cams.forEach(function (d, i) {
+        var o = document.createElement('option');
+        o.value = d.deviceId;
+        o.textContent = d.label || I18N.cameraN.replace('{n}', i + 1);
+        sel.appendChild(o);
+      });
+      var track = stream && stream.getVideoTracks()[0];
+      var settings = (track && track.getSettings) ? track.getSettings() : {};
+      var has = function (id) {
+        return !!id && cams.some(function (d) { return d.deviceId === id; });
+      };
+      // Show whichever camera is actually running: the live track is the truth,
+      // and the previous selection only stands in when there is no stream to ask.
+      // Only ever assign an id the list actually holds - setting select.value to
+      // an unknown id sets selectedIndex to -1, which blanks the dropdown and
+      // hides which camera is running. A track's deviceId is not always among
+      // the enumerated ones, so fall through to the browser's default instead.
+      if (has(settings.deviceId)) sel.value = settings.deviceId;
+      else if (has(current)) sel.value = current;
+      // Name it from the dropdown rather than track.label: the two agree for a
+      // real camera, but the dropdown always has a readable fallback, where a
+      // track label can be blank or an opaque id.
+      var picked = sel.options[sel.selectedIndex];
+      setStat('s-name', (picked && picked.textContent) || (track && track.label) || '-');
+    }).catch(function () {});
+  }
+
+  function start(deviceId, want) {
+    $('err').textContent = '';
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      fail(I18N.errNoSupport);
+      return;
+    }
+    navigator.mediaDevices.getUserMedia(CAM.constraints(deviceId, want)).then(function (s) {
+      stopAll();
+      stream = s;
+      video.srcObject = s;
+      var p = video.play();
+      if (p && p.catch) p.catch(function () {});
+
+      $('intro').hidden = true;
+      $('editor').hidden = false;
+      frames = [];
+      listDevices();
+      report();
+      video.addEventListener('loadedmetadata', report);
+      if (useFrameCallback()) video.requestVideoFrameCallback(onFrame);
+      else raf = requestAnimationFrame(onFrame);
+    }).catch(function (e) {
+      var name = e && e.name;
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        fail(I18N.errBlocked);
+      } else if (name === 'NotFoundError' || name === 'DevicesNotFoundError') {
+        fail(I18N.errNotFound);
+      } else if (name === 'NotReadableError' || name === 'TrackStartError') {
+        fail(I18N.errInUse);
+      } else if (name === 'OverconstrainedError') {
+        fail(I18N.errOverconstrained);
+      } else {
+        fail(I18N.errStart.replace('{name}', name ? ' (' + name + ')' : ''));
+      }
+    });
+  }
+
+  $('start').addEventListener('click', function () { start(null, $('quality').value); });
+  $('devices').addEventListener('change', function () {
+    if (stream) start($('devices').value, $('quality').value);
+  });
+  $('quality').addEventListener('change', function () {
+    if (stream) start($('devices').value, $('quality').value);
+  });
+  $('mirror').addEventListener('change', function () {
+    video.classList.toggle('mirror', $('mirror').checked);
+  });
+  video.classList.toggle('mirror', $('mirror').checked);
+
+  $('stop').addEventListener('click', function () {
+    stopAll();
+    $('editor').hidden = true;
+    $('intro').hidden = false;
+    $('start').focus();
+  });
+
+  // --- snapshot, drawn locally ---
+
+  $('snap').addEventListener('click', function () {
+    if (!stream || !video.videoWidth) return;
+    var c = document.createElement('canvas');
+    c.width = video.videoWidth; c.height = video.videoHeight;
+    var ctx = c.getContext('2d');
+    // Match what the preview shows: a mirrored preview yields a mirrored still.
+    if ($('mirror').checked) { ctx.translate(c.width, 0); ctx.scale(-1, 1); }
+    ctx.drawImage(video, 0, 0, c.width, c.height);
+    var fmt = $('fmt').value;
+    c.toBlob(function (blob) {
+      if (!blob) { fail(I18N.errSnapshot); return; }
+      shotBlob = blob;
+      var img = $('shot-img');
+      if (img.src) URL.revokeObjectURL(img.src);
+      img.src = URL.createObjectURL(blob);
+      $('shot').classList.add('on');
+    }, fmt, fmt === 'image/jpeg' ? 0.92 : undefined);
+  });
+
+  $('download').addEventListener('click', function () {
+    if (!shotBlob) return;
+    var ext = shotBlob.type === 'image/jpeg' ? 'jpg' : 'png';
+    var url = URL.createObjectURL(shotBlob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'webcam-' + video.videoWidth + 'x' + video.videoHeight + '.' + ext;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  });
+
+  $('discard').addEventListener('click', function () {
+    var img = $('shot-img');
+    if (img.src) { URL.revokeObjectURL(img.src); img.removeAttribute('src'); }
+    shotBlob = null;
+    $('shot').classList.remove('on');
+  });
+
+  if (navigator.mediaDevices && 'ondevicechange' in navigator.mediaDevices) {
+    navigator.mediaDevices.addEventListener('devicechange', listDevices);
+  }
+  // Release the camera when the page goes away; never leave the light on.
+  window.addEventListener('pagehide', stopAll);
+})();
+</script>
+</body>
+</html>
