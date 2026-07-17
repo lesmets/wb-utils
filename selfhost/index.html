@@ -518,6 +518,12 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
       }
       refresh();
     });
+    $('all-tools').addEventListener('change', function (e) {
+      [].slice.call(document.querySelectorAll('#tool-list input[data-id]')).forEach(function (box) {
+        box.checked = e.target.checked;
+      });
+      refresh();
+    });
   }
   function renderLangs() {
     var html = '';

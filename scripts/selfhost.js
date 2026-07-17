@@ -59,7 +59,7 @@ const COLORS = [
 ];
 
 // Landing-page card styles, a subset of the directory's (wbest/index.html).
-const LANDING_CSS = `.tools{display:flex;flex-direction:column;gap:10px;margin:18px auto 0;max-width:52rem}
+const LANDING_CSS = `.tools{display:flex;flex-direction:column;gap:10px;margin:18px auto 34px;max-width:52rem}
 .tool{position:relative;display:flex;align-items:center;gap:14px;padding:14px 16px}
 .tool:hover{border-color:var(--accent)}
 .tool-icon{width:40px;height:40px;border-radius:9px;flex:none}
@@ -71,7 +71,7 @@ const LANDING_CSS = `.tools{display:flex;flex-direction:column;gap:10px;margin:1
 .tool .desc{margin:2px 0 0;font-size:.9rem;color:var(--muted)}
 .tool .go{color:var(--muted);font-size:1.15rem;flex:none}
 .tool:hover .go{color:var(--accent)}`;
-const LOGO_CSS = '.brand-logo{height:56px;max-width:220px;object-fit:contain;display:block;margin:0 auto}';
+const LOGO_CSS = '.brand-logo{height:56px;max-width:220px;object-fit:contain;display:block;margin:24px auto 0}';
 
 function fail(msg) {
   console.error(msg);
