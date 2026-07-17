@@ -19,11 +19,9 @@ const ROOT = path.join(__dirname, '..');
 const SHARED = path.join(ROOT, 'shared');
 const CHECK = process.argv.includes('--check');
 
-const pages = ['index.html'].concat(
-  fs.readdirSync(ROOT, { withFileTypes: true })
-    .filter(d => d.isDirectory() && fs.existsSync(path.join(ROOT, d.name, 'index.html')))
-    .map(d => path.join(d.name, 'index.html'))
-);
+const pages = fs.readdirSync(ROOT, { withFileTypes: true })
+  .filter(d => d.isDirectory() && fs.existsSync(path.join(ROOT, d.name, 'index.html')))
+  .map(d => path.join(d.name, 'index.html'));
 
 const MARKER = /(\/\* wb:([a-z0-9-]+):start \*\/|<!-- wb:([a-z0-9-]+):start -->)([\s\S]*?)(\/\* wb:\2\3:end \*\/|<!-- wb:\2\3:end -->)/g;
 

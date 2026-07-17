@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://agecalculator.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://agecalculator.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://agecalculator.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://agecalculator.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -365,6 +370,15 @@ td{font-variant-numeric:tabular-nums}
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://agecalculator.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -385,9 +399,8 @@ var AC = (function () {
   }
   function ts(a) { return Date.UTC(a.y, a.m - 1, a.d); }
   function daysBetween(a, b) { return Math.round((ts(b) - ts(a)) / 86400000); }
-  function weekday(a) {
-    return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][new Date(ts(a)).getUTCDay()];
-  }
+  // Returns the weekday index (0 = Sunday); the UI maps it to a localized name.
+  function weekday(a) { return new Date(ts(a)).getUTCDay(); }
 
   /* Exact difference in years/months/days, clamping overshooting month
      anniversaries to the last day of the month (the common convention:
@@ -436,8 +449,41 @@ if (typeof module !== 'undefined') module.exports = AC;
   var $ = function (id) { return document.getElementById(id); };
   var startEl = $('date-start'), endEl = $('date-end'), live = $('live');
   var mode = 'age';
-  var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'];
+  /* i18n:js:start */
+  var I18N = {
+    "weekdays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "monthNames": ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"],
+    "dateFmt": "{month} {d}, {y}",
+    "units": {
+      "year": ["year", "years"],
+      "month": ["month", "months"],
+      "day": ["day", "days"]
+    },
+    "list3": "{a}, {b}, and {c}",
+    "oldOn": "old on {date} · born on a {weekday}",
+    "fromTo": "from {a} to {b}",
+    "incTotals": " (end day included in totals)",
+    "birthdayToday": "Today is the birthday - turning {n}. Happy birthday!",
+    "nextBirthday": "Next birthday: {date} (a {weekday}) - {n} {away}, turning {age}.",
+    "away": ["day away", "days away"],
+    "sentenceAge": "I am {ymd} old - that’s {days} days, or about {hours} hours, lived so far.",
+    "sentenceD2d": "From {a} to {b} is {ymd} - {days} days in total{inc}.",
+    "incEnd": " (including the end day)",
+    "errAge": "The birth date is after the target date - swap them or pick another date.",
+    "errD2d": "The end date is before the start date - swap them.",
+    "labelDob": "Date of birth",
+    "labelAgeOn": "Age on this date",
+    "labelStart": "Start date",
+    "labelEnd": "End date",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "copiedLive": "Result copied to clipboard."
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
+  var MONTHS = I18N.monthNames;
+  function wd(a) { return I18N.weekdays[AC.weekday(a)]; }
 
   function todayParts() {
     var n = new Date();
@@ -453,11 +499,16 @@ if (typeof module !== 'undefined') module.exports = AC;
     var mm = a.m < 10 ? '0' + a.m : a.m, dd = a.d < 10 ? '0' + a.d : a.d;
     return a.y + '-' + mm + '-' + dd;
   }
-  function human(a) { return MONTHS[a.m - 1] + ' ' + a.d + ', ' + a.y; }
-  function fmtInt(n) { return n.toLocaleString('en-US'); }
-  function plural(n, w) { return fmtInt(n) + ' ' + w + (n === 1 ? '' : 's'); }
+  function human(a) {
+    return I18N.dateFmt.replace('{month}', MONTHS[a.m - 1]).replace('{d}', a.d).replace('{y}', a.y);
+  }
+  function fmtInt(n) { return n.toLocaleString(LANG); }
+  function plural(n, unit) { return fmtInt(n) + ' ' + unit[n === 1 ? 0 : 1]; }
   function ymdText(r) {
-    return plural(r.years, 'year') + ', ' + plural(r.months, 'month') + ', and ' + plural(r.days, 'day');
+    return I18N.list3
+      .replace('{a}', plural(r.years, I18N.units.year))
+      .replace('{b}', plural(r.months, I18N.units.month))
+      .replace('{c}', plural(r.days, I18N.units.day));
   }
   function announce(msg) { live.textContent = msg; }
   function showErr(msg) {
@@ -473,8 +524,7 @@ if (typeof module !== 'undefined') module.exports = AC;
     if (AC.daysBetween(a, b) < 0) {
       res.hidden = true;
       ph.hidden = true;
-      showErr(mode === 'age' ? 'The birth date is after the target date - swap them or pick another date.'
-                             : 'The end date is before the start date - swap them.');
+      showErr(mode === 'age' ? I18N.errAge : I18N.errD2d);
       return;
     }
     res.hidden = false;
@@ -487,11 +537,11 @@ if (typeof module !== 'undefined') module.exports = AC;
 
     if (mode === 'age') {
       $('big-line').textContent = ymdText(diff);
-      $('sub-line').textContent = 'old on ' + human(b) + ' · born on a ' + AC.weekday(a);
+      $('sub-line').textContent = I18N.oldOn.replace('{date}', human(b)).replace('{weekday}', wd(a));
     } else {
       $('big-line').textContent = ymdText(diff);
-      $('sub-line').textContent = 'from ' + human(a) + ' to ' + human(b) +
-        (extraDay ? ' (end day included in totals)' : '');
+      $('sub-line').textContent = I18N.fromTo.replace('{a}', human(a)).replace('{b}', human(b)) +
+        (extraDay ? I18N.incTotals : '');
     }
 
     $('st-months').textContent = fmtInt(totalMonths);
@@ -505,18 +555,21 @@ if (typeof module !== 'undefined') module.exports = AC;
       var today = parseDate(endEl);
       var nb = AC.nextBirthday(a, b);
       if (AC.isBirthdayToday(a, b)) {
-        $('next-line').textContent = 'Today is the birthday - turning ' + fmtInt(diff.years) + '. Happy birthday!';
+        $('next-line').textContent = I18N.birthdayToday.replace('{n}', fmtInt(diff.years));
       } else {
-        $('next-line').textContent = 'Next birthday: ' + human(nb.date) + ' (a ' + AC.weekday(nb.date) + ') - ' +
-          plural(nb.daysUntil, 'day') + ' away, turning ' + nb.turning + '.';
+        $('next-line').textContent = I18N.nextBirthday
+          .replace('{date}', human(nb.date)).replace('{weekday}', wd(nb.date))
+          .replace('{n}', fmtInt(nb.daysUntil)).replace('{away}', I18N.away[nb.daysUntil === 1 ? 0 : 1])
+          .replace('{age}', nb.turning);
       }
       $('next-box').hidden = false;
-      sentence = 'I am ' + ymdText(diff) + ' old - that’s ' + fmtInt(days) + ' days, or about ' +
-        fmtInt(days * 24) + ' hours, lived so far.';
+      sentence = I18N.sentenceAge.replace('{ymd}', ymdText(diff))
+        .replace('{days}', fmtInt(days)).replace('{hours}', fmtInt(days * 24));
     } else {
       $('next-box').hidden = true;
-      sentence = 'From ' + human(a) + ' to ' + human(b) + ' is ' + ymdText(diff) + ' - ' +
-        fmtInt(days) + ' days in total' + (extraDay ? ' (including the end day)' : '') + '.';
+      sentence = I18N.sentenceD2d.replace('{a}', human(a)).replace('{b}', human(b))
+        .replace('{ymd}', ymdText(diff)).replace('{days}', fmtInt(days))
+        .replace('{inc}', extraDay ? I18N.incEnd : '');
     }
     $('sentence').textContent = sentence;
   }
@@ -525,8 +578,8 @@ if (typeof module !== 'undefined') module.exports = AC;
     mode = m;
     $('tab-age').setAttribute('aria-pressed', String(m === 'age'));
     $('tab-d2d').setAttribute('aria-pressed', String(m === 'd2d'));
-    $('label-start').textContent = m === 'age' ? 'Date of birth' : 'Start date';
-    $('label-end').textContent = m === 'age' ? 'Age on this date' : 'End date';
+    $('label-start').textContent = m === 'age' ? I18N.labelDob : I18N.labelStart;
+    $('label-end').textContent = m === 'age' ? I18N.labelAgeOn : I18N.labelEnd;
     $('row-include').hidden = m === 'age';
     update();
   }
@@ -542,9 +595,9 @@ if (typeof module !== 'undefined') module.exports = AC;
   $('btn-copy').addEventListener('click', function () {
     var btn = this, t = $('sentence').textContent;
     var done = function () {
-      btn.textContent = 'Copied!';
-      announce('Result copied to clipboard.');
-      setTimeout(function () { btn.textContent = 'Copy'; }, 1200);
+      btn.textContent = I18N.copied;
+      announce(I18N.copiedLive);
+      setTimeout(function () { btn.textContent = I18N.copy; }, 1200);
     };
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(t).then(done, done);

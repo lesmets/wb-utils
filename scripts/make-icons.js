@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Distribute the unified icon set to every deploy root.
 //
-// Sources: shared/icons/<name>.svg (name = tool directory; "root" = repo root).
+// Sources: shared/icons/<name>.svg (name = deploy-root directory).
 // Each deploy root gets: favicon.svg (copy of the source), favicon-48.png,
 // apple-touch-icon.png (180x180).
 //
@@ -38,7 +38,7 @@ const pngs = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
 for (const file of fs.readdirSync(ICONS)) {
   if (!file.endsWith('.svg')) continue;
   const name = file.replace(/\.svg$/, '');
-  const dest = name === 'root' ? ROOT : path.join(ROOT, name);
+  const dest = path.join(ROOT, name);
   if (!fs.existsSync(path.join(dest, 'index.html'))) {
     console.error(`skip ${name}: no ${name}/index.html`);
     continue;
@@ -47,5 +47,5 @@ for (const file of fs.readdirSync(ICONS)) {
   fs.copyFileSync(path.join(ICONS, file), path.join(dest, 'favicon.svg'));
   fs.writeFileSync(path.join(dest, 'favicon-48.png'), Buffer.from(pngs[name].png48, 'base64'));
   fs.writeFileSync(path.join(dest, 'apple-touch-icon.png'), Buffer.from(pngs[name].png180, 'base64'));
-  console.log(`icons -> ${name === 'root' ? '.' : name}/`);
+  console.log(`icons -> ${name}/`);
 }

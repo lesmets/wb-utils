@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://notepad.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://notepad.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://notepad.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://notepad.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -296,6 +301,15 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://notepad.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -327,13 +341,28 @@ if (typeof module !== 'undefined') module.exports = NP;
   var KEY = 'wb-notepad', PREF = 'wb-notepad-prefs';
   var pad = $('pad'), status = $('status');
   var saveTimer = null;
+  /* i18n:js:start */
+  var I18N = {
+    "ready": "Ready",
+    "saved": "Saved",
+    "saving": "Saving…",
+    "saveFailed": "Could not save (storage full or blocked)",
+    "loaded": "Loaded from this device",
+    "nothingToCopy": "Nothing to copy",
+    "copied": "Copied to clipboard",
+    "downloaded": "Downloaded {file}",
+    "file": "notes.txt",
+    "confirmClear": "Clear the notepad? This cannot be undone."
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
 
   function refreshCounts() {
     var c = NP.counts(pad.value);
-    $('c-words').textContent = c.words.toLocaleString('en-US');
-    $('c-chars').textContent = c.chars.toLocaleString('en-US');
-    $('c-nospace').textContent = c.noSpace.toLocaleString('en-US');
-    $('c-lines').textContent = c.lines.toLocaleString('en-US');
+    $('c-words').textContent = c.words.toLocaleString(LANG);
+    $('c-chars').textContent = c.chars.toLocaleString(LANG);
+    $('c-nospace').textContent = c.noSpace.toLocaleString(LANG);
+    $('c-lines').textContent = c.lines.toLocaleString(LANG);
   }
 
   function setStatus(text, saved) {
@@ -342,12 +371,12 @@ if (typeof module !== 'undefined') module.exports = NP;
   }
 
   function save() {
-    try { localStorage.setItem(KEY, pad.value); setStatus('Saved', true); }
-    catch (e) { setStatus('Could not save (storage full or blocked)', false); }
+    try { localStorage.setItem(KEY, pad.value); setStatus(I18N.saved, true); }
+    catch (e) { setStatus(I18N.saveFailed, false); }
   }
 
   function queueSave() {
-    setStatus('Saving…', false);
+    setStatus(I18N.saving, false);
     if (saveTimer) clearTimeout(saveTimer);
     saveTimer = setTimeout(save, 400);
   }
@@ -371,7 +400,7 @@ if (typeof module !== 'undefined') module.exports = NP;
   }
 
   refreshCounts();
-  setStatus(pad.value ? 'Loaded from this device' : 'Ready', Boolean(pad.value));
+  setStatus(pad.value ? I18N.loaded : I18N.ready, Boolean(pad.value));
 
   pad.addEventListener('input', onInput);
   // Save immediately if the page is being hidden/closed mid-edit.
@@ -382,8 +411,8 @@ if (typeof module !== 'undefined') module.exports = NP;
   size.addEventListener('input', function () { pad.style.fontSize = size.value + 'px'; savePrefs(); });
 
   $('copy-btn').addEventListener('click', function () {
-    if (!pad.value) { setStatus('Nothing to copy', false); return; }
-    var done = function () { setStatus('Copied to clipboard', true); };
+    if (!pad.value) { setStatus(I18N.nothingToCopy, false); return; }
+    var done = function () { setStatus(I18N.copied, true); };
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(pad.value).then(done, function () { pad.select(); document.execCommand('copy'); done(); });
     } else { pad.select(); document.execCommand('copy'); done(); }
@@ -393,17 +422,17 @@ if (typeof module !== 'undefined') module.exports = NP;
     var blob = new Blob([pad.value], { type: 'text/plain;charset=utf-8' });
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
-    a.href = url; a.download = 'notes.txt';
+    a.href = url; a.download = I18N.file;
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
-    setStatus('Downloaded notes.txt', true);
+    setStatus(I18N.downloaded.replace('{file}', I18N.file), true);
   });
 
   $('print-btn').addEventListener('click', function () { window.print(); });
 
   $('clear-btn').addEventListener('click', function () {
     if (!pad.value) return;
-    if (!window.confirm('Clear the notepad? This cannot be undone.')) return;
+    if (!window.confirm(I18N.confirmClear)) return;
     pad.value = '';
     refreshCounts(); save(); pad.focus();
   });

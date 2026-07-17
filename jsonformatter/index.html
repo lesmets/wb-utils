@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://jsonformatter.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://jsonformatter.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://jsonformatter.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://jsonformatter.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -225,7 +230,7 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
 }
 .panes{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
 @media (max-width:900px){.panes{grid-template-columns:1fr}}
-.pane-head{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--muted)}
+.pane-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--muted)}
 .pane-head .name{font-weight:700;text-transform:uppercase;letter-spacing:.05em}
 .pane-head .spacer{flex:1}
 .pane-head button{
@@ -430,6 +435,15 @@ pre.example{
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://jsonformatter.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -449,8 +463,8 @@ var JV = (function () {
   function locate(text) {
     var i = 0, line = 1, col = 1, n = text.length;
 
-    function fail(message) {
-      return { line: line, col: col, pos: i, message: message };
+    function fail(code, param) {
+      return { line: line, col: col, pos: i, code: code, param: param };
     }
     function step() {
       if (text.charCodeAt(i) === 10) { line++; col = 1; } else { col++; }
@@ -461,7 +475,7 @@ var JV = (function () {
         var c = text[i];
         if (c === ' ' || c === '\t' || c === '\n' || c === '\r') { step(); continue; }
         if (c === '/' && (text[i + 1] === '/' || text[i + 1] === '*')) {
-          throw fail('JSON does not allow comments - remove "//" and "/* */"');
+          throw fail('comments');
         }
         return;
       }
@@ -469,12 +483,10 @@ var JV = (function () {
     function string() {
       step(); // opening quote
       for (;;) {
-        if (i >= n) throw fail('unterminated string - missing closing double quote');
+        if (i >= n) throw fail('unterminated');
         var c = text[i], code = text.charCodeAt(i);
         if (code < 0x20) {
-          throw fail(code === 10
-            ? 'real line break inside a string - escape it as \\n'
-            : 'unescaped control character inside a string');
+          throw fail(code === 10 ? 'lineBreak' : 'ctrlChar');
         }
         if (c === '"') { step(); return; }
         if (c === '\\') {
@@ -483,13 +495,13 @@ var JV = (function () {
           if (e === 'u') {
             step();
             for (var h = 0; h < 4; h++) {
-              if (!/[0-9a-fA-F]/.test(text[i] || '')) throw fail('invalid \\u escape - needs exactly 4 hex digits');
+              if (!/[0-9a-fA-F]/.test(text[i] || '')) throw fail('badUesc');
               step();
             }
           } else if ('"\\/bfnrt'.indexOf(e) !== -1) {
             step();
           } else {
-            throw fail('invalid escape sequence "\\' + (e || '') + '"');
+            throw fail('badEscape', e || '');
           }
         } else {
           step();
@@ -499,20 +511,20 @@ var JV = (function () {
     function number() {
       var start = i;
       if (text[i] === '-') step();
-      if (!/[0-9]/.test(text[i] || '')) throw fail('a minus sign must be followed by digits');
+      if (!/[0-9]/.test(text[i] || '')) throw fail('minusDigits');
       if (text[i] === '0' && /[0-9]/.test(text[i + 1] || '')) {
-        throw fail('numbers cannot have leading zeros - write 0.5, not 05');
+        throw fail('leadingZero');
       }
       while (/[0-9]/.test(text[i] || '')) step();
       if (text[i] === '.') {
         step();
-        if (!/[0-9]/.test(text[i] || '')) throw fail('a decimal point must be followed by digits');
+        if (!/[0-9]/.test(text[i] || '')) throw fail('decimalDigits');
         while (/[0-9]/.test(text[i] || '')) step();
       }
       if (text[i] === 'e' || text[i] === 'E') {
         step();
         if (text[i] === '+' || text[i] === '-') step();
-        if (!/[0-9]/.test(text[i] || '')) throw fail('an exponent must have digits');
+        if (!/[0-9]/.test(text[i] || '')) throw fail('exponentDigits');
         while (/[0-9]/.test(text[i] || '')) step();
       }
       void start;
@@ -526,43 +538,43 @@ var JV = (function () {
     function value() {
       ws();
       var c = text[i];
-      if (c === undefined) throw fail('unexpected end of input - expected a value');
+      if (c === undefined) throw fail('eoiValue');
       if (c === '{') { object(); return; }
       if (c === '[') { array(); return; }
       if (c === '"') { string(); return; }
       if (c === '-' || /[0-9]/.test(c)) { number(); return; }
-      if (c === 't') { word('true', 'invalid keyword - did you mean true?'); return; }
-      if (c === 'f') { word('false', 'invalid keyword - did you mean false?'); return; }
-      if (c === 'n') { word('null', 'invalid keyword - did you mean null?'); return; }
-      if (c === "'") throw fail('strings must use double quotes, not single quotes');
-      if (c === 'N') throw fail('NaN is not valid JSON - use null or a number');
-      if (c === 'I') throw fail('Infinity is not valid JSON - use null or a number');
-      if (c === 'u') throw fail('undefined is not valid JSON - use null');
-      if (c === '+') throw fail('numbers cannot start with a plus sign');
-      if (c === '}' || c === ']') throw fail('unexpected "' + c + '" - expected a value');
-      throw fail('unexpected character "' + c + '" - expected a value');
+      if (c === 't') { word('true', 'kwTrue'); return; }
+      if (c === 'f') { word('false', 'kwFalse'); return; }
+      if (c === 'n') { word('null', 'kwNull'); return; }
+      if (c === "'") throw fail('singleQuotes');
+      if (c === 'N') throw fail('nan');
+      if (c === 'I') throw fail('infinity');
+      if (c === 'u') throw fail('undefinedKw');
+      if (c === '+') throw fail('plus');
+      if (c === '}' || c === ']') throw fail('unexpectedBracket', c);
+      throw fail('unexpectedChar', c);
     }
     function object() {
       step(); ws();
       if (text[i] === '}') { step(); return; }
       for (;;) {
         ws();
-        if (text[i] === '}') throw fail('trailing comma before "}" - remove the last comma');
-        if (text[i] === undefined) throw fail('unexpected end of input inside an object');
+        if (text[i] === '}') throw fail('trailingCommaObj');
+        if (text[i] === undefined) throw fail('eoiObj');
         if (text[i] !== '"') {
-          if (text[i] === "'") throw fail('object keys must use double quotes, not single quotes');
-          throw fail('object keys must be double-quoted strings');
+          if (text[i] === "'") throw fail('keySingleQuotes');
+          throw fail('keyDoubleQuoted');
         }
         string();
         ws();
-        if (text[i] !== ':') throw fail('expected ":" after the object key');
+        if (text[i] !== ':') throw fail('colonAfterKey');
         step();
         value();
         ws();
         if (text[i] === ',') { step(); continue; }
         if (text[i] === '}') { step(); return; }
-        if (text[i] === undefined) throw fail('unexpected end of input inside an object');
-        throw fail('expected "," or "}" in object - is a comma missing?');
+        if (text[i] === undefined) throw fail('eoiObj');
+        throw fail('commaOrBraceObj');
       }
     }
     function array() {
@@ -570,20 +582,20 @@ var JV = (function () {
       if (text[i] === ']') { step(); return; }
       for (;;) {
         ws();
-        if (text[i] === ']') throw fail('trailing comma before "]" - remove the last comma');
+        if (text[i] === ']') throw fail('trailingCommaArr');
         value();
         ws();
         if (text[i] === ',') { step(); continue; }
         if (text[i] === ']') { step(); return; }
-        if (text[i] === undefined) throw fail('unexpected end of input inside an array');
-        throw fail('expected "," or "]" in array - is a comma missing?');
+        if (text[i] === undefined) throw fail('eoiArr');
+        throw fail('commaOrBracketArr');
       }
     }
 
     try {
       value();
       ws();
-      if (i < n) throw fail('unexpected content after the JSON value - only one top-level value is allowed');
+      if (i < n) throw fail('extraContent');
       return null; // scanner found no error (shouldn't happen when native parse failed)
     } catch (e) {
       if (e && typeof e.line === 'number') return e;
@@ -602,7 +614,7 @@ var JV = (function () {
       return { ok: true, value: JSON.parse(text) };
     } catch (e) {
       var loc = locate(text);
-      if (loc) return { ok: false, line: loc.line, col: loc.col, pos: loc.pos, message: loc.message };
+      if (loc) return { ok: false, line: loc.line, col: loc.col, pos: loc.pos, code: loc.code, param: loc.param };
       return { ok: false, line: 1, col: 1, pos: 0, message: String(e.message || e) };
     }
   }
@@ -645,6 +657,73 @@ if (typeof module !== 'undefined') module.exports = JV;
   var $ = function (id) { return document.getElementById(id); };
   var input = $('input'), output = $('output'), tree = $('tree'), status = $('status'), live = $('live');
   var lastValue = null, hasValue = false;
+  /* i18n:js:start */
+  var I18N = {
+    "parseErr": {
+      "comments": "JSON does not allow comments - remove \"//\" and \"/* */\"",
+      "unterminated": "unterminated string - missing closing double quote",
+      "lineBreak": "real line break inside a string - escape it as \\n",
+      "ctrlChar": "unescaped control character inside a string",
+      "badUesc": "invalid \\u escape - needs exactly 4 hex digits",
+      "badEscape": "invalid escape sequence \"\\{c}\"",
+      "minusDigits": "a minus sign must be followed by digits",
+      "leadingZero": "numbers cannot have leading zeros - write 0.5, not 05",
+      "decimalDigits": "a decimal point must be followed by digits",
+      "exponentDigits": "an exponent must have digits",
+      "eoiValue": "unexpected end of input - expected a value",
+      "kwTrue": "invalid keyword - did you mean true?",
+      "kwFalse": "invalid keyword - did you mean false?",
+      "kwNull": "invalid keyword - did you mean null?",
+      "singleQuotes": "strings must use double quotes, not single quotes",
+      "nan": "NaN is not valid JSON - use null or a number",
+      "infinity": "Infinity is not valid JSON - use null or a number",
+      "undefinedKw": "undefined is not valid JSON - use null",
+      "plus": "numbers cannot start with a plus sign",
+      "unexpectedBracket": "unexpected \"{c}\" - expected a value",
+      "unexpectedChar": "unexpected character \"{c}\" - expected a value",
+      "trailingCommaObj": "trailing comma before \"}\" - remove the last comma",
+      "eoiObj": "unexpected end of input inside an object",
+      "keySingleQuotes": "object keys must use double quotes, not single quotes",
+      "keyDoubleQuoted": "object keys must be double-quoted strings",
+      "colonAfterKey": "expected \":\" after the object key",
+      "commaOrBraceObj": "expected \",\" or \"}\" in object - is a comma missing?",
+      "trailingCommaArr": "trailing comma before \"]\" - remove the last comma",
+      "eoiArr": "unexpected end of input inside an array",
+      "commaOrBracketArr": "expected \",\" or \"]\" in array - is a comma missing?",
+      "extraContent": "unexpected content after the JSON value - only one top-level value is allowed"
+    },
+    "lineCol": "✗ Line {line}, column {col}: ",
+    "invalidAnnounce": "Invalid JSON: line {line}, column {col}, {msg}",
+    "nothingProcess": "Nothing to process - paste some JSON first.",
+    "nothingEscape": "Nothing to escape - paste text or JSON first.",
+    "nothingUnescape": "Nothing to unescape - paste a quoted JSON string first.",
+    "unescapeExpects": "Unescape expects a double-quoted JSON string literal, like \"line one\\nline two\".",
+    "validFmt": "Valid JSON · {mode} to {size} · {ms} ms",
+    "modeMinified": "minified",
+    "modeFormatted": "formatted",
+    "validParsed": "Valid JSON · {size} · parsed in {ms} ms",
+    "doneOutput": "Done. Output is {size}.",
+    "validAnnounce": "Valid JSON.",
+    "escapedOk": "Escaped to a JSON string literal ({size})",
+    "unescapedOk": "Unescaped string ({size})",
+    "copied": "Copied!",
+    "copy": "Copy",
+    "copiedAnnounce": "Output copied to clipboard.",
+    "downloadedAnnounce": "Output downloaded as formatted.json.",
+    "treeEmpty": "Format or validate some JSON first - the tree appears here.",
+    "items": " items",
+    "keys": " keys",
+    "showMore": "Show {n} more of {m} remaining…"
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
+  function formatErr(res) {
+    if (res.code) {
+      var m = I18N.parseErr[res.code] || res.code;
+      return res.param != null ? m.replace('{c}', res.param) : m;
+    }
+    return res.message;
+  }
   var CHUNK = 500, SAMPLE = {
     name: 'WB JSON Formatter',
     version: 2,
@@ -656,11 +735,11 @@ if (typeof module !== 'undefined') module.exports = JV;
   };
 
   function announce(msg) { live.textContent = msg; }
-  function fmtInt(n) { return n.toLocaleString('en-US'); }
+  function fmtInt(n) { return n.toLocaleString(LANG); }
   function fmtBytes(n) {
     if (n < 1024) return n + ' B';
-    if (n < 1048576) return (n / 1024).toFixed(1) + ' KB';
-    return (n / 1048576).toFixed(2) + ' MB';
+    if (n < 1048576) return (n / 1024).toLocaleString(LANG, { maximumFractionDigits: 1 }) + ' KB';
+    return (n / 1048576).toLocaleString(LANG, { maximumFractionDigits: 2 }) + ' MB';
   }
 
   function setOk(msg) {
@@ -672,15 +751,16 @@ if (typeof module !== 'undefined') module.exports = JV;
     status.textContent = '';
     var head = document.createElement('div');
     var b = document.createElement('strong');
-    b.textContent = '✗ Line ' + fmtInt(res.line) + ', column ' + fmtInt(res.col) + ': ';
+    var msg = formatErr(res);
+    b.textContent = I18N.lineCol.replace('{line}', fmtInt(res.line)).replace('{col}', fmtInt(res.col));
     head.appendChild(b);
-    head.appendChild(document.createTextNode(res.message));
+    head.appendChild(document.createTextNode(msg));
     status.appendChild(head);
     var pre = document.createElement('pre');
     pre.className = 'err-snip';
     pre.textContent = JV.snippet(raw, res.pos, res.col);
     status.appendChild(pre);
-    announce('Invalid JSON: line ' + res.line + ', column ' + res.col + ', ' + res.message);
+    announce(I18N.invalidAnnounce.replace('{line}', res.line).replace('{col}', res.col).replace('{msg}', msg));
   }
   function clearStatus() {
     status.className = 'status';
@@ -691,7 +771,7 @@ if (typeof module !== 'undefined') module.exports = JV;
     var raw = input.value;
     if (!raw.trim()) {
       clearStatus();
-      setBadPlain('Nothing to process - paste some JSON first.');
+      setBadPlain(I18N.nothingProcess);
       return null;
     }
     var t0 = performance.now();
@@ -720,9 +800,9 @@ if (typeof module !== 'undefined') module.exports = JV;
     lastValue = res.value;
     hasValue = true;
     renderTreeIfVisible();
-    setOk('Valid JSON · ' + (mode === 'minify' ? 'minified' : 'formatted') + ' to ' +
-      fmtBytes(text.length) + ' · ' + fmtInt(ms) + ' ms');
-    announce('Done. Output is ' + fmtBytes(text.length) + '.');
+    setOk(I18N.validFmt.replace('{mode}', mode === 'minify' ? I18N.modeMinified : I18N.modeFormatted)
+      .replace('{size}', fmtBytes(text.length)).replace('{ms}', fmtInt(ms)));
+    announce(I18N.doneOutput.replace('{size}', fmtBytes(text.length)));
   }
 
   function validateOnly() {
@@ -731,8 +811,8 @@ if (typeof module !== 'undefined') module.exports = JV;
     lastValue = res.value;
     hasValue = true;
     renderTreeIfVisible();
-    setOk('Valid JSON · ' + fmtBytes(input.value.length) + ' · parsed in ' + fmtInt(Math.round(res.ms)) + ' ms');
-    announce('Valid JSON.');
+    setOk(I18N.validParsed.replace('{size}', fmtBytes(input.value.length)).replace('{ms}', fmtInt(Math.round(res.ms))));
+    announce(I18N.validAnnounce);
   }
 
   // ---------- tree view ----------
@@ -762,7 +842,7 @@ if (typeof module !== 'undefined') module.exports = JV;
     var count = t ? v.length : Object.keys(v).length;
     var dim = document.createElement('span');
     dim.className = 'meta-dim';
-    dim.textContent = (t ? '[…] ' : '{…} ') + fmtInt(count) + (t ? ' items' : ' keys');
+    dim.textContent = (t ? '[…] ' : '{…} ') + fmtInt(count) + (t ? I18N.items : I18N.keys);
     sum.appendChild(dim);
     return sum;
   }
@@ -801,7 +881,7 @@ if (typeof module !== 'undefined') module.exports = JV;
       var more = document.createElement('button');
       more.type = 'button';
       more.className = 'more-btn';
-      more.textContent = 'Show ' + fmtInt(Math.min(CHUNK, len - to)) + ' more of ' + fmtInt(len - to) + ' remaining…';
+      more.textContent = I18N.showMore.replace('{n}', fmtInt(Math.min(CHUNK, len - to))).replace('{m}', fmtInt(len - to));
       more.addEventListener('click', function () {
         det.removeChild(more);
         appendChildren(det, v, to, depth);
@@ -815,7 +895,7 @@ if (typeof module !== 'undefined') module.exports = JV;
     if (!hasValue) {
       var p = document.createElement('p');
       p.className = 'muted';
-      p.textContent = 'Format or validate some JSON first - the tree appears here.';
+      p.textContent = I18N.treeEmpty;
       tree.appendChild(p);
       return;
     }
@@ -836,25 +916,25 @@ if (typeof module !== 'undefined') module.exports = JV;
   // ---------- string tools ----------
   function doEscape() {
     var raw = input.value;
-    if (!raw) { setBadPlain('Nothing to escape - paste text or JSON first.'); return; }
+    if (!raw) { setBadPlain(I18N.nothingEscape); return; }
     output.value = JSON.stringify(raw);
     hasValue = false;
     clearStatus();
-    setOk('Escaped to a JSON string literal (' + fmtBytes(output.value.length) + ')');
+    setOk(I18N.escapedOk.replace('{size}', fmtBytes(output.value.length)));
     if (treeVisible) setView(false);
   }
   function doUnescape() {
     var raw = input.value.trim();
-    if (!raw) { setBadPlain('Nothing to unescape - paste a quoted JSON string first.'); return; }
+    if (!raw) { setBadPlain(I18N.nothingUnescape); return; }
     var res = JV.parse(raw);
     if (!res.ok) { setBad(res, JV.stripBom(input.value)); return; }
     if (typeof res.value !== 'string') {
-      setBadPlain('Unescape expects a double-quoted JSON string literal, like "line one\\nline two".');
+      setBadPlain(I18N.unescapeExpects);
       return;
     }
     output.value = res.value;
     hasValue = false;
-    setOk('Unescaped string (' + fmtBytes(output.value.length) + ')');
+    setOk(I18N.unescapedOk.replace('{size}', fmtBytes(output.value.length)));
     if (treeVisible) setView(false);
   }
 
@@ -873,9 +953,9 @@ if (typeof module !== 'undefined') module.exports = JV;
     var btn = this;
     if (!output.value) return;
     var done = function () {
-      btn.textContent = 'Copied!';
-      announce('Output copied to clipboard.');
-      setTimeout(function () { btn.textContent = 'Copy'; }, 1200);
+      btn.textContent = I18N.copied;
+      announce(I18N.copiedAnnounce);
+      setTimeout(function () { btn.textContent = I18N.copy; }, 1200);
     };
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(output.value).then(done, done);
@@ -895,7 +975,7 @@ if (typeof module !== 'undefined') module.exports = JV;
     a.click();
     document.body.removeChild(a);
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 5000);
-    announce('Output downloaded as formatted.json.');
+    announce(I18N.downloadedAnnounce);
   });
 
   $('btn-load').addEventListener('click', function () { $('file-input').click(); });

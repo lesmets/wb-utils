@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://timer.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://timer.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://timer.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://timer.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -407,6 +412,15 @@ td{font-variant-numeric:tabular-nums}
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://timer.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -454,6 +468,30 @@ if (typeof module !== 'undefined') module.exports = TM;
   if (typeof document === 'undefined') return;
   var $ = function (id) { return document.getElementById(id); };
   var timeEl = $('time'), stateEl = $('state'), mainBtn = $('btn-main'), live = $('live');
+  /* i18n:js:start */
+  var I18N = {
+    "ready": "Ready. Pick a preset or set a time, then press Start.",
+    "readyWatch": "Ready.",
+    "start": "Start",
+    "pause": "Pause",
+    "resume": "Resume",
+    "stop": "Stop",
+    "stopAlarm": "Stop alarm",
+    "countingDown": "Counting down…",
+    "pausedAt": "Paused at {t}.",
+    "timesUp": "Time’s up!",
+    "setAboveZero": "Set a time above zero first.",
+    "running": "Running…",
+    "stoppedAt": "Stopped at {t}.",
+    "notifBlocked": "Notifications are blocked for this site in your browser settings.",
+    "announceTimeUp": "Time is up.",
+    "announceLap": "Lap {n}: {t}",
+    "titleSuffix": " · Timer",
+    "titleDone": "⏰ Time’s up!",
+    "notifTitle": "⏰ Time’s up!",
+    "notifBody": "Your {t} timer finished."
+  };
+  /* i18n:js:end */
   var DEFAULT_TITLE = document.title;
   var STORE_KEY = 'wb-timer-prefs';
 
@@ -520,8 +558,8 @@ if (typeof module !== 'undefined') module.exports = TM;
     timeEl.textContent = TM.fmtCountdown(remainMs);
     timeEl.classList.toggle('done', tState === 'ringing');
     $('bar-fill').style.width = totalMs > 0 ? (remainMs / totalMs * 100) + '%' : '0%';
-    if (tState === 'running') document.title = TM.fmtCountdown(remainMs) + ' · Timer';
-    else if (tState === 'ringing') document.title = '⏰ Time’s up!';
+    if (tState === 'running') document.title = TM.fmtCountdown(remainMs) + I18N.titleSuffix;
+    else if (tState === 'ringing') document.title = I18N.titleDone;
     else document.title = DEFAULT_TITLE;
   }
 
@@ -539,14 +577,14 @@ if (typeof module !== 'undefined') module.exports = TM;
     clearInterval(tickTimer);
     tState = 'ringing';
     renderCountdown();
-    stateEl.textContent = 'Time’s up!';
-    mainBtn.textContent = 'Stop alarm';
+    stateEl.textContent = I18N.timesUp;
+    mainBtn.textContent = I18N.stopAlarm;
     mainBtn.classList.add('ringing');
-    announce('Time is up.');
+    announce(I18N.announceTimeUp);
     startAlarm();
     if ($('opt-notify').checked && 'Notification' in window && Notification.permission === 'granted') {
       try {
-        new Notification('⏰ Time’s up!', { body: 'Your ' + TM.fmtCountdown(totalMs) + ' timer finished.', silent: true });
+        new Notification(I18N.notifTitle, { body: I18N.notifBody.replace('{t}', TM.fmtCountdown(totalMs)), silent: true });
       } catch (e) {}
     }
   }
@@ -554,7 +592,7 @@ if (typeof module !== 'undefined') module.exports = TM;
   function startCountdown() {
     var ms = tState === 'paused' ? remainMs : readInputs();
     if (ms <= 0) {
-      stateEl.textContent = 'Set a time above zero first.';
+      stateEl.textContent = I18N.setAboveZero;
       return;
     }
     if (tState !== 'paused') { totalMs = ms; remainMs = ms; }
@@ -562,8 +600,8 @@ if (typeof module !== 'undefined') module.exports = TM;
     endAt = Date.now() + remainMs;
     tState = 'running';
     $('setup').hidden = true;
-    mainBtn.textContent = 'Pause';
-    stateEl.textContent = 'Counting down…';
+    mainBtn.textContent = I18N.pause;
+    stateEl.textContent = I18N.countingDown;
     clearInterval(tickTimer);
     tickTimer = setInterval(tick, 200);
     tick();
@@ -574,8 +612,8 @@ if (typeof module !== 'undefined') module.exports = TM;
     remainMs = Math.max(0, endAt - Date.now());
     clearInterval(tickTimer);
     tState = 'paused';
-    mainBtn.textContent = 'Resume';
-    stateEl.textContent = 'Paused at ' + TM.fmtCountdown(remainMs) + '.';
+    mainBtn.textContent = I18N.resume;
+    stateEl.textContent = I18N.pausedAt.replace('{t}', TM.fmtCountdown(remainMs));
     renderCountdown();
   }
 
@@ -585,9 +623,9 @@ if (typeof module !== 'undefined') module.exports = TM;
     tState = 'idle';
     remainMs = totalMs = readInputs();
     $('setup').hidden = false;
-    mainBtn.textContent = 'Start';
+    mainBtn.textContent = I18N.start;
     mainBtn.classList.remove('ringing');
-    stateEl.textContent = 'Ready. Pick a preset or set a time, then press Start.';
+    stateEl.textContent = I18N.ready;
     renderCountdown();
     document.title = DEFAULT_TITLE;
   }
@@ -603,9 +641,9 @@ if (typeof module !== 'undefined') module.exports = TM;
   function startWatch() {
     wRunning = true;
     wBase = performance.now();
-    mainBtn.textContent = 'Stop';
+    mainBtn.textContent = I18N.stop;
     $('btn-lap').disabled = false;
-    stateEl.textContent = 'Running…';
+    stateEl.textContent = I18N.running;
     cancelAnimationFrame(rafId);
     renderWatch();
   }
@@ -613,8 +651,8 @@ if (typeof module !== 'undefined') module.exports = TM;
     wAccum = watchElapsed();
     wRunning = false;
     cancelAnimationFrame(rafId);
-    mainBtn.textContent = 'Start';
-    stateEl.textContent = 'Stopped at ' + TM.fmtWatch(wAccum) + '.';
+    mainBtn.textContent = I18N.start;
+    stateEl.textContent = I18N.stoppedAt.replace('{t}', TM.fmtWatch(wAccum));
     timeEl.textContent = TM.fmtWatch(wAccum);
   }
   function resetWatch() {
@@ -623,8 +661,8 @@ if (typeof module !== 'undefined') module.exports = TM;
     wAccum = 0;
     laps = [];
     renderLaps();
-    mainBtn.textContent = 'Start';
-    stateEl.textContent = 'Ready.';
+    mainBtn.textContent = I18N.start;
+    stateEl.textContent = I18N.readyWatch;
     timeEl.textContent = TM.fmtWatch(0);
     $('btn-lap').disabled = true;
   }
@@ -634,7 +672,7 @@ if (typeof module !== 'undefined') module.exports = TM;
     var prev = laps.length ? laps[laps.length - 1].total : 0;
     laps.push({ total: total, lap: total - prev });
     renderLaps();
-    announce('Lap ' + laps.length + ': ' + TM.fmtWatch(total - prev));
+    announce(I18N.announceLap.replace('{n}', laps.length).replace('{t}', TM.fmtWatch(total - prev)));
   }
   function renderLaps() {
     var box = $('laps');
@@ -675,16 +713,16 @@ if (typeof module !== 'undefined') module.exports = TM;
     $('btn-lap').hidden = m !== 'watch';
     $('laps-box').hidden = m !== 'watch' || laps.length === 0;
     if (m === 'timer') {
-      mainBtn.textContent = tState === 'paused' ? 'Resume' : 'Start';
+      mainBtn.textContent = tState === 'paused' ? I18N.resume : I18N.start;
       remainMs = totalMs = readInputs();
       renderCountdown();
-      stateEl.textContent = 'Ready. Pick a preset or set a time, then press Start.';
+      stateEl.textContent = I18N.ready;
     } else {
-      mainBtn.textContent = wRunning ? 'Stop' : 'Start';
+      mainBtn.textContent = wRunning ? I18N.stop : I18N.start;
       $('btn-lap').disabled = !wRunning && wAccum === 0;
       timeEl.classList.remove('done');
       timeEl.textContent = TM.fmtWatch(watchElapsed());
-      stateEl.textContent = 'Ready.';
+      stateEl.textContent = I18N.readyWatch;
       document.title = DEFAULT_TITLE;
     }
   }
@@ -748,7 +786,7 @@ if (typeof module !== 'undefined') module.exports = TM;
         });
       } else if (Notification.permission === 'denied') {
         this.checked = false;
-        stateEl.textContent = 'Notifications are blocked for this site in your browser settings.';
+        stateEl.textContent = I18N.notifBlocked;
       }
     } else if (this.checked) {
       this.checked = false;

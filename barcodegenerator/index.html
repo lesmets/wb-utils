@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://barcodegenerator.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://barcodegenerator.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://barcodegenerator.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://barcodegenerator.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -383,6 +388,15 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://barcodegenerator.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -442,7 +456,7 @@ var BC = (function () {
     for (var j = 0; j < n; j++) {
       var cc = data.charCodeAt(j);
       if (cc < 32 || cc > 126) {
-        return { error: 'Code 128 here supports printable ASCII only (space through ~).' };
+        return { error: 'ascii' };
       }
     }
     // Start in C if the whole thing is an even run of digits, or it opens with
@@ -508,14 +522,14 @@ var BC = (function () {
   function ean13(input) {
     var s = String(input).replace(/[\s-]/g, '');
     if (!s) return { error: 'empty' };
-    if (!/^\d+$/.test(s)) return { error: 'EAN-13 encodes digits only.' };
+    if (!/^\d+$/.test(s)) return { error: 'digitsOnly' };
     if (s.length !== 12 && s.length !== 13) {
-      return { error: 'Enter 12 digits (check digit added) or 13 digits, not ' + s.length + '.' };
+      return { error: 'wrongLength', len: s.length };
     }
     var body = s.slice(0, 12);
     var check = ean13Check(body);
     if (s.length === 13 && +s[12] !== check) {
-      return { error: 'Invalid check digit: ' + body + ' should end in ' + check + ', not ' + s[12] + '.' };
+      return { error: 'badCheck', body: body, check: check, got: s[12] };
     }
     var full = body + check;
     var parity = EAN_PARITY[+full[0]];
@@ -641,6 +655,29 @@ if (typeof module !== 'undefined') module.exports = BC;
 
   var dataIn = $('data'), preview = $('preview'), err = $('err'), hint = $('hint'), meta = $('meta');
   var current = null;
+  /* i18n:js:start */
+  var I18N = {
+    "errAscii": "Code 128 here supports printable ASCII only (space through ~).",
+    "errDigitsOnly": "EAN-13 encodes digits only.",
+    "errWrongLength": "Enter 12 digits (check digit added) or 13 digits, not {len}.",
+    "errBadCheck": "Invalid check digit: {body} should end in {check}, not {got}.",
+    "hintAdded": "Check digit added: <b>{hri}</b>",
+    "hintValid": "Check digit <b>{check}</b> is valid.",
+    "hintEan": "12 digits and the check digit is added for you, or 13 to verify one.",
+    "hintCode128": "Letters, digits, spaces, and punctuation - up to any length.",
+    "meta": "{type} · {modules} modules · {w} × {h} px",
+    "copied": "Copied",
+    "copyValue": "Copy value"
+  };
+  /* i18n:js:end */
+
+  function errMsg(sym) {
+    if (sym.error === 'ascii') return I18N.errAscii;
+    if (sym.error === 'digitsOnly') return I18N.errDigitsOnly;
+    if (sym.error === 'wrongLength') return I18N.errWrongLength.replace('{len}', sym.len);
+    if (sym.error === 'badCheck') return I18N.errBadCheck.replace('{body}', sym.body).replace('{check}', sym.check).replace('{got}', sym.got);
+    return sym.error;
+  }
 
   var DEFAULTS = { code128: 'WB-INVENTORY-0042', ean13: '590123412345' };
   var last = { code128: DEFAULTS.code128, ean13: DEFAULTS.ean13 };
@@ -657,13 +694,13 @@ if (typeof module !== 'undefined') module.exports = BC;
     if (t === 'ean13') {
       if (sym && !sym.error) {
         hint.innerHTML = sym.added
-          ? 'Check digit added: <b>' + sym.hri + '</b>'
-          : 'Check digit <b>' + sym.check + '</b> is valid.';
+          ? I18N.hintAdded.replace('{hri}', sym.hri)
+          : I18N.hintValid.replace('{check}', sym.check);
       } else {
-        hint.textContent = '12 digits and the check digit is added for you, or 13 to verify one.';
+        hint.textContent = I18N.hintEan;
       }
     } else {
-      hint.textContent = 'Letters, digits, spaces, and punctuation - up to any length.';
+      hint.textContent = I18N.hintCode128;
     }
   }
 
@@ -675,7 +712,7 @@ if (typeof module !== 'undefined') module.exports = BC;
 
     if (sym.error) {
       // Nothing typed yet is the start state, not a mistake.
-      err.textContent = sym.error === 'empty' ? '' : sym.error;
+      err.textContent = sym.error === 'empty' ? '' : errMsg(sym);
       preview.classList.add('invalid');
       meta.textContent = '';
       $('dl-png').disabled = $('dl-svg').disabled = $('copy').disabled = true;
@@ -689,8 +726,10 @@ if (typeof module !== 'undefined') module.exports = BC;
 
     preview.innerHTML = BC.svg(sym, opts());
     var L = BC.layout(sym, opts());
-    meta.textContent = (t === 'ean13' ? 'EAN-13' : 'Code 128') + ' · ' + sym.bits.length +
-      ' modules · ' + Math.round(L.width) + ' × ' + Math.round(L.height) + ' px';
+    meta.textContent = I18N.meta
+      .replace('{type}', t === 'ean13' ? 'EAN-13' : 'Code 128')
+      .replace('{modules}', sym.bits.length)
+      .replace('{w}', Math.round(L.width)).replace('{h}', Math.round(L.height));
   }
 
   function filename(ext) {
@@ -734,8 +773,8 @@ if (typeof module !== 'undefined') module.exports = BC;
     if (!current) return;
     var b = $('copy');
     var done = function () {
-      b.textContent = 'Copied';
-      setTimeout(function () { b.textContent = 'Copy value'; }, 1000);
+      b.textContent = I18N.copied;
+      setTimeout(function () { b.textContent = I18N.copyValue; }, 1000);
     };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(current.hri).then(done, done);
     else done();

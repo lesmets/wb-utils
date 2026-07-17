@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://cardepreciation.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://cardepreciation.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://cardepreciation.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://cardepreciation.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -556,6 +561,15 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://cardepreciation.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -570,9 +584,16 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 var CAR = (function () {
   'use strict';
 
+  var LANG = (typeof document !== 'undefined' && document.documentElement.lang) || 'en';
+  var SEP = (function () { var s = (1234.5).toLocaleString(LANG); return { group: s[1], decimal: s[s.length - 2] }; })();
+  var GRP_RE = new RegExp('\\' + SEP.group, 'g');
+
   function num(v) {
-    // Accept "32,000" and "$32000" - people paste what they see.
-    var n = parseFloat(String(v == null ? '' : v).replace(/[^0-9.-]/g, ''));
+    // Accept what people paste in their locale: "32.000", "€32000", "3,50".
+    var s = String(v == null ? '' : v).replace(new RegExp('[^0-9\\-\\' + SEP.group + '\\' + SEP.decimal + ']', 'g'), '');
+    s = s.replace(GRP_RE, '');
+    if (SEP.decimal !== '.') s = s.split(SEP.decimal).join('.');
+    var n = parseFloat(s);
     return isFinite(n) ? n : NaN;
   }
 
@@ -666,31 +687,33 @@ var CAR = (function () {
   // Validate before calculating, so the UI can say what is wrong rather than
   // render NaN. Returns an error string, or '' when the inputs are usable.
   function validate(o) {
-    if (!isFinite(o.price) || o.price <= 0) return 'Enter the price you paid.';
-    if (o.price > 1e9) return 'That price is not realistic.';
-    if (!isFinite(o.years) || o.years < 1) return 'Enter at least 1 year.';
-    if (o.years > 30) return 'Keep the projection to 30 years or less.';
-    if (!o.isNew && (!isFinite(o.age) || o.age < 0)) return 'Enter how old the car was when you bought it.';
-    if (!o.isNew && o.age > 40) return 'That age is not realistic.';
-    if (!isFinite(o.firstYearRate) || o.firstYearRate < 0 || o.firstYearRate >= 1) return 'First-year rate must be between 0 and 99%.';
-    if (!isFinite(o.annualRate) || o.annualRate < 0 || o.annualRate >= 1) return 'Annual rate must be between 0 and 99%.';
+    if (!isFinite(o.price) || o.price <= 0) return 'priceEmpty';
+    if (o.price > 1e9) return 'priceBig';
+    if (!isFinite(o.years) || o.years < 1) return 'yearsMin';
+    if (o.years > 30) return 'yearsMax';
+    if (!o.isNew && (!isFinite(o.age) || o.age < 0)) return 'age';
+    if (!o.isNew && o.age > 40) return 'ageBig';
+    if (!isFinite(o.firstYearRate) || o.firstYearRate < 0 || o.firstYearRate >= 1) return 'r1';
+    if (!isFinite(o.annualRate) || o.annualRate < 0 || o.annualRate >= 1) return 'r2';
     return '';
   }
 
   function money(n, symbol) {
     var neg = n < 0;
     var v = Math.abs(Math.round(n));
-    var s = String(v).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    return (neg ? '-' : '') + (symbol || '') + s;
+    return (neg ? '-' : '') + (symbol || '') + v.toLocaleString(LANG);
+  }
+  function money2(n, symbol) {
+    return (symbol || '') + n.toLocaleString(LANG, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
   function pct(f, dp) {
-    return (f * 100).toFixed(dp == null ? 0 : dp) + '%';
+    return (f * 100).toLocaleString(LANG, { maximumFractionDigits: dp == null ? 0 : dp }) + '%';
   }
 
   return {
     num: num, valueAfter: valueAfter, straightLineValue: straightLineValue,
     schedule: schedule, fuelPerYear: fuelPerYear, ownership: ownership,
-    validate: validate, money: money, pct: pct
+    validate: validate, money: money, money2: money2, pct: pct
   };
 })();
 if (typeof module !== 'undefined') module.exports = CAR;
@@ -700,14 +723,49 @@ if (typeof module !== 'undefined') module.exports = CAR;
   if (typeof document === 'undefined') return;
   var $ = function (id) { return document.getElementById(id); };
 
+  /* i18n:js:start */
+  var I18N = {
+    "labels": { "depreciation": "Depreciation", "fuel": "Fuel", "insurance": "Insurance", "maintenance": "Servicing", "tax": "Tax & other" },
+    "err": {
+      "priceEmpty": "Enter the price you paid.",
+      "priceBig": "That price is not realistic.",
+      "yearsMin": "Enter at least 1 year.",
+      "yearsMax": "Keep the projection to 30 years or less.",
+      "age": "Enter how old the car was when you bought it.",
+      "ageBig": "That age is not realistic.",
+      "r1": "First-year rate must be between 0 and 99%.",
+      "r2": "Annual rate must be between 0 and 99%."
+    },
+    "unitMiles": "miles",
+    "unitKm": "km",
+    "unitMpg": "mpg",
+    "unitL100": "L/100km",
+    "perGal": "/gal",
+    "perLitre": "/litre",
+    "rateEachAfter": "Each year after",
+    "rateEach": "Each year",
+    "rateTotal": "Total loss basis",
+    "retainedOf": "{pct} of what you paid",
+    "retainedOfAge": "{pct} of what you paid, at {n} years old",
+    "depOfPrice": "{pct} of the price, {amt} a year",
+    "perYearDist": "{year} a year · {per} per {unit}",
+    "perYearOnly": "{year} a year",
+    "distKm": "km",
+    "distMile": "mile",
+    "chartDesc": "Value falls from {from} when bought to {to} after {n} years.",
+    "barsTotal": "Total {total} · {perYear} a year · {pct} of it is depreciation.",
+    "rowYear": "Year {n}",
+    "ageYr": "{n} yr",
+    "ageYrs": "{n} yrs"
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
+
   var COLORS = {
     depreciation: 'var(--dep)', fuel: 'var(--fuel)', insurance: 'var(--ins)',
     maintenance: 'var(--maint)', tax: 'var(--tax)'
   };
-  var LABELS = {
-    depreciation: 'Depreciation', fuel: 'Fuel', insurance: 'Insurance',
-    maintenance: 'Servicing', tax: 'Tax & other'
-  };
+  var LABELS = I18N.labels;
 
   function isNew() { return document.querySelector('input[name="cond"]:checked').value === 'new'; }
   function method() { return document.querySelector('input[name="method"]:checked').value; }
@@ -734,17 +792,16 @@ if (typeof module !== 'undefined') module.exports = CAR;
 
   function syncUnits() {
     var km = $('units').value === 'km';
-    $('dist-unit').textContent = km ? 'km' : 'miles';
-    $('eff-unit').textContent = km ? 'L/100km' : 'mpg';
-    $('fuel-unit').textContent = km ? '/litre' : '/gal';
-    $('eff-label').textContent = km ? 'Economy' : 'Economy';
+    $('dist-unit').textContent = km ? I18N.unitKm : I18N.unitMiles;
+    $('eff-unit').textContent = km ? I18N.unitL100 : I18N.unitMpg;
+    $('fuel-unit').textContent = km ? I18N.perLitre : I18N.perGal;
     // A sensible default in the other system, if the user has not edited it.
     var eff = CAR.num($('eff').value);
-    if (km && eff === 32) $('eff').value = '7.4';
+    if (km && eff === 32) $('eff').value = (7.4).toLocaleString(LANG, { maximumFractionDigits: 1 });
     if (!km && eff === 7.4) $('eff').value = '32';
     var fp = CAR.num($('fuelprice').value);
-    if (km && fp === 3.50) $('fuelprice').value = '1.60';
-    if (!km && fp === 1.60) $('fuelprice').value = '3.50';
+    if (km && fp === 3.50) $('fuelprice').value = (1.6).toLocaleString(LANG, { minimumFractionDigits: 2 });
+    if (!km && fp === 1.60) $('fuelprice').value = (3.5).toLocaleString(LANG, { minimumFractionDigits: 2 });
   }
 
   function syncCurrency() {
@@ -760,7 +817,7 @@ if (typeof module !== 'undefined') module.exports = CAR;
     // The first-year rate is a declining-balance idea; straight line has no cliff.
     var declining = method() === 'declining';
     $('r1-field').hidden = !declining || !isNew();
-    $('r2-label').textContent = declining ? (isNew() ? 'Each year after' : 'Each year') : 'Total loss basis';
+    $('r2-label').textContent = declining ? (isNew() ? I18N.rateEachAfter : I18N.rateEach) : I18N.rateTotal;
   }
 
   function syncCondition() {
@@ -810,8 +867,8 @@ if (typeof module !== 'undefined') module.exports = CAR;
       svg.appendChild(el('circle', { class: 'dot', cx: x(i), cy: y(p.value), r: 2.5 }));
     });
 
-    $('chart-desc').textContent = 'Value falls from ' + CAR.money(price, s) + ' when bought to ' +
-      CAR.money(rows[rows.length - 1].value, s) + ' after ' + rows.length + ' years.';
+    $('chart-desc').textContent = I18N.chartDesc.replace('{from}', CAR.money(price, s))
+      .replace('{to}', CAR.money(rows[rows.length - 1].value, s)).replace('{n}', rows.length);
   }
 
   function bars(r, s) {
@@ -856,8 +913,8 @@ if (typeof module !== 'undefined') module.exports = CAR;
     });
 
     $('bd-total').textContent = items.length
-      ? 'Total ' + CAR.money(r.total, s) + ' · ' + CAR.money(r.perYear, s) + ' a year · ' +
-        CAR.pct(r.depreciationShare) + ' of it is depreciation.'
+      ? I18N.barsTotal.replace('{total}', CAR.money(r.total, s))
+        .replace('{perYear}', CAR.money(r.perYear, s)).replace('{pct}', CAR.pct(r.depreciationShare))
       : '';
   }
 
@@ -872,8 +929,8 @@ if (typeof module !== 'undefined') module.exports = CAR;
         e.textContent = text;
         return e;
       }
-      tr.appendChild(td('Year ' + row.year));
-      tr.appendChild(td(row.age + (row.age === 1 ? ' yr' : ' yrs')));
+      tr.appendChild(td(I18N.rowYear.replace('{n}', row.year)));
+      tr.appendChild(td((row.age === 1 ? I18N.ageYr : I18N.ageYrs).replace('{n}', row.age)));
       tr.appendChild(td(CAR.money(row.value, s)));
       tr.appendChild(td('-' + CAR.money(row.lost, s), 'loss'));
       tr.appendChild(td(CAR.pct(row.retained)));
@@ -886,7 +943,7 @@ if (typeof module !== 'undefined') module.exports = CAR;
     var o = read();
     var s = sym();
     var msg = CAR.validate(o);
-    $('err').textContent = msg;
+    $('err').textContent = msg ? I18N.err[msg] : '';
     if (msg) return;
 
     var r = CAR.ownership(o);
@@ -895,16 +952,17 @@ if (typeof module !== 'undefined') module.exports = CAR;
     $('hl-years').textContent = years;
     $('bd-years').textContent = years;
     $('hl-value').textContent = CAR.money(r.endValue, s);
-    $('hl-retained').textContent = CAR.pct(r.retained) + ' of what you paid' +
-      (o.isNew ? '' : ', at ' + (o.age + years) + ' years old');
+    $('hl-retained').textContent = o.isNew
+      ? I18N.retainedOf.replace('{pct}', CAR.pct(r.retained))
+      : I18N.retainedOfAge.replace('{pct}', CAR.pct(r.retained)).replace('{n}', o.age + years);
     $('hl-dep').textContent = '-' + CAR.money(r.depreciation, s);
-    $('hl-deppc').textContent = CAR.pct(1 - r.retained) + ' of the price, ' +
-      CAR.money(r.depreciation / years, s) + ' a year';
+    $('hl-deppc').textContent = I18N.depOfPrice.replace('{pct}', CAR.pct(1 - r.retained))
+      .replace('{amt}', CAR.money(r.depreciation / years, s));
     $('hl-month').textContent = CAR.money(r.perMonth, s);
     $('hl-permile').textContent = r.perDistance > 0
-      ? CAR.money(r.perYear, s) + ' a year · ' + (s || '') + r.perDistance.toFixed(2) +
-        ' per ' + (o.units === 'km' ? 'km' : 'mile')
-      : CAR.money(r.perYear, s) + ' a year';
+      ? I18N.perYearDist.replace('{year}', CAR.money(r.perYear, s))
+        .replace('{per}', CAR.money2(r.perDistance, s)).replace('{unit}', o.units === 'km' ? I18N.distKm : I18N.distMile)
+      : I18N.perYearOnly.replace('{year}', CAR.money(r.perYear, s));
 
     chart(r.rows, o.price, s);
     bars(r, s);
@@ -922,6 +980,9 @@ if (typeof module !== 'undefined') module.exports = CAR;
     r.addEventListener('change', function () { syncMethod(); update(); });
   });
 
+  // The HTML default "3.50" is English-formatted; restate it in the page locale
+  // so num() reads it as 3.5 rather than 350 where the decimal mark differs.
+  $('fuelprice').value = (3.5).toLocaleString(LANG, { minimumFractionDigits: 2 });
   syncCondition();
   syncUnits();
   update();

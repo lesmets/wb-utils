@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://timestampconverter.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://timestampconverter.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://timestampconverter.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://timestampconverter.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -343,6 +348,15 @@ td{font-variant-numeric:tabular-nums}
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://timestampconverter.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -369,18 +383,18 @@ var TS = (function () {
   function parseTimestamp(raw, force) {
     var s = String(raw == null ? '' : raw).trim();
     if (!s) return { error: 'empty' };
-    if (!/^[+-]?\d+$/.test(s)) return { error: 'Enter a whole number (digits only).' };
+    if (!/^[+-]?\d+$/.test(s)) return { error: 'notNumber' };
     var neg = s[0] === '-';
     var digits = s.replace(/^[+-]/, '');
     var unit = (force && force !== 'auto') ? force : detectUnit(digits.length);
     var n = Number(s);
-    if (!isFinite(n)) return { error: 'Number is too large.' };
+    if (!isFinite(n)) return { error: 'tooLarge' };
     var ms;
     if (unit === 's') ms = n * 1000;
     else if (unit === 'ms') ms = n;
     else if (unit === 'us') ms = n / 1000;
     else ms = n / 1e6;
-    if (!isFinite(ms) || Math.abs(ms) > 8.64e15) return { error: 'Outside the representable date range.' };
+    if (!isFinite(ms) || Math.abs(ms) > 8.64e15) return { error: 'outOfRange' };
     return { ms: ms, unit: unit, neg: neg };
   }
 
@@ -402,21 +416,20 @@ var TS = (function () {
     ['hour', 3600], ['minute', 60], ['second', 1]
   ];
   // Relative time from nowMs (defaults to Date.now at call time).
+  // Returns { now: true } or { future, n, unit } for the caller to format.
   function relative(ms, nowMs) {
     var now = nowMs == null ? Date.now() : nowMs;
     var diff = Math.round((ms - now) / 1000); // seconds, future positive
     var future = diff >= 0;
     var abs = Math.abs(diff);
-    if (abs < 1) return 'just now';
+    if (abs < 1) return { now: true };
     for (var i = 0; i < UNITS.length; i++) {
       var name = UNITS[i][0], size = UNITS[i][1];
       if (abs >= size || name === 'second') {
-        var v = Math.floor(abs / size);
-        var label = v + ' ' + name + (v === 1 ? '' : 's');
-        return future ? 'in ' + label : label + ' ago';
+        return { future: future, n: Math.floor(abs / size), unit: name };
       }
     }
-    return 'just now';
+    return { now: true };
   }
 
   // Build a timestamp (seconds) from Y/M/D H:M:S components, in UTC or local.
@@ -439,14 +452,61 @@ if (typeof module !== 'undefined') module.exports = TS;
   if (typeof document === 'undefined') return;
   var $ = function (id) { return document.getElementById(id); };
 
+  /* i18n:js:start */
+  var I18N = {
+    "justNow": "just now",
+    "inFuture": "in {t}",
+    "agoPast": "{t} ago",
+    "units": {
+      "year": ["year", "years"],
+      "month": ["month", "months"],
+      "day": ["day", "days"],
+      "hour": ["hour", "hours"],
+      "minute": ["minute", "minutes"],
+      "second": ["second", "seconds"]
+    },
+    "unitNames": {
+      "s": "seconds",
+      "ms": "milliseconds",
+      "us": "microseconds",
+      "ns": "nanoseconds"
+    },
+    "readAs": "Read as <b>{unit}</b>.",
+    "copy": "Copy",
+    "copied": "Copied",
+    "showS": "Show s",
+    "showMs": "Show ms",
+    "labelUtc": "UTC",
+    "labelLocal": "Local",
+    "labelIso": "ISO 8601",
+    "labelRelative": "Relative",
+    "labelWeekday": "Weekday",
+    "labelSeconds": "Seconds",
+    "labelMilliseconds": "Milliseconds",
+    "errNotNumber": "Enter a whole number (digits only).",
+    "errTooLarge": "Number is too large.",
+    "errOutOfRange": "Outside the representable date range.",
+    "errBadDate": "Pick a valid date and time.",
+    "errNoConvert": "That date could not be converted."
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
+  var ERRS = { notNumber: I18N.errNotNumber, tooLarge: I18N.errTooLarge, outOfRange: I18N.errOutOfRange };
+
+  function relText(r) {
+    if (r.now) return I18N.justNow;
+    var label = r.n + ' ' + I18N.units[r.unit][r.n === 1 ? 0 : 1];
+    return (r.future ? I18N.inFuture : I18N.agoPast).replace('{t}', label);
+  }
+
   var localZone = '';
   try { localZone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
 
   function copyBtn(text) {
     var b = document.createElement('button');
-    b.type = 'button'; b.className = 'copy'; b.textContent = 'Copy';
+    b.type = 'button'; b.className = 'copy'; b.textContent = I18N.copy;
     b.addEventListener('click', function () {
-      var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1000); };
+      var done = function () { b.textContent = I18N.copied; setTimeout(function () { b.textContent = I18N.copy; }, 1000); };
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done);
       else done();
     });
@@ -469,12 +529,12 @@ if (typeof module !== 'undefined') module.exports = TS;
   }
   $('now-ms').addEventListener('click', function () {
     nowMs = !nowMs;
-    $('now-ms').textContent = nowMs ? 'Show s' : 'Show ms';
+    $('now-ms').textContent = nowMs ? I18N.showS : I18N.showMs;
     tickNow();
   });
   $('now-copy').addEventListener('click', function () {
     var t = $('now-val').textContent;
-    var b = $('now-copy'); var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1000); };
+    var b = $('now-copy'); var done = function () { b.textContent = I18N.copied; setTimeout(function () { b.textContent = I18N.copy; }, 1000); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, done);
     else done();
   });
@@ -487,15 +547,14 @@ if (typeof module !== 'undefined') module.exports = TS;
     var raw = $('ts-in').value.trim();
     if (!raw) return;
     var r = TS.parseTimestamp(raw, $('ts-unit').value);
-    if (r.error) { if (r.error !== 'empty') err.textContent = r.error; return; }
-    var unitName = { s: 'seconds', ms: 'milliseconds', us: 'microseconds', ns: 'nanoseconds' }[r.unit];
-    det.innerHTML = 'Read as <b>' + unitName + '</b>.';
+    if (r.error) { if (r.error !== 'empty') err.textContent = ERRS[r.error] || r.error; return; }
+    det.innerHTML = I18N.readAs.replace('{unit}', I18N.unitNames[r.unit]);
     var d = new Date(r.ms);
-    out.appendChild(lineEl('UTC', TS.fmtUTC(d) + ' UTC', TS.fmtUTC(d)));
-    out.appendChild(lineEl('Local' + (localZone ? ' (' + localZone + ')' : ''), TS.fmtLocal(d), TS.fmtLocal(d)));
-    out.appendChild(lineEl('ISO 8601', d.toISOString(), d.toISOString()));
-    out.appendChild(lineEl('Relative', TS.relative(r.ms)));
-    out.appendChild(lineEl('Weekday', d.toLocaleDateString('en-US', { weekday: 'long' })));
+    out.appendChild(lineEl(I18N.labelUtc, TS.fmtUTC(d) + ' UTC', TS.fmtUTC(d)));
+    out.appendChild(lineEl(I18N.labelLocal + (localZone ? ' (' + localZone + ')' : ''), TS.fmtLocal(d), TS.fmtLocal(d)));
+    out.appendChild(lineEl(I18N.labelIso, d.toISOString(), d.toISOString()));
+    out.appendChild(lineEl(I18N.labelRelative, relText(TS.relative(r.ms))));
+    out.appendChild(lineEl(I18N.labelWeekday, d.toLocaleDateString(LANG, { weekday: 'long' })));
   }
   $('ts-in').addEventListener('input', updateTs);
   $('ts-unit').addEventListener('change', updateTs);
@@ -507,15 +566,15 @@ if (typeof module !== 'undefined') module.exports = TS;
     var v = $('date-in').value;
     if (!v) return;
     var m = v.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2}))?$/);
-    if (!m) { err.textContent = 'Pick a valid date and time.'; return; }
+    if (!m) { err.textContent = I18N.errBadDate; return; }
     var parts = { y: +m[1], mo: +m[2], d: +m[3], h: +m[4], mi: +m[5], s: m[6] ? +m[6] : 0 };
     var ms = TS.fromParts(parts, $('date-zone').value);
-    if (isNaN(ms)) { err.textContent = 'That date could not be converted.'; return; }
+    if (isNaN(ms)) { err.textContent = I18N.errNoConvert; return; }
     var secs = Math.floor(ms / 1000);
-    out.appendChild(lineEl('Seconds', String(secs), String(secs)));
-    out.appendChild(lineEl('Milliseconds', String(ms), String(ms)));
-    out.appendChild(lineEl('ISO 8601', new Date(ms).toISOString(), new Date(ms).toISOString()));
-    out.appendChild(lineEl('Relative', TS.relative(ms)));
+    out.appendChild(lineEl(I18N.labelSeconds, String(secs), String(secs)));
+    out.appendChild(lineEl(I18N.labelMilliseconds, String(ms), String(ms)));
+    out.appendChild(lineEl(I18N.labelIso, new Date(ms).toISOString(), new Date(ms).toISOString()));
+    out.appendChild(lineEl(I18N.labelRelative, relText(TS.relative(ms))));
   }
   $('date-in').addEventListener('input', updateDate);
   $('date-zone').addEventListener('change', updateDate);

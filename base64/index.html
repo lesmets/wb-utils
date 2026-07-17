@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://base64.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://base64.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://base64.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://base64.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -408,6 +413,15 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://base64.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -463,13 +477,13 @@ var B64 = (function () {
     if (!s) return { bytes: new Uint8Array(0) };
     for (var i = 0; i < s.length; i++) {
       if (!Object.prototype.hasOwnProperty.call(LOOKUP, s[i])) {
-        return { error: 'Not valid Base64: unexpected character "' + s[i] + '".' };
+        return { error: 'char', ch: s[i] };
       }
     }
     // Four characters carry three bytes, so a lone trailing character is
     // impossible - it encodes only 6 bits, less than one byte.
     if (s.length % 4 === 1) {
-      return { error: 'Not valid Base64: the length is wrong - a character looks missing or extra.' };
+      return { error: 'length' };
     }
     var bytes = new Uint8Array(Math.floor(s.length * 3 / 4));
     var p = 0;
@@ -501,10 +515,7 @@ var B64 = (function () {
     try {
       return { text: new TextDecoder('utf-8', { fatal: true }).decode(r.bytes), bytes: r.bytes };
     } catch (e) {
-      return {
-        binary: true, bytes: r.bytes,
-        error: 'This decodes to binary data, not text. Download it as a file instead.'
-      };
+      return { binary: true, bytes: r.bytes, error: 'binary' };
     }
   }
 
@@ -549,6 +560,33 @@ if (typeof module !== 'undefined') module.exports = B64;
   var $ = function (id) { return document.getElementById(id); };
 
   var input = $('input'), output = $('output');
+  /* i18n:js:start */
+  var I18N = {
+    "labelEncode": "Text to encode",
+    "labelDecode": "Base64 to decode",
+    "labelFile": "File loaded",
+    "outEncode": "Base64",
+    "outDecode": "Decoded text",
+    "phEncode": "Type or paste text - emoji and every alphabet work correctly.",
+    "phDecode": "Paste Base64. Line breaks, missing padding, and URL-safe characters are all fine.",
+    "byte": "byte",
+    "bytes": "bytes",
+    "metaFile": "File · <b>{size}</b>",
+    "metaB64": "<b>{size}</b> of Base64 · <span class=\"grow\">+{pct}%</span>",
+    "metaChars": "<b>{n}</b> characters · <b>{size}</b> as UTF-8",
+    "metaDecodesTo": "<b>{n}</b> Base64 characters · decodes to <b>{size}</b>",
+    "metaBinary": "<b>{size}</b> of binary",
+    "metaDecoded": "<b>{n}</b> characters · <b>{size}</b>",
+    "noteBinary": "<b>This is binary data, not text.</b> Use Download to save it as a file.",
+    "noteLooks": " Looks like {type}.",
+    "errChar": "Not valid Base64: unexpected character \"{ch}\".",
+    "errLength": "Not valid Base64: the length is wrong - a character looks missing or extra.",
+    "errFileRead": "That file could not be read.",
+    "copied": "Copied",
+    "seed": "Base64 is not encryption - anyone can read this. 🔓"
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
   var fileBytes = null, fileName = '', fileType = '';
   var lastBytes = null; // bytes behind the current output, for Download
 
@@ -564,18 +602,16 @@ if (typeof module !== 'undefined') module.exports = B64;
   }
 
   function fmtBytes(n) {
-    if (n < 1024) return n + ' byte' + (n === 1 ? '' : 's');
-    if (n < 1048576) return (n / 1024).toFixed(1) + ' KB';
-    return (n / 1048576).toFixed(2) + ' MB';
+    if (n < 1024) return n.toLocaleString(LANG) + ' ' + (n === 1 ? I18N.byte : I18N.bytes);
+    if (n < 1048576) return (n / 1024).toLocaleString(LANG, { maximumFractionDigits: 1 }) + ' KB';
+    return (n / 1048576).toLocaleString(LANG, { maximumFractionDigits: 2 }) + ' MB';
   }
 
   function setLabels() {
     var enc = mode() === 'encode';
-    $('in-label').textContent = fileBytes ? 'File loaded' : (enc ? 'Text to encode' : 'Base64 to decode');
-    $('out-label').textContent = enc ? 'Base64' : 'Decoded text';
-    input.placeholder = enc
-      ? 'Type or paste text - emoji and every alphabet work correctly.'
-      : 'Paste Base64. Line breaks, missing padding, and URL-safe characters are all fine.';
+    $('in-label').textContent = fileBytes ? I18N.labelFile : (enc ? I18N.labelEncode : I18N.labelDecode);
+    $('out-label').textContent = enc ? I18N.outEncode : I18N.outDecode;
+    input.placeholder = enc ? I18N.phEncode : I18N.phDecode;
     input.readOnly = !!fileBytes;
   }
 
@@ -601,9 +637,9 @@ if (typeof module !== 'undefined') module.exports = B64;
         ? 'data:' + (fileType || 'application/octet-stream') + ';base64,' + b64.replace(/\n/g, '')
         : b64;
       output.value = text;
-      $('in-meta').innerHTML = 'File · <b>' + fmtBytes(fileBytes.length) + '</b>';
-      $('out-meta').innerHTML = '<b>' + fmtBytes(text.length) + '</b> of Base64 · ' +
-        '<span class="grow">+' + Math.round((text.length / Math.max(1, fileBytes.length) - 1) * 100) + '%</span>';
+      $('in-meta').innerHTML = I18N.metaFile.replace('{size}', fmtBytes(fileBytes.length));
+      $('out-meta').innerHTML = I18N.metaB64.replace('{size}', fmtBytes(text.length))
+        .replace('{pct}', Math.round((text.length / Math.max(1, fileBytes.length) - 1) * 100));
       lastBytes = fileBytes;
       if (/^image\//.test(fileType)) {
         var img = $('preview');
@@ -620,10 +656,10 @@ if (typeof module !== 'undefined') module.exports = B64;
       var out = B64.encodeText(value, opts());
       output.value = out;
       var inBytes = new TextEncoder().encode(value).length;
-      $('in-meta').innerHTML = '<b>' + value.length + '</b> characters · <b>' + fmtBytes(inBytes) + '</b> as UTF-8';
+      $('in-meta').innerHTML = I18N.metaChars.replace('{n}', value.length.toLocaleString(LANG)).replace('{size}', fmtBytes(inBytes));
       $('out-meta').innerHTML = out
-        ? '<b>' + fmtBytes(out.length) + '</b> of Base64 · <span class="grow">+' +
-          Math.round((out.replace(/\n/g, '').length / Math.max(1, inBytes) - 1) * 100) + '%</span>'
+        ? I18N.metaB64.replace('{size}', fmtBytes(out.length))
+          .replace('{pct}', Math.round((out.replace(/\n/g, '').length / Math.max(1, inBytes) - 1) * 100))
         : '';
       lastBytes = new TextEncoder().encode(value);
       $('copy').disabled = $('download').disabled = !out;
@@ -633,8 +669,8 @@ if (typeof module !== 'undefined') module.exports = B64;
     // --- decode ---
     var r = B64.decodeToText(value);
     $('in-meta').innerHTML = value
-      ? '<b>' + B64.normalize(value).length + '</b> Base64 characters · decodes to <b>' +
-        fmtBytes(B64.decodedLength(value)) + '</b>'
+      ? I18N.metaDecodesTo.replace('{n}', B64.normalize(value).length.toLocaleString(LANG))
+        .replace('{size}', fmtBytes(B64.decodedLength(value)))
       : '';
 
     if (r.error) {
@@ -642,8 +678,8 @@ if (typeof module !== 'undefined') module.exports = B64;
       if (r.binary) {
         // Not a mistake - the input is a file. Offer it as one.
         lastBytes = r.bytes;
-        note.innerHTML = '<b>This is binary data, not text.</b> Use Download to save it as a file.';
-        $('out-meta').innerHTML = '<b>' + fmtBytes(r.bytes.length) + '</b> of binary';
+        note.innerHTML = I18N.noteBinary;
+        $('out-meta').innerHTML = I18N.metaBinary.replace('{size}', fmtBytes(r.bytes.length));
         $('download').disabled = false;
         $('copy').disabled = true;
         var type = sniff(r.bytes);
@@ -651,10 +687,10 @@ if (typeof module !== 'undefined') module.exports = B64;
           var im = $('preview');
           im.src = URL.createObjectURL(new Blob([r.bytes], { type: type }));
           im.hidden = false;
-          note.innerHTML += ' Looks like ' + type + '.';
+          note.innerHTML += I18N.noteLooks.replace('{type}', type);
         }
       } else {
-        err.textContent = r.error;
+        err.textContent = r.error === 'char' ? I18N.errChar.replace('{ch}', r.ch) : I18N.errLength;
         $('out-meta').textContent = '';
         $('copy').disabled = $('download').disabled = true;
       }
@@ -664,7 +700,7 @@ if (typeof module !== 'undefined') module.exports = B64;
     output.value = r.text;
     lastBytes = r.bytes;
     $('out-meta').innerHTML = r.text
-      ? '<b>' + r.text.length + '</b> characters · <b>' + fmtBytes(r.bytes.length) + '</b>'
+      ? I18N.metaDecoded.replace('{n}', r.text.length.toLocaleString(LANG)).replace('{size}', fmtBytes(r.bytes.length))
       : '';
     $('copy').disabled = $('download').disabled = !r.text;
   }
@@ -724,7 +760,7 @@ if (typeof module !== 'undefined') module.exports = B64;
 
   function copied(btn) {
     var old = btn.textContent;
-    btn.textContent = 'Copied';
+    btn.textContent = I18N.copied;
     setTimeout(function () { btn.textContent = old; }, 1000);
   }
   $('copy').addEventListener('click', function () {
@@ -774,7 +810,7 @@ if (typeof module !== 'undefined') module.exports = B64;
       input.value = '';
       update();
     };
-    reader.onerror = function () { $('err').textContent = 'That file could not be read.'; };
+    reader.onerror = function () { $('err').textContent = I18N.errFileRead; };
     reader.readAsArrayBuffer(f);
   }
 
@@ -799,7 +835,7 @@ if (typeof module !== 'undefined') module.exports = B64;
   $('file-clear').addEventListener('click', function () { clearFile(); update(); });
 
   // Seed with a worked example that proves the UTF-8 claim on sight.
-  input.value = 'Base64 is not encryption - anyone can read this. 🔓';
+  input.value = I18N.seed;
   update();
 })();
 </script>

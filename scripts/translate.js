@@ -45,6 +45,13 @@ const LANG_NAMES = {
   pl: 'Polski', tr: 'Türkçe', id: 'Bahasa Indonesia',
 };
 
+// Open Graph locale codes for pages that declare og:locale.
+const OG_LOCALES = {
+  en: 'en_US', de: 'de_DE', fr: 'fr_FR', es: 'es_ES',
+  'pt-br': 'pt_BR', it: 'it_IT', nl: 'nl_NL',
+  pl: 'pl_PL', tr: 'tr_TR', id: 'id_ID',
+};
+
 // Elements whose innerHTML is one translation unit when it contains only
 // inline markup - keeps "<strong>125–150 words</strong> per minute" together.
 const UNIT = new Set(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li', 'td', 'th',
@@ -222,6 +229,7 @@ function generate(src, locale, catalog, baseUrl, variants, used, missing) {
     .replace(/(<html\s+lang=")[^"]*(")/, `$1${locale}$2`)
     .replace(/(<link\s+rel="canonical"\s+href=")[^"]*(")/, `$1${localeUrl}$2`)
     .replace(/(<meta\s+property="og:url"\s+content=")[^"]*(")/, `$1${localeUrl}$2`)
+    .replace(/(<meta\s+property="og:locale"\s+content=")[^"]*(")/, `$1${OG_LOCALES[locale] || locale}$2`)
     .replace(METAS, (m, pre, val, post) => pre + tx(val) + post);
   out = out.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/g, (m, pre, body, post) => {
     let obj;
@@ -239,12 +247,10 @@ function generate(src, locale, catalog, baseUrl, variants, used, missing) {
 
 // --- main ---------------------------------------------------------------
 
-const dirs = ['.'].concat(
-  fs.readdirSync(ROOT, { withFileTypes: true })
-    .filter(d => d.isDirectory() && fs.existsSync(path.join(ROOT, d.name, 'index.html')))
-    .map(d => d.name)
-    .sort()
-);
+const dirs = fs.readdirSync(ROOT, { withFileTypes: true })
+  .filter(d => d.isDirectory() && fs.existsSync(path.join(ROOT, d.name, 'index.html')))
+  .map(d => d.name)
+  .sort();
 const roots = dirs.filter(d => fs.existsSync(path.join(ROOT, d, 'i18n')));
 
 let stale = [], problems = [];
@@ -262,7 +268,7 @@ function emit(rel, content) {
 }
 
 for (const dir of roots) {
-  const srcPath = path.join(dir === '.' ? '' : dir, 'index.html');
+  const srcPath = path.join(dir, 'index.html');
   const src = fs.readFileSync(path.join(ROOT, srcPath), 'utf8');
   const baseMatch = src.match(/<link\s+rel="canonical"\s+href="([^"]+)"/);
   if (!baseMatch) fail(`No canonical URL in ${srcPath}`);
@@ -275,7 +281,7 @@ for (const dir of roots) {
   const variants = ['en'].concat(locales);
 
   for (const locale of locales) {
-    const catPath = path.join(dir === '.' ? '' : dir, 'i18n', `${locale}.json`);
+    const catPath = path.join(dir, 'i18n', `${locale}.json`);
     const catalog = JSON.parse(fs.readFileSync(path.join(ROOT, catPath), 'utf8'));
     const used = new Set(), missing = new Set();
     const page = generate(src, locale, catalog, baseUrl, variants, used, missing);
@@ -291,7 +297,7 @@ for (const dir of roots) {
       else console.warn(note);
     }
     if (missing.size) continue; // never ship a half-translated page
-    emit(path.join(dir === '.' ? '' : dir, locale, 'index.html'), page);
+    emit(path.join(dir, locale, 'index.html'), page);
   }
 
   // The English page carries the same hreflang cluster and dropdown.

@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://imagecompressor.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://imagecompressor.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://imagecompressor.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://imagecompressor.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -492,6 +497,15 @@ td{font-variant-numeric:tabular-nums}
 
 </main>
 
+<!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://imagecompressor.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
 <footer>
   <!-- wb:footer:start -->
 <div class="wrap">
@@ -574,6 +588,36 @@ if (typeof module !== 'undefined') module.exports = { wbZip: wbZip };
   'use strict';
   if (typeof document === 'undefined') return;
   var $ = function (id) { return document.getElementById(id); };
+  /* i18n:js:start */
+  var I18N = {
+    "compressing": "Compressing…",
+    "decodeError": "Could not decode this file (unsupported format).",
+    "saved": "−{pct}%",
+    "grew": "+{pct}% (already optimized)",
+    "overtarget": " · could not fit target - try a smaller size too",
+    "capOriginal": "Original · {dims} · {size}",
+    "capCompressed": "Compressed · {dims} · {size} · {fmt}",
+    "doneMsg": "Done. {n} images compressed.",
+    "addedOne": "{n} image added.",
+    "addedMany": "{n} images added.",
+    "cleared": "All files cleared.",
+    "zipMsg": "ZIP with {n} images downloaded.",
+    "fileOne": "{n} file",
+    "fileMany": "{n} files",
+    "webpWarn": "This browser cannot encode WebP - JPEG will be used instead.",
+    "dlLabel": "Download",
+    "removeLabel": "Remove {name}",
+    "unitB": " B", "unitKB": " KB", "unitMB": " MB",
+    "compressedSuffix": "-compressed"
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
+  function t(key, vars) {
+    var s = I18N[key];
+    if (vars) for (var k in vars) s = s.split('{' + k + '}').join(vars[k]);
+    return s;
+  }
+  function locNum(s) { return LANG === 'en' ? s : String(s).replace('.', ','); }
   var live = $('live'), fileList = $('file-list');
   var files = [], nextId = 1, selectedId = null, procTimer = null, running = false, runAgain = false;
   var WEBP_OK = (function () {
@@ -585,9 +629,9 @@ if (typeof module !== 'undefined') module.exports = { wbZip: wbZip };
   })();
 
   function fmtBytes(n) {
-    if (n < 1024) return n + ' B';
-    if (n < 1048576) return (n / 1024).toFixed(n < 10240 ? 1 : 0) + ' KB';
-    return (n / 1048576).toFixed(1) + ' MB';
+    if (n < 1024) return n + I18N.unitB;
+    if (n < 1048576) return locNum((n / 1024).toFixed(n < 10240 ? 1 : 0)) + I18N.unitKB;
+    return locNum((n / 1048576).toFixed(1)) + I18N.unitMB;
   }
   function announce(msg) { live.textContent = msg; }
 
@@ -748,7 +792,7 @@ if (typeof module !== 'undefined') module.exports = { wbZip: wbZip };
       renderSummary();
       renderCompare();
       if (runAgain) { runAgain = false; reprocessAll(); }
-      else announce('Done. ' + doneFiles().length + ' images compressed.');
+      else announce(t('doneMsg', { n: doneFiles().length }));
     });
   }
   function scheduleReprocess() {
@@ -765,12 +809,12 @@ if (typeof module !== 'undefined') module.exports = { wbZip: wbZip };
     if (!li) return;
     var meta = li.querySelector('.f-meta');
     if (f.status === 'working' || f.status === 'pending') {
-      meta.textContent = 'Compressing…';
+      meta.textContent = t('compressing');
     } else if (f.status === 'error') {
       meta.innerHTML = '';
       var e = document.createElement('span');
       e.className = 'err';
-      e.textContent = 'Could not decode this file (unsupported format).';
+      e.textContent = t('decodeError');
       meta.appendChild(e);
     } else {
       meta.innerHTML = '';
@@ -781,10 +825,10 @@ if (typeof module !== 'undefined') module.exports = { wbZip: wbZip };
         ' · ' + fmtBytes(f.origBlob.size) + ' → ' + fmtBytes(f.outBlob.size) + ' '));
       var s = document.createElement('span');
       s.className = delta <= 0 ? 'save' : 'grow';
-      s.textContent = delta <= 0 ? '−' + pct + '%' : '+' + pct + '% (already optimized)';
+      s.textContent = delta <= 0 ? t('saved', { pct: pct }) : t('grew', { pct: pct });
       meta.appendChild(s);
       if (f.status === 'overtarget') {
-        meta.appendChild(document.createTextNode(' · could not fit target - try a smaller size too'));
+        meta.appendChild(document.createTextNode(t('overtarget')));
       }
       var dl = li.querySelector('button.dl');
       dl.disabled = false;
@@ -808,12 +852,12 @@ if (typeof module !== 'undefined') module.exports = { wbZip: wbZip };
       name.textContent = f.name;
       var meta = document.createElement('div');
       meta.className = 'f-meta';
-      meta.textContent = 'Compressing…';
+      meta.textContent = t('compressing');
       info.append(name, meta);
       var dl = document.createElement('button');
       dl.type = 'button';
       dl.className = 'dl';
-      dl.textContent = 'Download';
+      dl.textContent = t('dlLabel');
       dl.disabled = true;
       dl.addEventListener('click', function (ev) {
         ev.stopPropagation();
@@ -822,7 +866,7 @@ if (typeof module !== 'undefined') module.exports = { wbZip: wbZip };
       var rm = document.createElement('button');
       rm.type = 'button';
       rm.textContent = '×';
-      rm.setAttribute('aria-label', 'Remove ' + f.name);
+      rm.setAttribute('aria-label', t('removeLabel', { name: f.name }));
       rm.addEventListener('click', function (ev) {
         ev.stopPropagation();
         removeFile(f.id);
@@ -845,7 +889,7 @@ if (typeof module !== 'undefined') module.exports = { wbZip: wbZip };
     var done = doneFiles();
     var origTot = 0, outTot = 0;
     done.forEach(function (f) { origTot += f.origBlob.size; outTot += f.outBlob.size; });
-    var line = files.length + ' file' + (files.length === 1 ? '' : 's');
+    var line = t(files.length === 1 ? 'fileOne' : 'fileMany', { n: files.length });
     if (done.length) {
       line += ': ' + fmtBytes(origTot) + ' → ' + fmtBytes(outTot);
     }
@@ -874,9 +918,11 @@ if (typeof module !== 'undefined') module.exports = { wbZip: wbZip };
     }
     if (after.src) URL.revokeObjectURL(after.src);
     after.src = URL.createObjectURL(f.outBlob);
-    $('cmp-before-cap').textContent = 'Original · ' + f.origW + '×' + f.origH + ' · ' + fmtBytes(f.origBlob.size);
-    $('cmp-after-cap').textContent = 'Compressed · ' + f.outW + '×' + f.outH + ' · ' + fmtBytes(f.outBlob.size) +
-      ' · ' + f.outType.replace('image/', '').toUpperCase();
+    $('cmp-before-cap').textContent = t('capOriginal', { dims: f.origW + '×' + f.origH, size: fmtBytes(f.origBlob.size) });
+    $('cmp-after-cap').textContent = t('capCompressed', {
+      dims: f.outW + '×' + f.outH, size: fmtBytes(f.outBlob.size),
+      fmt: f.outType.replace('image/', '').toUpperCase()
+    });
   }
 
   // --- file management ---
@@ -897,7 +943,7 @@ if (typeof module !== 'undefined') module.exports = { wbZip: wbZip };
     });
     if (!added) return;
     if (selectedId === null && files.length) selectedId = files[0].id;
-    announce(added + ' image' + (added === 1 ? '' : 's') + ' added.');
+    announce(t(added === 1 ? 'addedOne' : 'addedMany', { n: added }));
     renderList();
     runQueue();
   }
@@ -914,7 +960,7 @@ if (typeof module !== 'undefined') module.exports = { wbZip: wbZip };
 
   function outName(f) {
     var base = f.name.replace(/\.[^.]+$/, '');
-    return base + '-compressed' + extFor(f.outType);
+    return base + t('compressedSuffix') + extFor(f.outType);
   }
 
   function saveBlob(blob, name) {
@@ -955,7 +1001,7 @@ if (typeof module !== 'undefined') module.exports = { wbZip: wbZip };
     selectedId = null;
     renderList();
     $('compare').hidden = true;
-    announce('All files cleared.');
+    announce(t('cleared'));
   });
 
   $('btn-zip').addEventListener('click', function () {
@@ -978,7 +1024,7 @@ if (typeof module !== 'undefined') module.exports = { wbZip: wbZip };
     });
     chain.then(function () {
       saveBlob(new Blob([wbZip(entries)], { type: 'application/zip' }), 'compressed-images.zip');
-      announce('ZIP with ' + entries.length + ' images downloaded.');
+      announce(t('zipMsg', { n: entries.length }));
     });
   });
 
@@ -996,7 +1042,7 @@ if (typeof module !== 'undefined') module.exports = { wbZip: wbZip };
   });
   $('opt-format').addEventListener('change', function () {
     if (this.value === 'image/webp' && !WEBP_OK) {
-      $('opt-hint').textContent = 'This browser cannot encode WebP - JPEG will be used instead.';
+      $('opt-hint').textContent = t('webpWarn');
     }
     scheduleReprocess();
   });

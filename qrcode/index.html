@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://qrcode.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://qrcode.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://qrcode.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://qrcode.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -576,6 +581,15 @@ td{font-variant-numeric:tabular-nums}
 
 </main>
 
+<!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://qrcode.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
 <footer>
   <!-- wb:footer:start -->
 <div class="wrap">
@@ -923,10 +937,42 @@ var QR = (function () {
 
 (function () {
   'use strict';
+  if (typeof document === 'undefined') return;
   var $ = function (id) { return document.getElementById(id); };
   var canvas = $('qr-canvas'), meta = $('qr-meta'), warn = $('qr-warn'), live = $('live');
+  /* i18n:js:start */
+  var I18N = {
+    "titleUrl": "Link",
+    "titleText": "Text",
+    "titleWifi": "Wi-Fi network",
+    "titleVcard": "Contact card",
+    "titleEmail": "Email",
+    "titleSms": "Text message",
+    "titleTel": "Phone call",
+    "tooLong": "Content is too long for one QR code.",
+    "tooLongWarn": "This content needs more than {n} bytes (the maximum at level {ecl}). Shorten it or lower the error correction level.",
+    "metaLine": "Version {v} · {size}×{size} modules · EC level {ecl}{boost} · {bytes} bytes",
+    "boosted": " (boosted from {ecl})",
+    "lowContrast": "Very low contrast - most scanners will fail to read this. Use a darker code color on a lighter background.",
+    "inverted": "Inverted colors: the code is lighter than its background. Many scanners only read dark-on-light codes.",
+    "pngDownloaded": "PNG downloaded.",
+    "svgDownloaded": "SVG downloaded.",
+    "copied": "Copied!",
+    "copyImage": "Copy image",
+    "copiedAnnounce": "QR code image copied to clipboard.",
+    "copyFailed": "Copy failed - use Download PNG instead.",
+    "pngPixels": "PNG downloads at {n} pixels."
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
+  function t(key, vars) {
+    var s = I18N[key];
+    if (vars) for (var k in vars) s = s.split('{' + k + '}').join(vars[k]);
+    return s;
+  }
+  function fmtInt(n) { return n.toLocaleString(LANG); }
   var TABS = ['url', 'text', 'wifi', 'vcard', 'email', 'sms', 'tel'];
-  var TITLES = { url: 'Link', text: 'Text', wifi: 'Wi-Fi network', vcard: 'Contact card', email: 'Email', sms: 'Text message', tel: 'Phone call' };
+  var TITLES = { url: t('titleUrl'), text: t('titleText'), wifi: t('titleWifi'), vcard: t('titleVcard'), email: t('titleEmail'), sms: t('titleSms'), tel: t('titleTel') };
   var tab = 'url', current = null, debounceTimer = null;
 
   // --- payload builders ---
@@ -1028,8 +1074,8 @@ var QR = (function () {
       buttons.forEach(function (b) { b.disabled = true; });
       var maxB = QR.capacityBytes(40, ecl);
       meta.innerHTML = '';
-      meta.textContent = 'Content is too long for one QR code.';
-      setWarn('This content needs more than ' + maxB.toLocaleString('en-US') + ' bytes (the maximum at level ' + ecl + '). Shorten it or lower the error correction level.');
+      meta.textContent = t('tooLong');
+      setWarn(t('tooLongWarn', { n: fmtInt(maxB), ecl: ecl }));
       return;
     }
     current = { res: res, margin: margin, fg: fg, bg: bg, empty: empty };
@@ -1039,14 +1085,17 @@ var QR = (function () {
     var scale = Math.max(1, Math.ceil(576 / (res.size + margin * 2)));
     drawTo(canvas, res, scale, margin, fg, bg);
 
-    meta.textContent = 'Version ' + res.version + ' · ' + res.size + '×' + res.size + ' modules · EC level ' +
-      res.ecl + (res.ecl !== ecl ? ' (boosted from ' + ecl + ')' : '') + ' · ' + res.bytes.toLocaleString('en-US') + ' bytes';
+    meta.textContent = t('metaLine', {
+      v: res.version, size: res.size, ecl: res.ecl,
+      boost: res.ecl !== ecl ? t('boosted', { ecl: ecl }) : '',
+      bytes: fmtInt(res.bytes)
+    });
 
     var lFg = luminance(fg), lBg = luminance(bg);
     var contrast = (Math.max(lFg, lBg) + 0.05) / (Math.min(lFg, lBg) + 0.05);
     if (empty) setWarn('');
-    else if (contrast < 2.5) setWarn('Very low contrast - most scanners will fail to read this. Use a darker code color on a lighter background.');
-    else if (lFg > lBg) setWarn('Inverted colors: the code is lighter than its background. Many scanners only read dark-on-light codes.');
+    else if (contrast < 2.5) setWarn(t('lowContrast'));
+    else if (lFg > lBg) setWarn(t('inverted'));
     else setWarn('');
   }
 
@@ -1094,13 +1143,13 @@ var QR = (function () {
     pngCanvas().toBlob(function (blob) {
       if (blob) saveBlob(blob, 'qr-' + tab + '.png');
     }, 'image/png');
-    announce('PNG downloaded.');
+    announce(t('pngDownloaded'));
   });
 
   $('btn-svg').addEventListener('click', function () {
     if (!current) return;
     saveBlob(new Blob([svgString()], { type: 'image/svg+xml' }), 'qr-' + tab + '.svg');
-    announce('SVG downloaded.');
+    announce(t('svgDownloaded'));
   });
 
   if (navigator.clipboard && window.ClipboardItem) {
@@ -1111,10 +1160,10 @@ var QR = (function () {
       pngCanvas().toBlob(function (blob) {
         if (!blob) return;
         navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]).then(function () {
-          btn.textContent = 'Copied!';
-          announce('QR code image copied to clipboard.');
-          setTimeout(function () { btn.textContent = 'Copy image'; }, 1200);
-        }, function () { announce('Copy failed - use Download PNG instead.'); });
+          btn.textContent = t('copied');
+          announce(t('copiedAnnounce'));
+          setTimeout(function () { btn.textContent = t('copyImage'); }, 1200);
+        }, function () { announce(t('copyFailed')); });
       }, 'image/png');
     });
   }
@@ -1154,7 +1203,7 @@ var QR = (function () {
     if (!current) return;
     var res = current.res, margin = current.margin;
     var scale = Math.max(1, Math.round(+this.value / (res.size + margin * 2)));
-    announce('PNG downloads at ' + (res.size + margin * 2) * scale + ' pixels.');
+    announce(t('pngPixels', { n: fmtInt((res.size + margin * 2) * scale) }));
   });
 
   update();

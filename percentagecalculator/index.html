@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://percentagecalculator.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://percentagecalculator.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://percentagecalculator.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://percentagecalculator.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -422,6 +427,15 @@ td{font-variant-numeric:tabular-nums}
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://percentagecalculator.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -435,14 +449,20 @@ td{font-variant-numeric:tabular-nums}
 var PC = (function () {
   'use strict';
 
+  var LANG = (typeof document !== 'undefined' && document.documentElement.lang) || 'en';
+  // Derive the locale's separators from the formatter itself, so a German page
+  // reads "1.234,5" as 1234.5 while an English page reads "1,234.5" as the same.
+  var SEP = (function () {
+    var s = (1234.5).toLocaleString(LANG);
+    return { group: s[1], decimal: s[s.length - 2] };
+  })();
+
   function parseNum(s) {
     s = String(s).trim();
     if (!s) return NaN;
-    var commas = (s.match(/,/g) || []).length;
-    if (commas) {
-      if (s.indexOf('.') !== -1 || commas > 1) s = s.replace(/,/g, '');
-      else s = s.replace(',', '.');
-    }
+    if (SEP.group !== '.' && SEP.group !== ',') s = s.replace(/[\s ]/g, '');
+    s = s.split(SEP.group).join('');
+    if (SEP.decimal !== '.') s = s.split(SEP.decimal).join('.');
     return Number(s);
   }
 
@@ -458,10 +478,10 @@ var PC = (function () {
       s = n.toPrecision(6);
       if (s.indexOf('.') !== -1) s = s.replace(/0+$/, '').replace(/\.$/, '');
     }
-    return Number(s).toLocaleString('en-US', { maximumFractionDigits: 10 });
+    return Number(s).toLocaleString(LANG, { maximumFractionDigits: 10 });
   }
   function money(n) {
-    return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return n.toLocaleString(LANG, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
   return {
@@ -483,6 +503,24 @@ if (typeof module !== 'undefined') module.exports = PC;
   'use strict';
   if (typeof document === 'undefined') return;
   var $ = function (id) { return document.getElementById(id); };
+  /* i18n:js:start */
+  var I18N = {
+    "fillBoth": "Fill in both numbers.",
+    "fillPriceDiscount": "Fill in price and discount.",
+    "fillBillTip": "Fill in bill and tip percent.",
+    "undefinedVal": "undefined",
+    "noPercentZero": "Nothing can be a percentage of zero.",
+    "noWholeZero": "0% of anything is 0, so no whole can be recovered.",
+    "noChangeZero": "Change from zero cannot be expressed as a percentage.",
+    "increase": "▲ increase",
+    "decrease": "▼ decrease",
+    "discountAnswer": "Pay {final} · save {saved}",
+    "tipAnswer": "Tip {tip} · total {total}",
+    "tipEach": " · {per} each",
+    "tipWorkingSuffix": " tip",
+    "tipWorkingSplit": " · total ÷ {n} = {per}"
+  };
+  /* i18n:js:end */
 
   function val(id) { return PC.parseNum($(id).value); }
   function setOut(id, answer, working) {
@@ -497,7 +535,7 @@ if (typeof module !== 'undefined') module.exports = PC;
     s.appendChild(document.createTextNode(text + ' '));
     var mark = document.createElement('span');
     mark.className = n >= 0 ? 'up' : 'down';
-    mark.textContent = (n >= 0 ? '▲ increase' : '▼ decrease');
+    mark.textContent = (n >= 0 ? I18N.increase : I18N.decrease);
     s.appendChild(mark);
     return s;
   }
@@ -506,7 +544,7 @@ if (typeof module !== 'undefined') module.exports = PC;
     var x, y, a, b, r;
 
     x = val('of-x'); y = val('of-y');
-    if (isNaN(x) || isNaN(y)) setOut('of', '…', 'Fill in both numbers.');
+    if (isNaN(x) || isNaN(y)) setOut('of', '…', I18N.fillBoth);
     else {
       r = PC.percentOf(x, y);
       setOut('of', '= ' + PC.fmt(r),
@@ -514,8 +552,8 @@ if (typeof module !== 'undefined') module.exports = PC;
     }
 
     x = val('what-x'); y = val('what-y');
-    if (isNaN(x) || isNaN(y)) setOut('what', '…', 'Fill in both numbers.');
-    else if (y === 0) setOut('what', 'undefined', 'Nothing can be a percentage of zero.');
+    if (isNaN(x) || isNaN(y)) setOut('what', '…', I18N.fillBoth);
+    else if (y === 0) setOut('what', I18N.undefinedVal, I18N.noPercentZero);
     else {
       r = PC.whatPercent(x, y);
       setOut('what', '= ' + PC.fmt(r) + '%',
@@ -523,8 +561,8 @@ if (typeof module !== 'undefined') module.exports = PC;
     }
 
     x = val('whole-x'); y = val('whole-y');
-    if (isNaN(x) || isNaN(y)) setOut('whole', '…', 'Fill in both numbers.');
-    else if (y === 0) setOut('whole', 'undefined', '0% of anything is 0, so no whole can be recovered.');
+    if (isNaN(x) || isNaN(y)) setOut('whole', '…', I18N.fillBoth);
+    else if (y === 0) setOut('whole', I18N.undefinedVal, I18N.noWholeZero);
     else {
       r = PC.wholeFrom(x, y);
       setOut('whole', '= ' + PC.fmt(r),
@@ -532,8 +570,8 @@ if (typeof module !== 'undefined') module.exports = PC;
     }
 
     a = val('chg-a'); b = val('chg-b');
-    if (isNaN(a) || isNaN(b)) setOut('chg', '…', 'Fill in both numbers.');
-    else if (a === 0) setOut('chg', 'undefined', 'Change from zero cannot be expressed as a percentage.');
+    if (isNaN(a) || isNaN(b)) setOut('chg', '…', I18N.fillBoth);
+    else if (a === 0) setOut('chg', I18N.undefinedVal, I18N.noChangeZero);
     else {
       r = PC.change(a, b);
       setOut('chg', upDownSpan(r, (r >= 0 ? '+' : '−') + PC.fmt(Math.abs(r)) + '%'),
@@ -541,22 +579,22 @@ if (typeof module !== 'undefined') module.exports = PC;
     }
 
     a = val('disc-p'); b = val('disc-d');
-    if (isNaN(a) || isNaN(b)) setOut('disc', '…', 'Fill in price and discount.');
+    if (isNaN(a) || isNaN(b)) setOut('disc', '…', I18N.fillPriceDiscount);
     else {
       r = PC.discount(a, b);
-      setOut('disc', 'Pay ' + PC.money(r.final) + ' · save ' + PC.money(r.saved),
+      setOut('disc', I18N.discountAnswer.replace('{final}', PC.money(r.final)).replace('{saved}', PC.money(r.saved)),
         PC.fmt(a) + ' × (100 − ' + PC.fmt(b) + ') ÷ 100 = ' + PC.money(r.final));
     }
 
     a = val('tip-b'); b = val('tip-p');
     var n = +$('tip-n').value;
-    if (isNaN(a) || isNaN(b)) setOut('tip', '…', 'Fill in bill and tip percent.');
+    if (isNaN(a) || isNaN(b)) setOut('tip', '…', I18N.fillBillTip);
     else {
       r = PC.tip(a, b, n);
-      setOut('tip', 'Tip ' + PC.money(r.tip) + ' · total ' + PC.money(r.total) +
-        (n > 1 ? ' · ' + PC.money(r.perPerson) + ' each' : ''),
-        PC.fmt(a) + ' × ' + PC.fmt(b) + '% = ' + PC.money(r.tip) + ' tip' +
-        (n > 1 ? '; total ÷ ' + n + ' = ' + PC.money(r.perPerson) : ''));
+      setOut('tip', I18N.tipAnswer.replace('{tip}', PC.money(r.tip)).replace('{total}', PC.money(r.total)) +
+        (n > 1 ? I18N.tipEach.replace('{per}', PC.money(r.perPerson)) : ''),
+        PC.fmt(a) + ' × ' + PC.fmt(b) + '% = ' + PC.money(r.tip) + I18N.tipWorkingSuffix +
+        (n > 1 ? I18N.tipWorkingSplit.replace('{n}', n).replace('{per}', PC.money(r.perPerson)) : ''));
     }
   }
 

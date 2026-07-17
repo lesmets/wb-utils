@@ -1,3 +1,4 @@
 .wrangler
 wrangler.jsonc
 .assetsignore
+i18n

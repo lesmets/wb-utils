@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://imagecropper.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://imagecropper.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://imagecropper.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://imagecropper.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -439,6 +444,15 @@ td{font-variant-numeric:tabular-nums}
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://imagecropper.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -550,6 +564,14 @@ if (typeof module !== 'undefined') module.exports = CROP;
   'use strict';
   if (typeof document === 'undefined') return;
   var $ = function (id) { return document.getElementById(id); };
+  /* i18n:js:start */
+  var I18N = {
+    "notImage": "That file is not an image.",
+    "notDecoded": "That image could not be decoded.",
+    "exportFail": "This browser could not export that format."
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
 
   var img = null;        // the decoded source image
   var base = null;       // source after rotate/flip, the pixels we crop from
@@ -560,9 +582,9 @@ if (typeof module !== 'undefined') module.exports = CROP;
   var stage = $('stage'), canvas = $('canvas'), box = $('box'), editor = $('editor');
 
   function fmtBytes(n) {
-    if (n < 1024) return n + ' B';
-    if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' KB';
-    return (n / 1048576).toFixed(2) + ' MB';
+    if (n < 1024) return n.toLocaleString(LANG) + ' B';
+    if (n < 1024 * 1024) return (n / 1024).toLocaleString(LANG, { maximumFractionDigits: 1 }) + ' KB';
+    return (n / 1048576).toLocaleString(LANG, { maximumFractionDigits: 2 }) + ' MB';
   }
 
   // Redraw `base` from the source image with the current rotation and flip.
@@ -660,7 +682,7 @@ if (typeof module !== 'undefined') module.exports = CROP;
 
   function load(file) {
     if (!file || !/^image\//.test(file.type)) {
-      $('err').textContent = 'That file is not an image.';
+      $('err').textContent = I18N.notImage;
       return;
     }
     var url = URL.createObjectURL(file);
@@ -681,7 +703,7 @@ if (typeof module !== 'undefined') module.exports = CROP;
     };
     im.onerror = function () {
       URL.revokeObjectURL(url);
-      $('err').textContent = 'That image could not be decoded.';
+      $('err').textContent = I18N.notDecoded;
     };
     im.src = url;
   }
@@ -776,7 +798,7 @@ if (typeof module !== 'undefined') module.exports = CROP;
     var fmt = $('fmt').value;
     var c = renderCrop();
     c.toBlob(function (blob) {
-      if (!blob) { $('err').textContent = 'This browser could not export that format.'; return; }
+      if (!blob) { $('err').textContent = I18N.exportFail; return; }
       var ext = fmt === 'image/jpeg' ? 'jpg' : (fmt === 'image/webp' ? 'webp' : 'png');
       var url = URL.createObjectURL(blob);
       var a = document.createElement('a');

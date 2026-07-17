@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://timezoneconverter.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://timezoneconverter.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://timezoneconverter.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://timezoneconverter.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -403,6 +408,15 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://timezoneconverter.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -543,6 +557,20 @@ if (typeof module !== 'undefined') module.exports = TZ;
   'use strict';
   if (typeof document === 'undefined') return;
   var $ = function (id) { return document.getElementById(id); };
+  /* i18n:js:start */
+  var I18N = {
+    "daylightSaving": "daylight saving",
+    "sameTime": "same time",
+    "hoursDiff": "{n}h",
+    "plusDay": "+1 day",
+    "minusDay": "-1 day",
+    "remove": "Remove {city}",
+    "pickValid": "Pick a valid date and time.",
+    "noMatch": "No time zone matches \"{v}\". Try a city like Asia/Singapore.",
+    "already": "{city} is already in the list."
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
 
   var STORE = 'wb-tz-zones';
   var local = 'UTC';
@@ -633,7 +661,7 @@ if (typeof module !== 'undefined') module.exports = TZ;
     var abbr = TZ.abbreviation(ts, zone);
     var bits = [TZ.offsetLabel(off)];
     if (abbr && abbr !== TZ.offsetLabel(off)) bits.push(abbr);
-    if (TZ.isDST(ts, zone)) bits.push('daylight saving');
+    if (TZ.isDST(ts, zone)) bits.push(I18N.daylightSaving);
     sub.textContent = bits.join(' · ');
     name.appendChild(sub);
 
@@ -644,14 +672,14 @@ if (typeof module !== 'undefined') module.exports = TZ;
     d.className = 'd';
     var delta = TZ.dayDelta(ts, zone, srcZone());
     var weekday = new Date(Date.UTC(p.year, p.month - 1, p.day))
-      .toLocaleDateString('en-US', { weekday: 'short', timeZone: 'UTC' });
+      .toLocaleDateString(LANG, { weekday: 'short', timeZone: 'UTC' });
     var diff = (off - srcOffset) / 60;
-    var diffText = diff === 0 ? 'same time' :
-      (diff > 0 ? '+' + diff : diff) + 'h';
+    var diffText = diff === 0 ? I18N.sameTime :
+      I18N.hoursDiff.replace('{n}', diff > 0 ? '+' + diff : diff);
     d.textContent = weekday + ' ' + p.day + ' · ' + diffText;
     if (delta !== 0) {
       var b = document.createElement('b');
-      b.textContent = ' ' + (delta > 0 ? '+1 day' : '-1 day');
+      b.textContent = ' ' + (delta > 0 ? I18N.plusDay : I18N.minusDay);
       d.appendChild(b);
     }
     t.appendChild(d);
@@ -660,7 +688,7 @@ if (typeof module !== 'undefined') module.exports = TZ;
     rm.type = 'button';
     rm.className = 'rm';
     rm.textContent = '×';
-    rm.setAttribute('aria-label', 'Remove ' + TZ.cityName(zone));
+    rm.setAttribute('aria-label', I18N.remove.replace('{city}', TZ.cityName(zone)));
     rm.disabled = zones.length <= 1;
     rm.addEventListener('click', function () {
       zones = zones.filter(function (z) { return z !== zone; });
@@ -720,7 +748,7 @@ if (typeof module !== 'undefined') module.exports = TZ;
 
   function render() {
     var ts = instant();
-    if (ts === null) { $('err').textContent = 'Pick a valid date and time.'; return; }
+    if (ts === null) { $('err').textContent = I18N.pickValid; return; }
     $('err').textContent = '';
     var srcOffset = TZ.offsetAt(ts, srcZone());
 
@@ -747,11 +775,11 @@ if (typeof module !== 'undefined') module.exports = TZ;
         TZ.cityName(z).toLowerCase() === v.toLowerCase();
     })[0];
     if (!match) {
-      $('err').textContent = 'No time zone matches "' + v + '". Try a city like Asia/Singapore.';
+      $('err').textContent = I18N.noMatch.replace('{v}', v);
       return;
     }
     if (zones.indexOf(match) !== -1) {
-      $('err').textContent = TZ.cityName(match) + ' is already in the list.';
+      $('err').textContent = I18N.already.replace('{city}', TZ.cityName(match));
       return;
     }
     zones.push(match);

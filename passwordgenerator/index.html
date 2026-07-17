@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://passwordgenerator.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://passwordgenerator.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://passwordgenerator.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://passwordgenerator.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -472,6 +477,15 @@ td{font-variant-numeric:tabular-nums}
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://passwordgenerator.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -486,6 +500,45 @@ td{font-variant-numeric:tabular-nums}
   var $ = function (id) { return document.getElementById(id); };
   var out = $('pw'), meterBar = $('meter-bar'), meta = $('meta'), live = $('live');
   var RATE = 1e12, HIST_MAX = 5, YEAR = 31556952;
+  /* i18n:js:start */
+  var I18N = {
+    "strength": {
+      "veryWeak": "Very weak",
+      "weak": "Weak",
+      "fair": "Fair",
+      "strong": "Strong",
+      "veryStrong": "Very strong"
+    },
+    "underSecond": "under a second",
+    "units": {
+      "second": ["second", "seconds"],
+      "minute": ["minute", "minutes"],
+      "hour": ["hour", "hours"],
+      "day": ["day", "days"],
+      "year": ["year", "years"]
+    },
+    "magnitudes": ["thousand", "million", "billion", "trillion", "quadrillion", "quintillion", "sextillion"],
+    "magYears": "{v} {mag} years",
+    "practicallyForever": "practically forever",
+    "metaSuffix": " · {bits} bits of entropy · avg. time to crack at 1 trillion guesses/sec: {time}",
+    "newPassword": "↻ New password",
+    "newPassphrase": "↻ New passphrase",
+    "newPin": "↻ New PIN",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "copiedClip": "Copied to clipboard.",
+    "genPassword": "New password generated - {label}.",
+    "genPassphrase": "New passphrase generated - {label}.",
+    "genPin": "New PIN generated - {label}.",
+    "keepOneSet": "Keep at least one character set selected.",
+    "histTitle": "Copy to clipboard",
+    "histHintAfter": "Click any entry to copy it. History lives in memory only. It is never saved, and disappears when you leave this page.",
+    "unsupported": "Your browser does not support secure random number generation. Please update it to use this tool."
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
+  var NEW_LABEL = { password: 'newPassword', passphrase: 'newPassphrase', pin: 'newPin' };
+  var GEN_MSG = { password: 'genPassword', passphrase: 'genPassphrase', pin: 'genPin' };
   var SETS = {
     upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     lower: 'abcdefghijklmnopqrstuvwxyz',
@@ -501,7 +554,7 @@ td{font-variant-numeric:tabular-nums}
   var mode = 'password', current = '', history = [];
 
   if (!(window.crypto && crypto.getRandomValues)) {
-    out.textContent = 'Your browser does not support secure random number generation. Please update it to use this tool.';
+    out.textContent = I18N.unsupported;
     $('btn-new').disabled = true;
     $('btn-copy').disabled = true;
     return;
@@ -558,31 +611,31 @@ td{font-variant-numeric:tabular-nums}
   }
 
   function strengthLabel(bits) {
-    if (bits < 28) return ['Very weak', 'var(--over)'];
-    if (bits < 36) return ['Weak', 'var(--over)'];
-    if (bits < 60) return ['Fair', 'var(--fair)'];
-    if (bits < 80) return ['Strong', 'var(--strong)'];
-    return ['Very strong', 'var(--vstrong)'];
+    if (bits < 28) return ['veryWeak', 'var(--over)'];
+    if (bits < 36) return ['weak', 'var(--over)'];
+    if (bits < 60) return ['fair', 'var(--fair)'];
+    if (bits < 80) return ['strong', 'var(--strong)'];
+    return ['veryStrong', 'var(--vstrong)'];
   }
 
-  function plural(n, unit) { return n + ' ' + unit + (n === 1 ? '' : 's'); }
+  function plural(n, unit) { return n.toLocaleString(LANG) + ' ' + unit[n === 1 ? 0 : 1]; }
 
   function fmtCrack(sec) {
-    if (sec < 1) return 'under a second';
-    if (sec < 60) return plural(Math.round(sec), 'second');
-    if (sec < 3600) return plural(Math.round(sec / 60), 'minute');
-    if (sec < 86400) return plural(Math.round(sec / 3600), 'hour');
-    if (sec < YEAR) return plural(Math.round(sec / 86400), 'day');
+    if (sec < 1) return I18N.underSecond;
+    if (sec < 60) return plural(Math.round(sec), I18N.units.second);
+    if (sec < 3600) return plural(Math.round(sec / 60), I18N.units.minute);
+    if (sec < 86400) return plural(Math.round(sec / 3600), I18N.units.hour);
+    if (sec < YEAR) return plural(Math.round(sec / 86400), I18N.units.day);
     var yr = sec / YEAR;
-    if (yr < 1000) return plural(Math.round(yr), 'year');
+    if (yr < 1000) return plural(Math.round(yr), I18N.units.year);
     for (var i = 0; i < MAGS.length; i++) {
       var v = yr / MAGS[i][0];
       if (v < 1000) {
-        var s = v < 10 ? v.toFixed(1).replace(/\.0$/, '') : String(Math.round(v));
-        return s + ' ' + MAGS[i][1] + ' years';
+        var s = v < 10 ? v.toLocaleString(LANG, { maximumFractionDigits: 1 }) : Math.round(v).toLocaleString(LANG);
+        return I18N.magYears.replace('{v}', s).replace('{mag}', I18N.magnitudes[i]);
       }
     }
-    return 'practically forever';
+    return I18N.practicallyForever;
   }
 
   function render(res) {
@@ -598,18 +651,18 @@ td{font-variant-numeric:tabular-nums}
       frag.appendChild(span);
     }
     out.appendChild(frag);
-    var bits = Math.round(res.bits), st = strengthLabel(bits);
+    var bits = Math.round(res.bits), st = strengthLabel(bits), label = I18N.strength[st[0]];
     meterBar.style.width = Math.min(100, bits) + '%';
     meterBar.style.background = st[1];
     meta.innerHTML = '';
     var b = document.createElement('strong');
-    b.textContent = st[0];
+    b.textContent = label;
     meta.appendChild(b);
     meta.appendChild(document.createTextNode(
-      ' · ' + bits + ' bits of entropy · avg. time to crack at 1 trillion guesses/sec: ' +
-      fmtCrack(Math.pow(2, bits - 1) / RATE)
+      I18N.metaSuffix.replace('{bits}', bits.toLocaleString(LANG))
+        .replace('{time}', fmtCrack(Math.pow(2, bits - 1) / RATE))
     ));
-    return st[0];
+    return label;
   }
 
   function gen() {
@@ -620,7 +673,7 @@ td{font-variant-numeric:tabular-nums}
 
   function copyText(t, after) {
     var done = function () {
-      announce('Copied to clipboard.');
+      announce(I18N.copiedClip);
       if (after) after();
     };
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -651,13 +704,13 @@ td{font-variant-numeric:tabular-nums}
       var li = document.createElement('li');
       var btn = document.createElement('button');
       btn.type = 'button';
-      btn.title = 'Copy to clipboard';
+      btn.title = I18N.histTitle;
       btn.textContent = v;
       btn.addEventListener('click', function () { copyText(v); });
       li.appendChild(btn);
       box.appendChild(li);
     });
-    $('hist-hint').textContent = 'Click any entry to copy it. History lives in memory only. It is never saved, and disappears when you leave this page.';
+    $('hist-hint').textContent = I18N.histHintAfter;
   }
 
   function setMode(m) {
@@ -666,7 +719,7 @@ td{font-variant-numeric:tabular-nums}
       $('tab-' + k).setAttribute('aria-pressed', String(k === m));
       $('opts-' + k).hidden = k !== m;
     });
-    $('btn-new').innerHTML = '&#x21bb; New ' + (m === 'pin' ? 'PIN' : m);
+    $('btn-new').textContent = I18N[NEW_LABEL[m]];
     gen();
   }
 
@@ -677,15 +730,15 @@ td{font-variant-numeric:tabular-nums}
   $('btn-new').addEventListener('click', function () {
     var label = gen();
     remember(current);
-    announce('New ' + (mode === 'pin' ? 'PIN' : mode) + ' generated - ' + label.toLowerCase() + '.');
+    announce(I18N[GEN_MSG[mode]].replace('{label}', label.toLowerCase()));
   });
 
   $('btn-copy').addEventListener('click', function () {
     var btn = this;
     remember(current);
     copyText(current, function () {
-      btn.textContent = 'Copied!';
-      setTimeout(function () { btn.textContent = 'Copy'; }, 1200);
+      btn.textContent = I18N.copied;
+      setTimeout(function () { btn.textContent = I18N.copy; }, 1200);
     });
   });
 
@@ -700,7 +753,7 @@ td{font-variant-numeric:tabular-nums}
     $(id).addEventListener('change', function () {
       if (!activeSets().length) {
         this.checked = true;
-        announce('Keep at least one character set selected.');
+        announce(I18N.keepOneSet);
         return;
       }
       gen();

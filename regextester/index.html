@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://regextester.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://regextester.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://regextester.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://regextester.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -451,6 +456,15 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://regextester.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -549,6 +563,20 @@ if (typeof module !== 'undefined') module.exports = RX;
   'use strict';
   if (typeof document === 'undefined') return;
   var $ = function (id) { return document.getElementById(id); };
+  /* i18n:js:start */
+  var I18N = {
+    "emptyMatch": "(empty match)",
+    "undefinedVal": "undefined",
+    "indexLength": "index {i} · length {n}",
+    "showingFirst": "Showing the first {n} matches.",
+    "zeroMatches": "0 matches",
+    "invalidPattern": "Invalid pattern",
+    "oneMatch": "1 match",
+    "nMatches": "{n} matches",
+    "copied": "Copied",
+    "seedText": "Contact ada@example.com or grace.hopper@navy.mil for access.\nEscalations go to on-call+urgent@example.co.uk (24/7).\nNot an address: user at example dot com."
+  };
+  /* i18n:js:end */
 
   var FLAGS = ['g', 'i', 'm', 's', 'u', 'y'];
   var pattern = $('pattern'), test = $('test'), backdrop = $('backdrop');
@@ -565,7 +593,7 @@ if (typeof module !== 'undefined') module.exports = RX;
 
   // Show whitespace-only matches as something visible rather than a blank line.
   function display(s) {
-    if (s === '') return '(empty match)';
+    if (s === '') return I18N.emptyMatch;
     return truncate(s, 120);
   }
 
@@ -595,7 +623,7 @@ if (typeof module !== 'undefined') module.exports = RX;
     kEl.className = 'gk'; kEl.textContent = k;
     var vEl = document.createElement('span');
     vEl.className = 'gv';
-    if (v === undefined) { vEl.className += ' undef'; vEl.textContent = 'undefined'; }
+    if (v === undefined) { vEl.className += ' undef'; vEl.textContent = I18N.undefinedVal; }
     else vEl.textContent = display(v);
     return [kEl, vEl];
   }
@@ -614,7 +642,7 @@ if (typeof module !== 'undefined') module.exports = RX;
       txt.className = 'txt'; txt.textContent = display(m.text);
       var at = document.createElement('span');
       at.className = 'at';
-      at.textContent = 'index ' + m.index + ' · length ' + m.text.length;
+      at.textContent = I18N.indexLength.replace('{i}', m.index).replace('{n}', m.text.length);
       head.appendChild(n); head.appendChild(txt); head.appendChild(at);
       li.appendChild(head);
 
@@ -636,7 +664,7 @@ if (typeof module !== 'undefined') module.exports = RX;
     if (truncated) {
       var li2 = document.createElement('li');
       li2.className = 'empty-note';
-      li2.textContent = 'Showing the first ' + RX.MAX_MATCHES + ' matches.';
+      li2.textContent = I18N.showingFirst.replace('{n}', RX.MAX_MATCHES);
       list.appendChild(li2);
     }
     listEmpty.hidden = matches.length > 0;
@@ -651,7 +679,7 @@ if (typeof module !== 'undefined') module.exports = RX;
       // An empty pattern is the start state, not a mistake - say nothing.
       err.textContent = built.error === 'empty' ? '' : built.error;
       backdrop.textContent = text + '\n';
-      count.textContent = built.error === 'empty' ? '0 matches' : 'Invalid pattern';
+      count.textContent = built.error === 'empty' ? I18N.zeroMatches : I18N.invalidPattern;
       count.className = 'count none';
       renderMatches([], false);
       repOut.textContent = '';
@@ -664,7 +692,7 @@ if (typeof module !== 'undefined') module.exports = RX;
     renderMatches(res.matches, res.truncated);
 
     var n = res.matches.length;
-    count.textContent = n === 1 ? '1 match' : n + (res.truncated ? '+' : '') + ' matches';
+    count.textContent = n === 1 ? I18N.oneMatch : I18N.nMatches.replace('{n}', n + (res.truncated ? '+' : ''));
     count.className = 'count' + (n ? '' : ' none');
 
     var rep = RX.replace(built.re, text, repIn.value);
@@ -689,7 +717,7 @@ if (typeof module !== 'undefined') module.exports = RX;
 
   function copied(btn) {
     var old = btn.textContent;
-    btn.textContent = 'Copied';
+    btn.textContent = I18N.copied;
     setTimeout(function () { btn.textContent = old; }, 1000);
   }
   $('rep-copy').addEventListener('click', function () {
@@ -711,9 +739,7 @@ if (typeof module !== 'undefined') module.exports = RX;
 
   // Seed with a worked example so the page demonstrates itself on load.
   pattern.value = '(?<user>[\\w.+-]+)@(?<domain>[\\w-]+\\.[\\w.]+)';
-  test.value = 'Contact ada@example.com or grace.hopper@navy.mil for access.\n' +
-    'Escalations go to on-call+urgent@example.co.uk (24/7).\n' +
-    'Not an address: user at example dot com.';
+  test.value = I18N.seedText;
   repIn.value = '$<user> [at] $<domain>';
   update();
 })();

@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://loancalculator.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://loancalculator.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://loancalculator.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://loancalculator.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -254,7 +259,7 @@ tbody tr.year-sep td{border-bottom:2px solid var(--border)}
           <label for="amount">Loan amount</label>
           <div class="in">
             <span class="pre" id="cur-pre">$</span>
-            <input type="text" id="amount" inputmode="decimal" autocomplete="off" value="250,000">
+            <input type="text" id="amount" inputmode="decimal" autocomplete="off" value="250000">
             <select id="currency" aria-label="Currency">
               <option value="$" selected>USD $</option>
               <option value="€">EUR €</option>
@@ -383,6 +388,15 @@ tbody tr.year-sep td{border-bottom:2px solid var(--border)}
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://loancalculator.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -395,9 +409,16 @@ tbody tr.year-sep td{border-bottom:2px solid var(--border)}
 /* Loan / EMI math. Pure functions, returned for testability. */
 var LOAN = (function () {
   'use strict';
-  function parseNum(s) {
-    s = String(s == null ? '' : s).trim().replace(/[, ]/g, '');
+  // sep = { group, decimal } for the page's locale; defaults to English.
+  // A separator followed by exactly 3 digits is a group separator; anything
+  // else is (or contains) the decimal mark.
+  function parseNum(s, sep) {
+    sep = sep || { group: ',', decimal: '.' };
+    s = String(s == null ? '' : s).trim().replace(/\s/g, '');
     if (s === '') return NaN;
+    var g = sep.group.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    s = s.replace(new RegExp(g + '(?=\\d{3}(?:\\D|$))', 'g'), '');
+    if (sep.decimal !== '.') s = s.split(sep.decimal).join('.');
     return Number(s);
   }
   // Monthly payment for principal P, annual rate % annual, over n months.
@@ -450,24 +471,42 @@ if (typeof module !== 'undefined') module.exports = LOAN;
   if (typeof document === 'undefined') return;
   var $ = function (id) { return document.getElementById(id); };
   var cur = '$', view = 'year', last = null;
+  /* i18n:js:start */
+  var I18N = {
+    "money": "{cur}{n}",
+    "enterDetails": "Enter a loan amount, rate, and term.",
+    "pctOfPayments": "{pct}% of payments",
+    "formulaZero": "EMI = {p} ÷ {n} = {emi} (0% interest)",
+    "formulaRate": "r = {rate}% ÷ 12 = {r}% monthly · n = {n} payments",
+    "thYear": "Year",
+    "thMonth": "Month",
+    "rowYear": "Year {n}"
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
+  // Derive the locale's separators from the formatter itself.
+  var SEP = (function () {
+    var s = (1234.5).toLocaleString(LANG);
+    return { group: s[1], decimal: s[s.length - 2] };
+  })();
 
   function money(n) {
     if (!isFinite(n)) return '-';
-    return cur + Math.round(n).toLocaleString('en-US');
+    return I18N.money.replace('{cur}', cur).replace('{n}', Math.round(n).toLocaleString(LANG)).trim();
   }
   function money2(n) {
     if (!isFinite(n)) return '-';
-    return cur + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return I18N.money.replace('{cur}', cur).replace('{n}', n.toLocaleString(LANG, { minimumFractionDigits: 2, maximumFractionDigits: 2 })).trim();
   }
 
   function months() {
-    var t = LOAN.parseNum($('term').value);
+    var t = LOAN.parseNum($('term').value, SEP);
     return $('term-unit').value === 'years' ? Math.round(t * 12) : Math.round(t);
   }
 
   function update() {
-    var P = LOAN.parseNum($('amount').value);
-    var rate = LOAN.parseNum($('rate').value);
+    var P = LOAN.parseNum($('amount').value, SEP);
+    var rate = LOAN.parseNum($('rate').value, SEP);
     var n = months();
     cur = $('currency').value;
     $('cur-pre').textContent = cur || '#';
@@ -475,7 +514,7 @@ if (typeof module !== 'undefined') module.exports = LOAN;
     if (!(P > 0) || isNaN(rate) || rate < 0 || !(n > 0)) {
       $('emi').textContent = '-';
       ['tot-principal', 'tot-interest', 'tot-total', 'int-pct'].forEach(function (id) { $(id).textContent = '-'; });
-      $('formula').textContent = 'Enter a loan amount, rate, and term.';
+      $('formula').textContent = I18N.enterDetails;
       $('sched').innerHTML = ''; last = null;
       $('bar-p').style.width = $('bar-i').style.width = '50%';
       return;
@@ -488,14 +527,14 @@ if (typeof module !== 'undefined') module.exports = LOAN;
     $('tot-interest').textContent = money(s.totalInterest);
     $('tot-total').textContent = money(s.totalPaid);
     var pct = s.totalPaid > 0 ? (s.totalInterest / s.totalPaid * 100) : 0;
-    $('int-pct').textContent = pct.toFixed(1) + '% of payments';
+    $('int-pct').textContent = I18N.pctOfPayments.replace('{pct}', pct.toLocaleString(LANG, { minimumFractionDigits: 1, maximumFractionDigits: 1 }));
     $('bar-p').style.width = (100 - pct) + '%';
     $('bar-i').style.width = pct + '%';
 
     var r = rate / 12 / 100;
     $('formula').textContent = rate === 0
-      ? 'EMI = ' + money(P) + ' ÷ ' + n + ' = ' + money2(s.payment) + ' (0% interest)'
-      : 'r = ' + rate + '% ÷ 12 = ' + (r * 100).toFixed(4) + '% monthly · n = ' + n + ' payments';
+      ? I18N.formulaZero.replace('{p}', money(P)).replace('{n}', n).replace('{emi}', money2(s.payment))
+      : I18N.formulaRate.replace('{rate}', rate.toLocaleString(LANG)).replace('{r}', (r * 100).toLocaleString(LANG, { minimumFractionDigits: 4, maximumFractionDigits: 4 })).replace('{n}', n);
 
     renderSchedule();
   }
@@ -504,11 +543,11 @@ if (typeof module !== 'undefined') module.exports = LOAN;
     if (!last) return;
     var body = $('sched');
     body.innerHTML = '';
-    $('th-period').textContent = view === 'year' ? 'Year' : 'Month';
+    $('th-period').textContent = view === 'year' ? I18N.thYear : I18N.thMonth;
     var rows;
     if (view === 'year') {
       rows = LOAN.byYear(last.months).map(function (y) {
-        return { label: 'Year ' + y.year, payment: y.payment, principal: y.principal, interest: y.interest, balance: y.balance };
+        return { label: I18N.rowYear.replace('{n}', y.year), payment: y.payment, principal: y.principal, interest: y.interest, balance: y.balance };
       });
     } else {
       rows = last.months.map(function (m) {

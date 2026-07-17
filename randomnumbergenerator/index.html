@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://randomnumbergenerator.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://randomnumbergenerator.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://randomnumbergenerator.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://randomnumbergenerator.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -340,6 +345,15 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://randomnumbergenerator.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -385,7 +399,7 @@ var RNG = (function () {
     var range = max - min + 1;
     var out = [], i;
     if (unique) {
-      if (count > range) return { error: 'Need at least ' + count + ' distinct values, but the range only has ' + range + '.' };
+      if (count > range) return { error: 'needDistinct', count: count, range: range };
       // Partial Fisher-Yates over a virtual [min..max]
       var pool = {};
       function get(idx) { return pool[idx] === undefined ? idx : pool[idx]; }
@@ -404,10 +418,10 @@ var RNG = (function () {
   // Pick `count` items from array; unique = without replacement.
   function pick(items, count, unique, rand) {
     var n = items.length;
-    if (n === 0) return { error: 'Add at least one item to the list.' };
+    if (n === 0) return { error: 'emptyList' };
     count = Math.max(1, Math.floor(count));
     if (unique) {
-      if (count > n) return { error: 'Only ' + n + ' item' + (n === 1 ? '' : 's') + ' to pick from - reduce how many you draw.' };
+      if (count > n) return { error: 'tooFew', n: n };
       var idx = batch(0, n - 1, count, true, rand);
       return { values: idx.values.map(function (i) { return items[i]; }) };
     }
@@ -426,8 +440,44 @@ if (typeof module !== 'undefined') module.exports = RNG;
   var $ = function (id) { return document.getElementById(id); };
   var mode = 'number', lastText = '';
   var DICE = ['', '⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+  /* i18n:js:start */
+  var I18N = {
+    "pressGenerate": "Press Generate to begin.",
+    "enterMinMax": "Enter a minimum and maximum.",
+    "between": "Between {min} and {max}, inclusive.",
+    "numbersNote": "{count} numbers.",
+    "numbersUniqueNote": "{count} numbers, all unique.",
+    "rollsNote": "Rolls: {rolls} · total {total}",
+    "rolledA": "You rolled a {n}",
+    "sidedDie": "A {sides}-sided die.",
+    "diceTotal": "{count} × d{sides} · total {total}",
+    "copyTotal": "{rolls} (total {total})",
+    "heads": "Heads",
+    "tails": "Tails",
+    "headsAbbr": "H",
+    "tailsAbbr": "T",
+    "singleFlip": "A single coin flip.",
+    "headsTails": "Heads: {h} · Tails: {t}",
+    "pickedFromOne": "Picked from 1 item.",
+    "pickedFrom": "Picked from {n} items.",
+    "pickedOf": "Picked {count} of {n}.",
+    "copied": "Copied",
+    "copyResult": "Copy result",
+    "errNeedDistinct": "Need at least {count} distinct values, but the range only has {range}.",
+    "errEmptyList": "Add at least one item to the list.",
+    "errTooFewOne": "Only 1 item to pick from - reduce how many you draw.",
+    "errTooFew": "Only {n} items to pick from - reduce how many you draw."
+  };
+  /* i18n:js:end */
 
   function num(id) { return parseInt($(id).value, 10); }
+
+  function errMsg(r) {
+    if (r.error === 'needDistinct') return I18N.errNeedDistinct.replace('{count}', r.count).replace('{range}', r.range);
+    if (r.error === 'emptyList') return I18N.errEmptyList;
+    if (r.error === 'tooFew') return (r.n === 1 ? I18N.errTooFewOne : I18N.errTooFew).replace('{n}', r.n);
+    return r.error;
+  }
 
   function setResult(mainHTML, note, isErr) {
     $('result-main').innerHTML = mainHTML;
@@ -442,16 +492,16 @@ if (typeof module !== 'undefined') module.exports = RNG;
 
   function genNumber() {
     var min = num('min'), max = num('max'), count = num('count');
-    if (isNaN(min) || isNaN(max)) { setResult('-', 'Enter a minimum and maximum.', true); lastText = ''; return; }
+    if (isNaN(min) || isNaN(max)) { setResult('-', I18N.enterMinMax, true); lastText = ''; return; }
     if (isNaN(count) || count < 1) count = 1;
     count = Math.min(count, 1000);
     var r = RNG.batch(min, max, count, $('unique').checked);
-    if (r.error) { setResult('-', r.error, true); lastText = ''; return; }
+    if (r.error) { setResult('-', errMsg(r), true); lastText = ''; return; }
     var vals = r.values.slice();
     if ($('sorted').checked) vals.sort(function (a, b) { return a - b; });
     lastText = vals.join(', ');
-    if (vals.length === 1) setResult(esc(String(vals[0])), 'Between ' + Math.min(min, max) + ' and ' + Math.max(min, max) + ', inclusive.');
-    else setResult(listHTML(vals.map(esc)), vals.length + ' numbers' + ($('unique').checked ? ', all unique' : '') + '.');
+    if (vals.length === 1) setResult(esc(String(vals[0])), I18N.between.replace('{min}', Math.min(min, max)).replace('{max}', Math.max(min, max)));
+    else setResult(listHTML(vals.map(esc)), ($('unique').checked ? I18N.numbersUniqueNote : I18N.numbersNote).replace('{count}', vals.length));
   }
 
   function genDice() {
@@ -460,14 +510,14 @@ if (typeof module !== 'undefined') module.exports = RNG;
     count = Math.min(count, 100);
     var rolls = RNG.batch(1, sides, count, false).values;
     var total = rolls.reduce(function (a, b) { return a + b; }, 0);
-    lastText = rolls.join(', ') + ' (total ' + total + ')';
+    lastText = I18N.copyTotal.replace('{rolls}', rolls.join(', ')).replace('{total}', total);
     if (sides === 6) {
       setResult('<div class="dice-faces' + (count > 10 ? ' many' : '') + '">' + rolls.map(function (r) { return DICE[r]; }).join('') + '</div>',
-        (count > 1 ? 'Rolls: ' + rolls.join(', ') + ' · total ' + total : 'You rolled a ' + rolls[0]));
+        (count > 1 ? I18N.rollsNote.replace('{rolls}', rolls.join(', ')).replace('{total}', total) : I18N.rolledA.replace('{n}', rolls[0])));
     } else if (count === 1) {
-      setResult(String(rolls[0]), 'A ' + sides + '-sided die.');
+      setResult(String(rolls[0]), I18N.sidedDie.replace('{sides}', sides));
     } else {
-      setResult(listHTML(rolls), count + ' × d' + sides + ' · total ' + total);
+      setResult(listHTML(rolls), I18N.diceTotal.replace('{count}', count).replace('{sides}', sides).replace('{total}', total));
     }
   }
 
@@ -476,9 +526,9 @@ if (typeof module !== 'undefined') module.exports = RNG;
     if (isNaN(count) || count < 1) count = 1; count = Math.min(count, 1000);
     var flips = RNG.batch(0, 1, count, false).values; // 0=T,1=H
     var heads = flips.reduce(function (a, b) { return a + b; }, 0), tails = count - heads;
-    lastText = flips.map(function (f) { return f ? 'Heads' : 'Tails'; }).join(', ');
-    if (count === 1) setResult(flips[0] ? 'Heads' : 'Tails', 'A single coin flip.');
-    else setResult(listHTML(flips.map(function (f) { return f ? 'H' : 'T'; })), 'Heads: ' + heads + ' · Tails: ' + tails);
+    lastText = flips.map(function (f) { return f ? I18N.heads : I18N.tails; }).join(', ');
+    if (count === 1) setResult(flips[0] ? I18N.heads : I18N.tails, I18N.singleFlip);
+    else setResult(listHTML(flips.map(function (f) { return f ? I18N.headsAbbr : I18N.tailsAbbr; })), I18N.headsTails.replace('{h}', heads).replace('{t}', tails));
   }
 
   function genList() {
@@ -486,10 +536,10 @@ if (typeof module !== 'undefined') module.exports = RNG;
     var count = num('list-count');
     if (isNaN(count) || count < 1) count = 1;
     var r = RNG.pick(items, count, $('list-unique').checked);
-    if (r.error) { setResult('-', r.error, true); lastText = ''; return; }
+    if (r.error) { setResult('-', errMsg(r), true); lastText = ''; return; }
     lastText = r.values.join(', ');
-    if (r.values.length === 1) setResult(esc(r.values[0]), 'Picked from ' + items.length + ' item' + (items.length === 1 ? '' : 's') + '.');
-    else setResult(listHTML(r.values.map(esc)), 'Picked ' + r.values.length + ' of ' + items.length + '.');
+    if (r.values.length === 1) setResult(esc(r.values[0]), (items.length === 1 ? I18N.pickedFromOne : I18N.pickedFrom).replace('{n}', items.length));
+    else setResult(listHTML(r.values.map(esc)), I18N.pickedOf.replace('{count}', r.values.length).replace('{n}', items.length));
   }
 
   function generate() {
@@ -505,7 +555,7 @@ if (typeof module !== 'undefined') module.exports = RNG;
       $('tab-' + m).setAttribute('aria-pressed', String(m === which));
       $('pane-' + m).hidden = m !== which;
     });
-    setResult('-', 'Press Generate to begin.');
+    setResult('-', I18N.pressGenerate);
     lastText = '';
   }
 
@@ -515,7 +565,7 @@ if (typeof module !== 'undefined') module.exports = RNG;
   $('generate').addEventListener('click', generate);
   $('copy').addEventListener('click', function () {
     if (!lastText) return;
-    var b = $('copy'), done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy result'; }, 1000); };
+    var b = $('copy'), done = function () { b.textContent = I18N.copied; setTimeout(function () { b.textContent = I18N.copyResult; }, 1000); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(lastText).then(done, done); else done();
   });
   // Enter in a number field regenerates.

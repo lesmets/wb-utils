@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://wbest.app/</loc>
-  </url>
-  <url>
     <loc>https://agecalculator.wbest.app/</loc>
   </url>
   <url>
@@ -73,6 +70,12 @@
     <loc>https://unitconverter.wbest.app/</loc>
   </url>
   <url>
+    <loc>https://wbest.app/</loc>
+  </url>
+  <url>
     <loc>https://webcamtest.wbest.app/</loc>
+  </url>
+  <url>
+    <loc>https://wbest.app/de/</loc>
   </url>
 </urlset>

@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://hashgenerator.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://hashgenerator.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://hashgenerator.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://hashgenerator.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -345,6 +350,15 @@ th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mu
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://hashgenerator.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -454,6 +468,17 @@ if (typeof module !== 'undefined') module.exports = HASH;
   'use strict';
   if (typeof document === 'undefined') return;
   var $ = function (id) { return document.getElementById(id); };
+  /* i18n:js:start */
+  var I18N = {
+    "copy": "Copy",
+    "copied": "Copied",
+    "reading": "Reading {name}…",
+    "readError": "Could not read that file.",
+    "match": "✓ Match - this is the {algo} hash of the current input.",
+    "noMatch": "✗ No match with any algorithm for the current input."
+  };
+  /* i18n:js:end */
+  var LANG = document.documentElement.lang || 'en';
   var ALGOS = [
     { key: 'MD5', label: 'MD5', sub: '128-bit', weak: true },
     { key: 'SHA-1', label: 'SHA-1', sub: '160-bit', weak: true },
@@ -470,7 +495,7 @@ if (typeof module !== 'undefined') module.exports = HASH;
     row.className = 'card hrow';
     row.innerHTML = '<div class="algo">' + a.label + '<small>' + a.sub + '</small></div>' +
       '<div class="digest' + (a.weak ? ' weak' : '') + '" id="d-' + a.key + '">…</div>' +
-      '<button type="button" class="copy" data-algo="' + a.key + '">Copy</button>';
+      '<button type="button" class="copy" data-algo="' + a.key + '">' + I18N.copy + '</button>';
     results.appendChild(row);
   });
 
@@ -512,8 +537,8 @@ if (typeof module !== 'undefined') module.exports = HASH;
     var hit = null;
     for (var k in current.digests) if (current.digests[k] === v) { hit = k; break; }
     out.hidden = false;
-    if (hit) { out.className = 'result match'; out.textContent = '✓ Match - this is the ' + hit + ' hash of the current input.'; }
-    else { out.className = 'result nomatch'; out.textContent = '✗ No match with any algorithm for the current input.'; }
+    if (hit) { out.className = 'result match'; out.textContent = I18N.match.replace('{algo}', hit); }
+    else { out.className = 'result nomatch'; out.textContent = I18N.noMatch; }
   }
 
   // --- Text mode ---
@@ -532,20 +557,20 @@ if (typeof module !== 'undefined') module.exports = HASH;
   function loadFile(file) {
     if (!file) return;
     fileMeta.hidden = false;
-    fileMeta.textContent = 'Reading ' + file.name + '…';
+    fileMeta.textContent = I18N.reading.replace('{name}', file.name);
     var reader = new FileReader();
     reader.onload = function () {
       current.bytes = new Uint8Array(reader.result);
       fileMeta.textContent = file.name + ' · ' + formatSize(file.size);
       compute();
     };
-    reader.onerror = function () { fileMeta.textContent = 'Could not read that file.'; };
+    reader.onerror = function () { fileMeta.textContent = I18N.readError; };
     reader.readAsArrayBuffer(file);
   }
   function formatSize(n) {
-    if (n < 1024) return n + ' B';
-    if (n < 1048576) return (n / 1024).toFixed(1) + ' KB';
-    return (n / 1048576).toFixed(2) + ' MB';
+    if (n < 1024) return n.toLocaleString(LANG) + ' B';
+    if (n < 1048576) return (n / 1024).toLocaleString(LANG, { maximumFractionDigits: 1 }) + ' KB';
+    return (n / 1048576).toLocaleString(LANG, { maximumFractionDigits: 2 }) + ' MB';
   }
   drop.addEventListener('click', function () { fileIn.click(); });
   drop.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileIn.click(); } });
@@ -579,7 +604,7 @@ if (typeof module !== 'undefined') module.exports = HASH;
     var d = current.digests[btn.getAttribute('data-algo')];
     if (!d) return;
     var text = fmt(d);
-    var done = function () { var o = btn.textContent; btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = o; }, 1200); };
+    var done = function () { var o = btn.textContent; btn.textContent = I18N.copied; setTimeout(function () { btn.textContent = o; }, 1200); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done);
     else done();
   });

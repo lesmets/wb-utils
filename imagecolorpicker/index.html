@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://imagecolorpicker.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://imagecolorpicker.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://imagecolorpicker.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://imagecolorpicker.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -380,6 +385,15 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://imagecolorpicker.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -527,6 +541,14 @@ if (typeof module !== 'undefined') module.exports = CP;
   'use strict';
   if (typeof document === 'undefined') return;
   var $ = function (id) { return document.getElementById(id); };
+  /* i18n:js:start */
+  var I18N = {
+    "copied": "Copied",
+    "use": "Use {hex}",
+    "notImage": "That file is not an image.",
+    "notDecoded": "That image could not be decoded."
+  };
+  /* i18n:js:end */
 
   var canvas = $('canvas'), ctx = canvas.getContext('2d', { willReadFrequently: true });
   var stage = $('stage'), loupe = $('loupe'), loupeCanvas = $('loupe-canvas');
@@ -604,7 +626,7 @@ if (typeof module !== 'undefined') module.exports = CP;
     b.type = 'button';
     b.style.background = hex;
     b.title = hex;
-    b.setAttribute('aria-label', 'Use ' + hex);
+    b.setAttribute('aria-label', I18N.use.replace('{hex}', hex));
     if (label) {
       var s = document.createElement('span');
       s.textContent = hex;
@@ -635,7 +657,7 @@ if (typeof module !== 'undefined') module.exports = CP;
   function copy(text, btn) {
     var old = btn.textContent;
     var done = function () {
-      btn.textContent = 'Copied';
+      btn.textContent = I18N.copied;
       setTimeout(function () { btn.textContent = old; }, 1000);
     };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done);
@@ -659,7 +681,7 @@ if (typeof module !== 'undefined') module.exports = CP;
 
   function load(file) {
     if (!file || !/^image\//.test(file.type)) {
-      $('err').textContent = 'That file is not an image.';
+      $('err').textContent = I18N.notImage;
       return;
     }
     var url = URL.createObjectURL(file);
@@ -681,7 +703,7 @@ if (typeof module !== 'undefined') module.exports = CP;
     };
     im.onerror = function () {
       URL.revokeObjectURL(url);
-      $('err').textContent = 'That image could not be decoded.';
+      $('err').textContent = I18N.notDecoded;
     };
     im.src = url;
   }

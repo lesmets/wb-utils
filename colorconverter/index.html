@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://colorconverter.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://colorconverter.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://colorconverter.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://colorconverter.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -340,6 +345,15 @@ th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mu
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://colorconverter.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -459,6 +473,17 @@ if (typeof module !== 'undefined') module.exports = COLOR;
   if (typeof document === 'undefined') return;
   var $ = function (id) { return document.getElementById(id); };
   var rgb = { r: 37, g: 99, b: 235 };
+  /* i18n:js:start */
+  var I18N = {
+    "copy": "Copy",
+    "copied": "Copied",
+    "unrecognized": "Unrecognized color. Try #2563eb, rgb(37,99,235), or hsl(221,83%,53%).",
+    "base": "Base",
+    "complement": "Complement",
+    "analogous": "Analogous",
+    "triadic": "Triadic"
+  };
+  /* i18n:js:end */
 
   function fmtHsl(c) { var h = COLOR.rgbToHsl(c.r, c.g, c.b); return 'hsl(' + Math.round(h.h) + ', ' + Math.round(h.s) + '%, ' + Math.round(h.l) + '%)'; }
   function fmtHsv(c) { var h = COLOR.rgbToHsv(c.r, c.g, c.b); return 'hsv(' + Math.round(h.h) + ', ' + Math.round(h.s) + '%, ' + Math.round(h.v) + '%)'; }
@@ -479,7 +504,7 @@ if (typeof module !== 'undefined') module.exports = COLOR;
     var row = document.createElement('div');
     row.className = 'card frow';
     row.innerHTML = '<span class="name">' + f.name + '</span><span class="code" id="fmt-' + f.name + '"></span>' +
-      '<button type="button" class="copy" data-fmt="' + f.name + '">Copy</button>';
+      '<button type="button" class="copy" data-fmt="' + f.name + '">' + I18N.copy + '</button>';
     formats.appendChild(row);
   });
 
@@ -504,9 +529,9 @@ if (typeof module !== 'undefined') module.exports = COLOR;
     var base = COLOR.rgbToHsl(rgb.r, rgb.g, rgb.b);
     function atHue(deltaH) { return COLOR.roundRgb(COLOR.hslToRgb(base.h + deltaH, base.s, base.l)); }
     var harmonies = [
-      ['Base', rgb], ['Complement', atHue(180)],
-      ['Analogous', atHue(-30)], ['Analogous', atHue(30)],
-      ['Triadic', atHue(120)], ['Triadic', atHue(240)]
+      [I18N.base, rgb], [I18N.complement, atHue(180)],
+      [I18N.analogous, atHue(-30)], [I18N.analogous, atHue(30)],
+      [I18N.triadic, atHue(120)], [I18N.triadic, atHue(240)]
     ];
     harmonies.forEach(function (h) { harm.appendChild(makeChip(h[1], h[0])); });
   }
@@ -532,13 +557,13 @@ if (typeof module !== 'undefined') module.exports = COLOR;
     if (!v) { err.textContent = ''; return; }
     var c = COLOR.parse(v);
     if (c) { err.textContent = ''; setRgb(c); }
-    else err.textContent = 'Unrecognized color. Try #2563eb, rgb(37,99,235), or hsl(221,83%,53%).';
+    else err.textContent = I18N.unrecognized;
   });
 
   formats.addEventListener('click', function (e) {
     var btn = e.target.closest('button.copy'); if (!btn) return;
     var text = $('fmt-' + btn.getAttribute('data-fmt')).textContent;
-    var done = function () { var o = btn.textContent; btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = o; }, 1000); };
+    var done = function () { var o = btn.textContent; btn.textContent = I18N.copied; setTimeout(function () { btn.textContent = o; }, 1000); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done); else done();
   });
 

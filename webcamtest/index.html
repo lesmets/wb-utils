@@ -8,6 +8,11 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://webcamtest.wbest.app/">
+<!-- i18n:hreflang:start -->
+<link rel="alternate" hreflang="en" href="https://webcamtest.wbest.app/">
+<link rel="alternate" hreflang="de" href="https://webcamtest.wbest.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://webcamtest.wbest.app/">
+<!-- i18n:hreflang:end -->
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f141c" media="(prefers-color-scheme: dark)">
@@ -415,6 +420,15 @@ ol.steps li{margin-bottom:8px}
 </main>
 
 <footer>
+  <!-- i18n:lang:start -->
+  <details class="lang">
+    <summary>🌐 EN</summary>
+    <ul>
+      <li aria-current="page">English</li>
+      <li><a href="https://webcamtest.wbest.app/de/" lang="de" hreflang="de">Deutsch</a></li>
+    </ul>
+  </details>
+<!-- i18n:lang:end -->
   <!-- wb:footer:start -->
 <div class="wrap">
   Made for anyone who needs a quick tool that just works.
@@ -494,11 +508,12 @@ var CAM = (function () {
   }
 
   // How to feel about a measured frame rate.
+  // Returns { key, level }; the UI maps key to a localized quality label.
   function fpsQuality(n) {
-    if (!n) return { key: 'unknown', level: '', text: '' };
-    if (n >= 24) return { key: 'smooth', level: 'good', text: 'smooth' };
-    if (n >= 15) return { key: 'ok', level: 'warn', text: 'a little choppy' };
-    return { key: 'low', level: 'warn', text: 'stuttery - try more light' };
+    if (!n) return { key: 'unknown', level: '' };
+    if (n >= 24) return { key: 'smooth', level: 'good' };
+    if (n >= 15) return { key: 'ok', level: 'warn' };
+    return { key: 'low', level: 'warn' };
   }
 
   function resQuality(h) {
@@ -541,6 +556,23 @@ if (typeof module !== 'undefined') module.exports = CAM;
   'use strict';
   if (typeof document === 'undefined') return;
   var $ = function (id) { return document.getElementById(id); };
+  /* i18n:js:start */
+  var I18N = {
+    "cameraN": "Camera {n}",
+    "fps": {
+      "smooth": "smooth",
+      "ok": "a little choppy",
+      "low": "stuttery - try more light"
+    },
+    "errNoSupport": "This browser does not support camera access.",
+    "errBlocked": "Camera access was blocked. Click the camera or lock icon in your address bar, allow the camera, then reload this page.",
+    "errNotFound": "No camera was found. Plug one in, then reload.",
+    "errInUse": "Your camera is in use by another app, or blocked by your system privacy settings. Close other apps and try again.",
+    "errOverconstrained": "This camera cannot deliver that resolution. Choose a lower one.",
+    "errStart": "Could not start the camera{name}.",
+    "errSnapshot": "This browser could not create the snapshot."
+  };
+  /* i18n:js:end */
 
   var stream = null, raf = null, shotBlob = null;
   var frames = [], lastPaint = 0;
@@ -585,7 +617,7 @@ if (typeof module !== 'undefined') module.exports = CAM;
     var rate = CAM.fps(frames);
     if (rate) {
       var q = CAM.fpsQuality(rate);
-      setStat('s-fps', Math.round(rate) + ' fps', q.text, q.level);
+      setStat('s-fps', Math.round(rate) + ' fps', I18N.fps[q.key] || '', q.level);
     }
   }
 
@@ -614,7 +646,7 @@ if (typeof module !== 'undefined') module.exports = CAM;
       cams.forEach(function (d, i) {
         var o = document.createElement('option');
         o.value = d.deviceId;
-        o.textContent = CAM.deviceLabel(d, i);
+        o.textContent = d.label || I18N.cameraN.replace('{n}', i + 1);
         sel.appendChild(o);
       });
       var track = stream && stream.getVideoTracks()[0];
@@ -641,7 +673,7 @@ if (typeof module !== 'undefined') module.exports = CAM;
   function start(deviceId, want) {
     $('err').textContent = '';
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      fail('This browser does not support camera access.');
+      fail(I18N.errNoSupport);
       return;
     }
     navigator.mediaDevices.getUserMedia(CAM.constraints(deviceId, want)).then(function (s) {
@@ -662,15 +694,15 @@ if (typeof module !== 'undefined') module.exports = CAM;
     }).catch(function (e) {
       var name = e && e.name;
       if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
-        fail('Camera access was blocked. Click the camera or lock icon in your address bar, allow the camera, then reload this page.');
+        fail(I18N.errBlocked);
       } else if (name === 'NotFoundError' || name === 'DevicesNotFoundError') {
-        fail('No camera was found. Plug one in, then reload.');
+        fail(I18N.errNotFound);
       } else if (name === 'NotReadableError' || name === 'TrackStartError') {
-        fail('Your camera is in use by another app, or blocked by your system privacy settings. Close other apps and try again.');
+        fail(I18N.errInUse);
       } else if (name === 'OverconstrainedError') {
-        fail('This camera cannot deliver that resolution. Choose a lower one.');
+        fail(I18N.errOverconstrained);
       } else {
-        fail('Could not start the camera' + (name ? ' (' + name + ')' : '') + '.');
+        fail(I18N.errStart.replace('{name}', name ? ' (' + name + ')' : ''));
       }
     });
   }
@@ -706,7 +738,7 @@ if (typeof module !== 'undefined') module.exports = CAM;
     ctx.drawImage(video, 0, 0, c.width, c.height);
     var fmt = $('fmt').value;
     c.toBlob(function (blob) {
-      if (!blob) { fail('This browser could not create the snapshot.'); return; }
+      if (!blob) { fail(I18N.errSnapshot); return; }
       shotBlob = blob;
       var img = $('shot-img');
       if (img.src) URL.revokeObjectURL(img.src);
