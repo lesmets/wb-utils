@@ -96,7 +96,7 @@
       "name": "Darf ich diese Tools mit eigenem Branding selbst hosten?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ja, genau dafür ist dieser Packager da. Jede erzeugte Seite behält eine kleine Zeile „Vielen Dank für die Nutzung von WBest Tools“ im Fußbereich, die auf wbest.app verlinkt. Bitte lass diesen Hinweis stehen."
+        "text": "Ja, genau dafür ist dieser Packager da. Jede erzeugte Seite behält eine kleine Zeile „Powered by WBest Tools“ im Fußbereich, die auf wbest.app verlinkt. Bitte lass diesen Hinweis stehen."
       }
     }
   ]
@@ -324,7 +324,7 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
     <p>Nein. Jede paketierte Seite ist vollständig in sich geschlossen, stellt keine Netzwerkanfragen und funktioniert auch offline. Genau das macht sie sicher für sensible Daten in einem internen Netzwerk.</p>
 
     <h3>Darf ich diese Tools mit eigenem Branding selbst hosten?</h3>
-    <p>Ja, genau dafür ist dieser Packager da. Jede erzeugte Seite behält eine kleine Zeile „Vielen Dank für die Nutzung von WBest Tools“ im Fußbereich, die auf wbest.app verlinkt. Bitte lass diesen Hinweis stehen.</p>
+    <p>Ja, genau dafür ist dieser Packager da. Jede erzeugte Seite behält eine kleine Zeile „Powered by WBest Tools“ im Fußbereich, die auf wbest.app verlinkt. Bitte lass diesen Hinweis stehen.</p>
   </section>
 
 </main>
@@ -516,6 +516,12 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
           document.querySelector('#tool-list input[data-id="' + t.id + '"]').checked = e.target.checked;
         });
       }
+      refresh();
+    });
+    $('all-tools').addEventListener('change', function (e) {
+      [].slice.call(document.querySelectorAll('#tool-list input[data-id]')).forEach(function (box) {
+        box.checked = e.target.checked;
+      });
       refresh();
     });
   }
@@ -738,15 +744,21 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
     return slug || 'selfhost';
   }
   function landingHtml(rootTpl, name, cs, tools, lang) {
-    var cards = tools.map(function (id) {
-      var t = toolById(id);
-      var icon = t.icon.replace('<svg ', '<svg class="tool-icon" aria-hidden="true" focusable="false" ');
-      return '    <article class="tool card">\n      ' + icon + '\n      <div class="tool-body">\n' +
-        '        <h3><a href="' + id + '/index.html">' + (t.name[lang] || t.name.en) + '</a></h3>\n' +
-        '        <p class="desc">' + (t.desc[lang] || t.desc.en) + '</p>\n' +
-        '      </div>\n      <span class="go" aria-hidden="true">→</span>\n    </article>';
-    }).join('\n');
-    return substitute(rootTpl.split('{{TOOL_LIST}}').join(cards), {
+    var groups = MANIFEST.categories.map(function (cat) {
+      var cards = tools.filter(function (id) { return toolById(id).category === cat.id; })
+        .map(function (id) {
+          var t = toolById(id);
+          var icon = t.icon.replace('<svg ', '<svg class="tool-icon" aria-hidden="true" focusable="false" ');
+          return '    <article class="tool card">\n      ' + icon + '\n      <div class="tool-body">\n' +
+            '        <h3><a href="' + id + '/index.html">' + (t.name[lang] || t.name.en) + '</a></h3>\n' +
+            '        <p class="desc">' + (t.desc[lang] || t.desc.en) + '</p>\n' +
+            '      </div>\n      <span class="go" aria-hidden="true">→</span>\n    </article>';
+        });
+      if (!cards.length) return '';
+      return '  <h3 class="cat-title">' + (cat.label[lang] || cat.label.en) + '</h3>\n' +
+        '  <div class="tools">\n' + cards.join('\n') + '\n  </div>';
+    }).filter(Boolean).join('\n\n');
+    return substitute(rootTpl.split('{{TOOL_LIST}}').join(groups), {
       name: name, colors: cs, lang: lang, logo: logoImg(''), langSwitch: ''
     });
   }

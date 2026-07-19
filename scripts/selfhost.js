@@ -21,7 +21,7 @@
 //                            the four wb:base accent colors, everywhere they
 //                            appear (CSS and JS alike)
 //   {{LANG_SWITCH}}          footer language dropdown with relative links
-//   {{FOOTER_ATTRIBUTION}}   localized "Thank you for using WBest Tools"
+//   {{FOOTER_ATTRIBUTION}}   localized "Powered by WBest Tools"
 //
 // Placeholders instead of baked defaults so substitution is unambiguous and
 // --check can assert zero leftover brand/color literals in any template.
@@ -44,8 +44,8 @@ const CHECK = process.argv.includes('--check');
 // without an entry here fails the build: adding a language to the site forces
 // deciding its attribution line too. Endonyms mirror translate.js LANG_NAMES.
 const ATTRIBUTION = {
-  en: 'Thank you for using <a href="https://wbest.app/">WBest Tools</a>.',
-  de: 'Vielen Dank für die Nutzung von <a href="https://wbest.app/">WBest Tools</a>.',
+  en: 'Powered by <a href="https://wbest.app/">WBest Tools</a>.',
+  de: 'Powered by <a href="https://wbest.app/">WBest Tools</a>.',
 };
 const TOOLS_WORD = { en: 'Tools', de: 'Tools' };
 const LANG_NAMES = { en: 'English', de: 'Deutsch' };
@@ -59,7 +59,9 @@ const COLORS = [
 ];
 
 // Landing-page card styles, a subset of the directory's (wbest/index.html).
-const LANDING_CSS = `.tools{display:flex;flex-direction:column;gap:10px;margin:18px auto 34px;max-width:52rem}
+const LANDING_CSS = `.cat-title{max-width:52rem;margin:26px auto 0;font-size:1.05rem;letter-spacing:-.01em}
+.cat-title:first-of-type{margin-top:18px}
+.tools{display:flex;flex-direction:column;gap:10px;margin:10px auto 34px;max-width:52rem}
 .tool{position:relative;display:flex;align-items:center;gap:14px;padding:14px 16px}
 .tool:hover{border-color:var(--accent)}
 .tool-icon{width:40px;height:40px;border-radius:9px;flex:none}
@@ -194,9 +196,7 @@ ${LOGO_CSS}
 </header>
 
 <main class="wrap">
-  <div class="tools">
 {{TOOL_LIST}}
-  </div>
 </main>
 
 <footer>

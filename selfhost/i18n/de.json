@@ -21,7 +21,7 @@
   "Do the packaged tools need an internet connection?": "Brauchen die paketierten Tools eine Internetverbindung?",
   "No. Every packaged page is fully self-contained, makes no network requests, and keeps working offline. That is what makes them safe for sensitive data on an internal network.": "Nein. Jede paketierte Seite ist vollständig in sich geschlossen, stellt keine Netzwerkanfragen und funktioniert auch offline. Genau das macht sie sicher für sensible Daten in einem internen Netzwerk.",
   "Am I allowed to self-host these tools with my own branding?": "Darf ich diese Tools mit eigenem Branding selbst hosten?",
-  "Yes, that is exactly what this packager is for. Each generated page keeps a small \"Thank you for using WBest Tools\" line in the footer linking back to wbest.app. Please leave that attribution in place.": "Ja, genau dafür ist dieser Packager da. Jede erzeugte Seite behält eine kleine Zeile „Vielen Dank für die Nutzung von WBest Tools“ im Fußbereich, die auf wbest.app verlinkt. Bitte lass diesen Hinweis stehen.",
+  "Yes, that is exactly what this packager is for. Each generated page keeps a small \"Powered by WBest Tools\" line in the footer linking back to wbest.app. Please leave that attribution in place.": "Ja, genau dafür ist dieser Packager da. Jede erzeugte Seite behält eine kleine Zeile „Powered by WBest Tools“ im Fußbereich, die auf wbest.app verlinkt. Bitte lass diesen Hinweis stehen.",
   "{sel} of {total} selected": "{sel} von {total} ausgewählt",
   "Select all in {category}": "Alle in {category} auswählen",
   "About {raw} of pages, roughly {zip} zipped.": "Etwa {raw} an Seiten, gezippt rund {zip}.",

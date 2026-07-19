@@ -40,7 +40,7 @@ No. Every packaged page is fully self-contained, makes no network requests, and 
 
 ### Am I allowed to self-host these tools with my own branding?
 
-Yes, that is exactly what this packager is for. Each generated page keeps a small "Thank you for using WBest Tools" line in the footer linking back to wbest.app. Please leave that attribution in place.
+Yes, that is exactly what this packager is for. Each generated page keeps a small "Powered by WBest Tools" line in the footer linking back to wbest.app. Please leave that attribution in place.
 
 ## More WB tools
 

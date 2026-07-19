@@ -96,7 +96,7 @@
       "name": "Am I allowed to self-host these tools with my own branding?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, that is exactly what this packager is for. Each generated page keeps a small \"Thank you for using WBest Tools\" line in the footer linking back to wbest.app. Please leave that attribution in place."
+        "text": "Yes, that is exactly what this packager is for. Each generated page keeps a small \"Powered by WBest Tools\" line in the footer linking back to wbest.app. Please leave that attribution in place."
       }
     }
   ]
@@ -324,7 +324,7 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
     <p>No. Every packaged page is fully self-contained, makes no network requests, and keeps working offline. That is what makes them safe for sensitive data on an internal network.</p>
 
     <h3>Am I allowed to self-host these tools with my own branding?</h3>
-    <p>Yes, that is exactly what this packager is for. Each generated page keeps a small "Thank you for using WBest Tools" line in the footer linking back to wbest.app. Please leave that attribution in place.</p>
+    <p>Yes, that is exactly what this packager is for. Each generated page keeps a small "Powered by WBest Tools" line in the footer linking back to wbest.app. Please leave that attribution in place.</p>
   </section>
 
 </main>
@@ -744,15 +744,21 @@ footer{border-top:1px solid var(--border);padding:22px 0 34px;text-align:center;
     return slug || 'selfhost';
   }
   function landingHtml(rootTpl, name, cs, tools, lang) {
-    var cards = tools.map(function (id) {
-      var t = toolById(id);
-      var icon = t.icon.replace('<svg ', '<svg class="tool-icon" aria-hidden="true" focusable="false" ');
-      return '    <article class="tool card">\n      ' + icon + '\n      <div class="tool-body">\n' +
-        '        <h3><a href="' + id + '/index.html">' + (t.name[lang] || t.name.en) + '</a></h3>\n' +
-        '        <p class="desc">' + (t.desc[lang] || t.desc.en) + '</p>\n' +
-        '      </div>\n      <span class="go" aria-hidden="true">→</span>\n    </article>';
-    }).join('\n');
-    return substitute(rootTpl.split('{{TOOL_LIST}}').join(cards), {
+    var groups = MANIFEST.categories.map(function (cat) {
+      var cards = tools.filter(function (id) { return toolById(id).category === cat.id; })
+        .map(function (id) {
+          var t = toolById(id);
+          var icon = t.icon.replace('<svg ', '<svg class="tool-icon" aria-hidden="true" focusable="false" ');
+          return '    <article class="tool card">\n      ' + icon + '\n      <div class="tool-body">\n' +
+            '        <h3><a href="' + id + '/index.html">' + (t.name[lang] || t.name.en) + '</a></h3>\n' +
+            '        <p class="desc">' + (t.desc[lang] || t.desc.en) + '</p>\n' +
+            '      </div>\n      <span class="go" aria-hidden="true">→</span>\n    </article>';
+        });
+      if (!cards.length) return '';
+      return '  <h3 class="cat-title">' + (cat.label[lang] || cat.label.en) + '</h3>\n' +
+        '  <div class="tools">\n' + cards.join('\n') + '\n  </div>';
+    }).filter(Boolean).join('\n\n');
+    return substitute(rootTpl.split('{{TOOL_LIST}}').join(groups), {
       name: name, colors: cs, lang: lang, logo: logoImg(''), langSwitch: ''
     });
   }
